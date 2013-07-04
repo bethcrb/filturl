@@ -87,3 +87,7 @@ gem 'bootstrap-sass', '~> 2.3.2.0'
 
 # Use Simple Form to easily integrate Bootstrap styles in forms
 gem 'simple_form', '~> 3.0.0.rc'
+
+# Rails 4 requires rails_12factor in order to configure application
+# logs to be visible via heroku logs and to serve static assets. 
+gem 'rails_12factor'
