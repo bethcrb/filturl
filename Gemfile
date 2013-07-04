@@ -33,3 +33,57 @@ end
 
 # Use Figaro for application configuration.
 gem 'figaro'
+
+# Gems for testing and debugging
+group :development do
+  # Better Errors replaces the standard Rails error page with a much better and more useful error page.
+  gem 'better_errors', '~> 0.9.0'
+
+  # binding_of_caller retrieves the binding of a method's caller. Used by Better Errors for advanced features.
+  gem 'binding_of_caller', '~> 0.7.2'
+
+  # Quiet Assets mutes assets pipeline log messages.
+  gem 'quiet_assets', '~> 1.0.2'
+end
+
+group :test do
+  # Use Capybara to simulate user interactions on the website.
+  gem 'capybara', '~> 2.1.0'
+
+  # Use Cucumber for behavior-driven development and integration testing.
+  # NOTE: Temporarily using the master_rails4_test branch because the
+  # stable release of 1.3.1 currently does not support Rails 4.
+  gem 'cucumber-rails', :require => false, github: 'cucumber/cucumber-rails', :branch => 'master_rails4_test'
+
+  # Use Database Cleaner to restore the database to a pristine state during testing.
+  gem 'database_cleaner', '~> 1.0.1'
+
+  # Use Email Spec for testing email with RSpec and Cucumber.
+  gem 'email_spec', '~> 1.4.0'
+end
+
+group :development, :test do
+  # Use Factory Girl for test objects.
+  gem 'factory_girl_rails', '~> 4.2.1'
+
+  # Use RSpec for unit testing.
+  gem 'rspec-rails', '~> 2.14.0.rc1'
+end
+
+# Use Devise and Omniauth for authentication.
+gem 'devise', '~> 3.0.0.rc'
+gem 'omniauth-facebook', '~> 1.4.1'
+gem 'omniauth-google-oauth2', '~> 0.2.0'
+gem 'omniauth-twitter', '~> 1.0.0'
+
+# Use CanCan to restrict access to pages that should only be viewed by an administrator.
+gem 'cancan', '~> 1.6.10'
+
+# Use Rolify to manage user roles.
+gem 'rolify'
+
+# Use Bootstrap for front-end framework.
+gem 'bootstrap-sass', '~> 2.3.2.0'
+
+# Use Simple Form to easily integrate Bootstrap styles in forms
+gem 'simple_form', '~> 3.0.0.rc'
