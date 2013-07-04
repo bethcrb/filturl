@@ -6,7 +6,7 @@ Filturl::Application.routes.draw do
   end
 
   unauthenticated do
-    root :to => 'home#index'
+    root :to => redirect('/users/sign_in')
   end
 
   devise_for :users
