@@ -80,7 +80,7 @@ gem 'omniauth-twitter', '~> 1.0.0'
 gem 'cancan', '~> 1.6.10'
 
 # Use Rolify to manage user roles.
-gem 'rolify'
+gem 'rolify', '~> 3.3.0.rc4'
 
 # Use Bootstrap for front-end framework.
 gem 'bootstrap-sass', '~> 2.3.2.0'

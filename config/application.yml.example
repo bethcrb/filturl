@@ -7,3 +7,10 @@ AMAZON_SES_ADDRESS:
 AMAZON_SES_PORT:
 AMAZON_SES_USERNAME:
 AMAZON_SES_PASSWORD:
+
+# /db/seeds.rb
+# Default user data for initializating database
+ADMIN_NAME: First User
+ADMIN_EMAIL: user@example.com
+ADMIN_PASSWORD: changeme
+ROLES: [admin, user, VIP]
