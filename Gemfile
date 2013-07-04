@@ -85,7 +85,10 @@ gem 'rolify', '~> 3.3.0.rc4'
 # Use Bootstrap for front-end framework.
 gem 'bootstrap-sass', '~> 2.3.2.0'
 
-# Use Simple Form to easily integrate Bootstrap styles in forms
+# Use bootswatch-rails for SASS versions of Bootswatch themes.
+gem 'bootswatch-rails'
+
+# Use Simple Form to easily integrate Bootstrap styles in forms.
 gem 'simple_form', '~> 3.0.0.rc'
 
 # Rails 4 requires rails_12factor in order to configure application
