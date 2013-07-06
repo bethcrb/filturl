@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @webpage = Webpage.new
+    @webpage_request = WebpageRequest.new
   end
 end

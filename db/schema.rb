@@ -62,10 +62,14 @@ ActiveRecord::Schema.define(version: 20130706080115) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
-  create_table "webpages", force: true do |t|
-    t.string   "url"
+  create_table "webpage_requests", force: true do |t|
+    t.string   "url",          null: false
+    t.integer  "requestor_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "webpage_requests", ["url", "requestor_id"], name: "index_webpage_requests_on_url_and_requestor_id", using: :btree
+  add_index "webpage_requests", ["url"], name: "index_webpage_requests_on_url", unique: true, using: :btree
 
 end
