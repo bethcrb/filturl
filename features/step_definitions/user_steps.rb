@@ -1,12 +1,17 @@
 ### UTILITY METHODS ###
 
 def create_visitor
-  @visitor ||= { :name => "Testy McUserton", :email => "example@example.com",
-    :password => "changeme", :password_confirmation => "changeme" }
+  @visitor ||= {
+    :name                  => "Testy McUserton",
+    :email                 => "example@example.com",
+    :username              => "example_user",
+    :password              => "changeme",
+    :password_confirmation => "changeme",
+  }
 end
 
 def find_user
-  @user ||= User.where(:email => @visitor[:email]).first
+  @user ||= User.where(:email => @visitor[:email], :username => @visitor[:username]).first
 end
 
 def create_unconfirmed_user
@@ -23,7 +28,7 @@ def create_user
 end
 
 def delete_user
-  @user ||= User.where(:email => @visitor[:email]).first
+  @user ||= User.where(:email => @visitor[:email], :username => @visitor[:username]).first
   @user.destroy unless @user.nil?
 end
 
@@ -32,15 +37,23 @@ def sign_up
   visit '/users/sign_up'
   fill_in "user_name", :with => @visitor[:name]
   fill_in "user_email", :with => @visitor[:email]
+  fill_in "user_username", :with => @visitor[:username]
   fill_in "user_password", :with => @visitor[:password]
   fill_in "user_password_confirmation", :with => @visitor[:password_confirmation]
   click_button "Sign up"
   find_user
 end
 
-def sign_in
+def sign_in_with_email
   visit '/users/sign_in'
   fill_in "user_email", :with => @visitor[:email]
+  fill_in "user_password", :with => @visitor[:password]
+  click_button "Sign in"
+end
+
+def sign_in_with_username
+  visit '/users/sign_in'
+  fill_in "user_username", :with => @visitor[:username]
   fill_in "user_password", :with => @visitor[:password]
   click_button "Sign in"
 end
@@ -52,7 +65,7 @@ end
 
 Given /^I am logged in$/ do
   create_user
-  sign_in
+  sign_in_with_email
 end
 
 Given /^I exist as a user$/ do
@@ -69,9 +82,14 @@ Given /^I exist as an unconfirmed user$/ do
 end
 
 ### WHEN ###
-When /^I sign in with valid credentials$/ do
+When /^I sign in with a valid email$/ do
   create_visitor
-  sign_in
+  sign_in_with_email
+end
+
+When /^I sign in with a valid username$/ do
+  create_visitor
+  sign_in_with_username
 end
 
 When /^I sign out$/ do
@@ -113,7 +131,12 @@ end
 
 When /^I sign in with a wrong email$/ do
   @visitor = @visitor.merge(:email => "wrong@example.com")
-  sign_in
+  sign_in_with_email
+end
+
+When /^I sign in with a wrong username$/ do
+  @visitor = @visitor.merge(:username => "wrong_user")
+  sign_in_with_username
 end
 
 When /^I sign in with a wrong password$/ do

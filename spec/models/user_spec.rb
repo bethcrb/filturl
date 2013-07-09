@@ -4,10 +4,11 @@ describe User do
 
   before(:each) do
     @attr = {
-      :name => "Example User",
-      :email => "user@example.com",
-      :password => "changeme",
-      :password_confirmation => "changeme"
+      :name                  => "Example User",
+      :email                 => "user@example.com",
+      :username              => "example_user",
+      :password              => "changeme",
+      :password_confirmation => "changeme",
     }
   end
 
@@ -47,6 +48,33 @@ describe User do
     User.create!(@attr.merge(:email => upcased_email))
     user_with_duplicate_email = User.new(@attr)
     user_with_duplicate_email.should_not be_valid
+  end
+
+  it "should require a username" do
+    no_username_user = User.new(@attr.merge(:username => ""))
+    no_username_user.should_not be_valid
+  end
+
+  it "should accept valid usernames" do
+    usernames = %w[test_user example_user username username@domain.com]
+    usernames.each do |username|
+      valid_username_user = User.new(@attr.merge(:username => username))
+      valid_username_user.should be_valid
+    end
+  end
+
+  it "should reject invalid usernames" do
+    usernames = %w[test!user $username @domain.com .]
+    usernames.each do |username|
+      invalid_username_user = User.new(@attr.merge(:username => username))
+      invalid_username_user.should_not be_valid
+    end
+  end
+
+  it "should reject duplicate usernames" do
+    User.create!(@attr)
+    user_with_duplicate_username = User.new(@attr)
+    user_with_duplicate_username.should_not be_valid
   end
 
   describe "passwords" do

@@ -14,6 +14,10 @@ Feature: Sign up
       When I sign up with an invalid email
       Then I should see an invalid email message
 
+    Scenario: User signs up with invalid username
+      When I sign up with an invalid username
+      Then I should see an invalid username message
+
     Scenario: User signs up without password
       When I sign up without a password
       Then I should see a missing password message
