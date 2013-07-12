@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true, format: /\A[A-Za-z0-9_]+(@([^@\s]+\.)+[^@\s]+)?\z/
   validates :password, confirmation: true, length: Devise.password_length
 
-  def login
-  end
+  # Virtual attribute for authenticating by either username or email
+  attr_accessor :login
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
