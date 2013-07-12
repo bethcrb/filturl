@@ -3,7 +3,7 @@
 <% end %>
 
 <%= content_tag(:div, id: "webpage_url_form") do %>
-  <%= simple_form_for(@webpage_request, :url => root_path, :html => { :class => "form-inline" }) do |f| %>
+  <%= simple_form_for(@webpage_request, :url => webpage_requests_path, :html => { :class => "form-inline" }) do |f| %>
     <%= f.input :url, label: false, placeholder: "http://", input_html: { class: "input-block-level" } %>
   <% end %>
 <% end %>
