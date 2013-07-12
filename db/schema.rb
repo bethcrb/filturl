@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130708225540) do
+ActiveRecord::Schema.define(version: 20130712165333) do
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -73,5 +73,27 @@ ActiveRecord::Schema.define(version: 20130708225540) do
 
   add_index "webpage_requests", ["url", "requestor_id"], name: "index_webpage_requests_on_url_and_requestor_id", using: :btree
   add_index "webpage_requests", ["url"], name: "index_webpage_requests_on_url", unique: true, using: :btree
+
+  create_table "webpage_responses", force: true do |t|
+    t.float    "app_connect_time"
+    t.float    "connect_time"
+    t.string   "effective_url"
+    t.boolean  "httpauth_avail"
+    t.float    "name_lookup_time"
+    t.float    "pretransfer_time"
+    t.string   "primary_ip"
+    t.integer  "redirect_count"
+    t.text     "body",                limit: 2147483647
+    t.integer  "code"
+    t.text     "headers"
+    t.string   "return_message"
+    t.float    "start_transfer_time"
+    t.float    "total_time"
+    t.integer  "webpage_request_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "webpage_responses", ["webpage_request_id"], name: "index_webpage_responses_on_webpage_request_id", using: :btree
 
 end
