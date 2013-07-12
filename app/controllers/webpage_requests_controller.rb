@@ -1,6 +1,7 @@
 class WebpageRequestsController < ApplicationController
   def show
     @webpage_request = WebpageRequest.find(params[:id])
+    @webpage_response = @webpage_request.get_response
   end
 
   def create
