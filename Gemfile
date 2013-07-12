@@ -70,7 +70,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14.0.rc1'
 
   # Use VCR to record and playback HTTP interactions.
-  gem 'vcr'
+  gem 'vcr', '2.5.0'
+
+  # Use WebMock to stub and set expectations on HTTP requests
+  gem 'webmock', '>= 1.8.0', '< 1.12'
 end
 
 # Use Devise and Omniauth for authentication.
