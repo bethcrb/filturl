@@ -67,7 +67,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.2.1'
 
   # Use RSpec for unit testing.
-  gem 'rspec-rails', '~> 2.14.0.rc1'
+  gem 'rspec-rails', '~> 2.14.0'
 
   # Use VCR to record and playback HTTP interactions.
   gem 'vcr', '2.5.0'
