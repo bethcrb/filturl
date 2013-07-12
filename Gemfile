@@ -100,3 +100,9 @@ gem 'simple_form', '~> 3.0.0.rc'
 # Rails 4 requires rails_12factor in order to configure application
 # logs to be visible via heroku logs and to serve static assets. 
 gem 'rails_12factor'
+
+# Use Typhoeus to perform HTTP requests
+gem 'typhoeus'
+
+# Use Nokogiri for HTML parsing
+gem 'nokogiri'
