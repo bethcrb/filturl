@@ -68,6 +68,9 @@ group :development, :test do
 
   # Use RSpec for unit testing.
   gem 'rspec-rails', '~> 2.14.0.rc1'
+
+  # Use VCR to record and playback HTTP interactions.
+  gem 'vcr'
 end
 
 # Use Devise and Omniauth for authentication.
