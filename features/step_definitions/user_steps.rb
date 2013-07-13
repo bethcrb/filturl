@@ -46,14 +46,14 @@ end
 
 def sign_in_with_email
   visit '/users/sign_in'
-  fill_in "user_email", :with => @visitor[:email]
+  fill_in "user_login", :with => @visitor[:email]
   fill_in "user_password", :with => @visitor[:password]
   click_button "Sign in"
 end
 
 def sign_in_with_username
   visit '/users/sign_in'
-  fill_in "user_username", :with => @visitor[:username]
+  fill_in "user_login", :with => @visitor[:username]
   fill_in "user_password", :with => @visitor[:password]
   click_button "Sign in"
 end
@@ -107,6 +107,12 @@ When /^I sign up with an invalid email$/ do
   sign_up
 end
 
+When /^I sign up with an invalid username$/ do
+  create_visitor
+  @visitor = @visitor.merge(:username => "$notausername")
+  sign_up
+end
+
 When /^I sign up without a password confirmation$/ do
   create_visitor
   @visitor = @visitor.merge(:password_confirmation => "")
@@ -141,7 +147,7 @@ end
 
 When /^I sign in with a wrong password$/ do
   @visitor = @visitor.merge(:password => "wrongpass")
-  sign_in
+  sign_in_with_email
 end
 
 When /^I edit my account details$/ do
@@ -172,43 +178,34 @@ Then /^I see an unconfirmed account message$/ do
   page.should have_content "You have to confirm your account before continuing."
 end
 
-Then /^I see a successful sign in message$/ do
-  page.should have_content "Signed in successfully."
-end
-
 Then /^I should see a successful sign up message$/ do
   page.should have_content "A message with a confirmation link has been sent to your email address."
 end
 
 Then /^I should see an invalid email message$/ do
-  page.should have_content "Email is invalid"
+  page.should have_content "Emailis invalid"
+end
+
+Then /^I should see an invalid username message$/ do
+  page.should have_content "Usernameis invalid"
 end
 
 Then /^I should see a missing password message$/ do
-  page.should have_content "Password can't be blank"
+  page.should have_content "Passwordcan't be blank"
 end
 
 Then /^I should see a missing password confirmation message$/ do
-  page.should have_content "Password doesn't match confirmation"
+  page.should have_content "Password confirmationdoesn't match"
 end
 
 Then /^I should see a mismatched password message$/ do
-  page.should have_content "Password doesn't match confirmation"
-end
-
-Then /^I should see a signed out message$/ do
-  page.should have_content "Signed out successfully."
+  page.should have_content "Password confirmationdoesn't match"
 end
 
 Then /^I see an invalid login message$/ do
-  page.should have_content "Invalid email or password."
+  page.should have_content "Invalid login or password."
 end
 
 Then /^I should see an account edited message$/ do
   page.should have_content "You updated your account successfully."
-end
-
-Then /^I should see my name$/ do
-  create_user
-  page.should have_content @user[:name]
 end
