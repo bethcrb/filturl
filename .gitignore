@@ -12,6 +12,7 @@
 /.bundle
 /.ruby-gemset
 /.ruby-version
+/.secret_key_base
 /cache
 /capybara*
 /capybara-*.html

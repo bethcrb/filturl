@@ -9,4 +9,24 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Filturl::Application.config.secret_key_base = ENV['RAILS_SECRET_TOKEN']
+
+require 'securerandom'
+
+# Path to the file where the generated secret_key_base is stored
+SECRET_KEY_BASE_FILE = Rails.root.join('.secret_key_base')
+
+# This method generates a random secret_key_base so that
+# secret_key_base is kept private if secret_token.rb is
+# shared publicly.
+def find_or_create_secret_key_base
+  unless File.exist? SECRET_KEY_BASE_FILE
+    # Generate a new secret_key_base unless the file already exists.
+    secret_key_base = SecureRandom.hex(64)
+    File.write(SECRET_KEY_BASE_FILE, secret_key_base, perm: 0600)
+  end
+
+  # Return the contents of the secret key base file.
+  File.read(SECRET_KEY_BASE_FILE).chomp
+end
+
+Filturl::Application.config.secret_key_base = find_or_create_secret_key_base
