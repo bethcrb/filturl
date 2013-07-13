@@ -60,12 +60,6 @@ group :test do
 
   # Use Email Spec for testing email with RSpec and Cucumber.
   gem 'email_spec', '~> 1.4.0'
-
-  # Use VCR to record and playback HTTP interactions.
-  gem 'vcr', '2.5.0'
-
-  # Use WebMock to stub and set expectations on HTTP requests
-  gem 'webmock', '>= 1.8.0', '< 1.12'
 end
 
 group :development, :test do
