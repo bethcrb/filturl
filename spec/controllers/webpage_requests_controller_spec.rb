@@ -14,8 +14,10 @@ describe WebpageRequestsController do
 
   describe "GET 'show'" do
     it "shows the webpage request" do
-      get :show, :id => @webpage_request.id
-      assigns(:webpage_request).should == @webpage_request
+      VCR.use_cassette('webpage_requests_show') do
+        get :show, :id => @webpage_request.id
+        assigns(:webpage_request).should == @webpage_request
+      end
     end
   end
 
