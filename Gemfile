@@ -6,7 +6,7 @@ ruby '2.0.0'
 gem 'rails', '4.0.0'
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.11'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -32,7 +32,7 @@ group :doc do
 end
 
 # Use Figaro for application configuration.
-gem 'figaro'
+gem 'figaro', '~> 0.7.0'
 
 # Gems for testing and debugging
 group :development do
@@ -86,17 +86,19 @@ gem 'rolify', '~> 3.3.0.rc4'
 gem 'bootstrap-sass', '~> 2.3.2.0'
 
 # Use bootswatch-rails for SASS versions of Bootswatch themes.
-gem 'bootswatch-rails'
+gem 'bootswatch-rails', '~> 0.5.0'
 
 # Use Simple Form to easily integrate Bootstrap styles in forms.
 gem 'simple_form', '~> 3.0.0.rc'
 
 # Rails 4 requires rails_12factor in order to configure application
 # logs to be visible via heroku logs and to serve static assets. 
-gem 'rails_12factor'
+group :heroku do
+  gem 'rails_12factor', '~> 0.0.2'
+end
 
 # Use Typhoeus to perform HTTP requests
-gem 'typhoeus'
+gem 'typhoeus', '~> 0.6.3'
 
 # Use Nokogiri for HTML parsing
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.6.0'
