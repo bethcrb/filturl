@@ -102,3 +102,10 @@ gem 'typhoeus', '~> 0.6.3'
 
 # Use Nokogiri for HTML parsing
 gem 'nokogiri', '~> 1.6.0'
+
+# Use Watir and Headless (Xvfb) for screenshots
+gem 'headless', '~> 1.0.1'
+gem 'watir', '~> 4.0.2'
+
+# Use AWS SDK for S3
+gem 'aws-sdk', '~> 1.0'

@@ -4,6 +4,7 @@
   <ul class="nav nav-tabs">
     <li class="active"><a href="#http_headers_tab" data-toggle="tab">HTTP Headers</a></li>
     <li><a href="#view_source_tab" data-toggle="tab">View Source</a></li>
+    <li><a href="#screenshot_tab" data-toggle="tab">Screenshot</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="http_headers_tab">
@@ -11,6 +12,9 @@
     </div>
     <div class="tab-pane" id="view_source_tab">
       <pre class="prettyprint pre-scrollable"><%= display_html(@webpage_response.body) %></pre>
+    </div>
+    <div class="tab-pane" id="screenshot_tab">
+      <p><%= image_tag(@webpage_response.screenshot_url, width: "100%") %></p>
     </div>
   </div>
 </div>
