@@ -2,15 +2,15 @@
 
 <div class="tabbable">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#headers_tab" data-toggle="tab">Headers</a></li>
-    <li><a href="#html_tab" data-toggle="tab">HTML</a></li>
+    <li class="active"><a href="#http_headers_tab" data-toggle="tab">HTTP Headers</a></li>
+    <li><a href="#view_source_tab" data-toggle="tab">View Source</a></li>
   </ul>
   <div class="tab-content">
-    <div class="tab-pane active" id="headers_tab">
+    <div class="tab-pane active" id="http_headers_tab">
       <pre class="pre-scrollable"><%= @webpage_response.headers %></pre>
     </div>
-    <div class="tab-pane" id="html_tab">
-      <pre class="prettyprint pre-scrollable"><%= @webpage_response.body %></pre>
+    <div class="tab-pane" id="view_source_tab">
+      <pre class="prettyprint pre-scrollable"><%= display_html(@webpage_response.body) %></pre>
     </div>
   </div>
 </div>
