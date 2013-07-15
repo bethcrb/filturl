@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130712165333) do
+ActiveRecord::Schema.define(version: 20130715034236) do
+
+  create_table "authentications", force: true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "email"
+    t.string   "nickname"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "location"
+    t.text     "description"
+    t.string   "image"
+    t.text     "raw_info"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe User do
-
   before(:each) do
     @attr = {
       :name                  => "Example User",
@@ -78,7 +77,6 @@ describe User do
   end
 
   describe "passwords" do
-
     before(:each) do
       @user = User.new(@attr)
     end
@@ -93,15 +91,12 @@ describe User do
   end
 
   describe "password validations" do
-
     it "should require a password" do
-      User.new(@attr.merge(:password => "", :password_confirmation => "")).
-        should_not be_valid
+      User.new(@attr.merge(:password => "", :password_confirmation => "")).should_not be_valid
     end
 
     it "should require a matching password confirmation" do
-      User.new(@attr.merge(:password_confirmation => "invalid")).
-        should_not be_valid
+      User.new(@attr.merge(:password_confirmation => "invalid")).should_not be_valid
     end
 
     it "should reject short passwords" do
@@ -109,11 +104,9 @@ describe User do
       hash = @attr.merge(:password => short, :password_confirmation => short)
       User.new(hash).should_not be_valid
     end
-
   end
 
   describe "password encryption" do
-
     before(:each) do
       @user = User.create!(@attr)
     end
@@ -125,7 +118,5 @@ describe User do
     it "should set the encrypted password attribute" do
       @user.encrypted_password.should_not be_blank
     end
-
   end
-
 end

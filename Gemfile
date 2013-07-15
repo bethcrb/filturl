@@ -61,8 +61,8 @@ group :test do
   # Use Email Spec for testing email with RSpec and Cucumber.
   gem 'email_spec', '~> 1.4.0'
 
-  # Use Shoulda Matchers to write powerful tests with less code.
-  gem 'shoulda-matchers', '~> 2.2.0'
+  # Use Shoulda to write powerful tests with less code.
+  gem 'shoulda', '~> 3.5.0'
 end
 
 group :development, :test do
@@ -76,6 +76,7 @@ end
 # Use Devise and Omniauth for authentication.
 gem 'devise', '~> 3.0.0.rc'
 gem 'omniauth-facebook', '~> 1.4.1'
+gem 'omniauth-github', '~> 1.1.0'
 gem 'omniauth-google-oauth2', '~> 0.2.0'
 gem 'omniauth-twitter', '~> 1.0.0'
 
