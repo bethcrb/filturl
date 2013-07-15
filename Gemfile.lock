@@ -214,6 +214,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
+    shoulda-matchers (2.2.0)
+      activesupport (>= 3.0.0)
     simple_form (3.0.0.rc)
       actionpack (>= 4.0.0.rc1, < 4.1)
       activemodel (>= 4.0.0.rc1, < 4.1)
@@ -286,6 +288,7 @@ DEPENDENCIES
   rspec-rails (~> 2.14.0)
   sass-rails (~> 4.0.0)
   sdoc
+  shoulda-matchers (~> 2.2.0)
   simple_form (~> 3.0.0.rc)
   turbolinks
   typhoeus (~> 0.6.3)

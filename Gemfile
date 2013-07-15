@@ -60,6 +60,9 @@ group :test do
 
   # Use Email Spec for testing email with RSpec and Cucumber.
   gem 'email_spec', '~> 1.4.0'
+
+  # Use Shoulda Matchers to write powerful tests with less code.
+  gem 'shoulda-matchers', '~> 2.2.0'
 end
 
 group :development, :test do
