@@ -78,7 +78,6 @@ gem 'devise', '~> 3.0.0.rc'
 gem 'omniauth-facebook', '~> 1.4.1'
 gem 'omniauth-github', '~> 1.1.0'
 gem 'omniauth-google-oauth2', '~> 0.2.0'
-gem 'omniauth-twitter', '~> 1.0.0'
 
 # Use CanCan to restrict access to pages that should only be viewed by an administrator.
 gem 'cancan', '~> 1.6.10'

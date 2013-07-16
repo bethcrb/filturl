@@ -111,33 +111,4 @@ class User < ActiveRecord::Base
 
     user
   end
-
-  def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
-    user = User.find_by(username: auth.extra.raw_info.screen_name)
-    unless user
-      user = User.new(
-        email:    "#{auth.extra.raw_info.screen_name}@not.provided.by.twitter",
-        username: auth.extra.raw_info.screen_name,
-        password: Devise.friendly_token[0,20],
-      )
-      user.skip_confirmation!
-      user.save!
-    end
-
-    authentication = user.authentications.find_or_create_by(
-      provider: auth.provider,
-      uid:      auth.uid,
-    )
-
-    authentication.name = auth.info.name
-    authentication.email = auth.info.email
-    authentication.nickname = auth.info.nickname
-    authentication.location = auth.info.location
-    authentication.description = auth.info.description
-    authentication.image = auth.info.image
-    authentication.raw_info = auth.extra.raw_info.to_json
-    authentication.save!
-
-    user
-  end
 end
