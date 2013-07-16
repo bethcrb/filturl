@@ -18,6 +18,7 @@
 /capybara-*.html
 /config/application.yml
 /config/database.yml
+/config/deploy.rb
 /coverage.data
 /coverage/
 /db/*.sqlite3
@@ -36,5 +37,6 @@
 /tmp
 /vendor/bundle/
 /vendor/ruby/
+Capfile
 pickle-email-*.html
 rerun.txt

@@ -113,3 +113,6 @@ gem 'watir', '~> 4.0.2'
 
 # Use AWS SDK for S3
 gem 'aws-sdk', '~> 1.0'
+
+# Use Capistrano for deployment
+gem 'capistrano', group: :development
