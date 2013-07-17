@@ -1,14 +1,14 @@
 Filturl::Application.routes.draw do
   authenticated :user do
-    root :to => 'home#index', as: :authenticated_root
+    root :to => 'webpage_requests#index', as: :authenticated_root
   end
 
   unauthenticated do
-    root :to => redirect('/users/sign_in')
+    root :to => 'home#index'
   end
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: :registrations }
   resources :users
 
-  resources :webpage_requests, :only => [:show, :create]
+  resources :webpage_requests, :only => [:index, :show, :create]
 end

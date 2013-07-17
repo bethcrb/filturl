@@ -151,14 +151,10 @@ When /^I sign in with a wrong password$/ do
 end
 
 When /^I edit my account details$/ do
-  click_link "Edit account"
+  visit "/users/edit"
   fill_in "user_name", :with => "newname"
   fill_in "user_current_password", :with => @visitor[:password]
   click_button "Update"
-end
-
-When /^I look at the list of users$/ do
-  visit '/'
 end
 
 ### THEN ###

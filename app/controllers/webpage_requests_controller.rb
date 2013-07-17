@@ -1,4 +1,8 @@
 class WebpageRequestsController < ApplicationController
+  def index
+    @webpage_request = WebpageRequest.new
+  end
+
   def show
     @webpage_request = WebpageRequest.friendly.find(params[:id])
     @webpage_response = @webpage_request.webpage_response
