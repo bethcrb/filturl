@@ -42,6 +42,9 @@ group :development do
   # binding_of_caller retrieves the binding of a method's caller. Used by Better Errors for advanced features.
   gem 'binding_of_caller', '~> 0.7.2'
 
+  # Use Capistrano for deployment
+  gem 'capistrano', '~> 2.15.5'
+
   # Quiet Assets mutes assets pipeline log messages.
   gem 'quiet_assets', '~> 1.0.2'
 end
@@ -113,5 +116,5 @@ gem 'watir', '~> 4.0.2'
 # Use AWS SDK for S3
 gem 'aws-sdk', '~> 1.0'
 
-# Use Capistrano for deployment
-gem 'capistrano', group: :development
+# Use PostRank::URI to clean URLs prior to validation
+gem 'postrank-uri'
