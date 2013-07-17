@@ -7,7 +7,7 @@ class WebpageRequestsController < ApplicationController
   def create
     request_url = webpage_request_params[:url]
 
-    @webpage_request = WebpageRequest.find_or_initialize_by({ :url => request_url, :requestor_id => current_user.id })
+    @webpage_request = WebpageRequest.find_or_initialize_by({ :url => request_url, :user_id => current_user.id })
 
     respond_to do |format|
       if @webpage_request.save

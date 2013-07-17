@@ -1,5 +1,5 @@
 class WebpageRequest < ActiveRecord::Base
-  belongs_to :requestor, class_name: "User"
+  belongs_to :user
 
   has_one :webpage_response, dependent: :destroy
 

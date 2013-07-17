@@ -5,7 +5,7 @@ describe WebpageRequest do
     @user = FactoryGirl.create(:user)
     @attr = {
       :url     => "http://www.example.com",
-      :requestor_id => @user.id,
+      :user_id => @user.id,
     }
   end
 
@@ -15,7 +15,7 @@ describe WebpageRequest do
 
   it "should belong to a user" do
     user_webpage_request = WebpageRequest.create!(@attr)
-    user_webpage_request.requestor.should == @user
+    user_webpage_request.user.should == @user
   end
 
   describe "urls"

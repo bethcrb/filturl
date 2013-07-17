@@ -8,7 +8,7 @@ describe WebpageRequestsController do
     @webpage_request = FactoryGirl.create(:webpage_request)
     @attr = {
       :url          => "http://www.test.com",
-      :requestor_id => @user.id,
+      :user_id => @user.id,
     }
   end
 
