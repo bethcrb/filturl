@@ -117,4 +117,7 @@ gem 'watir', '~> 4.0.2'
 gem 'aws-sdk', '~> 1.0'
 
 # Use PostRank::URI to clean URLs prior to validation
-gem 'postrank-uri'
+gem 'postrank-uri', '~> 1.0.16'
+
+# Use FriendlyId for permalinks
+gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'

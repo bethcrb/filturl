@@ -1,6 +1,6 @@
 class WebpageRequestsController < ApplicationController
   def show
-    @webpage_request = WebpageRequest.find(params[:id])
+    @webpage_request = WebpageRequest.friendly.find(params[:id])
     @webpage_response = @webpage_request.webpage_response
   end
 

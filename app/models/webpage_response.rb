@@ -30,7 +30,7 @@ class WebpageResponse < ActiveRecord::Base
   end
 
   def screenshot_filename
-    "#{id}.png"
+    "#{self.webpage_request.slug}.png"
   end
 
   def temp_screenshot_file
