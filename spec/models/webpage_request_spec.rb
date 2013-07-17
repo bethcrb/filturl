@@ -9,11 +9,11 @@ describe WebpageRequest do
     }
   end
 
-  it "should create a new instance given a valid attribute" do
+  it "should create a new instance given a valid attribute", :vcr do
     WebpageRequest.create!(@attr)
   end
 
-  it "should belong to a user" do
+  it "should belong to a user", :vcr do
     user_webpage_request = WebpageRequest.create!(@attr)
     user_webpage_request.user.should == @user
   end
@@ -24,7 +24,7 @@ describe WebpageRequest do
     no_url_webpage_request.should_not be_valid
   end
 
-  it "should reject duplicate urls" do
+  it "should reject duplicate urls", :vcr do
     WebpageRequest.create!(@attr)
     webpage_request_with_duplicate_url = WebpageRequest.new(@attr)
     webpage_request_with_duplicate_url.should_not be_valid

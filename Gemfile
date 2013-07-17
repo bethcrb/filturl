@@ -66,6 +66,9 @@ group :test do
 
   # Use Shoulda to write powerful tests with less code.
   gem 'shoulda', '~> 3.5.0'
+
+  # Use VCR to record and playback HTTP interactions.
+  gem 'vcr', '2.5.0'
 end
 
 group :development, :test do
