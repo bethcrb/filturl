@@ -8,20 +8,12 @@ class WebpageResponse < ActiveRecord::Base
   def get_url
     response = Typhoeus.get(self.webpage_request.url, followlocation: true)
     response_data = {
-      :app_connect_time    => response.app_connect_time,
-      :connect_time        => response.connect_time,
       :effective_url       => response.effective_url,
-      :httpauth_avail      => response.httpauth_avail,
-      :name_lookup_time    => response.name_lookup_time,
-      :pretransfer_time    => response.pretransfer_time,
       :primary_ip          => response.primary_ip,
       :redirect_count      => response.redirect_count,
       :body                => response.response_body.force_encoding("ISO-8859-1").encode("utf-8", replace: nil),
       :code                => response.response_code,
       :headers             => response.response_headers,
-      :return_message      => response.return_message,
-      :start_transfer_time => response.start_transfer_time,
-      :total_time          => response.total_time,
     }
 
     generate_screenshot
