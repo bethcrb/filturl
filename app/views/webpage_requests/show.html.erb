@@ -13,8 +13,8 @@
     <div class="tab-pane" id="view_source_tab">
       <pre class="prettyprint pre-scrollable"><%= display_html(@webpage_response.body) %></pre>
     </div>
-    <div class="tab-pane" id="screenshot_tab">
-      <p><%= image_tag(@webpage_response.screenshot_url, width: "100%") %></p>
+    <div class="tab-pane" id="screenshot_tab" style="max-width: 800px;margin: 0 auto;">
+      <p><a href="<%= @webpage_response.screenshot_url %>" target="new"><%= image_tag(@webpage_response.screenshot_url) %></a></p>
     </div>
   </div>
 </div>
