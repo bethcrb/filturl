@@ -295,6 +295,7 @@ DEPENDENCIES
   cancan (~> 1.6.10)
   capistrano (~> 2.15.5)
   capybara (~> 2.1.0)
+  coderay
   coffee-rails (~> 4.0.0)
   cucumber-rails!
   database_cleaner (~> 1.0.1)

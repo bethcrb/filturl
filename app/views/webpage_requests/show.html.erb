@@ -1,7 +1,7 @@
 <h3><%= @webpage_request.url %></h3>
 
 <div class="tabbable">
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs" id="navTabs">
     <li class="active"><a href="#http_headers_tab" data-toggle="tab">HTTP Headers</a></li>
     <li><a href="#view_source_tab" data-toggle="tab">View Source</a></li>
     <li><a href="#screenshot_tab" data-toggle="tab">Screenshot</a></li>
@@ -11,10 +11,10 @@
       <pre class="pre-scrollable"><%= @webpage_response.headers %></pre>
     </div>
     <div class="tab-pane" id="view_source_tab">
-      <pre class="prettyprint pre-scrollable"><%= display_html(@webpage_response.body) %></pre>
+      <%= raw display_html(@webpage_response.body) %>
     </div>
-    <div class="tab-pane" id="screenshot_tab" style="max-width: 800px;margin: 0 auto;">
-      <p><a href="<%= @webpage_response.screenshot_url %>" target="new"><%= image_tag(@webpage_response.screenshot_url) %></a></p>
+    <div class="tab-pane" id="screenshot_tab">
+      <p><a href="<%= @webpage_response.screenshot_url %>" target="new"><%= image_tag(@webpage_response.screenshot_url, class: "thumbnail span9") %></a></p>
     </div>
   </div>
 </div>
