@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/FriendlyId/friendly_id.git
-  revision: a25368945623c14798920e3316117bc5bd359e10
+  revision: cc5ce00077b168523a95b195d9911e5576e6489f
   branch: master
   specs:
     friendly_id (5.0.0.alpha1)
@@ -149,7 +149,7 @@ GEM
     multi_json (1.7.7)
     multi_test (0.0.1)
     multipart-post (1.2.0)
-    mysql2 (0.3.12)
+    mysql2 (0.3.13)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
