@@ -1,0 +1,22 @@
+---
+http_interactions:
+- request:
+    method: head
+    uri: http://not.a.valid.url/
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 0
+      message: 
+    headers: {}
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 19 Jul 2013 07:11:06 GMT
+recorded_with: VCR 2.5.0

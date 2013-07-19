@@ -8,6 +8,7 @@ class WebpageRequest < ActiveRecord::Base
   before_validation :clean_url
 
   validates :url, presence: true, format: URI::regexp(%w(http https))
+  validates_uniqueness_of :url, :scope => :user_id
   validates_each :url do |record, attr, value|
     head = Typhoeus.head(value)
     if head.response_code < 200
