@@ -7,8 +7,13 @@ class WebpageRequest < ActiveRecord::Base
 
   before_validation :clean_url
 
-  validates :url, presence: true, uniqueness: true, format: URI::regexp(%w(http https))
-
+  validates :url, presence: true, format: URI::regexp(%w(http https))
+  validates_each :url do |record, attr, value|
+    head = Typhoeus.head(value)
+    if head.response_code < 200
+      record.errors.add(attr, "must be reachable (#{head.return_message})")
+    end
+  end
   after_create :create_webpage_response!
 
   friendly_id :generate_short_code, :use => :slugged

@@ -4,7 +4,6 @@
 
 <%= content_tag(:div, id: "webpage_url_form") do %>
   <%= simple_form_for(@webpage_request, :url => webpage_requests_path, :html => { :class => "form-inline text-center" }) do |f| %>
-    <%= f.error_notification %>
     <%= f.url_field :url, placeholder: "http://", class: "span8" %>
     <%= f.button :submit, "Go!", :class => "btn-primary" %>
   <% end %>

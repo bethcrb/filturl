@@ -18,7 +18,8 @@ class WebpageRequestsController < ApplicationController
         format.html { redirect_to @webpage_request }
         format.json { render action: 'show', status: :created, location: @webpage_request }
       else
-        format.html { render "home/index", notice: @webpage_request.errors  }
+        flash.now[:alert] = "#{request_url}: #{@webpage_request.errors.full_messages.to_sentence.gsub(/Url/, 'url')}"
+        format.html { render "index" }
         format.json { render json: @webpage_request.errors, status: :unprocessable_entity }
       end
     end
