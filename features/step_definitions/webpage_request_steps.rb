@@ -22,11 +22,9 @@ def submit_valid_url
 end
 
 def submit_invalid_url
-  VCR.use_cassette("webpage_requests/submit_invalid_url", :record => :all) do
-    visit '/'
-    fill_in "webpage_request_url", :with => @webpage_request_attrs[:url]
-    click_button "Go"
-  end
+  visit '/'
+  fill_in "webpage_request_url", :with => @webpage_request_attrs[:url]
+  click_button "Go"
 end
 
 ### GIVEN ###
