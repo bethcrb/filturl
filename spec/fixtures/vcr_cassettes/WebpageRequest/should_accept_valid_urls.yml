@@ -26,10 +26,10 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: '1.0'
-  recorded_at: Sat, 20 Jul 2013 01:21:38 GMT
+  recorded_at: Sat, 20 Jul 2013 19:11:25 GMT
 - request:
     method: head
-    uri: http://www.test.com/page.html
+    uri: http://www.microsoft.com/page.html
     body:
       encoding: UTF-8
       string: ''
@@ -38,28 +38,39 @@ http_interactions:
       - Typhoeus - https://github.com/typhoeus/typhoeus
   response:
     status:
-      code: 302
-      message: Redirect
+      code: 404
+      message: Page not available
     headers:
-      Server:
-      - nginx/1.2.5
-      Date:
-      - Sat, 20 Jul 2013 01:21:38 GMT
-      Content-Type:
-      - text/html; charset=UTF-8
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
       Content-Length:
-      - '143'
-      Connection:
-      - keep-alive
-      Location:
-      - http://www.test.com/
+      - '78797'
+      Content-Type:
+      - text/html; charset=utf-8
+      Expires:
+      - '-1'
+      Server:
+      - Microsoft-IIS/8.0
+      P3P:
+      - CP="ALL IND DSP COR ADM CONo CUR CUSo IVAo IVDo PSA PSD TAI TELo OUR SAMo
+        CNT COM INT NAV ONL PHY PRE PUR UNI"
+      X-AspNet-Version:
+      - 2.0.50727
+      VTag:
+      - '279615731800000000'
       X-Powered-By:
       - ASP.NET
+      - ARR/2.5
+      - ASP.NET
+      Date:
+      - Sat, 20 Jul 2013 19:11:24 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: '1.1'
-  recorded_at: Sat, 20 Jul 2013 01:21:39 GMT
+  recorded_at: Sat, 20 Jul 2013 19:11:25 GMT
 - request:
     method: head
     uri: https://www.domain.com/?query=value
@@ -75,7 +86,7 @@ http_interactions:
       message: Internal Server Error
     headers:
       Date:
-      - Sat, 20 Jul 2013 01:21:40 GMT
+      - Sat, 20 Jul 2013 19:11:26 GMT
       Content-Type:
       - text/html
       Connection:
@@ -85,12 +96,12 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       Set-Cookie:
-      - SESSION_ID=e05a667d10f55b32997c2e01e0f18fee; domain=.domain.com; path=/
-      - LP_ALT_ID=BB1C607CF0DA11E29C36B137C09D3BBA; domain=.domain.com; path=/; expires=Thu,
-        25-Jul-2013 01:21:40 GMT
+      - SESSION_ID=14e38df133724315d1bdacf887b8df1c; domain=.domain.com; path=/
+      - LP_ALT_ID=2CA66BC6F17011E299A73815AC39F211; domain=.domain.com; path=/; expires=Thu,
+        25-Jul-2013 19:11:26 GMT
     body:
       encoding: UTF-8
       string: ''
     http_version: '1.1'
-  recorded_at: Sat, 20 Jul 2013 01:21:40 GMT
+  recorded_at: Sat, 20 Jul 2013 19:11:26 GMT
 recorded_with: VCR 2.5.0

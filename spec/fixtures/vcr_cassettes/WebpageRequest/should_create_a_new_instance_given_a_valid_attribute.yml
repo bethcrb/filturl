@@ -26,7 +26,7 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: '1.0'
-  recorded_at: Sat, 20 Jul 2013 01:22:06 GMT
+  recorded_at: Sat, 20 Jul 2013 19:11:28 GMT
 - request:
     method: get
     uri: http://www.example.com/
@@ -46,13 +46,13 @@ http_interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Sat, 20 Jul 2013 01:22:07 GMT
+      - Sat, 20 Jul 2013 19:11:28 GMT
       ETag:
       - '"780602-4f6-4db31b2978ec0"'
       Last-Modified:
       - Thu, 25 Apr 2013 16:13:23 GMT
       Server:
-      - ECS (sjc/4FB4)
+      - ECS (sjc/4FCE)
       X-Cache:
       - HIT
       Content-Length:
@@ -79,5 +79,5 @@ http_interactions:
         or asking for permission.</p>\n    <p><a href=\"http://www.iana.org/domains/example\">More
         information...</a></p>\n</div>\n</body>\n</html>\n"
     http_version: '1.0'
-  recorded_at: Sat, 20 Jul 2013 01:22:07 GMT
+  recorded_at: Sat, 20 Jul 2013 19:11:28 GMT
 recorded_with: VCR 2.5.0

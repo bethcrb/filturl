@@ -1,6 +1,6 @@
 require 'spec_helper'
-describe WebpageRequest do
 
+describe WebpageRequest do
   before(:each) do
     @user = FactoryGirl.create(:user)
     @attr = {
@@ -53,7 +53,7 @@ describe WebpageRequest do
   end
 
   it "should accept valid urls", :vcr do
-    urls = %w[http://www.example.com http://www.test.com/page.html#anchor https://www.domain.com/?query=value]
+    urls = %w[http://www.example.com http://www.microsoft.com/page.html#anchor https://www.domain.com/?query=value]
     urls.each do |url|
       valid_url_webpage_request = WebpageRequest.new(@attr.merge(:url => url))
       valid_url_webpage_request.should be_valid

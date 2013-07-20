@@ -18,5 +18,5 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 19 Jul 2013 07:11:06 GMT
+  recorded_at: Sat, 20 Jul 2013 19:20:10 GMT
 recorded_with: VCR 2.5.0
