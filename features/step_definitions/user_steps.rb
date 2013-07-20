@@ -81,6 +81,10 @@ Given /^I exist as an unconfirmed user$/ do
   create_unconfirmed_user
 end
 
+Given /^I am signed in with provider "([^"]*)"$/ do |provider|
+  visit "/users/auth/#{provider.downcase}"
+end
+
 ### WHEN ###
 When /^I sign in with a valid email$/ do
   create_visitor
