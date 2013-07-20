@@ -64,6 +64,9 @@ group :test do
   # Use Email Spec for testing email with RSpec and Cucumber.
   gem 'email_spec', '~> 1.4.0'
 
+  # Use SimpleCov for analyzing code coverage data.
+  gem 'simplecov', :require => false
+
   # Use Shoulda to write powerful tests with less code.
   gem 'shoulda', '~> 3.5.0'
 

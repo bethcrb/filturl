@@ -13,6 +13,7 @@
 /.ruby-gemset
 /.ruby-version
 /.secret_key_base
+/.simplecov
 /cache
 /capybara*
 /capybara-*.html
