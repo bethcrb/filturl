@@ -1,6 +1,33 @@
 ---
 http_interactions:
 - request:
+    method: head
+    uri: http://www.example.com/
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Location:
+      - http://example.iana.org
+      Server:
+      - BigIP
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: '1.0'
+  recorded_at: Sat, 20 Jul 2013 01:22:06 GMT
+- request:
     method: get
     uri: http://www.example.com/
     body:
@@ -19,7 +46,7 @@ http_interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Wed, 17 Jul 2013 19:40:31 GMT
+      - Sat, 20 Jul 2013 01:22:07 GMT
       ETag:
       - '"780602-4f6-4db31b2978ec0"'
       Last-Modified:
@@ -52,5 +79,5 @@ http_interactions:
         or asking for permission.</p>\n    <p><a href=\"http://www.iana.org/domains/example\">More
         information...</a></p>\n</div>\n</body>\n</html>\n"
     http_version: '1.0'
-  recorded_at: Wed, 17 Jul 2013 19:40:31 GMT
+  recorded_at: Sat, 20 Jul 2013 01:22:07 GMT
 recorded_with: VCR 2.5.0

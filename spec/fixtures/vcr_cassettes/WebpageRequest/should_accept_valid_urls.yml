@@ -1,0 +1,96 @@
+---
+http_interactions:
+- request:
+    method: head
+    uri: http://www.example.com/
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Location:
+      - http://example.iana.org
+      Server:
+      - BigIP
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: '1.0'
+  recorded_at: Sat, 20 Jul 2013 01:21:38 GMT
+- request:
+    method: head
+    uri: http://www.test.com/page.html
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 302
+      message: Redirect
+    headers:
+      Server:
+      - nginx/1.2.5
+      Date:
+      - Sat, 20 Jul 2013 01:21:38 GMT
+      Content-Type:
+      - text/html; charset=UTF-8
+      Content-Length:
+      - '143'
+      Connection:
+      - keep-alive
+      Location:
+      - http://www.test.com/
+      X-Powered-By:
+      - ASP.NET
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: '1.1'
+  recorded_at: Sat, 20 Jul 2013 01:21:39 GMT
+- request:
+    method: head
+    uri: https://www.domain.com/?query=value
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Date:
+      - Sat, 20 Jul 2013 01:21:40 GMT
+      Content-Type:
+      - text/html
+      Connection:
+      - keep-alive
+      Server:
+      - Apache
+      X-Frame-Options:
+      - SAMEORIGIN
+      Set-Cookie:
+      - SESSION_ID=e05a667d10f55b32997c2e01e0f18fee; domain=.domain.com; path=/
+      - LP_ALT_ID=BB1C607CF0DA11E29C36B137C09D3BBA; domain=.domain.com; path=/; expires=Thu,
+        25-Jul-2013 01:21:40 GMT
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: '1.1'
+  recorded_at: Sat, 20 Jul 2013 01:21:40 GMT
+recorded_with: VCR 2.5.0
