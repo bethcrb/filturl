@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
     user = User.find_by(email: auth.info.email)
     unless user
       user = User.new(
+        name:     auth.info.name,
         email:    auth.info.email,
         username: username,
         password: Devise.friendly_token[0,20],
@@ -59,7 +60,8 @@ class User < ActiveRecord::Base
     user = User.find_by(username: auth.extra.raw_info.login)
     unless user
       user = User.new(
-        email: auth.info.email,
+        name:     auth.info.name,
+        email:    auth.info.email,
         username: auth.extra.raw_info.login,
         password: Devise.friendly_token[0,20],
       )
@@ -88,6 +90,7 @@ class User < ActiveRecord::Base
     user = User.find_by(email: auth.info.email)
     unless user
       user = User.new(
+        name:     auth.info.name,
         email:    auth.info.email,
         username: auth.info.email,
         password: Devise.friendly_token[0,20],
