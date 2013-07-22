@@ -26,7 +26,10 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    username = auth.extra.raw_info.username || auth.info.email
+    username = auth.extra.raw_info.username
+    if username.blank?
+      username = auth.info.email
+    end
     user = User.find_by(email: auth.info.email)
     unless user
       user = User.new(
@@ -50,7 +53,7 @@ class User < ActiveRecord::Base
     authentication.first_name = auth.info.first_name
     authentication.last_name = auth.info.last_name
     authentication.image = auth.info.image
-    authentication.raw_info = auth.extra.raw_info.to_json
+    authentication.raw_info = auth.to_json
     authentication.save!
 
     user
