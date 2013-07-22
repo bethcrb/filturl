@@ -160,6 +160,12 @@ When /^I edit my account details$/ do
   click_button "Update"
 end
 
+When /^I change my username$/ do
+  visit "/users/edit"
+  fill_in "user_username", :with => "newusername"
+  click_button "Update"
+end
+
 ### THEN ###
 Then /^I should be signed in$/ do
   page.should have_content "Logout"
