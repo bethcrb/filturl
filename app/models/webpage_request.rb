@@ -12,7 +12,7 @@ class WebpageRequest < ActiveRecord::Base
   validates_each :url, allow_blank: true do |record, attr, value|
     begin
       if value =~ URI::regexp(%w(http https))
-        head = Typhoeus.head(value)
+        head = Typhoeus.head(value, ssl_verifypeer: false)
         if head.response_code < 200
           record.errors.add(attr, "must be reachable (#{head.return_message})")
         end

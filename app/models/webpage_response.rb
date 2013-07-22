@@ -6,7 +6,8 @@ class WebpageResponse < ActiveRecord::Base
   after_create :get_url
 
   def get_url
-    response = Typhoeus.get(self.webpage_request.url, followlocation: true)
+    response = Typhoeus.get(self.webpage_request.url, followlocation: true,
+      ssl_verifypeer: false)
     response_data = {
       :body                => response.response_body.force_encoding("ISO-8859-1").encode("utf-8", replace: nil),
       :code                => response.response_code,
