@@ -63,7 +63,7 @@ describe User do
   end
 
   it "should reject invalid usernames" do
-    usernames = %w[test!user $username @domain.com .]
+    usernames = %w[test!user $username @domain.com . loremipsumdolorsitametconsecteturadipisicingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliqua]
     usernames.each do |username|
       invalid_username_user = User.new(@attr.merge(:username => username))
       invalid_username_user.should_not be_valid

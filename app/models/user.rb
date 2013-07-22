@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true, format: Devise.email_regexp
   validates :username, presence: true, uniqueness: true,
-    format: /\A\w[-\w.]*?(@([^@\s]+\.)+[^@\s]+)?\Z/
+    format: /\A\w[-\w.]*?(@([^@\s]+\.)+[^@\s]+)?\Z/, length: { within: 1..100 }
 
   validates :password, presence: true, confirmation: true, length: Devise.password_length, on: :create
   validates :password, length: Devise.password_length, on: :update, allow_blank: true
