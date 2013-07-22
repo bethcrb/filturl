@@ -31,6 +31,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# Use unicorn as the app server
+gem 'unicorn'
+
 # Use Figaro for application configuration.
 gem 'figaro', '~> 0.7.0'
 
