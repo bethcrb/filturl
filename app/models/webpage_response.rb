@@ -27,7 +27,7 @@ class WebpageResponse < ActiveRecord::Base
   end
 
   def temp_screenshot_file
-    Rails.root.join("tmp/#{screenshot_filename}")
+    Rails.root.join("tmp/#{screenshot_filename}").to_s
   end
 
   def screenshot_object
@@ -42,15 +42,8 @@ class WebpageResponse < ActiveRecord::Base
 
   def generate_screenshot
     unless screenshot_object.exists? || File.exist?(temp_screenshot_file)
-      headless = Headless.new
-      headless.start
-
-      browser = Watir::Browser.new :firefox
-      browser.goto webpage_request.url
-      browser.screenshot.save(temp_screenshot_file)
-      browser.close
-
-      headless.destroy
+      screenshot_js = Rails.root.join("vendor/screenshot.js").to_s
+      Phantomjs.run(screenshot_js, webpage_request.url, temp_screenshot_file)
     end
 
     File.exist?(temp_screenshot_file) && upload_screenshot
