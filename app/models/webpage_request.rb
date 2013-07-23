@@ -9,16 +9,13 @@ class WebpageRequest < ActiveRecord::Base
 
   validates :url, presence: true, format: URI::regexp(%w(http https))
   validates :url, uniqueness: { case_sensitive: false, scope: :user_id }
-  validates_each :url, allow_blank: true do |record, attr, value|
+  validates_each :url do |record, attr, value|
     begin
       if value =~ URI::regexp(%w(http https))
-        head = Typhoeus.head(value, ssl_verifypeer: false)
-        if head.response_code < 200
-          record.errors.add(attr, "must be reachable (#{head.return_message})")
-        end
+        response = Net::HTTP.get_response(URI(value))
       end
-    rescue URI::InvalidURIError
-      record.errors.add(attr, "must be a valid URL")
+    rescue => e
+      record.errors.add(attr, "must be a valid URL (#{e.message})")
     end
   end
   after_create :create_webpage_response!

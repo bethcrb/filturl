@@ -58,7 +58,7 @@ Then(/^I should see information about the URL$/) do
 end
 
 Then(/^I should see an invalid URL message$/) do
-  page.should have_content "url must be reachable"
+  page.should have_content "url must be a valid URL"
 end
 
 Then(/^I should see a screenshot of the URL$/) do
