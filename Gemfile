@@ -5,22 +5,23 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-# Use mysql as the database for Active Record
+# Use mysql as the database for Active Record.
 gem 'mysql2', '~> 0.3.11'
 
-# Use SCSS for stylesheets
+# Use SCSS for stylesheets.
 gem 'sass-rails', '~> 4.0.0'
 
-# Use Uglifier as compressor for JavaScript assets
+# Use Uglifier as compressor for JavaScript assets.
 gem 'uglifier', '>= 1.3.0'
 
-# Use CoffeeScript for .js.coffee assets and views
+# Use CoffeeScript for .js.coffee assets and views.
 gem 'coffee-rails', '~> 4.0.0'
 
-# Use jquery as the JavaScript library
+# Use jquery as the JavaScript library.
 gem 'jquery-rails'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# Turbolinks makes following links in your web application faster.
+# Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -31,21 +32,20 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use unicorn as the app server
-gem 'unicorn'
-
-# Use Figaro for application configuration.
-gem 'figaro', '~> 0.7.0'
-
 # Gems for testing and debugging
 group :development do
-  # Better Errors replaces the standard Rails error page with a much better and more useful error page.
+  # Annotate models, specs, factories, and routes using current schema.
+  gem 'annotate', '~> 2.5.0'
+
+  # Better Errors replaces the standard Rails error page with a much better and
+  # more useful error page.
   gem 'better_errors', '~> 0.9.0'
 
-  # binding_of_caller retrieves the binding of a method's caller. Used by Better Errors for advanced features.
+  # binding_of_caller retrieves the binding of a method's caller. Used by
+  # Better Errors for advanced features.
   gem 'binding_of_caller', '~> 0.7.2'
 
-  # Use Capistrano for deployment
+  # Use Capistrano for deployment.
   gem 'capistrano', '~> 2.15.5'
 
   # Quiet Assets mutes assets pipeline log messages.
@@ -59,19 +59,22 @@ group :test do
   # Use Cucumber for behavior-driven development and integration testing.
   # NOTE: Temporarily using the master_rails4_test branch because the
   # stable release of 1.3.1 currently does not support Rails 4.
-  gem 'cucumber-rails', :require => false, github: 'cucumber/cucumber-rails', :branch => 'master_rails4_test'
+  gem 'cucumber-rails', require: false,
+                        github: 'cucumber/cucumber-rails',
+                        branch: 'master_rails4_test'
 
-  # Use Database Cleaner to restore the database to a pristine state during testing.
+  # Use Database Cleaner to restore the database to a pristine state during
+  # testing.
   gem 'database_cleaner', '~> 1.0.1'
 
   # Use Email Spec for testing email with RSpec and Cucumber.
   gem 'email_spec', '~> 1.4.0'
 
-  # Use SimpleCov for analyzing code coverage data.
-  gem 'simplecov', :require => false
-
   # Use Shoulda to write powerful tests with less code.
   gem 'shoulda', '~> 3.5.0'
+
+  # Use SimpleCov for analyzing code coverage data.
+  gem 'simplecov', '~> 0.7.1', require: false
 
   # Use VCR to record and playback HTTP interactions.
   gem 'vcr', '2.5.0'
@@ -85,17 +88,14 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14.0'
 end
 
-# Use Devise and Omniauth for authentication.
-gem 'devise', '~> 3.0.0'
-gem 'omniauth-facebook', '~> 1.4.1'
-gem 'omniauth-github', '~> 1.1.0'
-gem 'omniauth-google-oauth2', '~> 0.2.0'
+# Rails 4 requires rails_12factor in order to configure application
+# logs to be visible via heroku logs and to serve static assets.
+group :heroku do
+  gem 'rails_12factor', '~> 0.0.2'
+end
 
-# Use CanCan to restrict access to pages that should only be viewed by an administrator.
-gem 'cancan', '~> 1.6.10'
-
-# Use Rolify to manage user roles.
-gem 'rolify', '~> 3.3.0.rc4'
+# Use AWS SDK for S3.
+gem 'aws-sdk', '~> 1.0'
 
 # Use Bootstrap for front-end framework.
 gem 'bootstrap-sass', '~> 2.3.2.0'
@@ -103,32 +103,42 @@ gem 'bootstrap-sass', '~> 2.3.2.0'
 # Use bootswatch-rails for SASS versions of Bootswatch themes.
 gem 'bootswatch-rails', '~> 0.5.0'
 
+# Use CanCan to restrict access to pages that should only be viewed by an
+# administrator.
+gem 'cancan', '~> 1.6.10'
+
+# Use CodeRay for syntax highlighting.
+gem 'coderay', '~> 1.0.9'
+
+# Use Devise and Omniauth for authentication.
+gem 'devise', '~> 3.0.0'
+gem 'omniauth-facebook', '~> 1.4.1'
+gem 'omniauth-github', '~> 1.1.0'
+gem 'omniauth-google-oauth2', '~> 0.2.0'
+
+# Use Figaro for application configuration.
+gem 'figaro', '~> 0.7.0'
+
+# Use FriendlyId for permalinks.
+gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'
+
+# Use Nokogiri for HTML parsing.
+gem 'nokogiri', '~> 1.6.0'
+
+# Use PhantomJS for screenshots.
+gem 'phantomjs', '~> 1.8.1.1'
+
+# Use PostRank::URI to clean URLs prior to validation.
+gem 'postrank-uri', '~> 1.0.16'
+
+# Use Rolify to manage user roles.
+gem 'rolify', '~> 3.3.0.rc4'
+
 # Use Simple Form to easily integrate Bootstrap styles in forms.
 gem 'simple_form', '~> 3.0.0.rc'
 
-# Rails 4 requires rails_12factor in order to configure application
-# logs to be visible via heroku logs and to serve static assets. 
-group :heroku do
-  gem 'rails_12factor', '~> 0.0.2'
-end
-
-# Use Typhoeus to perform HTTP requests
+# Use Typhoeus to perform HTTP requests.
 gem 'typhoeus', '~> 0.6.3'
 
-# Use Nokogiri for HTML parsing
-gem 'nokogiri', '~> 1.6.0'
-
-# Use PhantomJS for screenshots
-gem 'phantomjs', '~> 1.8.1.1'
-
-# Use AWS SDK for S3
-gem 'aws-sdk', '~> 1.0'
-
-# Use PostRank::URI to clean URLs prior to validation
-gem 'postrank-uri', '~> 1.0.16'
-
-# Use FriendlyId for permalinks
-gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'
-
-# Use CodeRay for syntax highlighting
-gem 'coderay'
+# Use unicorn as the app server.
+gem 'unicorn', '~> 4.6.3'
