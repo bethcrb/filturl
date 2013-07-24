@@ -139,6 +139,3 @@ gem 'simple_form', '~> 3.0.0.rc'
 
 # Use Typhoeus to perform HTTP requests.
 gem 'typhoeus', '~> 0.6.3'
-
-# Use unicorn as the app server.
-gem 'unicorn', '~> 4.6.3'
