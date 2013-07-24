@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: webpage_requests
+#
+#  id         :integer          not null, primary key
+#  url        :string(255)      not null
+#  slug       :string(255)
+#  user_id    :integer          not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class WebpageRequest < ActiveRecord::Base
   extend FriendlyId
 

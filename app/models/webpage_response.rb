@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: webpage_responses
+#
+#  id                 :integer          not null, primary key
+#  effective_url      :string(255)
+#  primary_ip         :string(255)
+#  redirect_count     :integer
+#  body               :text(2147483647)
+#  code               :integer
+#  headers            :text
+#  webpage_request_id :integer
+#  created_at         :datetime
+#  updated_at         :datetime
+#
+
 class WebpageResponse < ActiveRecord::Base
   belongs_to :webpage_request
 
