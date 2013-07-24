@@ -59,7 +59,7 @@ class WebpageResponse < ActiveRecord::Base
   def generate_screenshot
     unless screenshot_object.exists? || File.exist?(temp_screenshot_file)
       screenshot_js = Rails.root.join("vendor/screenshot.js").to_s
-      Phantomjs.run(screenshot_js, webpage_request.url, temp_screenshot_file)
+      Phantomjs.run("--ignore-ssl-errors=yes", screenshot_js, webpage_request.url, temp_screenshot_file)
     end
 
     File.exist?(temp_screenshot_file) && upload_screenshot
