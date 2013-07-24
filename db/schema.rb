@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130724083728) do
+ActiveRecord::Schema.define(version: 20130724110603) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -107,5 +107,14 @@ ActiveRecord::Schema.define(version: 20130724083728) do
   end
 
   add_index "webpage_responses", ["webpage_request_id"], name: "index_webpage_responses_on_webpage_request_id", using: :btree
+
+  create_table "webpage_screenshots", force: true do |t|
+    t.string   "filename"
+    t.integer  "webpage_response_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "webpage_screenshots", ["webpage_response_id"], name: "index_webpage_screenshots_on_webpage_response_id", using: :btree
 
 end
