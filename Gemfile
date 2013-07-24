@@ -95,7 +95,7 @@ group :heroku do
 end
 
 # Use AWS SDK for S3.
-gem 'aws-sdk', '~> 1.0'
+gem 'aws-sdk', github: 'aws/aws-sdk-ruby'
 
 # Use Bootstrap for front-end framework.
 gem 'bootstrap-sass', '~> 2.3.2.0'
@@ -123,7 +123,7 @@ gem 'figaro', '~> 0.7.0'
 gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'
 
 # Use Nokogiri for HTML parsing.
-gem 'nokogiri', '~> 1.6.0'
+gem 'nokogiri', '~> 1.5'
 
 # Use PhantomJS for screenshots.
 gem 'phantomjs', '~> 1.8.1.1'

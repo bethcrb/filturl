@@ -6,6 +6,15 @@ GIT
     friendly_id (5.0.0.alpha1)
 
 GIT
+  remote: git://github.com/aws/aws-sdk-ruby.git
+  revision: cea6c487a68e7ec9477fc6d705a615b1dbc80967
+  specs:
+    aws-sdk (1.13.0)
+      json (~> 1.4)
+      nokogiri (< 1.6.0)
+      uuidtools (~> 2.1)
+
+GIT
   remote: git://github.com/cucumber/cucumber-rails.git
   revision: 5fa9da37ab05213d2f46029ea476e09104ffe281
   branch: master_rails4_test
@@ -48,10 +57,6 @@ GEM
       rake
     arel (4.0.0)
     atomic (1.1.10)
-    aws-sdk (1.11.1)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
-      uuidtools (~> 2.1)
     bcrypt-ruby (3.1.1)
     better_errors (0.9.0)
       coderay (>= 1.0.0)
@@ -98,8 +103,6 @@ GEM
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
     diff-lcs (1.2.4)
-    domainatrix (0.0.11)
-      addressable
     email_spec (1.4.0)
       launchy (~> 2.1)
       mail (~> 2.2)
@@ -146,7 +149,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
-    mini_portile (0.5.1)
     minitest (4.7.5)
     multi_json (1.7.7)
     multi_test (0.0.2)
@@ -159,8 +161,7 @@ GEM
     net-ssh (2.6.8)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    nokogiri (1.6.0)
-      mini_portile (~> 0.5.0)
+    nokogiri (1.5.10)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -189,10 +190,11 @@ GEM
       faye-websocket (>= 0.4.4, < 0.5.0)
       http_parser.rb (~> 0.5.3)
     polyglot (0.3.3)
-    postrank-uri (1.0.16)
-      addressable (>= 2.3.0)
-      domainatrix
-      nokogiri
+    postrank-uri (1.0.17)
+      addressable (~> 2.3.0)
+      nokogiri (~> 1.5.5)
+      public_suffix (~> 1.1.3)
+    public_suffix (1.1.3)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -288,7 +290,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (~> 2.5.0)
-  aws-sdk (~> 1.0)
+  aws-sdk!
   better_errors (~> 0.9.0)
   binding_of_caller (~> 0.7.2)
   bootstrap-sass (~> 2.3.2.0)
@@ -308,7 +310,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   mysql2 (~> 0.3.11)
-  nokogiri (~> 1.6.0)
+  nokogiri (~> 1.5)
   omniauth-facebook (~> 1.4.1)
   omniauth-github (~> 1.1.0)
   omniauth-google-oauth2 (~> 0.2.0)
