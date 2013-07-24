@@ -24,7 +24,14 @@ class WebpageRequest < ActiveRecord::Base
   validates_each :url do |record, attr, value|
     begin
       if value =~ URI::regexp(%w(http https))
-        response = Net::HTTP.get_response(URI(value))
+        response = Typhoeus.get(value,
+          followlocation: true,
+          ssl_verifypeer: false,
+        )
+        if response.code == 0
+          return_message = response.return_message
+          record.errors.add(attr, "must be reachable (#{return_message})")
+        end
       end
     rescue => e
       record.errors.add(attr, "must be a valid URL (#{e.message})")
