@@ -82,7 +82,7 @@ end
 
 group :development, :test do
   # Use Factory Girl for test objects.
-  gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'factory_girl_rails', '~> 4.0'
 
   # Use RSpec for unit testing.
   gem 'rspec-rails', '~> 2.14.0'

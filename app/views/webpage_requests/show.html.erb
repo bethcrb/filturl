@@ -2,12 +2,19 @@
 
 <div class="tabbable">
   <ul class="nav nav-tabs" id="navTabs">
-    <li class="active"><a href="#http_headers_tab" data-toggle="tab">HTTP Headers</a></li>
+    <li class="active"><a href="#overview_tab" data-toggle="tab">Overview</a></li>
+    <li><a href="#http_headers_tab" data-toggle="tab">HTTP Headers</a></li>
     <li><a href="#view_source_tab" data-toggle="tab">View Source</a></li>
     <li><a href="#screenshot_tab" data-toggle="tab">Screenshot</a></li>
   </ul>
   <div class="tab-content">
-    <div class="tab-pane active" id="http_headers_tab">
+    <div class="tab-pane active" id="overview_tab">
+      <dl class="dl-horizontal">
+        <dt>IP address</dt>
+        <dd><%= @webpage_response.primary_ip %></dd>
+      </dl>
+    </div>
+    <div class="tab-pane" id="http_headers_tab">
       <pre class="pre-scrollable"><%= @webpage_response.headers %></pre>
     </div>
     <div class="tab-pane" id="view_source_tab">

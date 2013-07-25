@@ -18,9 +18,12 @@ require 'spec_helper'
 
 describe WebpageResponse do
   before(:each) do
-    @user = FactoryGirl.create(:user)
-    @webpage_request = FactoryGirl.create(:webpage_request)
-    @attr = { webpage_request_id: @webpage_request.id }
+    @webpage_response = FactoryGirl.create(:webpage_response)
+    @attr = { webpage_request_id: @webpage_response.webpage_request_id }
+  end
+
+  it "respond_to", :vcr do
+    @webpage_response.should respond_to(:primary_ip)
   end
 
   it "should create a new instance given valid attributes", :vcr do

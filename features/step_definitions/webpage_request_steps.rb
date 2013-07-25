@@ -49,9 +49,15 @@ When(/^I click on the screenshot tab$/) do
   click_link "Screenshot"
 end
 
+When(/^I visit the page for a URL$/) do
+  create_webpage_request
+  visit webpage_request_path(@webpage_request)
+end
+
 ### THEN ###
 Then(/^I should see information about the URL$/) do
   visit webpage_request_path(WebpageRequest.last)
+  page.should have_content "Overview"
   page.should have_content "HTTP Headers"
   page.should have_content "View Source"
   page.should have_content "Screenshot"
@@ -63,4 +69,8 @@ end
 
 Then(/^I should see a screenshot of the URL$/) do
   page.should have_xpath("//img[@src=\"#{@webpage_request.webpage_response.screenshot_url}\"]")
+end
+
+Then(/^I should see an IP address$/) do
+  pending # express the regexp above with the code you wish you had
 end
