@@ -39,7 +39,7 @@ class WebpageResponse < ActiveRecord::Base
   end
 
   def screenshot_filename
-    "#{self.webpage_request.slug}.png"
+    "#{SecureRandom.urlsafe_base64}.png"
   end
 
   def temp_screenshot_file

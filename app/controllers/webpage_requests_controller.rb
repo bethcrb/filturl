@@ -4,14 +4,20 @@ class WebpageRequestsController < ApplicationController
   end
 
   def show
-    @webpage_request = WebpageRequest.friendly.find(params[:id])
+    @webpage_request = WebpageRequest.friendly.find_by(
+      user_id: current_user.id,
+      slug: params[:slug]
+    )
     @webpage_response = @webpage_request.webpage_response
   end
 
   def create
-    request_url = webpage_request_params[:url]
+    request_url = PostRank::URI.clean(webpage_request_params[:url]).to_s
 
-    @webpage_request = WebpageRequest.find_or_initialize_by({ :url => request_url, :user_id => current_user.id })
+    @webpage_request = WebpageRequest.find_or_initialize_by(
+      url:     request_url,
+      user_id: current_user.id
+    )
 
     respond_to do |format|
       if @webpage_request.save

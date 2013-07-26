@@ -39,14 +39,10 @@ class WebpageRequest < ActiveRecord::Base
   end
   after_create :create_webpage_response!
 
-  friendly_id :generate_short_code, :use => :slugged
+  friendly_id :url, :use => :slugged
 
   def clean_url
     self.url = PostRank::URI.clean(url).to_s unless url.blank?
-  end
-
-  def generate_short_code
-    SecureRandom.urlsafe_base64(10).gsub(/[-_]/, "").sub(/^\d+/, "").slice(0, 6)
   end
 
   def should_generate_new_friendly_id?
@@ -54,6 +50,6 @@ class WebpageRequest < ActiveRecord::Base
   end
 
   def normalize_friendly_id(value)
-    value.to_s
+    value.gsub(/\W+/, '-').sub(/-$/, '').to_s
   end
 end
