@@ -1,6 +1,6 @@
-[<img src="http://www.filturl.net/logo-bk.png" width="400px">](http://www.filturl.net/)
+[<img src="https://www.filturl.net/logo-bk.png" width="400px">](https://www.filturl.net/)
 
-# [Filturl](http://www.filturl.net)
+# [Filturl](https://www.filturl.net)
 
 Filturl is a slightly more advanced URL previewer that not only displays a screenshot of a URL, but also displays extra information such as:
 * HTTP headers
