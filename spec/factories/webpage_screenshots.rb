@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :webpage_screenshot do
-    filename "MyString"
-    webpage_response nil
+    url nil
+    filename nil
+    webpage_response
   end
 end
