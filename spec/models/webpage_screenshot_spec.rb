@@ -4,6 +4,7 @@
 #
 #  id                  :integer          not null, primary key
 #  filename            :string(255)
+#  url                 :string(255)
 #  webpage_response_id :integer
 #  created_at          :datetime
 #  updated_at          :datetime
