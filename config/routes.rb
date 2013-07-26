@@ -10,6 +10,6 @@ Filturl::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: :registrations }
   resources :users
 
-  get '/:slug', to: 'webpage_requests#show', as: 'webpage_request'
+  get '/:id', to: 'webpage_requests#show', as: 'webpage_request'
   resources :webpage_requests, :only => [:index, :create]
 end

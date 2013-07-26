@@ -4,10 +4,7 @@ class WebpageRequestsController < ApplicationController
   end
 
   def show
-    @webpage_request = WebpageRequest.friendly.find_by(
-      user_id: current_user.id,
-      slug: params[:slug]
-    )
+    @webpage_request = WebpageRequest.friendly.find(params[:id])
     @webpage_response = @webpage_request.webpage_response
   end
 

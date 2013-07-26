@@ -19,7 +19,7 @@ http_interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Wed, 24 Jul 2013 02:16:05 GMT
+      - Fri, 26 Jul 2013 02:43:17 GMT
       ETag:
       - '"780602-4f6-4db31b2978ec0"'
       Last-Modified:
@@ -52,7 +52,7 @@ http_interactions:
         or asking for permission.</p>\n    <p><a href=\"http://www.iana.org/domains/example\">More
         information...</a></p>\n</div>\n</body>\n</html>\n"
     http_version: '1.0'
-  recorded_at: Wed, 24 Jul 2013 02:16:05 GMT
+  recorded_at: Fri, 26 Jul 2013 02:43:18 GMT
 - request:
     method: get
     uri: http://www.example.com/
@@ -72,13 +72,13 @@ http_interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Wed, 24 Jul 2013 02:16:05 GMT
+      - Fri, 26 Jul 2013 02:43:18 GMT
       ETag:
       - '"780602-4f6-4db31b2978ec0"'
       Last-Modified:
       - Thu, 25 Apr 2013 16:13:23 GMT
       Server:
-      - ECS (sjc/4FB4)
+      - ECS (sjc/4FCE)
       X-Cache:
       - HIT
       Content-Length:
@@ -105,5 +105,5 @@ http_interactions:
         or asking for permission.</p>\n    <p><a href=\"http://www.iana.org/domains/example\">More
         information...</a></p>\n</div>\n</body>\n</html>\n"
     http_version: '1.0'
-  recorded_at: Wed, 24 Jul 2013 02:16:05 GMT
+  recorded_at: Fri, 26 Jul 2013 02:43:18 GMT
 recorded_with: VCR 2.5.0

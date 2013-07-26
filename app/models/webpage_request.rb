@@ -39,10 +39,14 @@ class WebpageRequest < ActiveRecord::Base
   end
   after_create :create_webpage_response!
 
-  friendly_id :url, :use => :slugged
+  friendly_id :user_url, :use => :slugged
 
   def clean_url
     self.url = PostRank::URI.clean(url).to_s unless url.blank?
+  end
+
+  def user_url
+    "#{url.gsub(/\W+/, '-').sub(/-$/, '')}-#{user_id}"
   end
 
   def should_generate_new_friendly_id?
@@ -50,6 +54,6 @@ class WebpageRequest < ActiveRecord::Base
   end
 
   def normalize_friendly_id(value)
-    value.gsub(/\W+/, '-').sub(/-$/, '').to_s
+    value.to_s
   end
 end
