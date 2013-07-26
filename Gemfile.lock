@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: git://github.com/aws/aws-sdk-ruby.git
-  revision: cea6c487a68e7ec9477fc6d705a615b1dbc80967
+  revision: e738b8791517106a7c9d02c815d837a76037eb9d
   specs:
-    aws-sdk (1.13.0)
+    aws-sdk (1.14.1)
       json (~> 1.4)
       nokogiri (< 1.6.0)
       uuidtools (~> 2.1)
@@ -103,7 +103,7 @@ GEM
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
     diff-lcs (1.2.4)
-    email_spec (1.4.0)
+    email_spec (1.5.0)
       launchy (~> 2.1)
       mail (~> 2.2)
     erubis (2.7.0)
@@ -303,7 +303,7 @@ DEPENDENCIES
   cucumber-rails!
   database_cleaner (~> 1.0.1)
   devise (~> 3.0.0)
-  email_spec (~> 1.4.0)
+  email_spec (~> 1.5.0)
   factory_girl_rails (~> 4.0)
   figaro (~> 0.7.0)
   friendly_id!

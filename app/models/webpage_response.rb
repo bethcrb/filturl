@@ -17,6 +17,8 @@
 class WebpageResponse < ActiveRecord::Base
   belongs_to :webpage_request
 
+  has_one :webpage_screenshot, dependent: :destroy
+
   validates :webpage_request, presence: true
 
   after_create :get_url
@@ -33,46 +35,12 @@ class WebpageResponse < ActiveRecord::Base
       :redirect_count      => response.redirect_count,
     }
 
-    generate_screenshot
-
     self.update_attributes!(response_data)
-  end
 
-  def screenshot_filename
-    "#{SecureRandom.urlsafe_base64}.png"
-  end
-
-  def temp_screenshot_file
-    Rails.root.join("tmp/#{screenshot_filename}").to_s
-  end
-
-  def screenshot_object
-    s3 = AWS::S3.new(:s3_endpoint => ENV["AWS_S3_ENDPOINT"])
-    bucket = s3.buckets[ENV["AWS_S3_BUCKET"]]
-    bucket.objects["screenshots/#{screenshot_filename}"]
+    self.create_webpage_screenshot!
   end
 
   def screenshot_url
-    screenshot_object.public_url
-  end
-
-  def generate_screenshot
-    unless screenshot_object.exists? || File.exist?(temp_screenshot_file)
-      screenshot_js = Rails.root.join("vendor/screenshot.js").to_s
-      Phantomjs.run("--ignore-ssl-errors=yes", screenshot_js, webpage_request.url, temp_screenshot_file)
-    end
-
-    File.exist?(temp_screenshot_file) && upload_screenshot
-  end
-
-  def upload_screenshot
-    screenshot_object.write(:file => temp_screenshot_file, :acl => :public_read)
-
-    if screenshot_object.exists? 
-      if File.exist?(temp_screenshot_file)
-        File.delete(temp_screenshot_file)
-      end
-      screenshot_url
-    end
+    webpage_screenshot.url
   end
 end

@@ -16,6 +16,7 @@ class WebpageRequest < ActiveRecord::Base
   belongs_to :user
 
   has_one :webpage_response, dependent: :destroy
+  has_one :webpage_screenshot, through: :webpage_response
 
   before_validation :clean_url
 

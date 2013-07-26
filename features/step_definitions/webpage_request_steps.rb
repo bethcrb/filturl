@@ -46,7 +46,7 @@ end
 
 When(/^I click on the screenshot tab$/) do
   visit webpage_request_path(@webpage_request)
-  click_link "Screenshot"
+  find('#screenshot_tab').click
 end
 
 When(/^I visit the page for a URL$/) do
