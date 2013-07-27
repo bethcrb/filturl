@@ -27,11 +27,15 @@ class WebpageScreenshot < ActiveRecord::Base
     unless File.exist?(temp_screenshot_file)
       screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
 
-      Phantomjs.run('--ignore-ssl-errors=yes',
-                    screenshot_js,
-                    webpage_request.url,
-                    temp_screenshot_file
-      )
+      if ENV["RAILS_ENV"] == "test"
+        FileUtils.touch(temp_screenshot_file)
+      else
+        Phantomjs.run('--ignore-ssl-errors=yes',
+                      screenshot_js,
+                      webpage_request.url,
+                      temp_screenshot_file
+        )
+      end
     end
     File.exist?(temp_screenshot_file)
   end
