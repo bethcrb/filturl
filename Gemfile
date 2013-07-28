@@ -86,6 +86,9 @@ group :development, :test do
 
   # Use RSpec for unit testing.
   gem 'rspec-rails', '~> 2.14.0'
+
+  # Use Spork to speed up test suite.
+  gem 'spork-rails', github: 'sporkrb/spork-rails'
 end
 
 # Rails 4 requires rails_12factor in order to configure application
