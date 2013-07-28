@@ -1,30 +1,8 @@
 ### UTILITY METHODS ###
-def new_webpage_request
-  @webpage_request_attrs = {
-    :url => "http://www.google.com",
-    :user_id => 1,
-  }
-end
-
 def create_webpage_request
   VCR.use_cassette("webpage_requests/create_webpage_request") do
-    new_webpage_request
-    @webpage_request = WebpageRequest.create!(@webpage_request_attrs)
+    @webpage_request = FactoryGirl.create(:webpage_request)
   end
-end
-
-def submit_valid_url
-  VCR.use_cassette("webpage_requests/submit_valid_url") do
-    visit '/'
-    fill_in "webpage_request_url", :with => @webpage_request_attrs[:url]
-    click_button "Go"
-  end
-end
-
-def submit_invalid_url
-  visit '/'
-  fill_in "webpage_request_url", :with => @webpage_request_attrs[:url]
-  click_button "Go"
 end
 
 ### GIVEN ###
@@ -34,14 +12,20 @@ end
 
 ### WHEN ###
 When(/^I submit a valid URL$/) do
-  new_webpage_request
-  submit_valid_url
+  @valid_webpage_request = FactoryGirl.build_stubbed(:webpage_request)
+  VCR.use_cassette("webpage_requests/submit_valid_url") do
+    visit '/'
+    fill_in "webpage_request_url", :with => @valid_webpage_request.url
+    click_button "Go"
+  end
 end
 
 When(/^I submit an invalid URL$/) do
-  new_webpage_request
-  @webpage_request_attrs = @webpage_request_attrs.merge(:url => "http://not.a.valid.url")
-  submit_invalid_url
+  @invalid_webpage_request = FactoryGirl.build_stubbed(:webpage_request,
+    url: 'http://not.a.valid.url')
+  visit '/'
+  fill_in "webpage_request_url", :with => @invalid_webpage_request.url
+  click_button "Go"
 end
 
 When(/^I click on the screenshot tab$/) do

@@ -19,6 +19,8 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 RSpec.configure do |config|
   AWS.stub!
 
+  config.include FactoryGirl::Syntax::Methods
+
   # Include helpers and matchers for Email Spec
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)

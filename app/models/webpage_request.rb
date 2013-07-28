@@ -20,11 +20,12 @@ class WebpageRequest < ActiveRecord::Base
 
   before_validation :clean_url
 
+  validates :user, presence: true
   validates :url, presence: true, format: URI::regexp(%w(http https))
   validates :url, uniqueness: { case_sensitive: false, scope: :user_id }
   validates_each :url do |record, attr, value|
-    begin
-      if value =~ URI::regexp(%w(http https))
+    if value =~ URI::regexp(%w(http https))
+      begin
         response = Typhoeus.get(value,
           followlocation: true,
           ssl_verifypeer: false,
@@ -33,11 +34,12 @@ class WebpageRequest < ActiveRecord::Base
           return_message = response.return_message
           record.errors.add(attr, "must be reachable (#{return_message})")
         end
+      rescue => e
+        record.errors.add(attr, "must be a valid URL (#{e.message})")
       end
-    rescue => e
-      record.errors.add(attr, "must be a valid URL (#{e.message})")
     end
   end
+
   after_create :create_webpage_response!
 
   friendly_id :user_url, :use => :slugged
@@ -47,7 +49,7 @@ class WebpageRequest < ActiveRecord::Base
   end
 
   def user_url
-    "#{url.gsub(/\W+/, '-').sub(/-$/, '')}-#{user_id}"
+    "#{url.gsub(/\W+/, '-').sub(/-$/, '')}-#{user_id}" unless url.blank?
   end
 
   def should_generate_new_friendly_id?
