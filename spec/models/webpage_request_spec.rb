@@ -13,6 +13,13 @@
 require 'spec_helper'
 
 describe WebpageRequest do
+  before do
+    WebpageRequest.skip_callback(:create, :after, :create_webpage_response!)
+  end
+  after do
+    WebpageRequest.set_callback(:create, :after, :create_webpage_response!)
+  end
+
   describe 'associations' do
     it { should belong_to(:user) }
 
@@ -30,7 +37,7 @@ describe WebpageRequest do
   end
 
   describe 'validations' do
-    let!(:webpage_request) { 
+    let!(:webpage_request) {
       VCR.use_cassette('http_google_com') { create(:webpage_request) }
     }
 
