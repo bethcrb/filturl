@@ -22,6 +22,7 @@ class WebpageResponse < ActiveRecord::Base
   validates :webpage_request, presence: true
 
   after_create :get_url
+  after_create :create_webpage_screenshot!
 
   def get_url
     response = Typhoeus.get(self.webpage_request.url, followlocation: true,
@@ -36,8 +37,6 @@ class WebpageResponse < ActiveRecord::Base
     }
 
     self.update_attributes!(response_data)
-
-    self.create_webpage_screenshot!
   end
 
   def screenshot_url

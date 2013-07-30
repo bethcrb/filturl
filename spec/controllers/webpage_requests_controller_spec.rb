@@ -1,21 +1,22 @@
 require 'spec_helper'
 
 describe WebpageRequestsController do
-  before (:each) do
-    @user = FactoryGirl.create(:user)
-    sign_in @user
+  let(:user) { FactoryGirl.create(:user) }
 
-    @webpage_request = FactoryGirl.create(:webpage_request)
+  before do
+    sign_in user
+
     @attr = {
-      :url          => "http://www.example.com",
-      :user_id => @user.id,
+      :url     => "http://www.example.com",
+      :user_id => user.id,
     }
   end
 
   describe "GET 'show'" do
+    let (:webpage_request) { FactoryGirl.create(:webpage_request) }
     it "shows the webpage request", :vcr do
-      get :show, :id => @webpage_request.id
-      assigns(:webpage_request).should == @webpage_request
+      get :show, :id => webpage_request.id
+      assigns(:webpage_request).should == webpage_request
     end
   end
 

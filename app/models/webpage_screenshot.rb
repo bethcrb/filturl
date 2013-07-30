@@ -23,33 +23,31 @@ class WebpageScreenshot < ActiveRecord::Base
   before_destroy :delete_screenshot
 
   def generate_screenshot
-    set_filename if filename.blank?
     unless File.exist?(temp_screenshot_file)
       screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
 
-      if ENV["RAILS_ENV"] == "test"
-        FileUtils.touch(temp_screenshot_file)
-      else
-        Phantomjs.run('--ignore-ssl-errors=yes',
-                      screenshot_js,
-                      webpage_request.url,
-                      temp_screenshot_file
-        )
-      end
+      Phantomjs.run('--ignore-ssl-errors=yes',
+                    screenshot_js,
+                    webpage_response.effective_url,
+                    temp_screenshot_file
+      )
     end
     File.exist?(temp_screenshot_file)
   end
 
   def upload_screenshot
-    generate_screenshot unless File.exist?(temp_screenshot_file)
-    if File.exist?(temp_screenshot_file)
-      screenshot_object.write(file: temp_screenshot_file, acl: :public_read)
+    unless screenshot_object.exists?
+      generate_screenshot unless File.exist?(temp_screenshot_file)
+      if File.exist?(temp_screenshot_file)
+        screenshot_object.write(file: temp_screenshot_file, acl: :public_read)
 
-      if screenshot_object.exists?
-        File.delete(temp_screenshot_file)
-        self.update_attributes!(url: screenshot_object.public_url.to_s)
+        if screenshot_object.exists?
+          File.delete(temp_screenshot_file)
+          self.update_attributes!(url: screenshot_object.public_url.to_s)
+        end
       end
     end
+    screenshot_object.exists?
   end
 
   def delete_screenshot
@@ -65,7 +63,10 @@ class WebpageScreenshot < ActiveRecord::Base
   end
 
   def temp_screenshot_file
-    Rails.root.join("tmp/#{filename}").to_s
+    screenshot_dir = Rails.root.join("tmp/screenshots").to_s
+    FileUtils::mkdir_p screenshot_dir unless Dir.exists?(screenshot_dir)
+    set_filename if filename.blank?
+    "#{screenshot_dir}/#{filename}"
   end
 
   private

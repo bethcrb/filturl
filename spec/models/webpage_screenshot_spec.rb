@@ -13,11 +13,15 @@
 require 'spec_helper'
 
 describe WebpageScreenshot do
-  before(:each) do
-    VCR.use_cassette('WebpageScreenshot/create_webpage_screenshot') do
-      @webpage_request = FactoryGirl.create(:webpage_request)
-      @webpage_screenshot = @webpage_request.webpage_screenshot
-    end
+  before do
+    WebpageScreenshot.skip_callback(:create, :after, :generate_screenshot)
+    WebpageScreenshot.skip_callback(:create, :after, :upload_screenshot)
+    WebpageScreenshot.skip_callback(:destroy, :before, :delete_screenshot)
+  end
+  after do
+    WebpageScreenshot.set_callback(:create, :after, :generate_screenshot)
+    WebpageScreenshot.set_callback(:create, :after, :upload_screenshot)
+    WebpageScreenshot.set_callback(:destroy, :before, :delete_screenshot)
   end
 
   describe "associations" do
@@ -33,30 +37,34 @@ describe WebpageScreenshot do
     it { should respond_to(:filename) }
   end
 
-  describe "generate_screenshot" do
-    it { @webpage_screenshot.generate_screenshot.should be_true }
-  end
+  describe "creating screenshots", :vcr do
+    let!(:webpage_screenshot) { build_stubbed(:webpage_screenshot) }
 
-  describe "upload_screenshot" do
-    it { @webpage_screenshot.upload_screenshot.should be_true }
-  end
-
-  describe "delete_screenshot" do
-    it { @webpage_screenshot.delete_screenshot.should be_nil }
-  end
-
-  describe "set_filename" do
-    it "should set the filename if one does not exist", :vcr do
-      screenshot_no_filename = FactoryGirl.build(:webpage_screenshot)
-      screenshot_no_filename.set_filename
-      screenshot_no_filename.filename.should_not be_nil
+    describe "generate_screenshot" do
+      it { webpage_screenshot.generate_screenshot.should be_true }
     end
 
-    it "should not change the filename if one already exists", :vcr do
-      filename = "#{SecureRandom.urlsafe_base64}.png"
-      screenshot_with_filename = FactoryGirl.build(:webpage_screenshot, filename: filename)
-      screenshot_with_filename.set_filename
-      screenshot_with_filename.filename.should == filename
+    describe "upload_screenshot" do
+      it { webpage_screenshot.upload_screenshot.should be_true }
+    end
+
+    describe "delete_screenshot" do
+      it { webpage_screenshot.delete_screenshot.should be_nil }
+    end
+
+    describe "set_filename" do
+      it "should set the filename if one does not exist", :vcr do
+        screenshot_no_filename = FactoryGirl.build(:webpage_screenshot)
+        screenshot_no_filename.set_filename
+        screenshot_no_filename.filename.should_not be_nil
+      end
+
+      it "should not change the filename if one already exists", :vcr do
+        filename = "#{SecureRandom.urlsafe_base64}.png"
+        screenshot_with_filename = FactoryGirl.build(:webpage_screenshot, filename: filename)
+        screenshot_with_filename.set_filename
+        screenshot_with_filename.filename.should == filename
+      end
     end
   end
 end

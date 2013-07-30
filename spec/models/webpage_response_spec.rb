@@ -17,6 +17,13 @@
 require 'spec_helper'
 
 describe WebpageResponse do
+  before do
+    WebpageResponse.skip_callback(:create, :after, :create_webpage_screenshot!)
+  end
+  after do
+    WebpageResponse.set_callback(:create, :after, :create_webpage_screenshot!)
+  end
+
   before(:each) do
     @webpage_response = FactoryGirl.create(:webpage_response)
     @attr = { webpage_request_id: @webpage_response.webpage_request_id }
