@@ -28,11 +28,13 @@
 /doc/app/
 /doc/features.html
 /doc/specs.html
+/features/cassettes/
 /gems
 /log/*.log
 /public/cache
 /public/stylesheets/compiled
 /public/system/*
+/spec/fixtures/vcr_cassettes/
 /spec/tmp/*
 /specifications
 /tmp
