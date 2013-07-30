@@ -13,17 +13,6 @@
 require 'spec_helper'
 
 describe WebpageScreenshot do
-  before do
-    WebpageScreenshot.skip_callback(:create, :after, :generate_screenshot)
-    WebpageScreenshot.skip_callback(:create, :after, :upload_screenshot)
-    WebpageScreenshot.skip_callback(:destroy, :before, :delete_screenshot)
-  end
-  after do
-    WebpageScreenshot.set_callback(:create, :after, :generate_screenshot)
-    WebpageScreenshot.set_callback(:create, :after, :upload_screenshot)
-    WebpageScreenshot.set_callback(:destroy, :before, :delete_screenshot)
-  end
-
   describe 'associations' do
     it { should belong_to(:webpage_response) }
     it { should have_one(:webpage_request).through(:webpage_response) }
