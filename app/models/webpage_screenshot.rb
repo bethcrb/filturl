@@ -23,48 +23,48 @@ class WebpageScreenshot < ActiveRecord::Base
   before_destroy :delete_screenshot
 
   def generate_screenshot
-    unless File.exist?(temp_screenshot_file)
-      screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
+    return true if File.exist?(temp_screenshot_file)
 
-      Phantomjs.run('--ignore-ssl-errors=yes',
-                    screenshot_js,
-                    webpage_response.effective_url,
-                    temp_screenshot_file
-      )
-    end
+    screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
+    Phantomjs.run('--ignore-ssl-errors=yes',
+                  screenshot_js,
+                  webpage_response.effective_url,
+                  temp_screenshot_file
+    )
+
     File.exist?(temp_screenshot_file)
   end
 
   def upload_screenshot
-    unless screenshot_object.exists?
-      generate_screenshot unless File.exist?(temp_screenshot_file)
-      if File.exist?(temp_screenshot_file)
-        screenshot_object.write(file: temp_screenshot_file, acl: :public_read)
+    return true if screenshot_object.exists?
 
-        if screenshot_object.exists?
-          File.delete(temp_screenshot_file)
-          self.update_attributes!(url: screenshot_object.public_url.to_s)
-        end
-      end
+    generate_screenshot unless File.exist?(temp_screenshot_file)
+
+    screenshot_object.write(file: temp_screenshot_file, acl: :public_read)
+    if screenshot_object.exists?
+      File.delete(temp_screenshot_file)
+      self.update_attributes!(url: screenshot_object.public_url.to_s)
     end
+
     screenshot_object.exists?
   end
 
   def delete_screenshot
     File.delete(temp_screenshot_file) if File.exist?(temp_screenshot_file)
-    screenshot_object.delete
+    screenshot_object.delete if screenshot_object.exists?
   end
 
   def set_filename
     if filename.nil?
-      temp_filename = "#{SecureRandom.urlsafe_base64}.png"
+      random_prefix = SecureRandom.urlsafe_base64(6)
+      temp_filename = "#{random_prefix}_#{webpage_request.slug}.png"
       self.update_attributes!(filename: temp_filename)
     end
   end
 
   def temp_screenshot_file
-    screenshot_dir = Rails.root.join("tmp/screenshots").to_s
-    FileUtils::mkdir_p screenshot_dir unless Dir.exists?(screenshot_dir)
+    screenshot_dir = Rails.root.join('tmp/screenshots').to_s
+    FileUtils.mkdir_p screenshot_dir unless Dir.exists?(screenshot_dir)
     set_filename if filename.blank?
     "#{screenshot_dir}/#{filename}"
   end

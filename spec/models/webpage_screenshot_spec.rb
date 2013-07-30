@@ -24,44 +24,47 @@ describe WebpageScreenshot do
     WebpageScreenshot.set_callback(:destroy, :before, :delete_screenshot)
   end
 
-  describe "associations" do
+  describe 'associations' do
     it { should belong_to(:webpage_response) }
     it { should have_one(:webpage_request).through(:webpage_response) }
   end
 
-  describe "validations" do
+  describe 'validations' do
     it { should validate_presence_of(:webpage_response) }
   end
 
-  describe "respond_to" do
+  describe 'respond_to' do
     it { should respond_to(:filename) }
   end
 
-  describe "creating screenshots", :vcr do
-    let!(:webpage_screenshot) { build_stubbed(:webpage_screenshot) }
+  describe 'creating screenshots', :vcr do
+    let!(:webpage_screenshot) { create(:webpage_screenshot) }
 
-    describe "generate_screenshot" do
+    describe 'generate_screenshot' do
       it { webpage_screenshot.generate_screenshot.should be_true }
     end
 
-    describe "upload_screenshot" do
+    describe 'upload_screenshot' do
       it { webpage_screenshot.upload_screenshot.should be_true }
     end
 
-    describe "delete_screenshot" do
+    describe 'delete_screenshot' do
       it { webpage_screenshot.delete_screenshot.should be_nil }
     end
 
-    describe "set_filename" do
-      it "should set the filename if one does not exist", :vcr do
-        screenshot_no_filename = FactoryGirl.build(:webpage_screenshot)
+    describe 'set_filename' do
+      it 'should set the filename if one does not exist', :vcr do
+        screenshot_no_filename = create(:webpage_screenshot, filename: nil)
         screenshot_no_filename.set_filename
         screenshot_no_filename.filename.should_not be_nil
       end
 
-      it "should not change the filename if one already exists", :vcr do
+      it 'should not change the filename if one already exists', :vcr do
         filename = "#{SecureRandom.urlsafe_base64}.png"
-        screenshot_with_filename = FactoryGirl.build(:webpage_screenshot, filename: filename)
+        screenshot_with_filename = build_stubbed(
+          :webpage_screenshot,
+          filename: filename
+        )
         screenshot_with_filename.set_filename
         screenshot_with_filename.filename.should == filename
       end
