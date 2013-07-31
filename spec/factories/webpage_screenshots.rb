@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :webpage_screenshot do
     url nil
     filename nil
-    webpage_response
+    webpage
   end
 end

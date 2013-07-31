@@ -52,7 +52,7 @@ Then(/^I should see an invalid URL message$/) do
 end
 
 Then(/^I should see a screenshot of the URL$/) do
-  page.should have_xpath("//img[@src=\"#{@webpage_request.webpage_response.screenshot_url}\"]")
+  page.should have_xpath("//img[@src=\"#{@webpage_request.webpage_screenshot.url}\"]")
 end
 
 Then(/^I should see an IP address$/) do

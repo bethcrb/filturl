@@ -24,7 +24,8 @@ describe WebpageRequest do
     it { should belong_to(:user) }
 
     it { should have_one(:webpage_response).dependent(:destroy) }
-    it { should have_one(:webpage_screenshot).through(:webpage_response) }
+    it { should have_one(:webpage).through(:webpage_response) }
+    it { should have_one(:webpage_screenshot).through(:webpage) }
   end
 
   describe 'before validation' do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130726022023) do
+ActiveRecord::Schema.define(version: 20130731231125) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -95,27 +95,36 @@ ActiveRecord::Schema.define(version: 20130726022023) do
   add_index "webpage_requests", ["url", "user_id"], name: "index_webpage_requests_on_url_and_user_id", using: :btree
 
   create_table "webpage_responses", force: true do |t|
-    t.string   "effective_url"
-    t.string   "primary_ip"
     t.integer  "redirect_count"
-    t.text     "body",               limit: 2147483647
     t.integer  "code"
     t.text     "headers"
     t.integer  "webpage_request_id"
+    t.integer  "webpage_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "webpage_responses", ["webpage_id"], name: "index_webpage_responses_on_webpage_id", using: :btree
   add_index "webpage_responses", ["webpage_request_id"], name: "index_webpage_responses_on_webpage_request_id", using: :btree
 
   create_table "webpage_screenshots", force: true do |t|
     t.string   "filename"
     t.string   "url"
-    t.integer  "webpage_response_id"
+    t.integer  "webpage_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "webpage_screenshots", ["webpage_response_id"], name: "index_webpage_screenshots_on_webpage_response_id", using: :btree
+  add_index "webpage_screenshots", ["webpage_id"], name: "index_webpage_screenshots_on_webpage_id", using: :btree
+
+  create_table "webpages", force: true do |t|
+    t.string   "effective_url",                    default: "", null: false
+    t.string   "primary_ip"
+    t.text     "body",          limit: 2147483647
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "webpages", ["effective_url"], name: "index_webpages_on_effective_url", unique: true, using: :btree
 
 end

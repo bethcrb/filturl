@@ -2,24 +2,25 @@
 #
 # Table name: webpage_screenshots
 #
-#  id                  :integer          not null, primary key
-#  filename            :string(255)
-#  url                 :string(255)
-#  webpage_response_id :integer
-#  created_at          :datetime
-#  updated_at          :datetime
+#  id         :integer          not null, primary key
+#  filename   :string(255)
+#  url        :string(255)
+#  webpage_id :integer
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 require 'spec_helper'
 
 describe WebpageScreenshot do
   describe 'associations' do
-    it { should belong_to(:webpage_response) }
-    it { should have_one(:webpage_request).through(:webpage_response) }
+    it { should belong_to(:webpage) }
+    it { should have_many(:webpage_responses).through(:webpage) }
+    it { should have_many(:webpage_requests).through(:webpage_responses) }
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:webpage_response) }
+    it { should validate_presence_of(:webpage) }
   end
 
   describe 'respond_to' do
@@ -43,19 +44,16 @@ describe WebpageScreenshot do
 
     describe 'set_filename' do
       it 'should set the filename if one does not exist', :vcr do
-        screenshot_no_filename = create(:webpage_screenshot, filename: nil)
-        screenshot_no_filename.set_filename
-        screenshot_no_filename.filename.should_not be_nil
+        webpage_screenshot.update_attributes!(filename: nil)
+        webpage_screenshot.set_filename
+        webpage_screenshot.filename.should_not be_nil
       end
 
       it 'should not change the filename if one already exists', :vcr do
-        filename = "#{SecureRandom.urlsafe_base64}.png"
-        screenshot_with_filename = build_stubbed(
-          :webpage_screenshot,
-          filename: filename
-        )
-        screenshot_with_filename.set_filename
-        screenshot_with_filename.filename.should == filename
+        random_filename = "#{SecureRandom.urlsafe_base64}.png"
+        webpage_screenshot.update_attributes!(filename: random_filename)
+        webpage_screenshot.set_filename
+        webpage_screenshot.filename.should == random_filename
       end
     end
   end

@@ -6,6 +6,7 @@ class WebpageRequestsController < ApplicationController
   def show
     @webpage_request = WebpageRequest.friendly.find(params[:id])
     @webpage_response = @webpage_request.webpage_response
+    @webpage = @webpage_response.webpage
   end
 
   def create
@@ -29,7 +30,8 @@ class WebpageRequestsController < ApplicationController
   end
 
   private
-    def webpage_request_params
-      params.require(:webpage_request).permit(:url)
-    end
+
+  def webpage_request_params
+    params.require(:webpage_request).permit(:url)
+  end
 end

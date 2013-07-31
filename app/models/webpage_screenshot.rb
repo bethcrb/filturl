@@ -2,20 +2,21 @@
 #
 # Table name: webpage_screenshots
 #
-#  id                  :integer          not null, primary key
-#  filename            :string(255)
-#  url                 :string(255)
-#  webpage_response_id :integer
-#  created_at          :datetime
-#  updated_at          :datetime
+#  id         :integer          not null, primary key
+#  filename   :string(255)
+#  url        :string(255)
+#  webpage_id :integer
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 class WebpageScreenshot < ActiveRecord::Base
-  belongs_to :webpage_response
+  belongs_to :webpage
 
-  has_one :webpage_request, through: :webpage_response
+  has_many :webpage_responses, through: :webpage
+  has_many :webpage_requests, through: :webpage_responses
 
-  validates :webpage_response, presence: true
+  validates :webpage, presence: true
 
   after_create :generate_screenshot
   after_create :upload_screenshot
@@ -23,12 +24,12 @@ class WebpageScreenshot < ActiveRecord::Base
   before_destroy :delete_screenshot
 
   def generate_screenshot
-    return true if File.exist?(temp_screenshot_file)
+    return true if File.exist?(temp_screenshot_file) || Rails.env.test?
 
     screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
     Phantomjs.run('--ignore-ssl-errors=yes',
                   screenshot_js,
-                  webpage_response.effective_url,
+                  webpage.effective_url,
                   temp_screenshot_file
     )
 
@@ -56,8 +57,8 @@ class WebpageScreenshot < ActiveRecord::Base
 
   def set_filename
     if filename.nil?
-      random_prefix = SecureRandom.urlsafe_base64(6)
-      temp_filename = "#{random_prefix}_#{webpage_request.slug}.png"
+      effective_url = webpage.effective_url
+      temp_filename = "#{effective_url.gsub(/\W+/, '_').sub(/_$/, '')}.png"
       self.update_attributes!(filename: temp_filename)
     end
   end
