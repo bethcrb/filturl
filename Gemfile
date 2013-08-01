@@ -48,6 +48,16 @@ group :development do
   # Use Capistrano for deployment.
   gem 'capistrano', '~> 2.15.5'
 
+  # Guard is a command line tool to easily handle events on file system
+  # modifications. It is useful for automatically running tasks in the
+  # background, such as running tests and restarting services.
+  gem 'guard'
+  gem 'guard-annotate'
+  gem 'guard-rails'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'listen'
+
   # Quiet Assets mutes assets pipeline log messages.
   gem 'quiet_assets', '~> 1.0.2'
 end
