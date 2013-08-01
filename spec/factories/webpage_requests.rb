@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :webpage_request do
-    url "http://www.google.com"
+    url 'http://www.google.com/'
     slug nil
     user
   end

@@ -12,14 +12,7 @@
 
 require 'spec_helper'
 
-describe WebpageRequest do
-  before do
-    WebpageRequest.skip_callback(:create, :after, :create_webpage_response!)
-  end
-  after do
-    WebpageRequest.set_callback(:create, :after, :create_webpage_response!)
-  end
-
+describe WebpageRequest, :vcr do
   describe 'associations' do
     it { should belong_to(:user) }
 

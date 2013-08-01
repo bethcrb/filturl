@@ -1,7 +1,8 @@
 ### UTILITY METHODS ###
 def create_webpage_request
-  VCR.use_cassette("webpage_requests/create_webpage_request") do
-    @webpage_request = FactoryGirl.create(:webpage_request)
+  @webpage_request = FactoryGirl.build(:webpage_request)
+  VCR.use_cassette('WebpageRequest/create_webpage_request') do
+    @webpage_request.save!
   end
 end
 
@@ -13,7 +14,7 @@ end
 ### WHEN ###
 When(/^I submit a valid URL$/) do
   @valid_webpage_request = FactoryGirl.build_stubbed(:webpage_request)
-  VCR.use_cassette("webpage_requests/submit_valid_url") do
+  VCR.use_cassette('WebpageRequestsController/submit_valid_url') do
     visit '/'
     fill_in "webpage_request_url", :with => @valid_webpage_request.url
     click_button "Go"
@@ -23,9 +24,11 @@ end
 When(/^I submit an invalid URL$/) do
   @invalid_webpage_request = FactoryGirl.build_stubbed(:webpage_request,
     url: 'http://not.a.valid.url')
-  visit '/'
-  fill_in "webpage_request_url", :with => @invalid_webpage_request.url
-  click_button "Go"
+  VCR.use_cassette('WebpageRequestsController/submit_invalid_url') do
+    visit '/'
+    fill_in "webpage_request_url", :with => @invalid_webpage_request.url
+    click_button "Go"
+  end
 end
 
 When(/^I click on the screenshot tab$/) do
@@ -48,7 +51,7 @@ Then(/^I should see information about the URL$/) do
 end
 
 Then(/^I should see an invalid URL message$/) do
-  page.should have_content "url must be a valid URL"
+  page.should have_content "url is not reachable"
 end
 
 Then(/^I should see a screenshot of the URL$/) do

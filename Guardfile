@@ -18,7 +18,7 @@ guard 'rails' do
   watch(%r{^(config|lib)/.*})
 end
 
-guard 'rspec', :all_on_start => false, :all_after_pass => false, :cli => '--color --format nested --fail-fast --drb' do
+guard 'rspec', :all_on_start => false, :all_after_pass => false, :cli => '--color --format nested --fail-fast' do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
@@ -37,17 +37,18 @@ guard 'rspec', :all_on_start => false, :all_after_pass => false, :cli => '--colo
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
+
+  # FactoryGirl factories
+  watch(%r{^spec/factories/.+\.rb$})
 end
 
-guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
+guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :cucumber => false, :wait => 70 do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch('config/environments/test.rb')
   watch(%r{^config/initializers/.+\.rb$})
   watch('Gemfile.lock')
   watch('spec/spec_helper.rb') { :rspec }
-  watch('test/test_helper.rb') { :test_unit }
-  watch(%r{features/support/}) { :cucumber }
 end
 
 guard 'cucumber', :all_on_start => false, :all_after_pass => false, :cli => '--no-profile --color --strict --format pretty' do

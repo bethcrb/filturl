@@ -22,28 +22,25 @@ class WebpageRequest < ActiveRecord::Base
   before_validation :clean_url
 
   validates :user, presence: true
-  validates :url, presence: true, format: URI::regexp(%w(http https))
+  validates :url, presence: true, format: URI.regexp(%w(http https))
   validates :url, uniqueness: { case_sensitive: false, scope: :user_id }
   validates_each :url do |record, attr, value|
-    if value =~ URI::regexp(%w(http https))
+    if value =~ URI.regexp(%w(http https))
       begin
-        response = Typhoeus.get(value,
-          followlocation: true,
-          ssl_verifypeer: false,
-        )
-        if response.code == 0
-          return_message = response.return_message
-          record.errors.add(attr, "must be reachable (#{return_message})")
-        end
-      rescue => e
-        record.errors.add(attr, "must be a valid URL (#{e.message})")
+        Net::HTTP.get_response(URI(value))
+      rescue Net::HTTPUnknownResponse => e
+        record.errors.add(attr, "returned an unknown response (#{e.message})")
+      rescue Net::HTTPBadResponse => e
+        record.errors.add(attr, "returned an invalid response (#{e.message})")
+      rescue SocketError => e
+        record.errors.add(attr, "is not reachable (#{e.message})")
       end
     end
   end
 
   after_create :create_webpage_response!
 
-  friendly_id :user_url, :use => :slugged
+  friendly_id :user_url, use: :slugged
 
   def clean_url
     self.url = PostRank::URI.clean(url).to_s unless url.blank?

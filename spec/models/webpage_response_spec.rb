@@ -32,15 +32,6 @@ describe WebpageResponse do
   end
 
   describe 'get_url' do
-    before do
-      WebpageRequest.skip_callback(:create, :after, :create_webpage_response!)
-      WebpageResponse.skip_callback(:create, :after, :get_url)
-    end
-    after do
-      WebpageRequest.set_callback(:create, :after, :create_webpage_response!)
-      WebpageResponse.set_callback(:create, :after, :get_url)
-    end
-
     let (:original_response) { build_stubbed(:webpage_response, code: -999) }
     it "should update the response data", :vcr do
       original_response.get_url

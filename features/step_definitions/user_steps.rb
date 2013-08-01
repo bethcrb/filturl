@@ -1,13 +1,7 @@
 ### UTILITY METHODS ###
 
 def create_visitor
-  @visitor ||= {
-    :name                  => "Testy McUserton",
-    :email                 => "example@example.com",
-    :username              => "example_user",
-    :password              => "changeme",
-    :password_confirmation => "changeme",
-  }
+  @visitor ||= FactoryGirl.attributes_for(:user)
 end
 
 def find_user
