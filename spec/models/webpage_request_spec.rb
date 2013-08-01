@@ -12,7 +12,7 @@
 
 require 'spec_helper'
 
-describe WebpageRequest, :vcr do
+describe WebpageRequest do
   describe 'associations' do
     it { should belong_to(:user) }
 
@@ -22,18 +22,16 @@ describe WebpageRequest, :vcr do
   end
 
   describe 'before validation' do
-    let(:new_webpage_request) { build(:webpage_request, url: 'example.com') }
+    subject { build_stubbed(:webpage_request, url: 'www.example.com') }
 
     it 'should clean the url' do
-      new_webpage_request.valid?
-      new_webpage_request.url.should == 'http://example.com/'
+      subject.valid?
+      subject.url.should == 'http://www.example.com/'
     end
   end
 
   describe 'validations' do
-    let!(:webpage_request) {
-      VCR.use_cassette('http_google_com') { create(:webpage_request) }
-    }
+    subject { VCR.use_cassette('http_google_com') { create(:webpage_request) } }
 
     it { should validate_presence_of(:user) }
 
