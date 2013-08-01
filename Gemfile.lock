@@ -130,6 +130,7 @@ GEM
       multipart-post (~> 1.1)
     faye-websocket (0.4.7)
       eventmachine (>= 0.12.0)
+    ffaker (1.16.2)
     ffi (1.9.0)
     figaro (0.7.0)
       bundler (~> 1.0)
@@ -314,6 +315,7 @@ DEPENDENCIES
   devise (~> 3.0.0)
   email_spec (~> 1.5.0)
   factory_girl_rails (~> 4.0)
+  ffaker
   figaro (~> 0.7.0)
   friendly_id!
   jbuilder (~> 1.2)
