@@ -28,7 +28,6 @@
 /doc/app/
 /doc/features.html
 /doc/specs.html
-/features/cassettes/
 /gems
 /log/*.log
 /public/cache
