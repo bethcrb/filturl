@@ -53,6 +53,7 @@ group :development do
   # background, such as running tests and restarting services.
   gem 'guard'
   gem 'guard-annotate'
+  gem 'guard-cucumber'
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'guard-spork'

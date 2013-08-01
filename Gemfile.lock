@@ -149,6 +149,9 @@ GEM
     guard-annotate (1.1.0)
       annotate (>= 2.4.0)
       guard (>= 0.2.2)
+    guard-cucumber (1.4.0)
+      cucumber (>= 1.2.0)
+      guard (>= 1.1.0)
     guard-rails (0.4.7)
       guard (>= 0.2.2)
     guard-rspec (3.0.2)
@@ -361,6 +364,7 @@ DEPENDENCIES
   friendly_id!
   guard
   guard-annotate
+  guard-cucumber
   guard-rails
   guard-rspec
   guard-spork
