@@ -60,7 +60,7 @@ class WebpageScreenshot < ActiveRecord::Base
   def set_filename
     if filename.nil?
       effective_url = webpage.effective_url
-      temp_filename = "#{effective_url.gsub(/\W+/, '_').sub(/_$/, '')}.png"
+      temp_filename = "#{effective_url.parameterize('_')}.png"
       self.update_attributes!(filename: temp_filename)
     end
   end

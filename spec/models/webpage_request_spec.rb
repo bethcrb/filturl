@@ -48,7 +48,7 @@ describe WebpageRequest, :vcr do
       httptest
     )
     invalid_urls.each do |url|
-      cassette = url.gsub(/\W+/, '_')
+      cassette = url.parameterize('_')
       it {
         VCR.use_cassette(cassette) { should_not allow_value(url).for(:url) }
       }
@@ -60,10 +60,19 @@ describe WebpageRequest, :vcr do
       https://www.domain.com/?query=value
     )
     valid_urls.each do |url|
-      cassette = url.gsub(/\W+/, '_')
+      cassette = url.parameterize('_')
       it {
         VCR.use_cassette(cassette) { should allow_value(url).for(:url) }
       }
+    end
+  end
+
+  describe 'normalize_friendly_id' do
+    subject { build_stubbed(:webpage_request) }
+
+    it "should return a parameterized version of the url with the user id" do
+      friendly_id_slug = "#{subject.url.parameterize}-#{subject.user_id}"
+      subject.normalize_friendly_id(subject.url).should == "#{friendly_id_slug}"
     end
   end
 end
