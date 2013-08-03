@@ -18,13 +18,10 @@ class Screenshot < ActiveRecord::Base
 
   validates :webpage, presence: true
 
-  after_create :generate_screenshot
-  after_create :upload_screenshot
-
   before_destroy :delete_screenshot
 
   def generate_screenshot
-    return true if File.exist?(temp_screenshot_file) || Rails.env.test?
+    return true if Rails.env.test?
 
     screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
     Phantomjs.run('--ignore-ssl-errors=yes',
@@ -33,19 +30,17 @@ class Screenshot < ActiveRecord::Base
                   temp_screenshot_file
     )
 
-    File.exist?(temp_screenshot_file)
+    File.exist?(temp_screenshot_file) && upload_screenshot
   end
 
   def upload_screenshot
-    return true if screenshot_object.exists?
-
     generate_screenshot unless File.exist?(temp_screenshot_file)
 
     if File.exist?(temp_screenshot_file)
       screenshot_object.write(file: temp_screenshot_file, acl: :public_read)
       if screenshot_object.exists?
-        File.delete(temp_screenshot_file)
         self.update_attributes!(url: screenshot_object.public_url.to_s)
+        File.delete(temp_screenshot_file)
       end
     end
 
