@@ -27,7 +27,7 @@ describe WebpageScreenshot do
     it { should respond_to(:filename) }
   end
 
-  describe 'creating screenshots', :vcr do
+  describe 'creating screenshots' do
     let!(:webpage_screenshot) { create(:webpage_screenshot) }
 
     describe 'generate_screenshot' do
@@ -43,13 +43,13 @@ describe WebpageScreenshot do
     end
 
     describe 'set_filename' do
-      it 'should set the filename if one does not exist', :vcr do
+      it 'should set the filename if one does not exist' do
         webpage_screenshot.update_attributes!(filename: nil)
         webpage_screenshot.set_filename
         webpage_screenshot.filename.should_not be_nil
       end
 
-      it 'should not change the filename if one already exists', :vcr do
+      it 'should not change the filename if one already exists' do
         random_filename = "#{SecureRandom.urlsafe_base64}.png"
         webpage_screenshot.update_attributes!(filename: random_filename)
         webpage_screenshot.set_filename

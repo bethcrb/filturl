@@ -24,7 +24,7 @@ class WebpageScreenshot < ActiveRecord::Base
   before_destroy :delete_screenshot
 
   def generate_screenshot
-    return true if File.exist?(temp_screenshot_file)
+    return true if File.exist?(temp_screenshot_file) || Rails.env.test?
 
     screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
     Phantomjs.run('--ignore-ssl-errors=yes',

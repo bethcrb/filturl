@@ -31,7 +31,7 @@ describe WebpageRequest do
   end
 
   describe 'validations' do
-    subject { VCR.use_cassette('http_google_com') { create(:webpage_request) } }
+    subject { VCR.use_cassette('http_www_google_com') { create(:webpage_request) } }
 
     it { should validate_presence_of(:user) }
 
@@ -44,6 +44,8 @@ describe WebpageRequest do
       gopher://domain.com
       htt://www.$example.com
       httptest
+      http://not.a.valid.url/
+      http://www.unknown_response.com/
     )
     invalid_urls.each do |url|
       cassette = url.parameterize('_')

@@ -103,6 +103,9 @@ group :development, :test do
 
   # Use Spork to speed up test suite.
   gem 'spork-rails', github: 'sporkrb/spork-rails'
+
+  # Use WebMock to stub out Net::HTTP requests.
+  gem 'webmock', github: 'bblimke/webmock'
 end
 
 # Rails 4 requires rails_12factor in order to configure application
