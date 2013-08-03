@@ -27,11 +27,14 @@ class WebpageRequest < ActiveRecord::Base
   validates_each :url do |record, attr, value|
     if value =~ URI.regexp(%w(http https))
       begin
-        Net::HTTP.get_response(URI(value))
-      rescue SocketError, Timeout::Error => e
-        record.errors.add(attr, "is not reachable (#{e.message})")
+        response = Typhoeus.get(value, followlocation: true,
+          ssl_verifypeer: false)
+        if response.headers.empty?
+          message = response.return_message
+          record.errors[attr] << "is not reachable (#{message})"
+        end
       rescue => e
-        record.errors.add(attr, "returned an error (#{e.message})")
+        record.errors[attr] << "returned an error (#{e.message})"
       end
     end
   end
