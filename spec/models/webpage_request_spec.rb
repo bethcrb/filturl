@@ -48,6 +48,7 @@ describe WebpageRequest do
       httptest
       http://not.a.valid.url/
       http://www.unknown_response.com/
+      http://localhost:3000/logo.png
     )
     invalid_urls.each do |url|
       cassette = url.parameterize('_')

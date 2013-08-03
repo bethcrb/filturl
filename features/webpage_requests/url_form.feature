@@ -13,3 +13,7 @@ Feature: Submit URLs
   Scenario: User submits an invalid URL
     When I submit an invalid URL
     Then I should see an invalid URL message
+
+  Scenario: User submits a URL with the wrong content-type
+    When I submit a URL with the wrong content-type
+    Then I should see an invalid content-type message

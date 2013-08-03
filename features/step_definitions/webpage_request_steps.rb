@@ -31,6 +31,16 @@ When(/^I submit an invalid URL$/) do
   click_button 'Go'
 end
 
+When(/^I submit a URL with the wrong content-type$/) do
+  @invalid_content_type_request = FactoryGirl.build_stubbed(
+    :webpage_request,
+    url: 'http://localhost:3000/logo.png'
+  )
+  visit '/'
+  fill_in 'webpage_request_url', with: @invalid_content_type_request.url
+  click_button 'Go'
+end
+
 When(/^I click on the screenshot tab$/) do
   visit webpage_request_path(@webpage_request)
   click_link 'Screenshot'
@@ -52,6 +62,10 @@ end
 
 Then(/^I should see an invalid URL message$/) do
   page.should have_content 'url is not reachable'
+end
+
+Then(/^I should see an invalid content-type message$/) do
+  page.should have_content 'url could not be verified as HTML'
 end
 
 Then(/^I should see a screenshot of the URL$/) do

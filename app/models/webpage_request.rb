@@ -32,6 +32,11 @@ class WebpageRequest < ActiveRecord::Base
         if response.headers.empty?
           message = response.return_message
           record.errors[attr] << "is not reachable (#{message})"
+        else
+          content_type = response.headers['Content-Type']
+          unless content_type.present? && content_type =~ /^text\/html/
+            record.errors[attr] << 'could not be verified as HTML'
+          end
         end
       rescue => e
         record.errors[attr] << "returned an error (#{e.message})"
