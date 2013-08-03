@@ -28,8 +28,6 @@ class WebpageRequest < ActiveRecord::Base
     if value =~ URI.regexp(%w(http https))
       begin
         Net::HTTP.get_response(URI(value))
-      rescue Net::HTTPUnknownResponse => e
-        record.errors.add(attr, "returned an unknown response (#{e.message})")
       rescue SocketError, Timeout::Error => e
         record.errors.add(attr, "is not reachable (#{e.message})")
       rescue => e
