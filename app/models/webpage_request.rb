@@ -17,7 +17,7 @@ class WebpageRequest < ActiveRecord::Base
 
   has_one :webpage_response, dependent: :destroy
   has_one :webpage, through: :webpage_response
-  has_one :webpage_screenshot, through: :webpage
+  has_one :screenshot, through: :webpage
 
   before_validation :clean_url
 

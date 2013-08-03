@@ -16,30 +16,30 @@ class WebpageResponse < ActiveRecord::Base
   belongs_to :webpage
   belongs_to :webpage_request
 
-  has_one :webpage_screenshot, through: :webpage
+  has_one :screenshot, through: :webpage
 
   validates :webpage_request, presence: true
 
   after_create :get_url
 
   def get_url
-    response = Typhoeus.get(self.webpage_request.url, followlocation: true,
+    response = Typhoeus.get(webpage_request.url, followlocation: true,
       ssl_verifypeer: false)
-    effective_url = response.effective_url || self.webpage_request.url
-    self.webpage = Webpage.find_or_initialize_by(effective_url: effective_url)
-    self.webpage.update_attributes!(
+    effective_url = response.effective_url || webpage_request.url
+    webpage = Webpage.find_or_initialize_by(effective_url: effective_url)
+    webpage.update_attributes!(
       primary_ip: response.primary_ip,
-      body: response.response_body.force_encoding("ISO-8859-1")
-        .encode("utf-8", replace: nil) )
+      body: response.response_body.force_encoding('ISO-8859-1')
+        .encode('utf-8', replace: nil))
 
     response_data = {
-      :code           => response.response_code,
-      :headers        => response.response_headers,
-      :redirect_count => response.redirect_count,
-      :webpage_id     => webpage.id,
+      code:           response.response_code,
+      headers:        response.response_headers,
+      redirect_count: response.redirect_count,
+      webpage_id:     webpage.id,
     }
     self.update_attributes!(response_data)
 
-    self.webpage.create_webpage_screenshot!
+    webpage.create_screenshot!
   end
 end

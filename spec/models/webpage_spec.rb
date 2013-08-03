@@ -14,7 +14,7 @@ require 'spec_helper'
 
 describe Webpage do
   describe 'associations' do
-    it { should have_one(:webpage_screenshot).dependent(:destroy) }
+    it { should have_one(:screenshot).dependent(:destroy) }
 
     it { should have_many(:webpage_responses).dependent(:destroy) }
     it { should have_many(:webpage_requests).through(:webpage_responses) }

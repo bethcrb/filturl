@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130731231125) do
+ActiveRecord::Schema.define(version: 20130803062453) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 20130731231125) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "screenshots", force: true do |t|
+    t.string   "filename"
+    t.string   "url"
+    t.integer  "webpage_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "screenshots", ["webpage_id"], name: "index_screenshots_on_webpage_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -106,16 +116,6 @@ ActiveRecord::Schema.define(version: 20130731231125) do
 
   add_index "webpage_responses", ["webpage_id"], name: "index_webpage_responses_on_webpage_id", using: :btree
   add_index "webpage_responses", ["webpage_request_id"], name: "index_webpage_responses_on_webpage_request_id", using: :btree
-
-  create_table "webpage_screenshots", force: true do |t|
-    t.string   "filename"
-    t.string   "url"
-    t.integer  "webpage_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "webpage_screenshots", ["webpage_id"], name: "index_webpage_screenshots_on_webpage_id", using: :btree
 
   create_table "webpages", force: true do |t|
     t.string   "effective_url",                    default: "", null: false

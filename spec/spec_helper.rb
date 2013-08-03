@@ -67,7 +67,7 @@ Spork.each_run do
       DatabaseCleaner.start
     end
     config.after(:each) do
-      WebpageScreenshot.all.each do |screenshot|
+      Screenshot.all.each do |screenshot|
         screenshot_dir = Rails.root.join('tmp/screenshots').to_s
         unless screenshot.filename.blank?
           screenshot_file = "#{screenshot_dir}/#{screenshot.filename}"

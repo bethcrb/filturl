@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: webpage_screenshots
+# Table name: screenshots
 #
 #  id         :integer          not null, primary key
 #  filename   :string(255)
@@ -10,7 +10,7 @@
 #  updated_at :datetime
 #
 
-class WebpageScreenshot < ActiveRecord::Base
+class Screenshot < ActiveRecord::Base
   belongs_to :webpage
 
   has_many :webpage_responses, through: :webpage

@@ -19,7 +19,7 @@ describe WebpageResponse do
     it { should belong_to(:webpage_request) }
     it { should belong_to(:webpage) }
 
-    it { should have_one(:webpage_screenshot).through(:webpage) }
+    it { should have_one(:screenshot).through(:webpage) }
 
   end
 
@@ -31,9 +31,9 @@ describe WebpageResponse do
     it { should respond_to(:get_url) }
   end
 
-  describe 'get_url', :vcr => { cassette_name: "http_www_google_com" } do
+  describe 'get_url', vcr: { cassette_name: 'http_www_google_com' } do
     let (:original_response) { build_stubbed(:webpage_response, code: -999) }
-    it "should update the response data" do
+    it 'should update the response data' do
       original_response.get_url
       original_response.code.should_not == -999
     end

@@ -11,7 +11,7 @@
 #
 
 class Webpage < ActiveRecord::Base
-  has_one :webpage_screenshot, dependent: :destroy
+  has_one :screenshot, dependent: :destroy
   has_many :webpage_responses, dependent: :destroy
   has_many :webpage_requests,  through: :webpage_responses
 

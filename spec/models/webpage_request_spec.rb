@@ -18,7 +18,7 @@ describe WebpageRequest do
 
     it { should have_one(:webpage_response).dependent(:destroy) }
     it { should have_one(:webpage).through(:webpage_response) }
-    it { should have_one(:webpage_screenshot).through(:webpage) }
+    it { should have_one(:screenshot).through(:webpage) }
   end
 
   describe 'before validation' do
@@ -31,7 +31,9 @@ describe WebpageRequest do
   end
 
   describe 'validations' do
-    subject { VCR.use_cassette('http_www_google_com') { create(:webpage_request) } }
+    subject do
+      VCR.use_cassette('http_www_google_com') { create(:webpage_request) }
+    end
 
     it { should validate_presence_of(:user) }
 
@@ -49,9 +51,9 @@ describe WebpageRequest do
     )
     invalid_urls.each do |url|
       cassette = url.parameterize('_')
-      it {
+      it "should allow url to be set to \"#{url}\"" do
         VCR.use_cassette(cassette) { should_not allow_value(url).for(:url) }
-      }
+      end
     end
 
     valid_urls = %w(
@@ -61,18 +63,18 @@ describe WebpageRequest do
     )
     valid_urls.each do |url|
       cassette = url.parameterize('_')
-      it {
+      it "should allow url to be set to \"#{url}\"" do
         VCR.use_cassette(cassette) { should allow_value(url).for(:url) }
-      }
+      end
     end
   end
 
   describe 'normalize_friendly_id' do
     subject { build_stubbed(:webpage_request) }
 
-    it "should return a parameterized version of the url with the user id" do
-      friendly_id_slug = "#{subject.url.parameterize}-#{subject.user_id}"
-      subject.normalize_friendly_id(subject.url).should == "#{friendly_id_slug}"
+    it 'should return a parameterized version of the url with the user id' do
+      slug = "#{subject.url.parameterize}-#{subject.user_id}"
+      subject.normalize_friendly_id(subject.url).should == "#{slug}"
     end
   end
 end
