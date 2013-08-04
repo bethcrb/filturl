@@ -76,7 +76,7 @@ group :test do
 
   # Use Database Cleaner to restore the database to a pristine state during
   # testing.
-  gem 'database_cleaner', '~> 1.0.1'
+  gem 'database_cleaner', '~> 1.1.1'
 
   # Use Email Spec for testing email with RSpec and Cucumber.
   gem 'email_spec', '~> 1.5.0'
@@ -91,7 +91,7 @@ group :test do
   gem 'vcr', '2.5.0'
 
   # Use WebMock to stub out Net::HTTP requests.
-  gem 'webmock', github: 'bblimke/webmock'
+  gem 'webmock', '>= 1.8.0', '< 1.12'
 end
 
 group :development, :test do
