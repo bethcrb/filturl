@@ -56,14 +56,8 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_omniauth(auth, signed_in_resource = nil)
-    username = auth.extra.raw_info.username
-    if username.blank?
-      if auth.provider == 'github'
-        username = auth.extra.raw_info.login
-      else
-        username = auth.info.email
-      end
-    end
+    username = auth.info.nickname
+    username = auth.info.email if username.blank?
 
     user = User.find_by(email: auth.info.email)
     unless user

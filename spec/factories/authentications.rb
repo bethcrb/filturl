@@ -9,8 +9,6 @@ FactoryGirl.define do
     nickname "MyString"
     first_name "MyString"
     last_name "MyString"
-    location "MyString"
-    description "MyText"
     image "MyString"
     raw_info "MyText"
     user nil
