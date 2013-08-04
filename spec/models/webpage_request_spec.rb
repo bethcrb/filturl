@@ -52,7 +52,7 @@ describe WebpageRequest do
     )
     invalid_urls.each do |url|
       cassette = url.parameterize('_')
-      it "should allow url to be set to \"#{url}\"" do
+      it "should not allow url to be set to \"#{url}\"" do
         VCR.use_cassette(cassette) { should_not allow_value(url).for(:url) }
       end
     end
