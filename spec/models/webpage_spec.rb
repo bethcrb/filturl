@@ -26,4 +26,17 @@ describe Webpage do
     it { should_not allow_value('www.example.com').for(:effective_url) }
     it { should allow_value('http://www.example.com/').for(:effective_url) }
   end
+
+  describe :generate_new_screenshot do
+    it 'should create a screenshot object if one does not exist' do
+      webpage = create(:webpage)
+      webpage.generate_new_screenshot
+      webpage.screenshot.should_not be_nil
+    end
+
+    it 'should generate a new screenshot' do
+      webpage = create(:webpage)
+      webpage.generate_new_screenshot.should be_true
+    end
+  end
 end
