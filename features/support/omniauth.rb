@@ -40,7 +40,7 @@ OmniAuth.config.add_mock(:github, {
     name:        name,
     email:       email,
     nickname:    username,
-    location:    "#{Faker::Address.city}, #{Faker::Address.us_state_abbr}",
+    location:    "#{Faker::AddressUS.city}, #{Faker::AddressUS.state_abbr}",
     description: Faker::Lorem.paragraph,
     image:       'https://secure.gravatar.com/avatar/12345?d=https://a12345.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-12345.png',
   },
