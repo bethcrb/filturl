@@ -148,15 +148,15 @@ When /^I sign in with a wrong password$/ do
   sign_in_with_email
 end
 
-When /^I edit my account details$/ do
+When /^I change my name$/ do
   visit "/users/edit"
   fill_in "user_name", :with => "newname"
   click_button "Update"
 end
 
-When /^I change my username$/ do
+When /^I change my username to "([^"]*)"$/ do |newusername|
   visit "/users/edit"
-  fill_in "user_username", :with => "newusername"
+  fill_in "user_username", :with => newusername
   click_button "Update"
 end
 

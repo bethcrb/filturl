@@ -36,12 +36,15 @@ class User < ActiveRecord::Base
   has_many :webpage_requests, dependent: :destroy, inverse_of: :user
   has_many :authentications, dependent: :destroy
 
-  validates :email, presence: true, uniqueness: true, format: Devise.email_regexp
-  validates :username, presence: true, uniqueness: true,
+  validates :email, presence: true, uniqueness: { case_sensitive: false },
+    format: Devise.email_regexp
+  validates :username, presence: true, uniqueness: { case_sensitive: false },
     format: /\A\w[-\w.]*?(@([^@\s]+\.)+[^@\s]+)?\Z/, length: { within: 1..100 }
 
-  validates :password, presence: true, confirmation: true, length: Devise.password_length, on: :create
-  validates :password, length: Devise.password_length, on: :update, allow_blank: true
+  validates :password, presence: true, confirmation: true,
+    length: Devise.password_length, on: :create
+  validates :password, length: Devise.password_length, confirmation: true,
+    allow_blank: true, on: :update
 
   # Virtual attribute for authenticating by either username or email
   attr_accessor :login
