@@ -37,24 +37,6 @@ Feature: Sign in
     Then I see an invalid login message
     And I should be signed out
 
-  Scenario: User signs in successfully with Facebook
-    Given I am not logged in
-    And I am signed in with provider "facebook"
-    When I return to the site
-    Then I should be signed in
-
-  Scenario: User signs in successfully with GitHub
-    Given I am not logged in
-    And I am signed in with provider "github"
-    When I return to the site
-    Then I should be signed in
-
-  Scenario: User signs in successfully with Google
-    Given I am not logged in
-    And I am signed in with provider "google_oauth2"
-    When I return to the site
-    Then I should be signed in
-
   Scenario: User enters wrong password
     Given I exist as a user
     And I am not logged in
