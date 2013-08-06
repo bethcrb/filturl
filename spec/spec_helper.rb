@@ -71,9 +71,7 @@ Spork.each_run do
         screenshot_dir = Rails.root.join('tmp/screenshots').to_s
         unless screenshot.filename.blank?
           screenshot_file = "#{screenshot_dir}/#{screenshot.filename}"
-          if File.exists?(screenshot_file)
-            FileUtils.rm(screenshot_file)
-          end
+          FileUtils.rm(screenshot_file) if File.exists?(screenshot_file)
         end
       end
       DatabaseCleaner.clean

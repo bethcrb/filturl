@@ -38,7 +38,7 @@ describe User do
   describe 'validations' do
     subject { build(:user) }
 
-    context "email" do
+    context 'email' do
       it { should validate_presence_of(:email) }
 
       it { should validate_uniqueness_of(:email).case_insensitive }
@@ -54,7 +54,7 @@ describe User do
       end
     end
 
-    context "username" do
+    context 'username' do
       it { should validate_presence_of(:username) }
       it { should validate_uniqueness_of(:username).case_insensitive }
       it { should ensure_length_of(:username).is_at_most(100) }
@@ -70,22 +70,34 @@ describe User do
       end
     end
 
-    context "password" do
-      it { should ensure_length_of(:password).is_at_least(Devise.password_length.begin) }
-      it { should ensure_length_of(:password).is_at_most(Devise.password_length.end) }
-
-      context "on create" do
-        it "should confirm the passwords match" do
-          mismatched_password = subject.password.reverse
-          pw_user = build(:user, password_confirmation: mismatched_password)
-          pw_user.should_not be_valid
-        end
+    context 'password' do
+      it do
+        should ensure_length_of(:password)
+          .is_at_least(Devise.password_length.begin)
       end
 
-      context "on update" do
+      it do
+        should ensure_length_of(:password)
+          .is_at_most(Devise.password_length.end)
+      end
+
+      it 'should confirm the passwords match' do
+        mismatched_password = subject.password.reverse
+        pw_user = build(:user, password_confirmation: mismatched_password)
+        pw_user.should_not be_valid
+      end
+
+      context 'on update' do
         let(:existing_user) { create(:user) }
-        it { existing_user.should_not validate_presence_of(:password).on(:update) }
-        it { existing_user.should_not validate_confirmation_of(:password).on(:update) }
+        it do
+          existing_user.should_not validate_presence_of(:password)
+            .on(:update)
+        end
+
+        it do
+          existing_user.should_not validate_confirmation_of(:password)
+            .on(:update)
+        end
       end
     end
   end
@@ -99,9 +111,9 @@ describe User do
     let(:user) { create(:user) }
 
     it 'should return an ArgumentError without conditions' do
-      expect {
-        User.find_first_by_auth_conditions()
-      }.to raise_error(ArgumentError)
+      expect do
+        User.find_first_by_auth_conditions
+      end.to raise_error(ArgumentError)
     end
 
     it 'should find the first user with empty conditions' do

@@ -1,10 +1,10 @@
+# Maps a name to a path. Used by the
+#
+#   When /^I go to (.+)$/ do |page_name|
+#
+# step definition in web_steps.rb
+#
 module NavigationHelpers
-  # Maps a name to a path. Used by the
-  #
-  #   When /^I go to (.+)$/ do |page_name|
-  #
-  # step definition in web_steps.rb
-  #
   def path_to(page_name)
     case page_name
 
@@ -25,10 +25,12 @@ module NavigationHelpers
 
     else
       begin
-        page_name =~ /the (.*) page/
-        path_components = $1.split(/\s+/)
-        self.send(path_components.push('path').join('_').to_sym)
-      rescue Object => e
+        page_type = page_name =~ /the (.*) page/
+        if page_type.present?
+          path_components = page_type.split(/\s+/)
+          send(path_components.push('path').join('_').to_sym)
+        end
+      rescue Object
         raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
           "Now, go and add a mapping in #{__FILE__}"
       end

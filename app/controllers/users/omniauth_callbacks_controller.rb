@@ -1,3 +1,6 @@
+# This controller implements Omniauth callbacks and is used by Omniauth
+# providers as the URL to redirect users to after they have authorized the
+# application.
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include Devise::Controllers::Rememberable
 

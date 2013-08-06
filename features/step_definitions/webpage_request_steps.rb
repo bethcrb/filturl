@@ -61,11 +61,11 @@ Then(/^I should see information about the URL$/) do
 end
 
 Then(/^I should see an invalid URL message$/) do
-  page.should have_content 'url is not reachable'
+  page.should have_content 'Url is not reachable'
 end
 
 Then(/^I should see an invalid content-type message$/) do
-  page.should have_content 'url could not be verified as HTML'
+  page.should have_content 'Url could not be verified as HTML'
 end
 
 Then(/^I should see a screenshot of the URL$/) do

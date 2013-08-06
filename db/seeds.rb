@@ -5,7 +5,7 @@ end
 
 # Create admin user
 admin_user = User.find_or_create_by(
-  username: "admin",
+  username: 'admin',
   email:    ENV['ADMIN_EMAIL'].dup
 )
 admin_user.name = ENV['ADMIN_NAME'].dup
@@ -16,7 +16,7 @@ admin_user.add_role :admin
 
 # Create regular user
 user = User.find_or_create_by(
-  username: "test_user",
+  username: 'test_user',
   email:    ENV['USER_EMAIL'].dup
 )
 user.name = ENV['USER_NAME'].dup

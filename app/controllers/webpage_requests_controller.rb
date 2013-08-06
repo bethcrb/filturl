@@ -1,3 +1,6 @@
+# This controller is used to both create new webpage requests and show
+# existing ones. It involves the submission of a URL (create) and the
+# ability to view the resulting webpage data (show).
 class WebpageRequestsController < ApplicationController
   def index
     @webpage_request = WebpageRequest.new
@@ -20,11 +23,19 @@ class WebpageRequestsController < ApplicationController
     respond_to do |format|
       if @webpage_request.save
         format.html { redirect_to @webpage_request }
-        format.json { render action: 'show', status: :created, location: @webpage_request }
+        format.json do
+          render action: 'show',
+          status: :created,
+          location: @webpage_request
+        end
       else
-        flash.now[:alert] = "#{request_url}: #{@webpage_request.errors.full_messages.to_sentence.gsub(/Url/, 'url')}"
-        format.html { render "index" }
-        format.json { render json: @webpage_request.errors, status: :unprocessable_entity }
+        errors_full = @webpage_request.errors.full_messages
+        flash.now[:alert] = "#{request_url}: #{errors_full.to_sentence}"
+        format.html { render 'index' }
+        format.json do
+          render json: @webpage_request.errors,
+          status: :unprocessable_entity
+        end
       end
     end
   end
