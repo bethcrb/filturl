@@ -89,4 +89,43 @@ describe User do
       end
     end
   end
+
+  describe 'respond_to' do
+    it { User.should respond_to(:find_first_by_auth_conditions) }
+    it { User.should respond_to(:find_for_omniauth) }
+  end
+
+  describe '.find_first_by_auth_conditions' do
+    let(:user) { create(:user) }
+
+    it 'should return an ArgumentError without conditions' do
+      expect {
+        User.find_first_by_auth_conditions()
+      }.to raise_error(ArgumentError)
+    end
+
+    it 'should find the first user with empty conditions' do
+      User.find_first_by_auth_conditions({}).should == User.first
+    end
+
+    it 'should find the user by email when the email key is set' do
+      conditions = { email: user.email }
+      User.find_first_by_auth_conditions(conditions).should == user
+    end
+
+    it 'should find the user by username when the username key is set' do
+      conditions = { username: user.username }
+      User.find_first_by_auth_conditions(conditions).should == user
+    end
+
+    it 'should find the user by username when the login key is set' do
+      conditions = { login: user.username }
+      User.find_first_by_auth_conditions(conditions).should == user
+    end
+
+    it 'should find the user by email when the login key is set' do
+      conditions = { login: user.email }
+      User.find_first_by_auth_conditions(conditions).should == user
+    end
+  end
 end
