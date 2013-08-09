@@ -22,6 +22,6 @@ class Webpage < ActiveRecord::Base
 
   def generate_new_screenshot
     self.create_screenshot! if screenshot.nil?
-    screenshot.generate_screenshot
+    screenshot.generate_screenshot && screenshot.upload_screenshot
   end
 end

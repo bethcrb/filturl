@@ -30,12 +30,10 @@ class Screenshot < ActiveRecord::Base
                   temp_screenshot_file
     )
 
-    File.exist?(temp_screenshot_file) && upload_screenshot
+    File.exist?(temp_screenshot_file)
   end
 
   def upload_screenshot
-    generate_screenshot unless File.exist?(temp_screenshot_file)
-
     if File.exist?(temp_screenshot_file)
       screenshot_object.write(file: temp_screenshot_file, acl: :public_read)
       if screenshot_object.exists?
@@ -51,6 +49,8 @@ class Screenshot < ActiveRecord::Base
     File.delete(temp_screenshot_file) if File.exist?(temp_screenshot_file)
     screenshot_object.delete if screenshot_object.exists?
   end
+
+  protected
 
   def set_filename
     if filename.nil?

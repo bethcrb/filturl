@@ -34,11 +34,13 @@ end
 When(/^I submit a URL with the wrong content-type$/) do
   @invalid_content_type_request = FactoryGirl.build_stubbed(
     :webpage_request,
-    url: 'http://localhost:3000/logo.png'
+    url: 'https://www.filturl.net/logo.png'
   )
-  visit '/'
-  fill_in 'webpage_request_url', with: @invalid_content_type_request.url
-  click_button 'Go'
+  VCR.use_cassette('https_www_filturl_net_logo_png') do
+    visit '/'
+    fill_in 'webpage_request_url', with: @invalid_content_type_request.url
+    click_button 'Go'
+  end
 end
 
 When(/^I click on the screenshot tab$/) do

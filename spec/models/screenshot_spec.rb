@@ -45,14 +45,14 @@ describe Screenshot do
     describe 'set_filename' do
       it 'should set the filename if one does not exist' do
         screenshot.update_attributes!(filename: nil)
-        screenshot.set_filename
+        screenshot.send(:set_filename)
         screenshot.filename.should_not be_nil
       end
 
       it 'should not change the filename if one already exists' do
         random_filename = "#{SecureRandom.urlsafe_base64}.png"
         screenshot.update_attributes!(filename: random_filename)
-        screenshot.set_filename
+        screenshot.send(:set_filename)
         screenshot.filename.should == random_filename
       end
     end
