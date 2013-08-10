@@ -1,7 +1,10 @@
 # This is the user registrations controller inherited from Devise.
 # It currently serves the purpose of overriding Devise to allow users to edit
-# their account without providing their current password.
-class RegistrationsController < Devise::RegistrationsController
+# their account without providing their current password. It also configures
+# the permitted parameters for :account_update and :sign_up.
+class Users::Devise::RegistrationsController < Devise::RegistrationsController
+  before_filter :configure_permitted_parameters
+
   def after_inactive_sign_up_path_for(resource)
     '/users/sign_in'
   end
@@ -24,6 +27,20 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to after_update_path_for(@user)
     else
       render 'edit'
+    end
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:account_update) do |u|
+      u.permit(:name, :email, :username, :password, :password_confirmation,
+               :current_password
+      )
+    end
+
+    devise_parameter_sanitizer.for(:sign_up) do |u|
+      u.permit(:name, :email, :username, :password, :password_confirmation)
     end
   end
 end
