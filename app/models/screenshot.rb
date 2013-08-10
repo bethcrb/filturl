@@ -20,6 +20,8 @@ class Screenshot < ActiveRecord::Base
 
   before_destroy :delete_screenshot
 
+  after_find :upload_screenshot, if: :needs_update?
+
   def generate_screenshot
     return true if Rails.env.test?
 
@@ -34,6 +36,8 @@ class Screenshot < ActiveRecord::Base
   end
 
   def upload_screenshot
+    generate_screenshot unless File.exist?(temp_screenshot_file)
+
     if File.exist?(temp_screenshot_file)
       screenshot_object.write(file: temp_screenshot_file, acl: :public_read)
       if screenshot_object.exists?
@@ -51,6 +55,13 @@ class Screenshot < ActiveRecord::Base
   end
 
   protected
+
+  def needs_update?
+    return false if screenshot_object.exists? &&
+      screenshot_object.last_modified > 15.minutes.ago
+
+    return true
+  end
 
   def set_filename
     if filename.nil?

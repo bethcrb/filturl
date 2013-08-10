@@ -18,10 +18,5 @@ class Webpage < ActiveRecord::Base
   validates :effective_url, presence: true, format: URI.regexp(%w(http https))
   validates :effective_url, uniqueness: { case_sensitive: false }
 
-  after_update :generate_new_screenshot
-
-  def generate_new_screenshot
-    self.create_screenshot! if screenshot.nil?
-    screenshot.generate_screenshot && screenshot.upload_screenshot
-  end
+  after_create :create_screenshot!
 end
