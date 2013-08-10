@@ -58,6 +58,7 @@ class Screenshot < ActiveRecord::Base
 
   def needs_update?
     return false if screenshot_object.exists? &&
+      screenshot_object.last_modified.present? &&
       screenshot_object.last_modified > 15.minutes.ago
 
     return true
