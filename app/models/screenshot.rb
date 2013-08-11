@@ -17,6 +17,7 @@ class Screenshot < ActiveRecord::Base
   has_many :webpage_requests, through: :webpage_responses
 
   validates :webpage, presence: true
+  validates :url, length: { maximum: 500 }
 
   before_destroy :delete_screenshot
 

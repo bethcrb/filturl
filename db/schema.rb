@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808050301) do
+ActiveRecord::Schema.define(version: 20130811064540) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20130808050301) do
 
   create_table "screenshots", force: true do |t|
     t.string   "filename"
-    t.string   "url"
+    t.string   "url",        limit: 500
     t.integer  "webpage_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -13,6 +13,8 @@
 require 'spec_helper'
 
 describe Screenshot do
+  let!(:screenshot) { create(:screenshot) }
+
   describe 'associations' do
     it { should belong_to(:webpage) }
     it { should have_many(:webpage_responses).through(:webpage) }
@@ -21,6 +23,7 @@ describe Screenshot do
 
   describe 'validations' do
     it { should validate_presence_of(:webpage) }
+    it { screenshot.should ensure_length_of(:url).is_at_most(500) }
   end
 
   describe 'respond_to' do
@@ -28,8 +31,6 @@ describe Screenshot do
   end
 
   describe 'creating screenshots' do
-    let!(:screenshot) { create(:screenshot) }
-
     describe 'generate_screenshot' do
       it { screenshot.generate_screenshot.should be_true }
     end
