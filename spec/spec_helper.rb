@@ -27,6 +27,7 @@ Spork.prefork do
     config.include(EmailSpec::Helpers)
     config.include(EmailSpec::Matchers)
 
+    # So that VCR RSpec metadata can be used with :vcr instead of :vcr => true
     config.treat_symbols_as_metadata_keys_with_true_values = true
 
     # ## Mock Framework

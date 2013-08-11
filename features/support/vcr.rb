@@ -1,8 +1,12 @@
+# VCR configuration for Cucumber
 require 'vcr'
 
 VCR.configure do |c|
-  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+  c.cassette_library_dir = 'features/cassettes'
   c.hook_into :webmock
   c.ignore_hosts '127.0.0.1', 'localhost', 'not.a.valid.url'
-  c.default_cassette_options = { serialize_with: :json }
+end
+
+VCR.cucumber_tags do |t|
+  t.tag '@vcr', use_scenario_name: true
 end

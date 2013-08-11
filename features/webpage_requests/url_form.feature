@@ -6,6 +6,7 @@ Feature: Submit URLs
   Background:
     Given I am logged in
 
+  @vcr
   Scenario: User submits a valid URL
     When I submit a valid URL
     Then I should see information about the URL
@@ -14,6 +15,7 @@ Feature: Submit URLs
     When I submit an invalid URL
     Then I should see an invalid URL message
 
+  @vcr
   Scenario: User submits a URL with the wrong content-type
     When I submit a URL with the wrong content-type
     Then I should see an invalid content-type message

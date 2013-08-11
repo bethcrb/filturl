@@ -1,9 +1,6 @@
 ### UTILITY METHODS ###
 def create_webpage_request
-  @webpage_request = FactoryGirl.build(:webpage_request)
-  VCR.use_cassette('http_www_google_com') do
-    @webpage_request.save!
-  end
+  @webpage_request = FactoryGirl.create(:webpage_request)
 end
 
 ### GIVEN ###
@@ -14,11 +11,9 @@ end
 ### WHEN ###
 When(/^I submit a valid URL$/) do
   @valid_webpage_request = FactoryGirl.build_stubbed(:webpage_request)
-  VCR.use_cassette('http_www_google_com') do
-    visit '/'
-    fill_in 'webpage_request_url', with: @valid_webpage_request.url
-    click_button 'Go'
-  end
+  visit '/'
+  fill_in 'webpage_request_url', with: @valid_webpage_request.url
+  click_button 'Go'
 end
 
 When(/^I submit an invalid URL$/) do
@@ -36,11 +31,9 @@ When(/^I submit a URL with the wrong content-type$/) do
     :webpage_request,
     url: 'https://www.filturl.net/logo.png'
   )
-  VCR.use_cassette('https_www_filturl_net_logo_png') do
-    visit '/'
-    fill_in 'webpage_request_url', with: @invalid_content_type_request.url
-    click_button 'Go'
-  end
+  visit '/'
+  fill_in 'webpage_request_url', with: @invalid_content_type_request.url
+  click_button 'Go'
 end
 
 When(/^I click on the screenshot tab$/) do

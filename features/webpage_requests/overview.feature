@@ -7,5 +7,6 @@ Feature: Overview
     Given I am logged in
     When I visit the page for a URL
 
+  @vcr
   Scenario: User sees IP address
     Then I should see "IP address"

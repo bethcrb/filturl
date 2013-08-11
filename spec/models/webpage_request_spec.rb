@@ -31,14 +31,15 @@ describe WebpageRequest do
   end
 
   describe 'validations' do
-    subject do
-      VCR.use_cassette('http_www_google_com') { create(:webpage_request) }
-    end
+    subject { build(:webpage_request) }
 
     it { should validate_presence_of(:user) }
 
     it { should validate_presence_of(:url) }
-    it { should validate_uniqueness_of(:url).scoped_to(:user_id) }
+    it 'should require unique value for url scoped to user_id', :vcr do
+      subject.save!
+      should validate_uniqueness_of(:url).scoped_to(:user_id)
+    end
 
     invalid_urls = %w(
       file://example.doc
@@ -51,9 +52,8 @@ describe WebpageRequest do
       http://localhost:3000/logo.png
     )
     invalid_urls.each do |url|
-      cassette = url.parameterize('_')
-      it "should not allow url to be set to \"#{url}\"" do
-        VCR.use_cassette(cassette) { should_not allow_value(url).for(:url) }
+      it "should not allow url to be set to \"#{url}\"", :vcr do
+        should_not allow_value(url).for(:url)
       end
     end
 
@@ -63,9 +63,8 @@ describe WebpageRequest do
       https://www.domain.com/?query=value
     )
     valid_urls.each do |url|
-      cassette = url.parameterize('_')
-      it "should allow url to be set to \"#{url}\"" do
-        VCR.use_cassette(cassette) { should allow_value(url).for(:url) }
+      it "should allow url to be set to \"#{url}\"", :vcr do
+        should allow_value(url).for(:url)
       end
     end
   end

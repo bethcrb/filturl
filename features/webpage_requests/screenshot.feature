@@ -7,6 +7,7 @@ Feature: Screenshots
     Given I am logged in
     And I successfully submitted a URL
 
+  @vcr
   Scenario: User clicks on the screenshot tab
     When I click on the screenshot tab
     Then I should see a screenshot of the URL
