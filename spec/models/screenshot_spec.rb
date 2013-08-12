@@ -24,6 +24,7 @@ describe Screenshot do
   describe 'validations' do
     it { should validate_presence_of(:webpage) }
     it { screenshot.should ensure_length_of(:url).is_at_most(500) }
+    it { should ensure_inclusion_of(:status).in_array(%w(active inactive)) }
   end
 
   describe 'respond_to' do
@@ -37,6 +38,10 @@ describe Screenshot do
 
     describe 'upload_screenshot' do
       it { screenshot.upload_screenshot.should be_true }
+      it 'should set the status to active when it is successful' do
+        screenshot.upload_screenshot
+        screenshot.status.should == 'active'
+      end
     end
 
     describe 'delete_screenshot' do

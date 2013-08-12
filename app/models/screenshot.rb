@@ -18,20 +18,24 @@ class Screenshot < ActiveRecord::Base
 
   validates :webpage, presence: true
   validates :url, length: { maximum: 500 }
+  validates :status, inclusion: { in: %w(active inactive),
+    message: "%{value} is not a valid status" }
 
   before_destroy :delete_screenshot
 
   after_find :upload_screenshot, if: :needs_update?
 
   def generate_screenshot
-    return true if Rails.env.test?
-
-    screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
-    Phantomjs.run('--ignore-ssl-errors=yes',
-                  screenshot_js,
-                  webpage.effective_url,
-                  temp_screenshot_file
-    )
+    if Rails.env.test?
+      FileUtils.touch(temp_screenshot_file)
+    else
+      screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
+      Phantomjs.run('--ignore-ssl-errors=yes',
+                    screenshot_js,
+                    webpage.effective_url,
+                    temp_screenshot_file
+      )
+    end
 
     File.exist?(temp_screenshot_file)
   end
@@ -42,7 +46,10 @@ class Screenshot < ActiveRecord::Base
     if File.exist?(temp_screenshot_file)
       screenshot_object.write(file: temp_screenshot_file, acl: :public_read)
       if screenshot_object.exists?
-        self.update_attributes!(url: screenshot_object.public_url.to_s)
+        self.update_attributes!(
+          url: screenshot_object.public_url.to_s,
+          status: 'active'
+        )
         File.delete(temp_screenshot_file)
       end
     end
