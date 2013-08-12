@@ -39,8 +39,5 @@ class WebpageResponse < ActiveRecord::Base
       webpage_id:     webpage.id,
     }
     self.update_attributes!(response_data)
-
-    webpage.create_screenshot! if webpage.screenshot.nil?
-    webpage.screenshot.generate_screenshot
   end
 end
