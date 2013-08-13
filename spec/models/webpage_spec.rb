@@ -13,6 +13,8 @@
 require 'spec_helper'
 
 describe Webpage do
+  include_context 'skip screenshot callbacks'
+
   describe 'associations' do
     it { should have_one(:screenshot).dependent(:destroy) }
 

@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe WebpageRequestsController do
+  include_context 'skip screenshot callbacks'
+
   let(:user) { FactoryGirl.create(:user) }
 
   before do

@@ -15,6 +15,8 @@
 require 'spec_helper'
 
 describe WebpageResponse do
+  include_context 'skip screenshot callbacks'
+
   describe 'associations' do
     it { should belong_to(:webpage_request) }
     it { should belong_to(:webpage) }

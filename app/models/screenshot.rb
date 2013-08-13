@@ -24,7 +24,7 @@ class Screenshot < ActiveRecord::Base
 
   before_destroy :delete_screenshot
 
-  after_update :upload_screenshot, if: :needs_update?
+  after_save :upload_screenshot, if: :needs_update?
 
   def generate_screenshot
     screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
