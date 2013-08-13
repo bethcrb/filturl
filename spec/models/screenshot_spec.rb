@@ -13,7 +13,8 @@
 require 'spec_helper'
 
 describe Screenshot do
-  let!(:screenshot) { create(:screenshot) }
+  include_context 'skip screenshot callbacks'
+  include_context 'phantomjs'
 
   describe 'associations' do
     it { should belong_to(:webpage) }

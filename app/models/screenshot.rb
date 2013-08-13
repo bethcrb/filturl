@@ -4,7 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  filename   :string(255)
-#  url        :string(255)
+#  url        :string(500)
+#  status     :string(255)      default("inactive")
 #  webpage_id :integer
 #  created_at :datetime
 #  updated_at :datetime
@@ -23,19 +24,15 @@ class Screenshot < ActiveRecord::Base
 
   before_destroy :delete_screenshot
 
-  after_find :upload_screenshot, if: :needs_update?
+  after_update :upload_screenshot, if: :needs_update?
 
   def generate_screenshot
-    if Rails.env.test?
-      FileUtils.touch(temp_screenshot_file)
-    else
-      screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
-      Phantomjs.run('--ignore-ssl-errors=yes',
-                    screenshot_js,
-                    webpage.effective_url,
-                    temp_screenshot_file
-      )
-    end
+    screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
+    Phantomjs.run('--ignore-ssl-errors=yes',
+                  screenshot_js,
+                  webpage.effective_url,
+                  temp_screenshot_file
+    )
 
     File.exist?(temp_screenshot_file)
   end
@@ -73,7 +70,7 @@ class Screenshot < ActiveRecord::Base
   end
 
   def set_filename
-    if filename.nil?
+    if filename.blank?
       effective_url = webpage.effective_url
       temp_filename = "#{effective_url.parameterize('_')}.png"
       self.update_attributes!(filename: temp_filename)

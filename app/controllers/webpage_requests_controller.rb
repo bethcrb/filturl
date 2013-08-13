@@ -10,6 +10,7 @@ class WebpageRequestsController < ApplicationController
     @webpage_request = WebpageRequest.friendly.find(params[:id])
     @webpage_response = @webpage_request.webpage_response
     @webpage = @webpage_response.webpage
+    @webpage.screenshot.touch
   end
 
   def create
