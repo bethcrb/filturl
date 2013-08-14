@@ -66,7 +66,7 @@ class Screenshot < ActiveRecord::Base
     else
       unless screenshot_object.exists? &&
         screenshot_object.last_modified.present? &&
-        screenshot_object.last_modified < 15.minutes.ago
+        screenshot_object.last_modified > 15.minutes.ago
         needs_update = true
       end
     end
