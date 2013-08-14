@@ -16,6 +16,8 @@ describe Screenshot do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
+  let!(:screenshot) { create(:screenshot) }
+
   describe 'associations' do
     it { should belong_to(:webpage) }
     it { should have_many(:webpage_responses).through(:webpage) }

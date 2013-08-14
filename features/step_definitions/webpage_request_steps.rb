@@ -1,3 +1,11 @@
+# Stub Phantomjs
+Before do
+  Screenshot.stub(:needs_update?).and_return(false)
+  Phantomjs.stub(:run) do |options, screenshot_js, screenshot_url, temp_file|
+     FileUtils.touch(temp_file)
+  end
+end
+
 ### UTILITY METHODS ###
 def create_webpage_request
   @webpage_request = FactoryGirl.create(:webpage_request)
@@ -10,7 +18,7 @@ end
 
 ### WHEN ###
 When(/^I submit a valid URL$/) do
-  @valid_webpage_request = FactoryGirl.build_stubbed(:webpage_request)
+  @valid_webpage_request = FactoryGirl.create(:webpage_request)
   visit '/'
   fill_in 'webpage_request_url', with: @valid_webpage_request.url
   click_button 'Go'
@@ -48,11 +56,8 @@ end
 
 ### THEN ###
 Then(/^I should see information about the URL$/) do
-  visit webpage_request_path(WebpageRequest.last)
+  visit webpage_request_path(@valid_webpage_request)
   page.should have_content 'Overview'
-  page.should have_content 'HTTP Headers'
-  page.should have_content 'View Source'
-  page.should have_content 'Screenshot'
 end
 
 Then(/^I should see an invalid URL message$/) do

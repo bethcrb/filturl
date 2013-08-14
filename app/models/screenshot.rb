@@ -24,7 +24,7 @@ class Screenshot < ActiveRecord::Base
 
   before_destroy :delete_screenshot
 
-  after_save :upload_screenshot, if: :needs_update?
+  after_create :upload_screenshot
 
   def generate_screenshot
     screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
@@ -59,15 +59,22 @@ class Screenshot < ActiveRecord::Base
     screenshot_object.delete if screenshot_object.exists?
   end
 
-  protected
-
   def needs_update?
-    return false if screenshot_object.exists? &&
-      screenshot_object.last_modified.present? &&
-      screenshot_object.last_modified > 15.minutes.ago
+    needs_update = false
+    if url.blank?
+      needs_update = true
+    else
+      unless screenshot_object.exists? &&
+        screenshot_object.last_modified.present? &&
+        screenshot_object.last_modified < 15.minutes.ago
+        needs_update = true
+      end
+    end
 
-    return true
+    needs_update
   end
+
+  protected
 
   def set_filename
     if filename.blank?

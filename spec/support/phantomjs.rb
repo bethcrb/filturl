@@ -1,10 +1,7 @@
 shared_context 'phantomjs' do
-  let!(:screenshot) { create(:screenshot) }
-
   before(:each) do
-    screenshot.send(:set_filename)
-    Phantomjs.stub(:run) do
-      FileUtils.touch("tmp/screenshots/#{screenshot.filename}")
+    Phantomjs.stub(:run) do |options, screenshot_js, screenshot_url, temp_file|
+      FileUtils.touch(temp_file)
     end
   end
 end

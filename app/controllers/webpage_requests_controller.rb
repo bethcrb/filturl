@@ -10,7 +10,8 @@ class WebpageRequestsController < ApplicationController
     @webpage_request = WebpageRequest.friendly.find(params[:id])
     @webpage_response = @webpage_request.webpage_response
     @webpage = @webpage_response.webpage
-    @webpage.screenshot.touch
+    @screenshot = @webpage.screenshot
+    @screenshot.upload_screenshot if @screenshot.needs_update?
   end
 
   def create
