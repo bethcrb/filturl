@@ -7,32 +7,23 @@
 <%= link_to "Filturl", root_path, :class => 'brand' %>
 
 <div class="nav-collapse collapse">
-  <ul class="nav">
+  <ul class="nav pull-right">
     <% if user_signed_in? %>
-      <li>
+    <li>
+      <%= link_to(current_user.username || current_user.email, edit_user_registration_path) %>
+    </li>
+    <li>
       <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>
-      </li>
+    </li>
     <% else %>
       <% if controller_name != 'sessions' %>
-        <li>
-        <%= link_to('Login', new_user_session_path)  %>
-        </li>
-      <% end %>
-    <% end %>
-    <% if user_signed_in? %>
       <li>
-      <%= link_to(current_user.username || current_user.email, edit_user_registration_path) %>
+        <%= link_to('Login', new_user_session_path)  %>
       </li>
-      <% if current_user.has_role? :admin %>
-        <li>
-        <%= link_to('Admin', users_path) %>
-        </li>
-      <% end %>
-    <% else %>
-      <% if controller_name != 'registrations' %>
-        <li>
+      <% elsif controller_name != 'registrations' %>
+      <li>
         <%= link_to('Sign up', new_user_registration_path)  %>
-        </li>
+      </li>
       <% end %>
     <% end %>
   </ul>

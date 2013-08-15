@@ -1,9 +1,13 @@
 <div class="jumbotron subhead">
   <div class="row">
     <div class="span6">
-      <h3><%= @webpage_request.url %></h3>
+      <h3 style="line-height: 18px;"><%= @webpage.effective_url %></h3>
+        <% if @webpage.effective_url != @webpage_request.url %>
+        <h6 class="muted" style="padding-left: 1em;"><%= @webpage_request.url %></h6>
+        <% end %>
     </div>
     <div class="span6"></div>
+    <div class="row"></div>
   </div>
   <div class="subnav">
     <ul class="nav nav-pills" id="navTabs">
