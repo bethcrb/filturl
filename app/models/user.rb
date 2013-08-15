@@ -68,6 +68,9 @@ class User < ActiveRecord::Base
 
     user = User.find_by(email: auth.info.email)
     unless user
+      user_by_username = User.find_by(username: username)
+      username = auth.info.email unless user_by_username.nil?
+
       user = User.new(
         name:     auth.info.name,
         email:    auth.info.email,
