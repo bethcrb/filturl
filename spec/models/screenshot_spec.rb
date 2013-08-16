@@ -4,7 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  filename   :string(255)
-#  url        :string(255)
+#  url        :string(500)
+#  status     :string(255)      default("new")
 #  webpage_id :integer
 #  created_at :datetime
 #  updated_at :datetime
