@@ -19,7 +19,7 @@ class Screenshot < ActiveRecord::Base
 
   validates :webpage, presence: true
   validates :url, length: { maximum: 500 }
-  validates :status, inclusion: { in: %w(active inactive),
+  validates :status, inclusion: { in: %w(active inactive new),
     message: "%{value} is not a valid status" }
 
   before_destroy :delete_screenshot

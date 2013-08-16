@@ -27,7 +27,7 @@ describe Screenshot do
   describe 'validations' do
     it { should validate_presence_of(:webpage) }
     it { screenshot.should ensure_length_of(:url).is_at_most(500) }
-    it { should ensure_inclusion_of(:status).in_array(%w(active inactive)) }
+    it { should ensure_inclusion_of(:status).in_array(%w(active inactive new)) }
   end
 
   describe 'respond_to' do
