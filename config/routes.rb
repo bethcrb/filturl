@@ -1,11 +1,5 @@
 Filturl::Application.routes.draw do
-  authenticated :user do
-    root :to => 'webpage_requests#index', as: :authenticated_root
-  end
-
-  unauthenticated do
-    root :to => 'home#index'
-  end
+  root :to => 'webpage_requests#index'
 
   devise_for :users, :controllers => {
     omniauth_callbacks: 'users/omniauth_callbacks',
