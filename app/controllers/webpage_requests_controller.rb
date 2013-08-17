@@ -8,10 +8,18 @@ class WebpageRequestsController < ApplicationController
 
   def show
     @webpage_request = WebpageRequest.friendly.find(params[:id])
-    @webpage_response = @webpage_request.webpage_response
-    @webpage = @webpage_response.webpage
-    @screenshot = @webpage.screenshot
-    @screenshot.upload_screenshot if @screenshot.needs_update?
+    if @webpage_request
+      if current_or_guest_user.id ==  @webpage_request.user_id
+        @webpage_response = @webpage_request.webpage_response
+        @webpage = @webpage_response.webpage
+        @screenshot = @webpage.screenshot
+        if user_signed_in?
+          @screenshot.upload_screenshot if @screenshot.needs_update?
+        end
+      else
+        raise CanCan::AccessDenied
+      end
+    end
   end
 
   def create
@@ -19,7 +27,7 @@ class WebpageRequestsController < ApplicationController
 
     @webpage_request = WebpageRequest.find_or_initialize_by(
       url:     request_url,
-      user_id: current_user.id
+      user_id: current_or_guest_user.id
     )
 
     respond_to do |format|
