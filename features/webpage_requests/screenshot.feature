@@ -5,9 +5,10 @@ Feature: Screenshots
 
   Background:
     Given I am logged in
-    And I successfully submitted a URL
+    And I submitted the URL "http://www.example.com/"
 
   @vcr
   Scenario: User clicks on the screenshot tab
-    When I click on the screenshot tab
-    Then I should see a screenshot of the URL
+    When I visit the page for the URL "http://www.example.com/"
+    And I click on the screenshot tab
+    Then I should see a screenshot of the URL "http://www.example.com/"

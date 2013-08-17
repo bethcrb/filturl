@@ -5,8 +5,9 @@ Feature: Overview
 
   Background:
     Given I am logged in
-    When I visit the page for a URL
+    And I submitted the URL "http://www.example.com/"
 
   @vcr
   Scenario: User sees IP address
+    When I visit the page for the URL "http://www.example.com/"
     Then I should see "IP address"
