@@ -18,7 +18,7 @@ end
 
 ### WHEN ###
 When(/^I submit a valid URL$/) do
-  @valid_webpage_request = FactoryGirl.create(:webpage_request)
+  @valid_webpage_request = FactoryGirl.build(:webpage_request, user: @user)
   visit '/'
   fill_in 'webpage_request_url', with: @valid_webpage_request.url
   click_button 'Go'
@@ -56,7 +56,6 @@ end
 
 ### THEN ###
 Then(/^I should see information about the URL$/) do
-  visit webpage_request_path(@valid_webpage_request)
   page.should have_content 'Overview'
 end
 
