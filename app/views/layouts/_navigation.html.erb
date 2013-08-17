@@ -20,9 +20,10 @@
       <li>
         <%= link_to('Login', new_user_session_path)  %>
       </li>
-      <% elsif controller_name != 'registrations' %>
+      <% end %>
+      <% if controller_name != 'registrations' %>
       <li>
-        <%= link_to('Sign up', new_user_registration_path)  %>
+        <%= link_to('Sign up', new_user_registration_path) %>
       </li>
       <% end %>
     <% end %>
