@@ -10,10 +10,6 @@ Spork.prefork do
   require 'rspec/autorun'
   require 'shoulda/matchers/integrations/rspec'
 
-  # Requires supporting ruby files with custom matchers and macros, etc,
-  # in spec/support/ and its subdirectories.
-  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-
   # Checks for pending migrations before tests are run.
   # If you are not using ActiveRecord, you can remove this line.
   ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
@@ -58,6 +54,10 @@ end
 Spork.each_run do
   require 'simplecov'
   SimpleCov.start 'rails'
+
+  # Requires supporting ruby files with custom matchers and macros, etc,
+  # in spec/support/ and its subdirectories.
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
   RSpec.configure do |config|
     # Configure Database Cleaner to reset database during testing
