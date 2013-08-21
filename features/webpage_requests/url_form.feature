@@ -1,5 +1,5 @@
 Feature: Submit URLs
-  As a registered user
+  As a registered user or a guest
   I want to be able to submit URLs
   So that I can see more information about them
 

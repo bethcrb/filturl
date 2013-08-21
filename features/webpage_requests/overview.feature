@@ -1,7 +1,7 @@
 Feature: Overview
-  In order to see the basic information about a URL
-  As a user
-  I want to see an overview of information about the URL
+  As a registered user or a guest
+  I want to see an overview with basic information about the URL
+  So that I can find out more about the URL without visiting it first
 
   Background:
     Given I am logged in

@@ -1,5 +1,5 @@
 Feature: Screenshots
-  As a registered user
+  As a registered user or a guest
   I want to see screenshots of URLs
   So that I can see what a website looks like without visiting it
 
