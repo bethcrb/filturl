@@ -35,7 +35,7 @@ class WebpageResponse < ActiveRecord::Base
     response_data = {
       code:           response.response_code,
       headers:        response.response_headers,
-      redirect_count: response.redirect_count,
+      redirect_count: response.redirections.size,
       webpage_id:     webpage.id,
     }
     self.update_attributes!(response_data)
