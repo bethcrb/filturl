@@ -66,5 +66,12 @@ describe Screenshot do
         screenshot.filename.should == random_filename
       end
     end
+
+    describe 'needs_update?', :vcr do
+      it 'should be true if the url is blank' do
+        screenshot.update_attributes!(url: nil)
+        screenshot.needs_update?.should be_true
+      end
+    end
   end
 end
