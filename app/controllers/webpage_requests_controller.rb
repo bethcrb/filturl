@@ -33,19 +33,10 @@ class WebpageRequestsController < ApplicationController
     respond_to do |format|
       if @webpage_request.save
         format.html { redirect_to @webpage_request }
-        format.json do
-          render action: 'show',
-          status: :created,
-          location: @webpage_request
-        end
       else
         errors_full = @webpage_request.errors.full_messages
         flash.now[:alert] = "#{request_url}: #{errors_full.to_sentence}"
         format.html { render 'index' }
-        format.json do
-          render json: @webpage_request.errors,
-          status: :unprocessable_entity
-        end
       end
     end
   end
