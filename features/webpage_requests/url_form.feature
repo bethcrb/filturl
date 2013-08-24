@@ -4,8 +4,7 @@ Feature: Submit URLs
   So that I can see more information about them
 
   Background:
-    Given I am logged in
-    And I am on the home page
+    Given I am on the home page
 
   @vcr
   Scenario: User submits a valid URL

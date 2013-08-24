@@ -39,6 +39,8 @@ Then(/^I should see an invalid content-type message$/) do
   page.should have_content 'Url could not be verified as HTML'
 end
 
-Then(/^I should see a screenshot of the URL "(.*?)"$/) do |arg1|
+Then(/^I should see a screenshot of the URL "(.*?)"$/) do |url|
+  @webpage_request ||= WebpageRequest.find_by(url: url)
+  
   page.should have_xpath("//img[@src=\"#{@webpage_request.screenshot.url}\"]")
 end
