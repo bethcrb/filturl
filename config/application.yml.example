@@ -6,7 +6,7 @@ AMAZON_SES_USERNAME:
 AMAZON_SES_PASSWORD:
 
 # /db/seeds.rb
-# Default user data for initializating database
+# Default user data for initializing database
 ADMIN_NAME: First User
 ADMIN_EMAIL: admin@example.com
 ADMIN_PASSWORD: changeme
@@ -14,3 +14,22 @@ USER_NAME: Test User
 USER_EMAIL: user@example.com
 USER_PASSWORD: changeme
 ROLES: [admin, user]
+
+# Omniauth API keys
+FACEBOOK_APP_ID:
+FACEBOOK_APP_SECRET:
+GITHUB_CLIENT_ID:
+GITHUB_CLIENT_SECRET:
+GOOGLE_APP_ID:
+GOOGLE_APP_SECRET:
+
+# Amazon Web Services
+AWS_ACCESS_KEY_ID:
+AWS_SECRET_ACCESS_KEY:
+AWS_REGION:
+AWS_S3_BUCKET:
+AWS_S3_ENDPOINT:
+
+# reCAPTCHA
+RECAPTCHA_PUBLIC_KEY:
+RECAPTCHA_PRIVATE_KEY:

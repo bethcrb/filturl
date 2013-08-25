@@ -30,12 +30,18 @@ class WebpageRequestsController < ApplicationController
       user_id: current_or_guest_user.id
     )
 
+    verified = false
+    if (current_user || verify_recaptcha(timeout: 15))
+      verified = true
+    end
     respond_to do |format|
-      if @webpage_request.save
+      if verified && @webpage_request.save
         format.html { redirect_to @webpage_request }
       else
-        errors_full = @webpage_request.errors.full_messages
-        flash.now[:alert] = "#{request_url}: #{errors_full.to_sentence}"
+        if verified
+          errors_full = @webpage_request.errors.full_messages
+          flash.now[:alert] = "#{request_url}: #{errors_full.to_sentence}"
+        end
         format.html { render 'index' }
       end
     end

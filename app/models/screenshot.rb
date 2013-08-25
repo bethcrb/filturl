@@ -79,7 +79,7 @@ class Screenshot < ActiveRecord::Base
   def set_filename
     if filename.blank?
       effective_url = webpage.effective_url
-      temp_filename = "#{effective_url.parameterize('_')}.png"
+      temp_filename = "#{SecureRandom.urlsafe_base64(32)}.png"
       self.update_attributes!(filename: temp_filename)
     end
   end

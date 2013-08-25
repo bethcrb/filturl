@@ -1,5 +1,12 @@
 $(document).ready(function() {
-  $("input#webpage_request_url").blur(function() {
+  $('#webpage_request_url').keydown(function(event) {
+    if (event.keyCode == 13) {
+      $('#webpage_request_url').trigger('blur');    
+      $('#submit_url').click();
+    }
+  });
+
+  $('#webpage_request_url').blur(function() {
     var request_url = $(this).val();
 
     var uri = new URI(request_url);
