@@ -1,13 +1,13 @@
-<div id="captchaModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="captchaModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="captchaModalLabel">Are you human?</h3>
-  </div>
+<%= content_tag(:div, id: 'captchaModal', class: 'modal hide fade', tabindex: '-1', role: 'dialog', 'aria-labelledby' => 'captchaModalLabel', 'aria-hidden' => 'true') do %>
+  <%= content_tag(:div, class: 'modal-header') do %>
+    <%= button_tag('x', type: 'button', class: 'close', 'data-dismiss' => 'modal', 'aria-hidden' => 'true') %>
+    <%= content_tag(:h3, 'Are you human?', id: 'captchaModalLabel') %>
+  <% end %>
 
-  <div class="modal-body">
+  <%= content_tag(:div, class: 'modal-body') do %>
     <%= recaptcha_tags display: { theme: 'blackglass' } %>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary">Continue</button>
-  </div>
-</div>
+  <% end %>
+  <%= content_tag(:div, class: 'modal-footer') do %>
+    <%= button_tag('Continue', type: 'button', class: 'btn btn-primary') %>
+  <% end %>
+<% end %>
