@@ -17,10 +17,10 @@ class ApplicationController < ActionController::Base
   # necessary and return the current user; otherwise, return the guest user.
   def current_or_guest_user
     if current_user
-      if session[:guest_user_id]
+      if cookies[:guest]
         move_guest_user_data
         guest_user.destroy
-        session[:guest_user_id] = nil
+        cookies.delete(:guest)
       end
       current_user
     else
@@ -33,11 +33,19 @@ class ApplicationController < ActionController::Base
   # exist.
   def guest_user
     # Cache the value the first time it's gotten.
-    guest_user_id = session[:guest_user_id] ||= create_guest_user.id
+    if cookies[:guest]
+      if cookies[:guest].is_a? Integer
+        guest_user_id = cookies[:guest]
+      else
+        guest_user_id = Base64.urlsafe_decode64(cookies[:guest])
+      end
+    end
+    guest_user_id ||= create_guest_user.id
+
     @cached_guest_user ||= User.find(guest_user_id)
 
   rescue ActiveRecord::RecordNotFound
-    session[:guest_user_id] = nil
+    cookies.delete(:guest)
     guest_user
   end
 
@@ -73,7 +81,7 @@ class ApplicationController < ActionController::Base
       username: guest_username,
     )
     guest_user.save!(validate: false)
-    session[:guest_user_id] = guest_user.id
+    cookies[:guest] = Base64.urlsafe_encode64(guest_user.id.to_s)
     guest_user
   end
 end

@@ -2,6 +2,8 @@
 # existing ones. It involves the submission of a URL (create) and the
 # ability to view the resulting webpage data (show).
 class WebpageRequestsController < ApplicationController
+  before_filter :current_or_guest_user
+
   def index
     @webpage_request = WebpageRequest.new
   end
