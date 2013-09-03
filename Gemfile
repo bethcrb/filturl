@@ -35,7 +35,7 @@ end
 # Gems for testing and debugging
 group :development do
   # Annotate models, specs, factories, and routes using current schema.
-  gem 'annotate', '~> 2.5.0'
+  gem 'annotate', '>= 2.5.0'
 
   # Better Errors replaces the standard Rails error page with a much better and
   # more useful error page.
@@ -88,10 +88,10 @@ group :test do
   gem 'simplecov', '~> 0.7.1', require: false
 
   # Use VCR to record and playback HTTP interactions.
-  gem 'vcr', '2.5.0'
+  gem 'vcr', '~> 2.5.0'
 
   # Use WebMock to stub out Net::HTTP requests.
-  gem 'webmock', '>= 1.8.0', '< 1.12'
+  gem 'webmock', '~> 1.13.0'
 end
 
 group :development, :test do
@@ -99,10 +99,10 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
 
   # Use FFaker to generate fake data.
-  gem 'ffaker'
+  gem 'ffaker', '~> 1.0'
 
   # Use RSpec for unit testing.
-  gem 'rspec-rails', '~> 2.14.0'
+  gem 'rspec-rails', '~> 2.0'
 
   # Use Spork to speed up test suite.
   gem 'spork-rails', github: 'sporkrb/spork-rails'
