@@ -5,7 +5,7 @@
   <% end %>
 
   <%= content_tag(:div, class: 'modal-body') do %>
-    <%= recaptcha_tags display: { theme: 'blackglass' } %>
+    <%= recaptcha_tags display: { theme: 'blackglass' }, ajax: true %>
   <% end %>
   <%= content_tag(:div, class: 'modal-footer') do %>
     <%= button_tag('Continue', type: 'submit', class: 'btn btn-primary') %>

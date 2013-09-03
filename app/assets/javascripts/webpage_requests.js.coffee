@@ -18,6 +18,9 @@ $(document).ready ->
     request_url = uri.normalize().toString()
     $(this).val request_url
 
+  $("#submit_url").click ->
+    Recaptcha.reload()
+
 
 $ ->
   $("#navTabs a:first").tab "show"
