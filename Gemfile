@@ -68,11 +68,7 @@ group :test do
   gem 'capybara', '~> 2.1.0'
 
   # Use Cucumber for behavior-driven development and integration testing.
-  # NOTE: Temporarily using the master_rails4_test branch because the
-  # stable release of 1.3.1 currently does not support Rails 4.
-  gem 'cucumber-rails', require: false,
-                        github: 'cucumber/cucumber-rails',
-                        branch: 'master_rails4_test'
+  gem 'cucumber-rails', require: false
 
   # Use Database Cleaner to restore the database to a pristine state during
   # testing.
