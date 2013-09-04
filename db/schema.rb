@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130816110223) do
+ActiveRecord::Schema.define(version: 20130904124347) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -108,7 +108,6 @@ ActiveRecord::Schema.define(version: 20130816110223) do
     t.datetime "updated_at"
   end
 
-  add_index "webpage_requests", ["slug"], name: "index_webpage_requests_on_slug", unique: true, using: :btree
   add_index "webpage_requests", ["url", "user_id"], name: "index_webpage_requests_on_url_and_user_id", using: :btree
 
   create_table "webpage_responses", force: true do |t|

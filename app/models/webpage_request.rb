@@ -46,7 +46,7 @@ class WebpageRequest < ActiveRecord::Base
 
   after_create :create_webpage_response!
 
-  friendly_id :url, use: :slugged
+  friendly_id :url, :use => :scoped, :scope => :user
 
   def clean_url
     self.url = PostRank::URI.clean(url).to_s unless url.blank?
@@ -54,9 +54,5 @@ class WebpageRequest < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     new_record?
-  end
-
-  def normalize_friendly_id(value)
-    "#{value.to_s.parameterize}-#{user_id}"
   end
 end

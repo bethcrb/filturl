@@ -15,7 +15,7 @@ describe WebpageRequestsController do
   end
 
   describe "GET 'show'" do
-    let (:webpage_request) { FactoryGirl.create(:webpage_request) }
+    let (:webpage_request) { FactoryGirl.create(:webpage_request, user: user) }
     it 'shows the webpage request', :vcr do
       get :show, id: webpage_request.id
       assigns(:webpage_request).should == webpage_request

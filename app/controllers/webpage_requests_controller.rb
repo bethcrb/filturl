@@ -9,17 +9,13 @@ class WebpageRequestsController < ApplicationController
   end
 
   def show
-    @webpage_request = WebpageRequest.friendly.find(params[:id])
+    @webpage_request = current_or_guest_user.webpage_requests.friendly.find(params[:id])
     if @webpage_request
-      if current_or_guest_user.id ==  @webpage_request.user_id
-        @webpage_response = @webpage_request.webpage_response
-        @webpage = @webpage_response.webpage
-        @screenshot = @webpage.screenshot
-        if user_signed_in?
-          @screenshot.upload_screenshot if @screenshot.needs_update?
-        end
-      else
-        raise CanCan::AccessDenied
+      @webpage_response = @webpage_request.webpage_response
+      @webpage = @webpage_response.webpage
+      @screenshot = @webpage.screenshot
+      if user_signed_in?
+        @screenshot.upload_screenshot if @screenshot.needs_update?
       end
     end
   end

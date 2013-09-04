@@ -70,13 +70,4 @@ describe WebpageRequest do
       end
     end
   end
-
-  describe 'normalize_friendly_id' do
-    subject { build_stubbed(:webpage_request) }
-
-    it 'should return a parameterized version of the url with the user id' do
-      slug = "#{subject.url.parameterize}-#{subject.user_id}"
-      subject.normalize_friendly_id(subject.url).should == "#{slug}"
-    end
-  end
 end
