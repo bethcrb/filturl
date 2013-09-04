@@ -59,6 +59,9 @@ group :development do
   gem 'guard-spork'
   gem 'listen'
 
+  # Use Puma as the default web server for development.
+  gem 'puma'
+
   # Quiet Assets mutes assets pipeline log messages.
   gem 'quiet_assets', '~> 1.0.2'
 end
