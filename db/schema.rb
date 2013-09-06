@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130906060347) do
+ActiveRecord::Schema.define(version: 20130906102202) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -61,7 +61,8 @@ ActiveRecord::Schema.define(version: 20130906060347) do
   add_index "screenshots", ["webpage_id"], name: "index_screenshots_on_webpage_id", using: :btree
 
   create_table "user_url_histories", force: true do |t|
-    t.string   "url",        limit: 500
+    t.string   "url",               limit: 500
+    t.datetime "last_requested_at"
     t.integer  "webpage_id"
     t.integer  "user_id"
     t.datetime "created_at"

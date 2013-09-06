@@ -35,6 +35,7 @@ describe User do
   describe 'associations' do
     it { should have_many(:webpage_requests).dependent(:destroy) }
     it { should have_many(:authentications).dependent(:destroy) }
+    it { should have_many(:user_url_histories).dependent(:destroy) }
   end
 
   describe 'validations' do
