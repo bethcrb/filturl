@@ -30,7 +30,7 @@ class Screenshot < ActiveRecord::Base
     screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
     Phantomjs.run('--ignore-ssl-errors=yes',
                   screenshot_js,
-                  webpage.effective_url,
+                  webpage.url,
                   temp_screenshot_file
     )
 
@@ -78,7 +78,6 @@ class Screenshot < ActiveRecord::Base
 
   def set_filename
     if filename.blank?
-      effective_url = webpage.effective_url
       temp_filename = "#{SecureRandom.urlsafe_base64(32)}.png"
       self.update_attributes!(filename: temp_filename)
     end

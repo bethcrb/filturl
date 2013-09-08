@@ -1,8 +1,8 @@
 <div class="jumbotron subhead">
   <div class="row">
     <div class="span12">
-      <h3 style="line-height: 18px;"><%= @webpage.effective_url %></h3>
-        <% if @webpage.effective_url != @webpage_request.url %>
+      <h3 style="line-height: 18px;"><%= @webpage.url %></h3>
+        <% if @webpage.url != @webpage_request.url %>
         <h6 class="muted" style="padding-left: 1em;"><%= @webpage_request.url %></h6>
         <% end %>
     </div>
