@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: webpages
+#
+#  id         :integer          not null, primary key
+#  url        :string(255)      default(""), not null
+#  primary_ip :string(255)
+#  body       :text(2147483647)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'spec_helper'
 
 describe Webpage do
