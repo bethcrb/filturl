@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: user_url_histories
+# Table name: url_histories
 #
 #  id                :integer          not null, primary key
 #  url               :string(500)
@@ -11,7 +11,7 @@
 #  updated_at        :datetime
 #
 
-class UserUrlHistory < ActiveRecord::Base
+class UrlHistory < ActiveRecord::Base
   belongs_to :webpage
   belongs_to :user
 

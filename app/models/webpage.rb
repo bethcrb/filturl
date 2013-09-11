@@ -12,7 +12,7 @@
 
 class Webpage < ActiveRecord::Base
   has_one :screenshot, dependent: :destroy
-  has_many :user_url_histories, dependent: :destroy
+  has_many :url_histories, dependent: :destroy
   has_many :webpage_responses, dependent: :destroy
   has_many :webpage_requests,  through: :webpage_responses
 

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: user_url_histories
+# Table name: url_histories
 #
 #  id                :integer          not null, primary key
 #  url               :string(500)
@@ -13,7 +13,7 @@
 
 require 'spec_helper'
 
-describe UserUrlHistory do
+describe UrlHistory do
   describe 'associations' do
     it { should belong_to(:user) }
     it { should belong_to(:webpage) }

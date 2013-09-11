@@ -33,9 +33,9 @@ auth = OmniAuth.config.mock_auth[:facebook]
 
 describe User do
   describe 'associations' do
-    it { should have_many(:webpage_requests).dependent(:destroy) }
     it { should have_many(:authentications).dependent(:destroy) }
-    it { should have_many(:user_url_histories).dependent(:destroy) }
+    it { should have_many(:url_histories).dependent(:destroy) }
+    it { should have_many(:webpage_requests).dependent(:destroy) }
   end
 
   describe 'validations' do

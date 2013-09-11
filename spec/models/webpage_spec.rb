@@ -20,7 +20,7 @@ describe Webpage do
 
     it { should have_many(:webpage_responses).dependent(:destroy) }
     it { should have_many(:webpage_requests).through(:webpage_responses) }
-    it { should have_many(:user_url_histories).dependent(:destroy) }
+    it { should have_many(:url_histories).dependent(:destroy) }
   end
 
   describe 'validations' do
