@@ -3,7 +3,6 @@
 FactoryGirl.define do
   factory :url_history do
     url 'http://www.google.com/'
-    last_requested_at Time.now
     webpage
     user
   end
