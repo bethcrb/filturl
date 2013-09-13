@@ -8,18 +8,6 @@ class WebpageRequestsController < ApplicationController
     @webpage_request = WebpageRequest.new
   end
 
-  def show
-    @webpage_request = current_or_guest_user.webpage_requests.friendly.find(params[:id])
-    if @webpage_request
-      @webpage_response = @webpage_request.webpage_response
-      @webpage = @webpage_response.webpage
-      @screenshot = @webpage.screenshot
-      if user_signed_in?
-        @screenshot.upload_screenshot if @screenshot.needs_update?
-      end
-    end
-  end
-
   def create
     request_url = PostRank::URI.clean(webpage_request_params[:url]).to_s
 
@@ -36,7 +24,7 @@ class WebpageRequestsController < ApplicationController
 
     respond_to do |format|
       if (current_user || session[:verified_captcha]) && @webpage_request.save
-        format.html { redirect_to @webpage_request }
+        format.html { redirect_to @webpage_request.webpage }
       else
         if (current_user || session[:verified_captcha])
           errors_full = @webpage_request.errors.full_messages

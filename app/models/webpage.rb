@@ -11,6 +11,8 @@
 #
 
 class Webpage < ActiveRecord::Base
+  extend FriendlyId
+
   has_one :screenshot, dependent: :destroy
   has_many :url_histories, dependent: :destroy
   has_many :webpage_responses, dependent: :destroy
@@ -20,4 +22,10 @@ class Webpage < ActiveRecord::Base
   validates :url, uniqueness: { case_sensitive: false }
 
   after_create :create_screenshot!
+
+  friendly_id :url, use: :slugged
+
+  def should_generate_new_friendly_id?
+    new_record? || slug.nil?
+  end
 end

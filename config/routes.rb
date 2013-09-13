@@ -8,6 +8,6 @@ Filturl::Application.routes.draw do
   }
   resources :users
 
-  get '/:id', to: 'webpage_requests#show', as: 'webpage_request'
+  get '/:id', to: 'webpages#show', as: 'webpage'
   post '/', to: 'webpage_requests#create', as: 'webpage_requests'
 end
