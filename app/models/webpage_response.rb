@@ -25,7 +25,8 @@ class WebpageResponse < ActiveRecord::Base
   def get_url
     response = Typhoeus.get(webpage_request.url, followlocation: true,
       ssl_verifypeer: false)
-    webpage = Webpage.find_or_initialize_by(url: response.effective_url)
+    webpage_url = response.effective_url || webpage_request.url
+    webpage = Webpage.find_or_initialize_by(url: webpage_url)
     webpage.update_attributes!(
       primary_ip: response.primary_ip,
       body: response.response_body.force_encoding('ISO-8859-1')

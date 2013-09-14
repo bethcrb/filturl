@@ -23,7 +23,7 @@ end
 
 When(/^I visit the page for the URL "(.*?)"$/) do |url|
   @webpage_request = WebpageRequest.find_by(url: url, user_id: @user.id)
-  visit webpage_request_path(@webpage_request)
+  visit webpage_path(@webpage_request.webpage)
 end
 
 ### THEN ###
@@ -40,7 +40,5 @@ Then(/^I should see an invalid content-type message$/) do
 end
 
 Then(/^I should see a screenshot of the URL "(.*?)"$/) do |url|
-  @webpage_request ||= WebpageRequest.find_by(url: url)
-  
   page.should have_xpath("//img[@src=\"#{@webpage_request.screenshot.url}\"]")
 end
