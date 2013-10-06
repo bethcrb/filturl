@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130913120930) do
+ActiveRecord::Schema.define(version: 20131006131740) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -113,7 +113,6 @@ ActiveRecord::Schema.define(version: 20130913120930) do
 
   create_table "webpage_requests", force: true do |t|
     t.string   "url",        null: false
-    t.string   "slug"
     t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
