@@ -14,23 +14,10 @@ describe WebpageRequestsController do
     }
   end
 
-  describe "GET 'show'" do
-    let (:webpage_request) { FactoryGirl.create(:webpage_request, user: user) }
-    it 'shows the webpage request', :vcr do
-      get :show, id: webpage_request.id
-      assigns(:webpage_request).should == webpage_request
-    end
-  end
-
   describe "POST 'create'" do
-    it 'creates a new webpage request', :vcr do
+    it 'redirects to the webpage results', :vcr do
       post :create, { webpage_request: @attr }
-      assigns(:webpage_request).should be_a(WebpageRequest)
-    end
-
-    it 'redirects to the webpage request', :vcr do
-      post :create, { webpage_request: @attr }
-      response.should redirect_to(WebpageRequest.last)
+      response.should redirect_to(WebpageRequest.last.webpage)
     end
   end
 end
