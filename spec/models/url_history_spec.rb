@@ -2,13 +2,12 @@
 #
 # Table name: url_histories
 #
-#  id                :integer          not null, primary key
-#  url               :string(500)
-#  last_requested_at :datetime
-#  webpage_id        :integer
-#  user_id           :integer
-#  created_at        :datetime
-#  updated_at        :datetime
+#  id         :integer          not null, primary key
+#  url        :string(500)
+#  webpage_id :integer
+#  user_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 require 'spec_helper'
