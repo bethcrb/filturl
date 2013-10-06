@@ -75,11 +75,12 @@ class ApplicationController < ActionController::Base
   # address.
   def create_guest_user
     guest_username = "guest_#{Time.now.to_i}#{rand(99)}"
-    guest_user = User.create(
+    guest_user = User.new(
       name:     'Guest',
       email:    "#{guest_username}@#{request.remote_ip}",
       username: guest_username,
     )
+    guest_user.skip_confirmation!
     guest_user.save!(validate: false)
     cookies[:guest] = Base64.urlsafe_encode64(guest_user.id.to_s)
     guest_user
