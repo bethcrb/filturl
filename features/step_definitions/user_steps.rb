@@ -166,6 +166,26 @@ When /^I change my username to "([^']*)"$/ do |newusername|
   click_button 'Update'
 end
 
+When /^I change my password$/ do
+  visit '/users/edit'
+  fill_in 'user_password', with: 'newpassword'
+  fill_in 'user_password_confirmation', with: 'newpassword'
+  click_button 'Update'
+end
+
+When /^I try to change my password without confirming it$/ do
+  visit '/users/edit'
+  fill_in 'user_password', with: 'newpassword'
+  click_button 'Update'
+end
+
+When /^I try to change my password with a mismatched password confirmation$/ do
+  visit '/users/edit'
+  fill_in 'user_password', with: 'newpassword'
+  fill_in 'user_password_confirmation', with: 'mismatched_password'
+  click_button 'Update'
+end
+
 ### THEN ###
 Then /^I should be signed in$/ do
   page.should have_content 'Logout'

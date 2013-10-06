@@ -94,12 +94,6 @@ describe User do
         let(:existing_user) { create(:user) }
         it do
           existing_user.should_not validate_presence_of(:password)
-            .on(:update)
-        end
-
-        it do
-          existing_user.should_not validate_confirmation_of(:password)
-            .on(:update)
         end
       end
     end
