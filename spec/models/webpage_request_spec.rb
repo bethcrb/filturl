@@ -36,7 +36,6 @@ describe WebpageRequest do
 
     it { should validate_presence_of(:user) }
 
-    it { should validate_presence_of(:url) }
     it 'should require unique value for url scoped to user_id', :vcr do
       subject.save!
       should validate_uniqueness_of(:url).scoped_to(:user_id)

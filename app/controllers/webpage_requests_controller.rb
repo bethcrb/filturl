@@ -28,7 +28,8 @@ class WebpageRequestsController < ApplicationController
       else
         if (current_user || session[:verified_captcha])
           errors_full = @webpage_request.errors.full_messages
-          flash.now[:alert] = "#{request_url}: #{errors_full.to_sentence}"
+          url_error = request_url.present? ? "#{request_url}:" : "Error:"
+          flash.now[:alert] = "#{url_error} #{errors_full.to_sentence}"
         end
         format.html { render 'index' }
       end

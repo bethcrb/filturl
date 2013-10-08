@@ -19,31 +19,32 @@ class WebpageRequest < ActiveRecord::Base
   before_validation :clean_url
 
   validates :user, presence: true
-  validates :url, presence: true, format: URI.regexp(%w(http https))
+  validates :url, format: URI.regexp(%w(http https))
   validates :url, uniqueness: { case_sensitive: false, scope: :user_id }
-  validates_each :url do |record, attr, value|
-    if value =~ URI.regexp(%w(http https))
-      begin
-        response = Typhoeus.get(value, followlocation: true,
-          ssl_verifypeer: false)
-        if response.headers.empty?
-          message = response.return_message
-          record.errors[attr] << "is not reachable (#{message})"
-        else
-          content_type = response.headers['Content-Type']
-          unless content_type.present? && content_type =~ /^text\/html/
-            record.errors[attr] << 'could not be verified as HTML'
-          end
-        end
-      rescue => e
-        record.errors[attr] << "returned an error (#{e.message})"
-      end
-    end
-  end
+  validate  :verify_url
 
   after_create :create_webpage_response!
 
   def clean_url
     self.url = PostRank::URI.clean(url).to_s unless url.blank?
+  end
+
+  def verify_url
+    return unless url =~ URI.regexp(%w(http https))
+
+    begin
+      response = Typhoeus.get(url, followlocation: true, ssl_verifypeer: false)
+      if response.headers.empty?
+        message = response.return_message
+        errors.add(:url, "is not reachable (#{message})")
+      else
+        content_type = response.headers['Content-Type']
+        unless content_type.present? && content_type =~ /^text\/html/
+          errors.add(:url, 'could not be verified as HTML')
+        end
+      end
+    rescue => e
+      errors.add(:url, "returned an error (#{e.message})")
+    end
   end
 end
