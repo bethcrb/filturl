@@ -9,8 +9,8 @@ describe WebpageRequestsController do
       get('/').should route_to('webpage_requests#index')
     end
 
-    it 'routes / to webpage_requests#create via post' do
-      post('/').should route_to('webpage_requests#create')
+    it 'routes /urls/request to webpage_requests#create via post' do
+      post('/urls/request').should route_to('webpage_requests#create')
     end
 
   end
