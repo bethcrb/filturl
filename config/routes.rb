@@ -9,5 +9,5 @@ Filturl::Application.routes.draw do
   resources :users
 
   get '/urls/:id', to: 'webpages#show', as: 'webpage'
-  post '/urls/request', to: 'webpage_requests#create', as: 'webpage_requests'
+  post '/', to: 'webpage_requests#create', as: 'webpage_requests'
 end
