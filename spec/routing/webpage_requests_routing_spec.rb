@@ -10,7 +10,7 @@ describe WebpageRequestsController do
     end
 
     it 'routes /urls/request to webpage_requests#create via post' do
-      post('/urls/request').should route_to('webpage_requests#create')
+      post('/').should route_to('webpage_requests#create')
     end
 
   end
