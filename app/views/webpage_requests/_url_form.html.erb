@@ -1,0 +1,11 @@
+<%= content_tag(:div, id: "webpage_url_form") do %>
+  <%= simple_form_for(@webpage_request, :url => webpage_requests_path, :html => { :class => "form-inline text-center" }) do |f| %>
+    <%= f.url_field :url, placeholder: "http://", class: "input-block-level" %>
+    <% if current_user.present? || session[:verified_captcha] %>
+      <%= f.button :submit, 'Go!', id: 'submit_url', class: 'btn-primary' %>
+    <% else %>
+      <%= f.button :submit, 'Go!', id: 'submit_url', class: 'btn-primary', type: 'button', 'data-toggle' => 'modal', 'data-target' => '#captchaModal' %>
+      <%= render 'captcha_modal' %>
+    <% end %>
+  <% end %>
+<% end %>
