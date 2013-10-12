@@ -24,6 +24,7 @@ class WebpageRequest < ActiveRecord::Base
   validate  :verify_url
 
   after_create :create_webpage_response!
+  after_save   :add_to_url_history
 
   def clean_url
     self.url = PostRank::URI.clean(url).to_s unless url.blank?
@@ -46,5 +47,11 @@ class WebpageRequest < ActiveRecord::Base
     rescue => e
       errors.add(:url, "returned an error (#{e.message})")
     end
+  end
+
+  private
+
+  def add_to_url_history
+    webpage.url_histories << UrlHistory.new(url:  url, user: user)
   end
 end
