@@ -5,7 +5,9 @@ $(document).ready ->
       $("#submit_url").click()
 
   $("#webpage_request_url").blur ->
-    request_url = $(this).val()
+    request_url = @value
+    if request_url == ""
+      return false
     uri = new URI(request_url)
     if uri.protocol() is ""
       
@@ -16,9 +18,11 @@ $(document).ready ->
       request_url = uri.normalize().toString()
       uri = new URI(request_url)
     request_url = uri.normalize().toString()
-    $(this).val request_url
+    @value = request_url
 
   $("#submit_url").click ->
+    if $("#webpage_request_url").val() == ""
+      return false
     Recaptcha.reload()
 
 
