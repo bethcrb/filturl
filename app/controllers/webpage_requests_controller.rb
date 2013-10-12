@@ -24,7 +24,7 @@ class WebpageRequestsController < ApplicationController
 
     respond_to do |format|
       if (current_user || session[:verified_captcha]) && @webpage_request.save
-        format.html { redirect_to @webpage_request.webpage }
+        format.html { redirect_to webpage_path(@webpage_request.webpage) }
       else
         if (current_user || session[:verified_captcha])
           errors_full = @webpage_request.errors.full_messages
