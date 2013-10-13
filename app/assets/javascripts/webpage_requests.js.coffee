@@ -25,6 +25,8 @@ $(document).ready ->
       return false
     Recaptcha.reload()
 
-
+  $("#recaptcha_challenge_field").keydown (event) ->
+    if event.keyCode is 13
+      submit()
 $ ->
   $("#navTabs a:first").tab "show"
