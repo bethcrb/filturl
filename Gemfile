@@ -141,6 +141,9 @@ gem 'figaro', '~> 0.7.0'
 # Use FriendlyId for permalinks.
 gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'
 
+# Use GeoIP for determining the location of an IP address.
+gem 'geoip', '~> 1.3'
+
 # Use Nokogiri for HTML parsing.
 gem 'nokogiri', '~> 1.5'
 

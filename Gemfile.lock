@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/FriendlyId/friendly_id.git
-  revision: 495b5cd0b395a2eabb8b00bd244e589d99de105a
+  revision: ec3464025ff2c412077b31d7bcb1c5bf07ad4c6e
   branch: master
   specs:
     friendly_id (5.0.0.rc3)
@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: git://github.com/aws/aws-sdk-ruby.git
-  revision: 4bfd805bf8456591840467dacebba2953d914641
+  revision: 2905a983102466a422eb6a182265305f7669175e
   specs:
-    aws-sdk (1.20.0)
+    aws-sdk (1.21.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4, < 1.6.0)
       uuidtools (~> 2.1)
@@ -132,7 +132,8 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     formatador (0.2.4)
-    gherkin (2.12.1)
+    geoip (1.3.2)
+    gherkin (2.12.2)
       multi_json (~> 1.3)
     guard (1.8.3)
       formatador (>= 0.2.4)
@@ -160,7 +161,7 @@ GEM
     hike (1.2.3)
     httpauth (0.2.0)
     i18n (0.6.5)
-    jbuilder (1.5.1)
+    jbuilder (1.5.2)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-rails (3.0.4)
@@ -251,7 +252,7 @@ GEM
       rails_serve_static_assets
       rails_stdout_logging
     rails_serve_static_assets (0.0.1)
-    rails_stdout_logging (0.0.2)
+    rails_stdout_logging (0.0.3)
     railties (4.0.0)
       actionpack (= 4.0.0)
       activesupport (= 4.0.0)
@@ -326,7 +327,7 @@ GEM
       coffee-rails
     typhoeus (0.6.5)
       ethon (~> 0.6.1)
-    tzinfo (0.3.37)
+    tzinfo (0.3.38)
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
@@ -364,6 +365,7 @@ DEPENDENCIES
   ffaker (~> 1.0)
   figaro (~> 0.7.0)
   friendly_id!
+  geoip (~> 1.3)
   guard (~> 1.0)
   guard-annotate
   guard-cucumber
