@@ -14,6 +14,13 @@ describe WebpageRequestsController do
     }
   end
 
+  describe "GET '/robots.txt'" do
+    it 'outputs the contents of the robots.txt file' do
+      get :robots
+      response.content_type.should == 'text/plain'
+    end
+  end
+
   describe "POST 'create'" do
     it 'redirects to the webpage results', :vcr do
       post :create, { webpage_request: @attr }

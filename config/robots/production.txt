@@ -1,0 +1,4 @@
+# Ban all spiders from these directories
+User-agent: *
+Disallow: /urls/
+Disallow: /users/
