@@ -127,7 +127,7 @@ gem 'bootswatch-rails', '~> 0.5.0'
 gem 'cancan', '~> 1.6.10'
 
 # Use CodeRay for syntax highlighting.
-gem 'coderay', '~> 1.0.9'
+gem 'coderay', '~> 1.1'
 
 # Use Devise and Omniauth for authentication.
 gem 'devise', '~> 3.0.0'
