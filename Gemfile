@@ -87,7 +87,7 @@ group :test do
   gem 'simplecov', '~> 0.7.1', require: false
 
   # Use VCR to record and playback HTTP interactions.
-  gem 'vcr', '~> 2.5.0'
+  gem 'vcr', '~> 2.6.0'
 
   # Use WebMock to stub out Net::HTTP requests.
   gem 'webmock', '~> 1.13.0'
