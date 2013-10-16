@@ -39,7 +39,7 @@ group :development do
 
   # Better Errors replaces the standard Rails error page with a much better and
   # more useful error page.
-  gem 'better_errors', '~> 0.9.0'
+  gem 'better_errors', '~> 1.0'
 
   # binding_of_caller retrieves the binding of a method's caller. Used by
   # Better Errors for advanced features.
