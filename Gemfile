@@ -75,7 +75,7 @@ group :test do
 
   # Use Database Cleaner to restore the database to a pristine state during
   # testing.
-  gem 'database_cleaner', '~> 1.1.1'
+  gem 'database_cleaner', '~> 1.2'
 
   # Use Email Spec for testing email with RSpec and Cucumber.
   gem 'email_spec', '~> 1.5.0'
