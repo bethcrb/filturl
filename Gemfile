@@ -51,7 +51,7 @@ group :development do
   # Guard is a command line tool to easily handle events on file system
   # modifications. It is useful for automatically running tasks in the
   # background, such as running tests and restarting services.
-  gem 'guard'
+  gem 'guard', '~> 2.1'
   gem 'guard-annotate'
   gem 'guard-cucumber'
   gem 'guard-rails'
@@ -127,7 +127,7 @@ gem 'bootswatch-rails', '~> 0.5.0'
 gem 'cancan', '~> 1.6.10'
 
 # Use CodeRay for syntax highlighting.
-gem 'coderay', '~> 1.1'
+gem 'coderay'
 
 # Use Devise and Omniauth for authentication.
 gem 'devise', '~> 3.1'
@@ -145,7 +145,7 @@ gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'
 gem 'geoip', '~> 1.3'
 
 # Use Nokogiri for HTML parsing.
-gem 'nokogiri', '~> 1.5'
+gem 'nokogiri'
 
 # Use PhantomJS for screenshots.
 gem 'phantomjs', '~> 1.8.1.1'
