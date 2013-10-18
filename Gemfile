@@ -130,7 +130,7 @@ gem 'cancan', '~> 1.6.10'
 gem 'coderay', '~> 1.1'
 
 # Use Devise and Omniauth for authentication.
-gem 'devise', '~> 3.0.0'
+gem 'devise', '~> 3.1'
 gem 'omniauth-facebook', '~> 1.4.1'
 gem 'omniauth-github', '~> 1.1.0'
 gem 'omniauth-google-oauth2', '~> 0.2.0'

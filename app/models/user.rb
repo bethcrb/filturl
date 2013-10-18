@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   rolify
   devise :confirmable, :database_authenticatable, :lockable,
          :omniauthable, :recoverable, :registerable, :rememberable,
-         :token_authenticatable, :trackable
+         :trackable
 
   has_many :url_histories, dependent: :destroy
   has_many :webpage_requests, dependent: :destroy, inverse_of: :user
