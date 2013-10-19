@@ -107,12 +107,6 @@ group :development, :test do
   gem 'spork-rails', github: 'sporkrb/spork-rails'
 end
 
-# Rails 4 requires rails_12factor in order to configure application
-# logs to be visible via heroku logs and to serve static assets.
-group :heroku do
-  gem 'rails_12factor', '~> 0.0.2'
-end
-
 # Use AWS SDK for S3.
 gem 'aws-sdk', github: 'aws/aws-sdk-ruby'
 
