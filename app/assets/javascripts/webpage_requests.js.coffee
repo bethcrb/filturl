@@ -1,4 +1,14 @@
 $(document).ready ->
+  toggle_submit = ->
+    if $("#webpage_request_url").val() == ""
+      $("#submit_url").attr("disabled", true);
+    else
+      $("#submit_url").attr("disabled", false)
+
+  toggle_submit()
+  $("#webpage_request_url").keyup (event) ->
+    toggle_submit()
+
   $("#webpage_request_url").keydown (event) ->
     if event.keyCode is 13
       $("#webpage_request_url").trigger "blur"
