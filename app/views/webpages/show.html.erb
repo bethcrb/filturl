@@ -17,58 +17,8 @@
   </div>
 </div>
 <div class="tab-content">
-  <div class="tab-pane active" id="overview_tab">
-    <div class="row">
-      <div class="span5">
-        <table class="table table-condensed table-bordered table-hover">
-          <tr>
-            <th>IP address</th>
-            <td><%= @webpage.primary_ip %></td>
-          </tr>
-          <% if @webpage.location != "" %>
-          <tr>
-            <th>IP location</th>
-            <td><%= @webpage.location %></td>
-          </tr>
-          <% end %>
-          <tr>
-            <th>Redirect count</th>
-            <td><%= @webpage_response.redirect_count %></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-  <div class="tab-pane" id="http_headers_tab">
-    <div class="row">
-      <div class="span1"></div>
-      <div class="span10">
-        <pre><%= @webpage_response.headers %></pre>
-      </div>
-      <div class="span1"></div>
-    </div>
-  </div>
-  <div class="tab-pane" id="view_source_tab">
-    <div class="row">
-      <div class="span1"></div>
-      <div class="span10">
-        <%= raw display_html(@webpage.body) %>
-      </div>
-      <div class="span1"></div>
-    </div>
-  </div>
-  <div class="tab-pane" id="screenshot_tab">
-    <div class="row">
-      <div class="span1"></div>
-      <div class="span10">
-        <% if user_signed_in? %>
-          <p><a href="<%= @webpage.screenshot.url %>" target="new"><%= image_tag(@webpage.screenshot.url, class: "thumbnail span9") %></a></p>
-        <% else %>
-        <div class="alert alert-block text-center">You must <%= link_to "sign in", new_session_path(resource_name) %> or <%= link_to "sign up", new_registration_path(resource_name) %> to view screenshots.</div>
-        <% end %>
-      </div>
-      <div class="span1"></div>
-    </div>
-  </div>
+  <%= render 'overview' %>
+  <%= render 'http_headers' %>
+  <%= render 'view_source' %>
+  <%= render 'screenshot' %>
 </div>
-
