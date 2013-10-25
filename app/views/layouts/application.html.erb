@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <%= chartbeat_head %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Filturl" %></title>
@@ -33,5 +34,6 @@
         </div>
       </div> <!--! end of .container -->
     </div> <!--! end of #main -->
+    <%= chartbeat_body %>
   </body>
 </html>
