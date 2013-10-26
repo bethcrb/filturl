@@ -1,10 +1,10 @@
-$(document).ready ->
-  toggle_submit = ->
-    if /\w+\.[a-z]{2,}/i.test($('#webpage_request_url').val())
-      $('#submit_url').attr('disabled', false)
-    else
-      $('#submit_url').attr('disabled', true)
+toggle_submit = ->
+  if /\w+\.[a-z]{2,}/i.test($('#webpage_request_url').val())
+    $('#submit_url').attr('disabled', false)
+  else
+    $('#submit_url').attr('disabled', true)
 
+initEvents = ->
   toggle_submit()
   $('#webpage_request_url').keyup (event) ->
     toggle_submit()
@@ -35,5 +35,9 @@ $(document).ready ->
   $('#recaptcha_challenge_field').keydown (event) ->
     submit() if event.keyCode is 13
 
-$ ->
-  $('#navTabs a:first').tab 'show'
+$(document).on 'page:change', ->
+  initEvents()
+
+$(document).ready ->
+  initEvents()
+
