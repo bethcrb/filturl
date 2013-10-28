@@ -19,6 +19,7 @@ class WebpageRequest < ActiveRecord::Base
   before_validation :clean_url
 
   validates :user, presence: true
+  validates :url, presence: true
   validates :url, format: URI.regexp(%w(http https))
   validates :url, uniqueness: { case_sensitive: false, scope: :user_id }
   validate  :verify_url
