@@ -7,7 +7,6 @@ module WebpageRequestsHelper
     xsl = xslt.apply_to(html).to_s.encode!('UTF-8', 'UTF-8', invalid: :replace)
     xsl.strip!
     CodeRay.scan(xsl, :html).div(
-      class: :pre_scrollable,
       tab_width: 4,
       wrap: :div
     )
