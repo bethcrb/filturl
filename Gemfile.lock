@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/FriendlyId/friendly_id.git
-  revision: 2764077e3af32a88114d68c75e20ef738e4fa829
+  revision: 0064ef1dd063043c5414612dae7691a0887b0ae6
   branch: master
   specs:
-    friendly_id (5.0.0)
+    friendly_id (5.0.1)
       activerecord (~> 4.0.0)
 
 GIT
@@ -130,7 +130,7 @@ GEM
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     ffaker (1.20.0)
-    ffi (1.9.0)
+    ffi (1.9.2)
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
@@ -175,7 +175,7 @@ GEM
       multi_json (>= 1.5)
     launchy (2.3.0)
       addressable (~> 2.3)
-    listen (2.1.1)
+    listen (2.2.0)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
