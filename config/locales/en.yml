@@ -20,8 +20,3 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  recaptcha:
-    errors:
-      recaptcha_unavailable: 'reCAPTCHA is currently unavailable.'
-      verification_failed: 'CAPTCHA words did not match.'
-      incorrect-captcha-sol: 'Word verification response is incorrect, please try again.'

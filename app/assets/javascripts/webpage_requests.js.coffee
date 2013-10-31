@@ -28,13 +28,6 @@ initEvents = ->
     request_url = uri.normalize().toString()
     @value = request_url
 
-  $('#submit_url').click ->
-    return false if $('#webpage_request_url').val() is ''
-    Recaptcha.reload() if Recaptcha?
-
-  $('#recaptcha_challenge_field').keydown (event) ->
-    submit() if event.keyCode is 13
-
 $(document).on 'page:change', ->
   initEvents()
 

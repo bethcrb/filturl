@@ -21,6 +21,6 @@ class WebpagesController < ApplicationController
   protected
   
   def verify_user
-    redirect_to root_path unless current_user || session[:verified_captcha]
+    redirect_to root_path unless current_user || session[:ayah_passed]
   end
 end

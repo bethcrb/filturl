@@ -19,6 +19,9 @@ class WebpageRequestsController < ApplicationController
 
   def index
     @webpage_request = WebpageRequest.new
+
+    ayah = AYAH::Integration.new(Figaro.env.ayah_publisher_key, Figaro.env.ayah_scoring_key)
+    @publisher_html = ayah.get_publisher_html
   end
 
   def create
@@ -29,17 +32,22 @@ class WebpageRequestsController < ApplicationController
       user_id: current_or_guest_user.id
     )
 
-    unless (current_user || session[:verified_captcha])
-      if verify_recaptcha(timeout: 15)
-        session[:verified_captcha] = true
+    unless (current_user || session[:ayah_passed])
+      session_secret = params['session_secret'] # in this case, using Rails
+      ayah = AYAH::Integration.new(
+        Figaro.env.ayah_publisher_key,
+        Figaro.env.ayah_scoring_key
+      )
+      if ayah.score_result(session_secret, request.remote_ip)
+        session[:ayah_passed] = true
       end
     end
 
     respond_to do |format|
-      if (current_user || session[:verified_captcha]) && @webpage_request.save
+      if (current_user || session[:ayah_passed]) && @webpage_request.save
         format.html { redirect_to webpage_path(@webpage_request.webpage) }
       else
-        if (current_user || session[:verified_captcha])
+        if (current_user || session[:ayah_passed])
           errors_full = @webpage_request.errors.full_messages
           url_error = request_url.present? ? "#{request_url}:" : "Error:"
           flash.now[:alert] = "#{url_error} #{errors_full.to_sentence}"
