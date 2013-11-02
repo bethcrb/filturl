@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131018004733) do
+ActiveRecord::Schema.define(version: 20131102124843) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -108,6 +108,15 @@ ActiveRecord::Schema.define(version: 20131018004733) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
+  create_table "webpage_redirects", force: true do |t|
+    t.string   "url"
+    t.integer  "webpage_response_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "webpage_redirects", ["webpage_response_id"], name: "index_webpage_redirects_on_webpage_response_id", using: :btree
 
   create_table "webpage_requests", force: true do |t|
     t.string   "url",        null: false

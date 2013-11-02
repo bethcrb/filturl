@@ -17,6 +17,7 @@ class WebpageResponse < ActiveRecord::Base
   belongs_to :webpage_request
 
   has_one :screenshot, through: :webpage
+  has_many :webpage_redirects, dependent: :destroy
 
   validates :webpage_request, presence: true
 
@@ -39,5 +40,9 @@ class WebpageResponse < ActiveRecord::Base
       webpage_id:     webpage.id,
     }
     self.update_attributes!(response_data)
+
+    response.redirections.each do |redirection|
+      webpage_redirects.find_or_create_by!(url: redirection.headers[:location])
+    end
   end
 end
