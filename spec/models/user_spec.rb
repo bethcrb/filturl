@@ -22,7 +22,6 @@
 #  failed_attempts        :integer          default(0)
 #  unlock_token           :string(255)
 #  locked_at              :datetime
-#  authentication_token   :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
 #
