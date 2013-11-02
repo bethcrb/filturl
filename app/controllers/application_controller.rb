@@ -2,6 +2,8 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
+  before_filter :save_previous_url
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -13,13 +15,14 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_or_guest_user
 
+  private
+
   # If the user is currently logged in, move existing guest user data if
   # necessary and return the current user; otherwise, return the guest user.
   def current_or_guest_user
     if current_user
       if cookies[:guest]
         move_guest_user_data
-        guest_user.destroy
         cookies.delete(:guest)
       end
       current_user
@@ -27,6 +30,20 @@ class ApplicationController < ActionController::Base
       guest_user
     end
   end
+
+  # Save previous URL in order to redirect back to it after the user signs in.
+  def save_previous_url
+    # Do not save AJAX calls or URLs for the Users controllers
+    unless controller_path =~ %r{^users/} || request.xhr?
+      session[:previous_url] = request.fullpath 
+    end
+  end
+
+  # Redirect to either the previous URL or the home page after signing in.
+  def after_sign_in_path_for(resource)
+    session[:previous_url] || root_path
+  end
+
 
   # If the user is currently not logged in, find the guest_user object
   # associated with the current session or create one if it does not already
@@ -48,8 +65,6 @@ class ApplicationController < ActionController::Base
     cookies.delete(:guest)
     guest_user
   end
-
-  private
 
   # When the user logs in, move any webpage requests they made during their
   # guest user session.
