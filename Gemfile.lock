@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: git://github.com/aws/aws-sdk-ruby.git
-  revision: e42786bd6be8cff89e0c201404293269008dc512
+  revision: 93b718876f6ea2f020444e7fde50426649d8b200
   specs:
-    aws-sdk (1.23.0)
+    aws-sdk (1.24.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4, < 1.6.0)
       uuidtools (~> 2.1)
@@ -125,10 +125,10 @@ GEM
       ffi (>= 1.3.0)
       mime-types (~> 1.18)
     execjs (2.0.2)
-    factory_girl (4.2.0)
+    factory_girl (4.3.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.2.1)
-      factory_girl (~> 4.2.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
