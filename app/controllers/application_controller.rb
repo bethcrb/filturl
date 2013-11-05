@@ -44,7 +44,6 @@ class ApplicationController < ActionController::Base
     session[:previous_url] || root_path
   end
 
-
   # If the user is currently not logged in, find the guest_user object
   # associated with the current session or create one if it does not already
   # exist.
