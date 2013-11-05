@@ -32,6 +32,6 @@ module ApplicationHelper
   end
 
   def google_analytics_enabled?
-    ENV['GA_TRACKING_ID'].present? && ENV['GA_TRACKING_DOMAIN'].present?
+    ENV['GOOGLE_ANALYTICS_ID'].present?
   end
 end
