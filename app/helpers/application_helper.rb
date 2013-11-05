@@ -30,4 +30,8 @@ module ApplicationHelper
   def chartbeat_enabled?
     ENV['CHARTBEAT_UID'].present? && ENV['CHARTBEAT_DOMAIN'].present?
   end
+
+  def google_analytics_enabled?
+    ENV['GA_TRACKING_ID'].present? && ENV['GA_TRACKING_DOMAIN'].present?
+  end
 end

@@ -19,6 +19,8 @@
     = favicon_link_tag '/favicon.png', rel: 'shortcut icon', type: 'image/png'
     = favicon_link_tag '/favicon.ico'
     = yield(:head)
+    - if google_analytics_enabled?
+      = render 'layouts/analytics/google_analytics'
   %body
     = render 'layouts/navigation'
     #main{role: "main"}
@@ -29,4 +31,5 @@
               = render 'layouts/messages'
               = yield
     %footer
-    = render 'layouts/analytics/chartbeat' if chartbeat_enabled?
+    - if chartbeat_enabled?
+      = render 'layouts/analytics/chartbeat'
