@@ -1,9 +1,0 @@
-<%= content_tag(:div, id: "webpage_url_form") do %>
-  <%= simple_form_for(@webpage_request, :url => webpage_requests_path, :html => { :class => "form-inline text-center" }) do |f| %>
-    <%= f.url_field :url, placeholder: "http://", class: "input-block-level" %>
-    <%= f.button :submit, 'Go!', id: 'submit_url', class: 'btn-primary' %>
-    <% unless current_user.present? || session[:ayah_passed] %>
-      <%= raw @publisher_html %>
-    <% end %>
-  <% end %>
-<% end %>
