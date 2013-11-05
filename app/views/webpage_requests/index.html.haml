@@ -1,5 +1,4 @@
-- content_for :description do
-  Filturl is a slightly more advanced URL previewer that allows you to see the HTTP headers, HTML source, and a screenshot of a URL without needing to visit it directly.
+- content_for(:description, 'Filturl is a slightly more advanced URL previewer that allows you to see the HTTP headers, HTML source, and a screenshot of a URL without needing to visit it directly.')
 = content_tag(:div, id: 'logo') do
   = image_tag('/logo.png')
 = render 'url_form'
