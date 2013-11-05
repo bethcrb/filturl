@@ -138,6 +138,9 @@ gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'
 # Use GeoIP for determining the location of an IP address.
 gem 'geoip', '~> 1.3'
 
+# Use Haml for markup in templates instead of ERB.
+gem 'haml-rails'
+
 # Use Nokogiri for HTML parsing.
 gem 'nokogiri'
 
