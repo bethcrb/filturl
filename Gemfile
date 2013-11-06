@@ -110,12 +110,6 @@ end
 # Use AWS SDK for S3.
 gem 'aws-sdk', github: 'aws/aws-sdk-ruby'
 
-# Use Bootstrap for front-end framework.
-gem 'bootstrap-sass', '~> 2.3.2.0'
-
-# Use bootswatch-rails for SASS versions of Bootswatch themes.
-gem 'bootswatch-rails', '~> 0.5.0'
-
 # Use CanCan to restrict access to pages that should only be viewed by an
 # administrator.
 gem 'cancan', '~> 1.6.10'

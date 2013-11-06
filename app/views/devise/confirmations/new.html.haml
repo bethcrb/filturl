@@ -1,9 +1,11 @@
-%h2 Resend confirmation instructions
+%h2.page-header Resend confirmation instructions
 = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
   = f.error_notification
   = f.full_error :confirmation_token
-  .form-inputs
-    = f.input :login, required: true, autofocus: true, input_html: { autocapitalize: 'none', autocorrect: 'off' }
-  .form-actions
+  .form-group
+    .col-xs-12.col-md-4
+      = f.input :login, required: true, autofocus: true, input_html: { autocapitalize: 'none', autocorrect: 'off', class: 'form-control' }
+  .form-group
+    .col-xs-12.col-md-4
     = f.button :submit, 'Resend confirmation instructions'
 = render 'devise/shared/links'

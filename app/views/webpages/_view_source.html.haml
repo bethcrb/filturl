@@ -1,6 +1,5 @@
 #view_source_tab.tab-pane
-  .row
-    .span1
-    .span10
-      = raw display_html(@webpage.body)
-    .span1
+  .container
+    .row
+      .col-xs-12.col-md-offset-1.col-md-10
+        = raw display_html(@webpage.body)

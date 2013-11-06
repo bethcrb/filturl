@@ -1,11 +1,10 @@
 #screenshot_tab.tab-pane
-  .row
-    .span1
-    .span10
-      - if user_signed_in?
-        %p
-          %a{href: @webpage.screenshot.url, target: 'new'}= image_tag(@webpage.screenshot.url, class: 'thumbnail span9')
-      - else
-        .alert.alert-block.text-center
-          You must #{link_to 'sign in', new_session_path(resource_name)} or #{link_to 'sign up', new_registration_path(resource_name)} to view screenshots.
-    .span1
+  .container
+    .row
+      .col-xs-12.col-md-offset-1.col-md-10
+        - if user_signed_in?
+          .col-xs-12.col-md-9
+            %a{href: @webpage.screenshot.url, target: 'new'}= image_tag(@webpage.screenshot.url, class: 'img-thumbnail')
+        - else
+          .well.text-center
+            You must #{link_to 'sign in', new_session_path(resource_name)} or #{link_to 'sign up', new_registration_path(resource_name)} to view screenshots.

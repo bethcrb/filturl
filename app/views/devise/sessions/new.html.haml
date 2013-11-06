@@ -1,9 +1,16 @@
-%h2 Sign in
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-vertical' }) do |f|
-  .form-inputs
-    = f.input :login, required: false, autofocus: true, input_html: { autocapitalize: 'none', autocorrect: 'off' }
-    = f.input :password, required: false
-    = f.input :remember_me, label: false, inline_label: 'Remember me', as: :boolean if devise_mapping.rememberable?
-  .form-actions
-    = f.button :submit, 'Sign in', class: 'btn-primary'
+%h2.page-header Sign in
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal', role: 'form' }) do |f|
+  .form-group
+    .col-xs-12.col-md-4
+      = f.input :login, required: false, autofocus: true, input_html: { autocapitalize: 'none', autocorrect: 'off', class: 'form-control' }
+  .form-group
+    .col-xs-12.col-md-4
+      = f.input :password, required: false, input_html: { class: 'form-control' }
+  .form-group
+    .col-xs-12.col-md-4
+      .checkbox
+        = f.input :remember_me, label: false, inline_label: 'Remember me', as: :boolean if devise_mapping.rememberable?
+  .form-group
+    .col-xs-12.col-md-4
+      = f.button :submit, 'Sign in', class: 'btn-primary'
 = render 'devise/shared/links'

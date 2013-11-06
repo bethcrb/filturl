@@ -1,6 +1,5 @@
 #http_headers_tab.tab-pane
-  .row
-    .span1
-    .span10
-      %pre= @webpage_response.headers
-    .span1
+  .container
+    .row
+      .col-xs-12.col-md-offset-1.col-md-10
+        %pre= @webpage_response.headers

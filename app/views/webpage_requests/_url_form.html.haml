@@ -1,6 +1,9 @@
 #webpage_url_form
-  = simple_form_for(@webpage_request, url: webpage_requests_path, html: { class: 'form-inline text-center' }) do |f|
-    = f.url_field :url, placeholder: 'http://', class: 'input-block-level'
-    = f.button :submit, 'Go!', id: 'submit_url', class: 'btn-primary'
-    - unless current_user.present? || session[:ayah_passed]
-      = raw @publisher_html
+  = simple_form_for(@webpage_request, url: webpage_requests_path, html: { class: 'text-center', role: 'form' }) do |f|
+    .col-xs-12.col-md-offset-1.col-md-10
+      .input-group
+        = f.url_field :url, placeholder: 'http://', class: 'form-control'
+        %span.input-group-btn
+          = f.button :submit, 'Go!', id: 'submit_url', class: 'btn-primary'
+          - unless current_user.present? || session[:ayah_passed]
+            = raw @publisher_html
