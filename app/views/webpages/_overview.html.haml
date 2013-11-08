@@ -1,15 +1,13 @@
 #overview_tab.tab-pane.active
-  .container
-    .row
-      .col-xs-12.col-md-6
-        %table.table.table-condensed.table-bordered.table-hover
-          %tr
-            %th IP address
-            %td= @webpage.primary_ip
-          - if @webpage.location != ''
-            %tr
-              %th IP location
-              %td= @webpage.location
-          %tr
-            %th Redirect count
-            %td= @webpage_response.redirect_count
+  .col-xs-12.col-md-6
+    %table.table.table-condensed.table-bordered.table-hover
+      %tr
+        %th IP address
+        %td= @webpage.primary_ip
+      - if @webpage.location != ''
+        %tr
+          %th IP location
+          %td= @webpage.location
+      %tr
+        %th Redirect count
+        %td= @webpage_response.redirect_count

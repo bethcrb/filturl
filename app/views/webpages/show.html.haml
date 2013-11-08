@@ -1,23 +1,22 @@
-.container
-  .row
-    .col-xs-12
-      .page-header
-        %h3= @webpage.url
-        - if @webpage.url != @webpage_request.url
-          %small{style: 'padding-left: 1em;'}= @webpage_request.url
-  .row
-    .col-xs-12
-      %ul#navTabs.nav.nav-tabs
-        %li.active
-          %a{'data-target' => '#overview_tab', 'data-toggle' => 'pill', href: '#overview_tab'} Overview
-        %li
-          %a{'data-target' => '#http_headers_tab', 'data-toggle' => 'pill', href: '#http_headers_tab'} HTTP Headers
-        %li
-          %a{'data-target' => '#view_source_tab', 'data-toggle' => 'pill', href: '#view_source_tab'} View Source
-        %li
-          %a{'data-target' => '#screenshot_tab', 'data-toggle' => 'pill', href: '#screenshot_tab'} Screenshot
-    .tab-content
-      = render 'overview'
-      = render 'http_headers'
-      = render 'view_source'
-      = render 'screenshot'
+.row
+  .col-xs-12
+    .page-header
+      %h3= @webpage.url
+      - if @webpage.url != @webpage_request.url
+        %small{style: 'padding-left: 1em;'}= @webpage_request.url
+.row
+  .col-xs-12
+    %ul#navTabs.nav.nav-tabs
+      %li.active
+        %a{'data-target' => '#overview_tab', 'data-toggle' => 'pill', href: '#overview_tab'} Overview
+      %li
+        %a{'data-target' => '#http_headers_tab', 'data-toggle' => 'pill', href: '#http_headers_tab'} HTTP Headers
+      %li
+        %a{'data-target' => '#view_source_tab', 'data-toggle' => 'pill', href: '#view_source_tab'} View Source
+      %li
+        %a{'data-target' => '#screenshot_tab', 'data-toggle' => 'pill', href: '#screenshot_tab'} Screenshot
+  .tab-content
+    = render 'overview'
+    = render 'http_headers'
+    = render 'view_source'
+    = render 'screenshot'
