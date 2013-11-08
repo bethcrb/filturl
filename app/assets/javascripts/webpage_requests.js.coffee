@@ -1,8 +1,10 @@
 toggle_submit = ->
   if /\w+\.[a-z]{2,}/i.test($('#webpage_request_url').val())
     $('#submit_url').attr('disabled', false)
+    $('#submit_url').removeClass('btn-default').addClass('btn-primary')
   else
     $('#submit_url').attr('disabled', true)
+    $('#submit_url').removeClass('btn-primary').addClass('btn-default')
 
 initEvents = ->
   toggle_submit()
