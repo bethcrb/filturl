@@ -6,15 +6,15 @@
         %small{style: 'padding-left: 1em;'}= @webpage_request.url
 .row
   .col-xs-12
-    %ul#navTabs.nav.nav-tabs
+    %ul#navTabs.nav.nav-tabs.nav-justified
       %li.active
-        %a{'data-target' => '#overview_tab', 'data-toggle' => 'pill', href: '#overview_tab'} Overview
+        %a{'data-target' => '#overview_tab', 'data-toggle' => 'tab', href: '#overview_tab'} Overview
       %li
-        %a{'data-target' => '#http_headers_tab', 'data-toggle' => 'pill', href: '#http_headers_tab'} HTTP Headers
+        %a{'data-target' => '#http_headers_tab', 'data-toggle' => 'tab', href: '#http_headers_tab'} HTTP Headers
       %li
-        %a{'data-target' => '#view_source_tab', 'data-toggle' => 'pill', href: '#view_source_tab'} View Source
+        %a{'data-target' => '#view_source_tab', 'data-toggle' => 'tab', href: '#view_source_tab'} View Source
       %li
-        %a{'data-target' => '#screenshot_tab', 'data-toggle' => 'pill', href: '#screenshot_tab'} Screenshot
+        %a{'data-target' => '#screenshot_tab', 'data-toggle' => 'tab', href: '#screenshot_tab'} Screenshot
   .tab-content
     = render 'overview'
     = render 'http_headers'
