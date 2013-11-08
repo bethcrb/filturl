@@ -5,7 +5,7 @@
       :javascript
         var _sf_startpt=(new Date()).getTime()
     %meta{charset: 'utf-8'}/
-    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}/
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0'}/
     %title= content_for?(:title) ? yield(:title) : "Filturl"
     %meta{name: 'description', content: content_for?(:description) ? yield(:description) : 'Filturl'}/
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
