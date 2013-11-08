@@ -26,10 +26,8 @@
     #main{role: "main"}
       .container
         .content
-          .row
-            .col-md-12
-              = render 'layouts/messages'
-              = yield
+          = render 'layouts/messages'
+          = yield
     %footer
     - if chartbeat_enabled?
       = render 'layouts/analytics/chartbeat'
