@@ -107,6 +107,10 @@ group :development, :test do
   gem 'spork-rails', github: 'sporkrb/spork-rails'
 end
 
+# Use Bootstrap for front-end framework.
+gem 'anjlab-bootstrap-rails', github:  'anjlab/bootstrap-rails',
+                              require: 'bootstrap-rails'
+
 # Use AWS SDK for S3.
 gem 'aws-sdk', github: 'aws/aws-sdk-ruby'
 

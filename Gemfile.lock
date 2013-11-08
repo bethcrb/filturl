@@ -7,6 +7,14 @@ GIT
       activerecord (~> 4.0.0)
 
 GIT
+  remote: git://github.com/anjlab/bootstrap-rails.git
+  revision: f0e54ec18f7de60703799a42e69c4e995dc65c18
+  specs:
+    anjlab-bootstrap-rails (3.0.2.0)
+      railties (>= 3.0)
+      sass (>= 3.2)
+
+GIT
   remote: git://github.com/aws/aws-sdk-ruby.git
   revision: 93b718876f6ea2f020444e7fde50426649d8b200
   specs:
@@ -350,6 +358,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  anjlab-bootstrap-rails!
   annotate (>= 2.5.0)
   aws-sdk!
   ayah_integration
