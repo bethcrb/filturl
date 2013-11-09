@@ -1,1 +1,6 @@
 #overview_tab td { text-align: right; }
+
+.nav-tabs > li:not(.active) > a {
+    background-color: #282828;
+    border-color: #000;
+}
