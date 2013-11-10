@@ -143,7 +143,7 @@ gem 'haml-rails'
 gem 'nokogiri'
 
 # Use PhantomJS for screenshots.
-gem 'phantomjs', '~> 1.8.1.1'
+gem 'phantomjs'
 
 # Use PostRank::URI to clean URLs prior to validation.
 gem 'postrank-uri', '~> 1.0.16'

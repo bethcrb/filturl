@@ -90,7 +90,6 @@ GEM
       timers (~> 1.1.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
-    cliver (0.2.2)
     coderay (1.0.9)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -233,13 +232,7 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
-    phantomjs (1.8.1.1)
-      poltergeist
-    poltergeist (1.4.1)
-      capybara (~> 2.1.0)
-      cliver (~> 0.2.1)
-      multi_json (~> 1.0)
-      websocket-driver (>= 0.2.0)
+    phantomjs (1.9.2.0)
     polyglot (0.3.3)
     postrank-uri (1.0.17)
       addressable (~> 2.3.0)
@@ -350,7 +343,6 @@ GEM
     webmock (1.13.0)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
-    websocket-driver (0.3.0)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -393,7 +385,7 @@ DEPENDENCIES
   omniauth-facebook (~> 1.4.1)
   omniauth-github (~> 1.1.0)
   omniauth-google-oauth2 (~> 0.2.0)
-  phantomjs (~> 1.8.1.1)
+  phantomjs
   postrank-uri (~> 1.0.16)
   puma
   quiet_assets (~> 1.0.2)
