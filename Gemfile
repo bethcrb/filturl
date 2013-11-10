@@ -148,10 +148,6 @@ gem 'phantomjs'
 # Use PostRank::URI to clean URLs prior to validation.
 gem 'postrank-uri', '~> 1.0.16'
 
-# Use Are You a Human to prevent malicious behavior while still allowing guests
-# to try out the site before signing up.
-gem 'ayah_integration'
-
 # Use Rolify to manage user roles.
 gem 'rolify', '~> 3.3.0.rc4'
 

@@ -5,5 +5,3 @@
         = f.url_field :url, placeholder: 'http://', class: 'form-control'
         %span.input-group-btn
           = f.button :submit, 'Go!', id: 'submit_url', class: 'btn-primary'
-          - unless current_user.present? || session[:ayah_passed]
-            = raw @publisher_html

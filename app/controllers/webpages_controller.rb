@@ -1,6 +1,4 @@
 class WebpagesController < ApplicationController
-  before_filter :verify_user
-
   def show
     @webpage = Webpage.friendly.find(params[:id])
     if @webpage.present?
@@ -16,11 +14,5 @@ class WebpagesController < ApplicationController
         end
       end
     end
-  end
-
-  protected
-  
-  def verify_user
-    redirect_to root_path unless current_user || session[:ayah_passed]
   end
 end
