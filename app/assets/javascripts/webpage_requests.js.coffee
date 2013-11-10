@@ -8,7 +8,16 @@ toggle_submit = ->
 
 initEvents = ->
   toggle_submit()
-  $('#webpage_request_url').keyup (event) ->
+
+  propertyChangeUnbound = false # This is to support IE < 9
+  $('#webpage_request_url').on 'propertychange', (event) ->
+    toggle_submit() if event.originalEvent.propertyName is 'value'
+
+  # Toggle submit button based on valid input
+  $('#webpage_request_url').on 'input', ->
+    unless propertyChangeUnbound
+      $('#webpage_request_url').unbind 'propertychange'
+      propertyChangeUnbound = true
     toggle_submit()
 
   $('#webpage_request_url').keydown (event) ->
