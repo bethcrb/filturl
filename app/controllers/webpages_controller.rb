@@ -12,6 +12,8 @@ class WebpagesController < ApplicationController
         if user_signed_in?
           @screenshot.upload_screenshot if @screenshot.needs_update?
         end
+      else
+        redirect_to root_path
       end
     end
   end
