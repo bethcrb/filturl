@@ -1,19 +1,20 @@
 #overview_tab.tab-pane.fade.in.active
-  %table.table.table-bordered.table-hover
-    %tr
-      %th IP address
-      %td= @webpage.primary_ip
-    - if @webpage.location != ''
+  .table-responsive
+    %table.table.table-bordered.table-hover
       %tr
-        %th IP location
-        %td= @webpage.location
-    %tr
-      %th Redirect count
-      %td= @webpage_response.redirect_count
-    - if @webpage_response.redirect_count > 0
+        %th IP address
+        %td= @webpage.primary_ip
+      - if @webpage.location != ''
+        %tr
+          %th IP location
+          %td= @webpage.location
       %tr
-        %th Redirects
-        %td
-          %ol
-            - @webpage_response.webpage_redirects.each do |redirect|
-              %li= redirect.url
+        %th Redirect count
+        %td= @webpage_response.redirect_count
+      - if @webpage_response.redirect_count > 0
+        %tr
+          %th Redirects
+          %td
+            %ol
+              - @webpage_response.webpage_redirects.each do |redirect|
+                %li= redirect.url
