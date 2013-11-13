@@ -1,0 +1,12 @@
+#error_dialog
+  .container
+    .row
+      .col-xs-12
+        #logo
+          = image_tag('/logo.png')
+    .row
+      .col-xs-12.col-md-6.col-md-offset-3
+        .panel.panel-danger
+          .panel-heading
+            %h3.panel-title.text-center The change you wanted was rejected.
+          .panel-body Maybe you tried to change something you didn't have access to.
