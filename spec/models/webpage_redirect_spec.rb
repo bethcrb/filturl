@@ -20,8 +20,6 @@ describe WebpageRedirect do
 
   describe 'validations' do
     it { should validate_presence_of(:url) }
-    it { should_not allow_value('www.example.com').for(:url) }
-    it { should allow_value('http://www.example.com/').for(:url) }
     it { should ensure_length_of(:url).is_at_most(2000) }
 
     it { should validate_presence_of(:webpage_response) }

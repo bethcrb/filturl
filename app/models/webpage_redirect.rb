@@ -13,7 +13,6 @@ class WebpageRedirect < ActiveRecord::Base
   belongs_to :webpage_response
 
   validates :url, presence: true
-  validates :url, format: URI.regexp(%w(http https))
   validates :url, length: { maximum: 2000 }
   validates :webpage_response, presence: true
 end
