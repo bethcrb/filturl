@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131102124843) do
+ActiveRecord::Schema.define(version: 20131114132121) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20131102124843) do
 
   create_table "screenshots", force: true do |t|
     t.string   "filename"
-    t.string   "url",        limit: 500
-    t.string   "status",                 default: "new"
+    t.string   "url",        limit: 2000
+    t.string   "status",                  default: "new"
     t.integer  "webpage_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20131102124843) do
   add_index "screenshots", ["webpage_id"], name: "index_screenshots_on_webpage_id", using: :btree
 
   create_table "url_histories", force: true do |t|
-    t.string   "url",        limit: 500
+    t.string   "url",        limit: 2000
     t.integer  "webpage_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20131102124843) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   create_table "webpage_redirects", force: true do |t|
-    t.string   "url"
+    t.string   "url",                 limit: 2000
     t.integer  "webpage_response_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -119,13 +119,13 @@ ActiveRecord::Schema.define(version: 20131102124843) do
   add_index "webpage_redirects", ["webpage_response_id"], name: "index_webpage_redirects_on_webpage_response_id", using: :btree
 
   create_table "webpage_requests", force: true do |t|
-    t.string   "url",        null: false
-    t.integer  "user_id",    null: false
+    t.string   "url",        limit: 2000, null: false
+    t.integer  "user_id",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "webpage_requests", ["url", "user_id"], name: "index_webpage_requests_on_url_and_user_id", using: :btree
+  add_index "webpage_requests", ["url", "user_id"], name: "index_webpage_requests_on_url_and_user_id", length: {"url"=>255, "user_id"=>nil}, using: :btree
 
   create_table "webpage_responses", force: true do |t|
     t.integer  "redirect_count"
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20131102124843) do
   add_index "webpage_responses", ["webpage_request_id"], name: "index_webpage_responses_on_webpage_request_id", using: :btree
 
   create_table "webpages", force: true do |t|
-    t.string   "url",                           default: "", null: false
+    t.string   "url",        limit: 2000,       default: "", null: false
     t.string   "slug"
     t.string   "primary_ip"
     t.text     "body",       limit: 2147483647
@@ -150,6 +150,5 @@ ActiveRecord::Schema.define(version: 20131102124843) do
   end
 
   add_index "webpages", ["slug"], name: "index_webpages_on_slug", unique: true, using: :btree
-  add_index "webpages", ["url"], name: "index_webpages_on_url", unique: true, using: :btree
 
 end

@@ -3,7 +3,7 @@
 # Table name: webpage_requests
 #
 #  id         :integer          not null, primary key
-#  url        :string(255)      not null
+#  url        :string(2000)     not null
 #  user_id    :integer          not null
 #  created_at :datetime
 #  updated_at :datetime
@@ -36,6 +36,7 @@ describe WebpageRequest do
 
     it { should validate_presence_of(:user) }
     it { should validate_presence_of(:url) }
+    it { should ensure_length_of(:url).is_at_most(2000) }
 
     it 'should require unique value for url scoped to user_id', :vcr do
       subject.save!

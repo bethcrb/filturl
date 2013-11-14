@@ -3,7 +3,7 @@
 # Table name: webpage_requests
 #
 #  id         :integer          not null, primary key
-#  url        :string(255)      not null
+#  url        :string(2000)     not null
 #  user_id    :integer          not null
 #  created_at :datetime
 #  updated_at :datetime
@@ -22,6 +22,7 @@ class WebpageRequest < ActiveRecord::Base
   validates :url, presence: true
   validates :url, format: URI.regexp(%w(http https))
   validates :url, uniqueness: { case_sensitive: false, scope: :user_id }
+  validates :url, length: { maximum: 2000 }
   validate  :verify_url
 
   after_create :create_webpage_response!

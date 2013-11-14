@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  filename   :string(255)
-#  url        :string(500)
+#  url        :string(2000)
 #  status     :string(255)      default("new")
 #  webpage_id :integer
 #  created_at :datetime
@@ -27,7 +27,7 @@ describe Screenshot do
 
   describe 'validations' do
     it { should validate_presence_of(:webpage) }
-    it { screenshot.should ensure_length_of(:url).is_at_most(500) }
+    it { screenshot.should ensure_length_of(:url).is_at_most(2000) }
     it { should ensure_inclusion_of(:status).in_array(%w(active inactive new)) }
   end
 

@@ -3,7 +3,7 @@
 # Table name: webpages
 #
 #  id         :integer          not null, primary key
-#  url        :string(255)      default(""), not null
+#  url        :string(2000)     default(""), not null
 #  slug       :string(255)
 #  primary_ip :string(255)
 #  body       :text(2147483647)
@@ -21,6 +21,7 @@ class Webpage < ActiveRecord::Base
 
   validates :url, presence: true, format: URI.regexp(%w(http https))
   validates :url, uniqueness: { case_sensitive: false }
+  validates :url, length: { maximum: 2000 }
 
   after_create :create_screenshot!
 

@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  filename   :string(255)
-#  url        :string(500)
+#  url        :string(2000)
 #  status     :string(255)      default("new")
 #  webpage_id :integer
 #  created_at :datetime
@@ -18,7 +18,7 @@ class Screenshot < ActiveRecord::Base
   has_many :webpage_requests, through: :webpage_responses
 
   validates :webpage, presence: true
-  validates :url, length: { maximum: 500 }
+  validates :url, length: { maximum: 2000 }
   validates :status, inclusion: { in: %w(active inactive new),
     message: "%{value} is not a valid status" }
 

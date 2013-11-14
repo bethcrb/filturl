@@ -3,7 +3,7 @@
 # Table name: webpages
 #
 #  id         :integer          not null, primary key
-#  url        :string(255)      default(""), not null
+#  url        :string(2000)     default(""), not null
 #  slug       :string(255)
 #  primary_ip :string(255)
 #  body       :text(2147483647)
@@ -27,6 +27,7 @@ describe Webpage do
   describe 'validations' do
     it { should validate_presence_of(:url) }
     it { should validate_uniqueness_of(:url) }
+    it { should ensure_length_of(:url).is_at_most(2000) }
     it { should_not allow_value('www.example.com').for(:url) }
     it { should allow_value('http://www.example.com/').for(:url) }
   end

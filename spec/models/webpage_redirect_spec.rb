@@ -3,7 +3,7 @@
 # Table name: webpage_redirects
 #
 #  id                  :integer          not null, primary key
-#  url                 :string(255)
+#  url                 :string(2000)
 #  webpage_response_id :integer
 #  created_at          :datetime
 #  updated_at          :datetime
@@ -22,6 +22,7 @@ describe WebpageRedirect do
     it { should validate_presence_of(:url) }
     it { should_not allow_value('www.example.com').for(:url) }
     it { should allow_value('http://www.example.com/').for(:url) }
+    it { should ensure_length_of(:url).is_at_most(2000) }
 
     it { should validate_presence_of(:webpage_response) }
   end
