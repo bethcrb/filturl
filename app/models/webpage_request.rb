@@ -42,15 +42,13 @@ class WebpageRequest < ActiveRecord::Base
     return unless url =~ URI.regexp(%w(http https))
 
     begin
-      response = Typhoeus.get(url, followlocation: true, ssl_verifypeer: false)
-      if response.headers.empty?
+      response = Typhoeus.head(url, {
+        ssl_verifyhost: 0,
+        ssl_verifypeer: false,
+      })
+      if response.headers.empty? || response.code == 0
         message = response.return_message
-        errors.add(:url, "is not reachable (#{message})")
-      else
-        content_type = response.headers['Content-Type']
-        unless content_type.present? && content_type =~ /^text\/html/
-          errors.add(:url, 'could not be verified as HTML')
-        end
+        errors.add(:url, "could not be verified (#{message})")
       end
     rescue => e
       errors.add(:url, "returned an error (#{e.message})")

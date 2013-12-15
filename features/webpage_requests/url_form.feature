@@ -19,8 +19,3 @@ Feature: Submit URLs
   Scenario: User submits an invalid URL
     When I submit the URL "http://not.a.valid.url"
     Then I should see an invalid URL message
-
-  @vcr
-  Scenario: User submits a URL with the wrong content-type
-    When I submit the URL "https://www.filturl.net/logo.png"
-    Then I should see an invalid content-type message

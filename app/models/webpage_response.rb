@@ -33,10 +33,14 @@ class WebpageResponse < ActiveRecord::Base
       ssl_verifypeer: false)
     webpage_url = response.effective_url || webpage_request.url
     webpage = Webpage.find_or_initialize_by(url: webpage_url)
-    webpage.update_attributes!(
-      primary_ip: response.primary_ip,
-      body: response.response_body.force_encoding('ISO-8859-1')
-        .encode('utf-8', replace: nil))
+    webpage.primary_ip = response.primary_ip
+    content = response.response_body
+    if content.is_utf8?
+      webpage.body = content
+    else
+      webpage.body = content.force_encoding('ISO-8859-1').encode('UTF-8')
+    end
+    webpage.save!
 
     response_data = {
       code:           response.response_code,
