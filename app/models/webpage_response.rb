@@ -31,14 +31,19 @@ class WebpageResponse < ActiveRecord::Base
   def get_url
     response = Typhoeus.get(webpage_request.url, followlocation: true,
       ssl_verifypeer: false)
+
     webpage_url = response.effective_url || webpage_request.url
+    content_type = response.headers['Content-Type']
+    mime_type = MIME::Types[content_type]
+
     webpage = Webpage.find_or_initialize_by(url: webpage_url)
     webpage.primary_ip = response.primary_ip
-    content = response.response_body
-    if content.is_utf8?
+    if mime_type.present? && mime_type.first.ascii?
+      content = response.response_body
+      unless content.is_utf8?
+        content.force_encoding('ISO-8859-1').encode!('UTF-8')
+      end
       webpage.body = content
-    else
-      webpage.body = content.force_encoding('ISO-8859-1').encode('UTF-8')
     end
     webpage.save!
 
