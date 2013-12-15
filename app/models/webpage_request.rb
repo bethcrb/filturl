@@ -8,6 +8,10 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_webpage_requests_on_url_and_user_id  (url,user_id)
+#
 
 class WebpageRequest < ActiveRecord::Base
   belongs_to :user

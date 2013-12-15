@@ -8,6 +8,10 @@
 #  created_at          :datetime
 #  updated_at          :datetime
 #
+# Indexes
+#
+#  index_webpage_redirects_on_webpage_response_id  (webpage_response_id)
+#
 
 require 'spec_helper'
 

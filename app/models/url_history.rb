@@ -9,6 +9,11 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_url_histories_on_user_id     (user_id)
+#  index_url_histories_on_webpage_id  (webpage_id)
+#
 
 class UrlHistory < ActiveRecord::Base
   belongs_to :webpage

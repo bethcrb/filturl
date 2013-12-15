@@ -11,6 +11,11 @@
 #  created_at         :datetime
 #  updated_at         :datetime
 #
+# Indexes
+#
+#  index_webpage_responses_on_webpage_id          (webpage_id)
+#  index_webpage_responses_on_webpage_request_id  (webpage_request_id)
+#
 
 class WebpageResponse < ActiveRecord::Base
   belongs_to :webpage

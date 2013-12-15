@@ -10,6 +10,10 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_webpages_on_slug  (slug) UNIQUE
+#
 
 require 'spec_helper'
 

@@ -10,6 +10,10 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_screenshots_on_webpage_id  (webpage_id)
+#
 
 class Screenshot < ActiveRecord::Base
   belongs_to :webpage
