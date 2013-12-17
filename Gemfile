@@ -105,6 +105,9 @@ group :development, :test do
 
   # Use Spork to speed up test suite.
   gem 'spork-rails', github: 'sporkrb/spork-rails'
+
+  # Use Teaspoon for testing JavaScript with Jasmine.
+  gem 'teaspoon'
 end
 
 # Use Bootstrap for front-end framework.
