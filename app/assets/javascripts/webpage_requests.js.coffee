@@ -23,11 +23,16 @@ initEvents = ->
   $('#webpage_request_url').keydown (event) ->
     if event.keyCode is 13
       $('#webpage_request_url').trigger 'blur'
-      $('#submit_url').click()
+      $('#new_webpage_request').submit()
 
   $('#webpage_request_url').blur ->
     webpageRequest = new WebpageRequest(@value)
     @value = webpageRequest.url
+
+  $('#new_webpage_request').submit ->
+    $('#webpage_request_url').attr('readonly', true)
+    $('#submit_url').attr('disabled', true)
+    $('#submit_url').removeClass('btn-primary').addClass('btn-default')
 
 $(document).on 'page:change', ->
   initEvents()
