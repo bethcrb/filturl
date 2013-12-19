@@ -4,8 +4,8 @@
   = f.full_error :unlock_token
   .form-group
     .col-xs-12.col-md-4
-      = f.input :email, required: true, autofocus: true, input_html: { class: 'form-control' }
+      = f.input :email, required: true, autofocus: true, input_html: { class: 'form-control input-sm' }
   .form-group
     .col-xs-12.col-md-4
-      = f.button :submit, 'Resend unlock instructions'
+      = f.button :submit, 'Resend unlock instructions', class: 'btn-primary btn-sm'
 = render 'devise/shared/links'

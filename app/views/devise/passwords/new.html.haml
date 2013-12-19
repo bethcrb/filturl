@@ -3,8 +3,8 @@
   = f.error_notification
   .form-group
     .col-xs-12.col-md-4
-      = f.input :login, required: true, autofocus: true, input_html: { autocapitalize: 'none', autocorrect: 'off', class: 'form-control' }
+      = f.input :login, required: true, autofocus: true, input_html: { autocapitalize: 'none', autocorrect: 'off', class: 'form-control input-sm' }
     .form-group
       .col-xs-12.col-md-4
-        = f.button :submit, 'Send me reset password instructions'
+        = f.button :submit, 'Send me reset password instructions', class: 'btn-primary btn-sm'
 = render 'devise/shared/links'

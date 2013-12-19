@@ -4,8 +4,8 @@
   = f.full_error :confirmation_token
   .form-group
     .col-xs-12.col-md-4
-      = f.input :login, required: true, autofocus: true, input_html: { autocapitalize: 'none', autocorrect: 'off', class: 'form-control' }
+      = f.input :login, required: true, autofocus: true, input_html: { autocapitalize: 'none', autocorrect: 'off', class: 'form-control input-sm' }
   .form-group
     .col-xs-12.col-md-4
-    = f.button :submit, 'Resend confirmation instructions'
+    = f.button :submit, 'Resend confirmation instructions', class: 'btn-primary btn-sm'
 = render 'devise/shared/links'

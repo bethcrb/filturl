@@ -5,11 +5,11 @@
   = f.full_error :reset_password_token
   .form-group
     .col-xs-12.col-md-4
-      = f.input :password, label: 'New password', required: true, autofocus: true, input_html: { class: 'form-control' }
+      = f.input :password, label: 'New password', required: true, autofocus: true, input_html: { class: 'form-control input-sm' }
   .form-group
     .col-xs-12.col-md-4
-      = f.input :password_confirmation, label: 'Confirm your new password', required: true, input_html: { class: 'form-control' }
+      = f.input :password_confirmation, label: 'Confirm your new password', required: true, input_html: { class: 'form-control input-sm' }
   .form-group
     .col-xs-12.col-md-4
-      = f.button :submit, 'Change my password'
+      = f.button :submit, 'Change my password', class: 'btn-primary btn-sm'
 = render 'devise/shared/links'
