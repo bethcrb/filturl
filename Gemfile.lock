@@ -1,10 +1,10 @@
 GIT
   remote: git://github.com/FriendlyId/friendly_id.git
-  revision: 23cbef2bbe71189e4a91f07b3479844f33c836fa
+  revision: 35ce3de1c65682004cad00fe90f546137499cd64
   branch: master
   specs:
     friendly_id (5.0.2)
-      activerecord (~> 4.0.0)
+      activerecord (>= 4.0.0)
 
 GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
@@ -16,9 +16,9 @@ GIT
 
 GIT
   remote: git://github.com/aws/aws-sdk-ruby.git
-  revision: f754ca2fd74ccb213d2b40263b40fe9aa95157c7
+  revision: 2d129a96ae6d7c4773711f84b77d3e0c70b4f650
   specs:
-    aws-sdk (1.30.0)
+    aws-sdk (1.30.1)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
@@ -122,7 +122,7 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.2)
     erubis (2.7.0)
-    ethon (0.6.1)
+    ethon (0.6.2)
       ffi (>= 1.3.0)
       mime-types (~> 1.18)
     execjs (2.0.2)
@@ -139,7 +139,7 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     formatador (0.2.4)
-    geoip (1.3.3)
+    geoip (1.3.4)
     gherkin (2.12.2)
       multi_json (~> 1.3)
     guard (2.2.5)
@@ -165,11 +165,11 @@ GEM
       spork (>= 0.8.4)
     haml (4.0.4)
       tilt
-    haml-rails (0.5.2)
-      actionpack (~> 4.0.1)
-      activesupport (~> 4.0.1)
+    haml-rails (0.5.3)
+      actionpack (>= 4.0.1)
+      activesupport (>= 4.0.1)
       haml (>= 3.1, < 5.0)
-      railties (~> 4.0.1)
+      railties (>= 4.0.1)
     hashie (2.0.5)
     highline (1.6.20)
     hike (1.2.3)
@@ -327,12 +327,12 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.0.0)
+    turbolinks (2.1.0)
       coffee-rails
-    typhoeus (0.6.6)
-      ethon (~> 0.6.1)
+    typhoeus (0.6.7)
+      ethon (~> 0.6.2)
     tzinfo (0.3.38)
-    uglifier (2.3.3)
+    uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     uuidtools (2.1.4)
