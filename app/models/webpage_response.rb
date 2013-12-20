@@ -41,9 +41,11 @@ class WebpageResponse < ActiveRecord::Base
     if mime_type.present? && mime_type.first.ascii?
       content = response.response_body
       unless content.is_utf8?
-        content.force_encoding('ISO-8859-1').encode!('UTF-8')
+        meta_encoding = Nokogiri::HTML(content).meta_encoding
+        meta_encoding ||= 'ISO-8859-1'
+        content.encode!('UTF-8', meta_encoding, invalid: :replace)
       end
-      webpage.body = content
+      webpage.body = content.force_encoding('UTF-8')
     end
     webpage.save!
 
