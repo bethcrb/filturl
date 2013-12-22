@@ -9,10 +9,6 @@ describe WebpageRequestsController do
       get('/').should route_to('webpage_requests#index')
     end
 
-    it 'routes /robots.txt to webpage_requests#robots via get' do
-      get('/robots.txt').should route_to('webpage_requests#robots')
-    end
-
     it 'routes /urls/request to webpage_requests#create via post' do
       post('/').should route_to('webpage_requests#create')
     end

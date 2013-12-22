@@ -12,7 +12,8 @@ Filturl::Application.routes.draw do
                             to:          'errors#show',
                             via:         :all
 
-  get '/robots.txt', to: 'webpage_requests#robots'
+  get '/robots.txt', to: 'robots#show'
+
   post '/',          to: 'webpage_requests#create', as: 'webpage_requests'
 
   get '/urls/:id', to: 'webpages#show', as: 'webpage'
