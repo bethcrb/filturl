@@ -31,7 +31,7 @@ class Screenshot < ActiveRecord::Base
   after_create :upload_screenshot
 
   def generate_screenshot
-    screenshot_js = Rails.root.join('vendor/screenshot.js').to_s
+    screenshot_js = Rails.root.join('vendor/screenshot.coffee').to_s
     Phantomjs.run('--ignore-ssl-errors=yes',
                   screenshot_js,
                   webpage.url,
