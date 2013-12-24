@@ -9,7 +9,7 @@ class ErrorsController < ApplicationController
   end
 
   protected
- 
+
   def status_code
     params[:status] || 500
   end

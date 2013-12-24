@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   def save_previous_url
     # Do not save AJAX calls or URLs for the Users controllers
     unless controller_path =~ %r{^users/} || request.xhr?
-      session[:previous_url] = request.fullpath 
+      session[:previous_url] = request.fullpath
     end
   end
 
