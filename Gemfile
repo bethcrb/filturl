@@ -39,7 +39,7 @@ group :development do
 
   # Better Errors replaces the standard Rails error page with a much better and
   # more useful error page.
-  gem 'better_errors', '~> 1.0'
+  gem 'better_errors', '~> 1.1'
 
   # binding_of_caller retrieves the binding of a method's caller. Used by
   # Better Errors for advanced features.
@@ -68,7 +68,7 @@ end
 
 group :test do
   # Use Capybara to simulate user interactions on the website.
-  gem 'capybara', '~> 2.1.0'
+  gem 'capybara', '~> 2.2'
 
   # Use Cucumber for behavior-driven development and integration testing.
   gem 'cucumber-rails', require: false
@@ -84,13 +84,13 @@ group :test do
   gem 'shoulda', '~> 3.5.0'
 
   # Use SimpleCov for analyzing code coverage data.
-  gem 'simplecov', '~> 0.7.1', require: false
+  gem 'simplecov', '~> 0.8', require: false
 
   # Use VCR to record and playback HTTP interactions.
-  gem 'vcr', '~> 2.6.0'
+  gem 'vcr', '~> 2.8'
 
   # Use WebMock to stub out Net::HTTP requests.
-  gem 'webmock', '~> 1.13.0'
+  gem 'webmock', '~> 1.16'
 end
 
 group :development, :test do
@@ -126,7 +126,7 @@ gem 'coderay'
 
 # Use Devise and Omniauth for authentication.
 gem 'devise', '~> 3.1'
-gem 'omniauth-facebook', '~> 1.4.1'
+gem 'omniauth-facebook', '~> 1.5.1'
 gem 'omniauth-github', '~> 1.1.0'
 gem 'omniauth-google-oauth2', '~> 0.2.0'
 
