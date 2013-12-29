@@ -110,12 +110,11 @@ group :development, :test do
   gem 'teaspoon'
 end
 
-# Use Bootstrap for front-end framework.
-gem 'anjlab-bootstrap-rails', github:  'anjlab/bootstrap-rails',
-                              require: 'bootstrap-rails'
-
 # Use AWS SDK for S3.
 gem 'aws-sdk', github: 'aws/aws-sdk-ruby'
+
+# Use Bootstrap for front-end framework.
+gem 'bootstrap-sass', '~> 3.0.3.0'
 
 # Use CanCan to restrict access to pages that should only be viewed by an
 # administrator.

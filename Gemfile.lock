@@ -7,14 +7,6 @@ GIT
       activerecord (>= 4.0.0)
 
 GIT
-  remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: 461121444e24cdf78357418bfca9f2b8a9a1c518
-  specs:
-    anjlab-bootstrap-rails (3.0.3.0)
-      railties (>= 3.0)
-      sass (>= 3.2)
-
-GIT
   remote: git://github.com/aws/aws-sdk-ruby.git
   revision: 8cf3a0073fd4448ede56317f1dd3a9aadeab97ba
   specs:
@@ -70,6 +62,8 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.0.3.0)
+      sass (~> 3.2)
     builder (3.1.4)
     cancan (1.6.10)
     capistrano (2.15.5)
@@ -351,11 +345,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  anjlab-bootstrap-rails!
   annotate (>= 2.5.0)
   aws-sdk!
   better_errors (~> 1.1)
   binding_of_caller (~> 0.7.2)
+  bootstrap-sass (~> 3.0.3.0)
   cancan (~> 1.6.10)
   capistrano (~> 2.15.5)
   capybara (~> 2.2)
