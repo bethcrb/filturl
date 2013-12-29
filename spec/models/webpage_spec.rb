@@ -42,4 +42,26 @@ describe Webpage do
       webpage.screenshot.should_not be_nil
     end
   end
+
+  describe 'encoding' do
+    it 'should be utf-8 for french' do
+      webpage = create(:french_webpage)
+      webpage.body.is_utf8?.should be_true
+    end
+
+    it 'should be utf-8 for hebrew' do
+      webpage = create(:hebrew_webpage)
+      webpage.body.is_utf8?.should be_true
+    end
+
+    it 'should be utf-8 for japanese' do
+      webpage = create(:japanese_webpage)
+      webpage.body.is_utf8?.should be_true
+    end
+
+    it 'should be utf-8 for russian' do
+      webpage = create(:russian_webpage)
+      webpage.body.is_utf8?.should be_true
+    end
+  end
 end

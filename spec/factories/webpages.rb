@@ -23,5 +23,21 @@ FactoryGirl.define do
     slug nil
     primary_ip '74.125.239.114'
     body '<html><head></head><body>MyText</body></html>'
+
+    factory :french_webpage do
+      body '<html><head></head><body>Cette page web est en français.</body></html>'
+    end
+
+    factory :japanese_webpage do
+      body '<html><head></head><body>このウェブページは日本語である。</body></html>'
+    end
+
+    factory :hebrew_webpage do
+      body '<html><head></head><body>דף אינטרנט זה הוא בעברית.</body></html>'
+    end
+
+    factory :russian_webpage do
+      body '<html><head></head><body>Данная веб-страница на русском языке.</body></html>'
+    end
   end
 end
