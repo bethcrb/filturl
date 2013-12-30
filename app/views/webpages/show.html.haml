@@ -8,15 +8,15 @@
   .col-xs-12
     %ul#navTabs.nav.nav-tabs.nav-justified
       %li.active
-        %a{'data-target' => '#overview_tab', 'data-toggle' => 'tab', href: '#overview_tab'} Overview
+        %a{data: { target: '#overview_tab', toggle: 'tab' }, href: '#overview_tab'} Overview
       %li
-        %a{'data-target' => '#http_headers_tab', 'data-toggle' => 'tab', href: '#http_headers_tab'} HTTP Headers
+        %a{data: { target: '#http_headers_tab', toggle: 'tab' }, href: '#http_headers_tab'} HTTP Headers
       - if @webpage.body.present?
         %li
-          %a{'data-target' => '#view_source_tab', 'data-toggle' => 'tab', href: '#view_source_tab'} View Source
+          %a{data: { target: '#view_source_tab', toggle: 'tab' }, href: '#view_source_tab'} View Source
       - if @webpage.screenshot.url.present?
         %li
-          %a{'data-target' => '#screenshot_tab', 'data-toggle' => 'tab', href: '#screenshot_tab'} Screenshot
+          %a{data: { target: '#screenshot_tab', toggle: 'tab' }, href: '#screenshot_tab'} Screenshot
     .tab-content
       = render 'overview'
       = render 'http_headers'
