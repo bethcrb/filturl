@@ -32,16 +32,6 @@ class Webpage < ActiveRecord::Base
   friendly_id :url, use: :slugged
 
   def location
-    if (geocoder = Geocoder.search(primary_ip).first)
-      location = []
-      geocoder.city.empty? || location << geocoder.city
-      geocoder.state_code.empty? || location << geocoder.state_code
-      geocoder.country.empty? || location << geocoder.country
-      location.join(', ').rstrip.gsub(/[^\w+], /, '')
-    end
-  end
-
-  def should_generate_new_friendly_id?
-    new_record? || slug.nil?
+    @location ||= WebpageLocation.new(self).to_s
   end
 end
