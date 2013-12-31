@@ -32,12 +32,11 @@ class Webpage < ActiveRecord::Base
   friendly_id :url, use: :slugged
 
   def location
-    geocity = GeoIP.new('vendor/resource/geocity.dat').city(primary_ip)
-    if geocity.present?
+    if (geocoder = Geocoder.search(primary_ip).first)
       location = []
-      geocity.city_name.present? && location << geocity.city_name
-      geocity.region_name.present? && location << geocity.region_name
-      geocity.country_name.present? && location << geocity.country_name
+      geocoder.city.empty? || location << geocoder.city
+      geocoder.state_code.empty? || location << geocoder.state_code
+      geocoder.country.empty? || location << geocoder.country
       location.join(', ').rstrip.gsub(/[^\w+], /, '')
     end
   end

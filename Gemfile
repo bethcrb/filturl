@@ -135,8 +135,8 @@ gem 'figaro', '~> 0.7.0'
 # Use FriendlyId for permalinks.
 gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'
 
-# Use GeoIP for determining the location of an IP address.
-gem 'geoip', '~> 1.3'
+# Use Geocoder for determining the location of an IP address.
+gem 'geocoder'
 
 # Use Haml for markup in templates instead of ERB.
 gem 'haml-rails'
