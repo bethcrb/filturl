@@ -35,7 +35,6 @@ end
 def sign_up
   delete_user
   visit '/users/sign_up'
-  fill_in 'user_name', with: @visitor[:name]
   fill_in 'user_email', with: @visitor[:email]
   fill_in 'user_username', with: @visitor[:username]
   fill_in 'user_password', with: @visitor[:password]
@@ -152,12 +151,6 @@ end
 When /^I sign in with a wrong password$/ do
   @visitor = @visitor.merge(password: 'wrongpass')
   sign_in_with_email
-end
-
-When /^I change my name$/ do
-  visit '/users/edit'
-  fill_in 'user_name', with: 'newname'
-  click_button 'Update'
 end
 
 When /^I change my username to "([^']*)"$/ do |newusername|

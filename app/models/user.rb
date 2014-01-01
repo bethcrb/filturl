@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  name                   :string(255)
 #  email                  :string(255)      default(""), not null
 #  username               :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
@@ -81,7 +80,6 @@ class User < ActiveRecord::Base
       username = auth.info.email unless user_by_username.nil?
 
       user = User.new(
-        name:     auth.info.name,
         email:    auth.info.email,
         username: username,
         password: Devise.friendly_token[0, 20],
@@ -95,11 +93,8 @@ class User < ActiveRecord::Base
       uid:      auth.uid,
     )
 
-    authentication.name = auth.info.name
     authentication.email = auth.info.email
     authentication.nickname = auth.info.nickname if auth.info.nickname
-    authentication.first_name = auth.info.first_name
-    authentication.last_name = auth.info.last_name
     authentication.image = auth.info.image
     authentication.raw_info = auth.to_json
     authentication.save!

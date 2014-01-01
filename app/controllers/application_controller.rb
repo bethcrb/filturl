@@ -94,7 +94,6 @@ class ApplicationController < ActionController::Base
   def create_guest_user
     guest_username = "guest_#{Time.now.to_i}#{rand(99)}"
     guest_user = User.new(
-      name:     'Guest',
       email:    "#{guest_username}@#{request.remote_ip}",
       username: guest_username,
     )

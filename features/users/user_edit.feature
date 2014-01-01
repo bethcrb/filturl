@@ -1,14 +1,10 @@
 Feature: Edit User
   As a registered user of the website
   I want to edit my user profile
-  so I can change my name
+  so I can change my account information
 
   Background:
     Given I am logged in
-
-  Scenario: I change my name
-    When I change my name
-    Then I should see an account edited message
 
   Scenario: I change my username to "valid_username"
     When I change my username to "valid_username"

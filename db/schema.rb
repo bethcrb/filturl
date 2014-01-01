@@ -11,16 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131114132121) do
+ActiveRecord::Schema.define(version: 20140101043719) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
     t.string   "uid"
-    t.string   "name"
     t.string   "email"
     t.string   "nickname"
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "image"
     t.text     "raw_info"
     t.integer  "user_id"
@@ -72,7 +69,6 @@ ActiveRecord::Schema.define(version: 20131114132121) do
   add_index "url_histories", ["webpage_id"], name: "index_url_histories_on_webpage_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "name"
     t.string   "email",                  default: "", null: false
     t.string   "username",               default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

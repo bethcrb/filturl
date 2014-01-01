@@ -5,9 +5,6 @@
   = display_base_errors resource
   .form-group
     .col-xs-12.col-md-4
-      = f.input :name, autofocus: true, input_html: { class: 'form-control input-sm' }
-  .form-group
-    .col-xs-12.col-md-4
       = f.input :email, required: true, input_html: { class: 'form-control input-sm' }
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %p

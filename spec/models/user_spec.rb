@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  name                   :string(255)
 #  email                  :string(255)      default(""), not null
 #  username               :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
