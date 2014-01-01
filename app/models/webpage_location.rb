@@ -1,23 +1,24 @@
-# The WebpageLocation class is for determing information about a webpage's
+# The WebpageLocation class is for determining information about a webpage's
 # location based on its IP address.
 class WebpageLocation
   def initialize(webpage)
-    @geocoder = Geocoder.search(webpage.primary_ip).first
+    return '' unless webpage && webpage.primary_ip
+    @geoip2 = GeoIP2::locate(webpage.primary_ip)
   end
 
   def city
-    @geocoder.city
+    @geoip2 && @geoip2['city']
   end
 
-  def state_code
-    @geocoder.state_code
+  def state
+    @geoip2 && @geoip2['subdivision_code']
   end
 
   def country
-    @geocoder.country
+    @geoip2 && @geoip2['country']
   end
 
   def to_s
-    [city, state_code, country].reject(&:empty?).join(', ')
+    [city, state, country].reject(&:blank?).join(', ')
   end
 end

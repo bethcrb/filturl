@@ -32,6 +32,6 @@ class Webpage < ActiveRecord::Base
   friendly_id :url, use: :slugged
 
   def location
-    @location ||= WebpageLocation.new(self).to_s
+    @location ||= WebpageLocation.new(self)
   end
 end

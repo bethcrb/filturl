@@ -4,10 +4,10 @@
       %tr
         %th IP address
         %td= @webpage.primary_ip
-      - if @webpage.location != ''
+      - if @webpage.location.to_s != ''
         %tr
           %th IP location
-          %td= @webpage.location
+          %td= @webpage.location.to_s
       %tr
         %th Redirect count
         %td= @webpage_response.redirect_count

@@ -16,6 +16,12 @@ GIT
       uuidtools (~> 2.1)
 
 GIT
+  remote: git://github.com/da4nik/geoip2.git
+  revision: b78cfbbc4ea4b28cf1c5020dc1b48b05cb98f465
+  specs:
+    geoip2 (0.0.8)
+
+GIT
   remote: git://github.com/sporkrb/spork-rails.git
   revision: 0dd45e59d3237b4c8f9efc215b46d9c07072a95e
   specs:
@@ -134,7 +140,6 @@ GEM
       bundler (~> 1.0)
       rails (>= 3, < 5)
     formatador (0.2.4)
-    geocoder (1.1.9)
     gherkin (2.12.2)
       multi_json (~> 1.3)
     guard (2.2.5)
@@ -363,7 +368,7 @@ DEPENDENCIES
   ffaker (~> 1.0)
   figaro (~> 0.7.0)
   friendly_id!
-  geocoder
+  geoip2!
   guard (~> 2.1)
   guard-annotate
   guard-cucumber
