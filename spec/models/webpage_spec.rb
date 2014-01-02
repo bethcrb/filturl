@@ -2,13 +2,15 @@
 #
 # Table name: webpages
 #
-#  id         :integer          not null, primary key
-#  url        :string(2000)     default(""), not null
-#  slug       :string(255)
-#  primary_ip :string(255)
-#  body       :text(2147483647)
-#  created_at :datetime
-#  updated_at :datetime
+#  id            :integer          not null, primary key
+#  url           :string(2000)     default(""), not null
+#  slug          :string(255)
+#  primary_ip    :string(255)
+#  body          :text(2147483647)
+#  content_type  :string(255)
+#  meta_encoding :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
 #
 # Indexes
 #

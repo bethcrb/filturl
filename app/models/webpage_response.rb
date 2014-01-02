@@ -33,20 +33,11 @@ class WebpageResponse < ActiveRecord::Base
       ssl_verifypeer: false)
 
     webpage_url = response.effective_url || webpage_request.url
-    content_type = response.headers['Content-Type']
-    mime_type = MIME::Types[content_type]
 
     webpage = Webpage.find_or_initialize_by(url: webpage_url)
     webpage.primary_ip = response.primary_ip
-    if mime_type.present? && mime_type.first.ascii?
-      content = response.response_body
-      unless content.is_utf8?
-        meta_encoding = Nokogiri::HTML(content).meta_encoding
-        meta_encoding ||= 'ISO-8859-1'
-        content.encode!('UTF-8', meta_encoding, invalid: :replace)
-      end
-      webpage.body = content.force_encoding('UTF-8')
-    end
+    webpage.body = response.response_body
+    webpage.content_type = response.headers['Content-Type']
     webpage.save!
 
     response_data = {

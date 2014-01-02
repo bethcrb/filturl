@@ -2,13 +2,15 @@
 #
 # Table name: webpages
 #
-#  id         :integer          not null, primary key
-#  url        :string(2000)     default(""), not null
-#  slug       :string(255)
-#  primary_ip :string(255)
-#  body       :text(2147483647)
-#  created_at :datetime
-#  updated_at :datetime
+#  id            :integer          not null, primary key
+#  url           :string(2000)     default(""), not null
+#  slug          :string(255)
+#  primary_ip    :string(255)
+#  body          :text(2147483647)
+#  content_type  :string(255)
+#  meta_encoding :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
 #
 # Indexes
 #
@@ -23,6 +25,8 @@ FactoryGirl.define do
     slug nil
     primary_ip '74.125.239.114'
     body '<html><head></head><body>MyText</body></html>'
+    content_type nil
+    meta_encoding nil
 
     factory :french_webpage do
       body '<html><head></head><body>Cette page web est en français.</body></html>'
