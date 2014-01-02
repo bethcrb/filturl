@@ -8,7 +8,6 @@ admin_user = User.find_or_create_by(
   username: 'admin',
   email:    ENV['ADMIN_EMAIL'].dup
 )
-admin_user.name = ENV['ADMIN_NAME'].dup
 admin_user.password = ENV['ADMIN_PASSWORD'].dup
 admin_user.confirmed_at = Time.now
 admin_user.save
@@ -19,7 +18,6 @@ user = User.find_or_create_by(
   username: 'test_user',
   email:    ENV['USER_EMAIL'].dup
 )
-user.name = ENV['USER_NAME'].dup
 user.password = ENV['USER_PASSWORD'].dup
 user.confirmed_at = Time.now
 user.save
