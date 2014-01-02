@@ -27,7 +27,7 @@ class WebpageRequest < ActiveRecord::Base
   validates :url, format: URI.regexp(%w(http https))
   validates :url, uniqueness: { case_sensitive: false, scope: :user_id }
   validates :url, length: { maximum: 2000 }
-  validate  :verify_url
+  validates_with UrlValidator
 
   after_create :create_webpage_response!
   after_save   :add_to_url_history
@@ -36,23 +36,6 @@ class WebpageRequest < ActiveRecord::Base
 
   def clean_url
     self.url = PostRank::URI.clean(url).to_s unless url.blank?
-  end
-
-  def verify_url
-    return unless url =~ URI.regexp(%w(http https))
-
-    begin
-      response = Typhoeus.head(url, {
-        ssl_verifyhost: 0,
-        ssl_verifypeer: false,
-      })
-      if response.headers.empty? || response.code == 0
-        message = response.return_message
-        errors.add(:url, "could not be verified (#{message})")
-      end
-    rescue => e
-      errors.add(:url, "returned an error (#{e.message})")
-    end
   end
 
   def add_to_url_history
