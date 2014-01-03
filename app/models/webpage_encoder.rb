@@ -31,7 +31,8 @@ class WebpageEncoder
     set_meta_encoding
     content = @webpage.body
     if mime_type.present? && mime_type.first.ascii? && !content.is_utf8?
-      content.encode!('UTF-8', @webpage.meta_encoding, invalid: :replace)
+      encoding_options = {invalid: :replace, undef: :replace, replace: ''}
+      content.encode!('UTF-8', @webpage.meta_encoding, encoding_options)
     end
     content
   end
