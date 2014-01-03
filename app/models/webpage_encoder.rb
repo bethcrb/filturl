@@ -1,5 +1,5 @@
-# The WebpageEncoder class is for the encoding the body of a webpage before it
-# is saved.
+# The WebpageEncoder class is for encoding the webpage body in UTF-8
+# before it is saved.
 class WebpageEncoder
   attr_accessor :webpage
 
@@ -31,7 +31,7 @@ class WebpageEncoder
     set_meta_encoding
     content = @webpage.body
     if mime_type.present? && mime_type.first.ascii? && !content.is_utf8?
-      encoding_options = {invalid: :replace, undef: :replace, replace: ''}
+      encoding_options = { invalid: :replace, undef: :replace, replace: '' }
       content.encode!('UTF-8', @webpage.meta_encoding, encoding_options)
     end
     content

@@ -27,21 +27,5 @@ FactoryGirl.define do
     body '<html><head></head><body>MyText</body></html>'
     content_type nil
     meta_encoding nil
-
-    factory :french_webpage do
-      body '<html><head></head><body>Cette page web est en français.</body></html>'
-    end
-
-    factory :japanese_webpage do
-      body '<html><head></head><body>このウェブページは日本語である。</body></html>'
-    end
-
-    factory :hebrew_webpage do
-      body '<html><head></head><body>דף אינטרנט זה הוא בעברית.</body></html>'
-    end
-
-    factory :russian_webpage do
-      body '<html><head></head><body>Данная веб-страница на русском языке.</body></html>'
-    end
   end
 end
