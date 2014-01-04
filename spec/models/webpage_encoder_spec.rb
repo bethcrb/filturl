@@ -16,6 +16,24 @@ describe WebpageEncoder do
     end
   end
 
+  describe '#mime_type' do
+    it 'returns nil unless a content type is present', :vcr do
+      @webpage.update_attributes!(content_type: nil)
+      WebpageEncoder.new(@webpage).mime_type.should be_nil
+    end
+
+    it 'returns nil unless the content type is in MIME::Types', :vcr do
+      @webpage.update_attributes!(content_type: 'invalid/type')
+      WebpageEncoder.new(@webpage).mime_type.should be_nil
+    end
+
+    it 'returns the first mime type based on content_type', :vcr do
+      @webpage.update_attributes!(content_type: 'text/html')
+      WebpageEncoder.new(@webpage).mime_type.should ==
+        MIME::Types[@webpage.content_type].first
+    end
+  end
+
   describe 'encoding' do
     it 'should be UTF-8 for Big5', :vcr do
       webpage_request = create(:webpage_request, :big5)

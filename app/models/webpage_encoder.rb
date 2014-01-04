@@ -12,10 +12,9 @@ class WebpageEncoder
     @webpage.content_type
   end
 
-  # Find the mime type of this webpage based on its Content-Type header.
+  # Returns the mime type of this webpage based on its Content-Type header.
   def mime_type
-    return unless content_type
-    MIME::Types[content_type]
+    MIME::Types[content_type] && MIME::Types[content_type].first
   end
 
   # Set the meta encoding of this page as according to Nokogiri. In the event
@@ -35,7 +34,7 @@ class WebpageEncoder
 
     set_meta_encoding
     content = @webpage.body
-    if mime_type.present? && mime_type.first.ascii? && !content.is_utf8?
+    if mime_type.present? && mime_type.ascii? && !content.is_utf8?
       encoding_options = { invalid: :replace, undef: :replace, replace: '' }
       content.encode!('UTF-8', @webpage.meta_encoding, encoding_options)
     end
