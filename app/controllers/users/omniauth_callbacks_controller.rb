@@ -15,7 +15,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     provider = omniauth_data['provider']
     provider_name = provider == 'google_oauth2' ? 'google' : provider
 
-    @user = User.find_for_omniauth(omniauth_data, current_user)
+    @user = OmniauthUser.new(omniauth_data, current_user).find_or_create_user
 
     if @user.persisted?
       remember_me(@user)

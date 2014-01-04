@@ -35,8 +35,6 @@
 #
 
 require 'spec_helper'
-require File.expand_path('../../../features/support/omniauth',  __FILE__)
-auth = OmniAuth.config.mock_auth[:facebook]
 
 describe User do
   describe 'associations' do
@@ -108,7 +106,6 @@ describe User do
 
   describe 'respond_to' do
     it { User.should respond_to(:find_first_by_auth_conditions) }
-    it { User.should respond_to(:find_for_omniauth) }
   end
 
   describe '.find_first_by_auth_conditions' do
@@ -142,37 +139,6 @@ describe User do
     it 'should find the user by email when the login key is set' do
       conditions = { login: user.email }
       User.find_first_by_auth_conditions(conditions).should == user
-    end
-  end
-
-  describe '.find_for_omniauth' do
-    let(:authentication) { build(:authentication) }
-
-    context 'new user' do
-      it 'should not use the same user if the e-mail address exists' do
-        user = create(:user, email: auth.info.email )
-        User.find_for_omniauth(auth).should == user
-      end
-
-      it 'should create a new user if the e-mail address does not exist' do
-        User.find_for_omniauth(auth)
-        User.find_by(email: auth.info.email).should_not be_nil
-      end
-
-      it 'should use the email address if the username already exists' do
-        email = Faker::Internet.email
-        old_user = create(:user, email: email, username: auth.info.nickname )
-        User.find_for_omniauth(auth)
-        new_user = User.find_by(email: auth.info.email)
-        new_user.username.should == auth.info.email
-      end
-    end
-
-    context 'authentication' do
-      it 'should create an authentication record' do
-        User.find_for_omniauth(auth)
-        Authentication.find_by(email: auth.info.email).should_not be_nil
-      end
     end
   end
 end

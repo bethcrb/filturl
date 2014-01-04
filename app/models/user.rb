@@ -57,6 +57,8 @@ class User < ActiveRecord::Base
   # Virtual attribute for authenticating by either username or email
   attr_accessor :login
 
+  # This ovverides a Devise method in order to allow users to sign in using
+  # either their username or e-mail address.
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
@@ -68,37 +70,5 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
-  end
-
-  def self.find_for_omniauth(auth, signed_in_resource = nil)
-    username = auth.info.nickname
-    username = auth.info.email if username.blank?
-
-    user = User.find_by(email: auth.info.email)
-    unless user
-      user_by_username = User.find_by(username: username)
-      username = auth.info.email unless user_by_username.nil?
-
-      user = User.new(
-        email:    auth.info.email,
-        username: username,
-        password: Devise.friendly_token[0, 20],
-      )
-      user.skip_confirmation!
-      user.save!
-    end
-
-    authentication = user.authentications.find_or_create_by(
-      provider: auth.provider,
-      uid:      auth.uid,
-    )
-
-    authentication.email = auth.info.email
-    authentication.nickname = auth.info.nickname if auth.info.nickname
-    authentication.image = auth.info.image
-    authentication.raw_info = auth.to_json
-    authentication.save!
-
-    user
   end
 end

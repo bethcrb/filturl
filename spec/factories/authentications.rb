@@ -28,8 +28,8 @@ FactoryGirl.define do
   factory :authentication do
     provider 'facebook'
     uid auth_uid
-    email { Faker::Internet.email(name) }
-    nickname { Faker::Internet.user_name(name) }
+    email { Faker::Internet.email }
+    nickname { Faker::Internet.user_name }
     image "http://graph.facebook.com/#{auth_uid}/picture?type=square"
     raw_info OmniAuth.config.mock_auth[:facebook]
     user nil
