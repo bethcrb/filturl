@@ -53,3 +53,7 @@ Then /^(?:|I )should not see "([^"]*)"$/ do |text|
     assert page.has_no_content?(text)
   end
 end
+
+Then /^(?:|I )should be redirected to (.+)$/ do |page_name|
+  step "I should be on #{page_name}"
+end
