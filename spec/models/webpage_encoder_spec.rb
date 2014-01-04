@@ -34,6 +34,23 @@ describe WebpageEncoder do
     end
   end
 
+  describe '#mime_type_allowed?' do
+    it 'returns false if the webpage does not have a content type set' do
+      @webpage.update_attributes!(content_type: nil)
+      WebpageEncoder.new(@webpage).mime_type_allowed?.should be_false
+    end
+
+    it 'returns false if the MIME type is not allowed' do
+      @webpage.update_attributes!(content_type: 'application/pdf')
+      WebpageEncoder.new(@webpage).mime_type_allowed?.should be_false
+    end
+
+    it 'returns true if the MIME type is allowed' do
+      @webpage.update_attributes!(content_type: 'text/html')
+      WebpageEncoder.new(@webpage).mime_type_allowed?.should be_true
+    end
+  end
+
   describe 'encoding' do
     it 'should be UTF-8 for Big5', :vcr do
       webpage_request = create(:webpage_request, :big5)

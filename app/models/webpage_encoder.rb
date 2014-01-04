@@ -3,6 +3,25 @@
 class WebpageEncoder
   attr_accessor :webpage
 
+  ALLOWED_MIME_TYPES = [
+    'application/javascript',
+    'application/json',
+    'application/jsonrequest',
+    'application/x-javascript',
+    'application/x-xml',
+    'application/x-yaml',
+    'application/xhtml+xml',
+    'application/xml',
+    'text/css',
+    'text/csv',
+    'text/html',
+    'text/javascript',
+    'text/plain',
+    'text/x-json',
+    'text/xml',
+    'text/yaml',
+  ]
+
   def initialize(webpage)
     @webpage = webpage
   end
@@ -12,9 +31,14 @@ class WebpageEncoder
     @webpage.content_type
   end
 
-  # Returns the mime type of this webpage based on its Content-Type header.
+  # Returns the MIME type of this webpage based on its Content-Type header.
   def mime_type
     MIME::Types[content_type] && MIME::Types[content_type].first
+  end
+
+  # Returns true or falsed based on whether or not the MIME type is allowed.
+  def mime_type_allowed?
+    mime_type && mime_type.ascii? && ALLOWED_MIME_TYPES.include?(mime_type)
   end
 
   # Set the meta encoding of this page as according to Nokogiri. In the event
