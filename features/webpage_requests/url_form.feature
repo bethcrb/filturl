@@ -16,6 +16,7 @@ Feature: Submit URLs
     And I should see "View Source"
     And I should see "Screenshot"
 
+  @vcr
   Scenario: User submits an invalid URL
     When I submit the URL "http://not.a.valid.url"
     Then I should see an invalid URL message
