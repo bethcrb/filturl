@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/aws/aws-sdk-ruby.git
-  revision: 8cf3a0073fd4448ede56317f1dd3a9aadeab97ba
-  specs:
-    aws-sdk (1.31.3)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
-      uuidtools (~> 2.1)
-
-GIT
   remote: git://github.com/da4nik/geoip2.git
   revision: b78cfbbc4ea4b28cf1c5020dc1b48b05cb98f465
   specs:
@@ -46,6 +37,10 @@ GEM
       rake (>= 0.8.7)
     arel (4.0.1)
     atomic (1.1.14)
+    aws-sdk (1.31.3)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -340,7 +335,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (>= 2.5.0)
-  aws-sdk!
+  aws-sdk (~> 1.0)
   better_errors (~> 1.1)
   binding_of_caller (~> 0.7.2)
   bootstrap-sass (~> 3.0.3.0)

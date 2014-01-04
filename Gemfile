@@ -111,7 +111,7 @@ group :development, :test do
 end
 
 # Use AWS SDK for S3.
-gem 'aws-sdk', github: 'aws/aws-sdk-ruby'
+gem 'aws-sdk', '~> 1.0'
 
 # Use Bootstrap for front-end framework.
 gem 'bootstrap-sass', '~> 3.0.3.0'
