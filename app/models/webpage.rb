@@ -43,6 +43,8 @@ class Webpage < ActiveRecord::Base
   # Before saving, prepare to encode the body as UTF-8.
   def encode_body
     return unless body
-    self.body = WebpageEncoder.new(self).encoded_body.force_encoding('UTF-8')
+
+    encoded_body = WebpageEncoder.new(self).encoded_body
+    self.body = encoded_body ? encoded_body.force_encoding('UTF-8') : nil
   end
 end
