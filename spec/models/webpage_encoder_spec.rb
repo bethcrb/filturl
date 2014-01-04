@@ -51,6 +51,37 @@ describe WebpageEncoder do
     end
   end
 
+  describe '#encoded_body' do
+    before do
+      Webpage.skip_callback(:save, :before, :encode_body)
+    end
+
+    after do
+      Webpage.set_callback(:save, :before, :encode_body)
+    end
+
+    it 'returns nil if the content type is not present', :vcr do
+      @webpage.update_attributes!(content_type: nil)
+      WebpageEncoder.new(@webpage).encoded_body.should be_nil
+    end
+
+    it 'returns nil if the content type is not allowed', :vcr do
+      @webpage.update_attributes!(content_type: 'invalid/type')
+      WebpageEncoder.new(@webpage).encoded_body.should be_nil
+    end
+
+    it 'should set the meta encoding', :vcr do
+      @webpage.update_attributes!(meta_encoding: nil)
+      WebpageEncoder.new(@webpage).encoded_body
+      @webpage.meta_encoding.should_not be_nil
+    end
+
+    it 'returns it as is if it is already UTF-8', :vcr do
+      @webpage.body.stub(:is_utf8?).and_return(true)
+      WebpageEncoder.new(@webpage).encoded_body.should == @webpage.body
+    end
+  end
+
   describe 'encoding' do
     it 'should be UTF-8 for Big5', :vcr do
       webpage_request = create(:webpage_request, :big5)

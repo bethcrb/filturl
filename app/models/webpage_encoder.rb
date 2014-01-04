@@ -50,18 +50,22 @@ class WebpageEncoder
     @webpage.meta_encoding ||= @webpage.body.is_utf8? ? 'UTF-8' : 'ISO-8859-1'
   end
 
-  # Returns the encoded body based on the mime type and meta encoding. In the
-  # event that the mime type or meta encoding is not found, returns the body
+  # Returns the body encoded in UTF-8 based on the MIME type and meta encoding.
+  # In the event that the webpage does not use an allowed MIME type, returns
+  # the body as nil. If the body is already encoded as UTF-8, returns the body
   # as is.
   def encoded_body
     return unless @webpage.body
 
     set_meta_encoding
+    return nil unless mime_type_allowed?
+
     content = @webpage.body
-    if mime_type.present? && mime_type.ascii? && !content.is_utf8?
+    unless content.is_utf8?
       encoding_options = { invalid: :replace, undef: :replace, replace: '' }
       content.encode!('UTF-8', @webpage.meta_encoding, encoding_options)
     end
+
     content
   end
 end
