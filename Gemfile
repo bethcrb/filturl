@@ -133,7 +133,7 @@ gem 'omniauth-google-oauth2', '~> 0.2.0'
 gem 'figaro', '~> 0.7.0'
 
 # Use FriendlyId for permalinks.
-gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'
+gem 'friendly_id', '~> 5.0.0'
 
 # Use GeoIP2 for determining the location of an IP address.
 # Note: libmaxminddb must be installed.
