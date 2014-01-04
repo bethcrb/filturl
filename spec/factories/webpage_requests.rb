@@ -73,7 +73,7 @@ FactoryGirl.define do
     end
 
     trait :windows1252 do
-      url 'http://www.frag-mutti.de/'
+      url 'http://www.leboncoin.fr/'
     end
 
     trait :windows1254 do
