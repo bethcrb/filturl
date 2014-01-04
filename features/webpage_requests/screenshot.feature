@@ -7,5 +7,5 @@ Feature: Screenshots
   Scenario: User sees screenshot
     Given I am logged in
     And I submitted the URL "http://www.example.com/"
-    When I visit the page for the URL "http://www.example.com/"
+    When I go to the webpage page for the URL "http://www.example.com/"
     Then I should see a screenshot of the URL "http://www.example.com/"

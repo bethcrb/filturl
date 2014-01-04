@@ -17,7 +17,13 @@ module NavigationHelpers
     when /the sign in page/
       '/users/sign_in'
 
-    # Add more mappings here.
+    when /^the webpage page for the slug "([^\"]*)"$/
+      webpage_path($1)
+
+    when /^the webpage page for the URL "([^\"]*)"$/
+      webpage_path(Webpage.find_by(url: $1))
+
+      # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
     #   when /^(.*)'s profile page$/i

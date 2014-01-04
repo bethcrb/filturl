@@ -8,7 +8,11 @@ end
 
 ### GIVEN ###
 Given(/^I submitted the URL "(.*?)"$/) do |url|
-  WebpageRequest.create(url:  url, user_id: @user.id)
+  @webpage_request = WebpageRequest.create(url:  url, user_id: @user.id)
+end
+
+Given(/^the slug "(.*?)" does not exist$/) do |slug|
+  assert_nil Webpage.find_by_slug(slug)
 end
 
 ### WHEN ###
@@ -19,11 +23,6 @@ end
 
 When(/^I click on the screenshot tab$/) do
   click_link 'Screenshot'
-end
-
-When(/^I visit the page for the URL "(.*?)"$/) do |url|
-  @webpage_request = WebpageRequest.find_by(url: url, user_id: @user.id)
-  visit webpage_path(@webpage_request.webpage)
 end
 
 ### THEN ###
