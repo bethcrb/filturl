@@ -3,11 +3,16 @@ require 'spec_helper'
 describe WebpageEncoder do
   include_context 'skip screenshot callbacks'
 
+  before(:each) do
+    VCR.use_cassette('WebpageRequest/create') do
+      @webpage_request = create(:webpage_request)
+      @webpage = @webpage_request.webpage
+    end
+  end
+
   describe '#content_type' do
-    it 'returns webpage.content_type', :vcr do
-      webpage_request = create(:webpage_request)
-      webpage = webpage_request.webpage
-      WebpageEncoder.new(webpage).content_type.should == webpage.content_type
+    it 'returns webpage.content_type' do
+      WebpageEncoder.new(@webpage).content_type.should == @webpage.content_type
     end
   end
 
