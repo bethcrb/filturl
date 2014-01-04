@@ -104,7 +104,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
 
   # Use Spork to speed up test suite.
-  gem 'spork-rails', github: 'sporkrb/spork-rails'
+  gem 'spork-rails'
 
   # Use Teaspoon for testing JavaScript with Jasmine.
   gem 'teaspoon'
