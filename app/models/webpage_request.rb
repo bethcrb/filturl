@@ -31,7 +31,7 @@ class WebpageRequest < ActiveRecord::Base
 
   after_create :perform_http_request
 
-  after_save   :add_to_url_history
+  after_commit   :add_to_url_history
 
   protected
 
