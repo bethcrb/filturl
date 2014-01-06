@@ -25,9 +25,8 @@ class WebpageService
   # Webpage and WebpageRedirect
   def process_response_data
     return unless @response
-    save_webpage_response
     save_webpage
-    save_webpage_redirects
+    save_webpage_response
   end
 
   # Updates or creates the Webpage record for webpage_url with data from
@@ -43,20 +42,22 @@ class WebpageService
 
   # Creates the WebpageResponse record with data from @response
   def save_webpage_response
-    save_webpage unless @webpage
-    @webpage_response = @webpage_request.create_webpage_response!(
+    @webpage_response = @webpage_request.build_webpage_response(
       code:           response_code,
       headers:        response_headers,
       redirect_count: redirections.size,
       webpage_id:     @webpage.id,
     )
+    save_webpage_redirects
+    @webpage_response.save
   end
 
   # Creates new webpage redirects based on Location headers
   def save_webpage_redirects
     redirections.each do |redirection|
       redirect_url = redirection.headers[:location]
-      @webpage_response.webpage_redirects.find_or_create_by!(url: redirect_url)
+      webpage_redirect = WebpageRedirect.new(url: redirect_url)
+      @webpage_response.webpage_redirects << webpage_redirect
     end
   end
 
