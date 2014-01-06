@@ -29,14 +29,14 @@ class WebpageRequest < ActiveRecord::Base
   validates :url, length: { maximum: 2000 }
   validates_with UrlValidator
 
-  after_create :get_url
+  after_create :perform_http_request
 
   after_save   :add_to_url_history
 
   private
 
-  def get_url
-    WebpageService.get_url(self)
+  def perform_http_request
+    WebpageService.perform_http_request(self)
   end
 
   def clean_url

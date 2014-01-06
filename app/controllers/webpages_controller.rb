@@ -6,7 +6,7 @@ class WebpagesController < ApplicationController
       if @webpage_request.present?
         @webpage_response = @webpage.webpage_responses.last
         if (@webpage_response.updated_at < 15.minutes.ago)
-          @webpage_response.get_url
+          @webpage_response.perform_http_request
         end
         @screenshot = @webpage.screenshot
         if user_signed_in?

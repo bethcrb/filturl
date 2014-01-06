@@ -7,12 +7,12 @@ class WebpageService
     @response, @webpage, @webpage_response = nil
   end
 
-  def self.get_url(webpage_request)
-    WebpageService.new(webpage_request).get_url
+  def self.perform_http_request(webpage_request)
+    WebpageService.new(webpage_request).perform_http_request
   end
-  
+
   # Performs a GET request on the request_url
-  def get_url
+  def perform_http_request
     request_opts = { followlocation: true, ssl_verifypeer: false }
     @response = Typhoeus.get(@webpage_request.url, request_opts)
     @response && process_response_data
@@ -40,7 +40,7 @@ class WebpageService
       primary_ip:   primary_ip,
     )
   end
-  
+
   # Creates the WebpageResponse record with data from @response
   def save_webpage_response
     save_webpage unless @webpage
@@ -51,7 +51,7 @@ class WebpageService
       webpage_id:     @webpage.id,
     )
   end
-  
+
   # Creates new webpage redirects based on Location headers
   def save_webpage_redirects
     redirections.each do |redirection|
@@ -60,31 +60,31 @@ class WebpageService
     end
   end
 
-  # Convenience methods for response returned by get_url
+  # Convenience methods for response returned by perform_http_request
   def webpage_url
     @response.effective_url || @webpage_request.url
   end
-  
+
   def primary_ip
     @response.primary_ip
   end
-  
+
   def response_body
     @response.response_body
   end
-  
+
   def content_type
     @response.headers['Content-Type']
   end
-  
+
   def response_code
     @response.response_code
   end
-  
+
   def response_headers
     @response.response_headers
   end
-  
+
   def redirections
     @response.redirections
   end
