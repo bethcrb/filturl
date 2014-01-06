@@ -1,6 +1,7 @@
-# This controller is used to both create new webpage requests and show
-# existing ones. It involves the submission of a URL (create) and the
-# ability to view the resulting webpage data (show).
+# The WebpageRequests controller is used to create new webpage requests through
+# the submission of a URL in webpage_requests#index. If the submission is
+# successful in webpage_requests#create, it redirects to the webpages#show
+# path for the URL's effective location after accounting for redirects.
 class WebpageRequestsController < ApplicationController
   before_filter :current_or_guest_user
 
