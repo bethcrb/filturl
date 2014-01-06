@@ -4,12 +4,12 @@ describe WebpagesController, vcr: { cassette_name: 'WebpagesController' } do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { create(:user) }
   before { sign_in user }
 
   describe "GET 'show'", :vcr do
     let(:existing_webpage_request) do
-      FactoryGirl.create(:webpage_request, user: user)
+      create(:webpage_request, user: user)
     end
     let(:existing_webpage) { existing_webpage_request.webpage }
     let(:existing_webpage_response) do
@@ -44,7 +44,7 @@ describe WebpagesController, vcr: { cassette_name: 'WebpagesController' } do
     context 'the current user did not make the webpage request' do
       let(:other_user) { create(:user) }
       let(:other_webpage_request) do
-        FactoryGirl.create(:webpage_request, user: other_user)
+        create(:webpage_request, user: other_user)
       end
       let(:other_webpage) { other_webpage_request.webpage }
 
