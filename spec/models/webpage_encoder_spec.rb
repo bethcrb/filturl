@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe WebpageEncoder do
   include_context 'skip screenshot callbacks'
+  include_context 'phantomjs'
 
   before(:each) do
     VCR.use_cassette('WebpageRequest/create') do

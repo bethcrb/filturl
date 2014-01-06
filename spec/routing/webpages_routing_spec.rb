@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe WebpageRequestsController do
   include_context 'skip screenshot callbacks'
+  include_context 'phantomjs'
 
   describe 'routing' do
     it 'routes /urls/:id with slug to webpages#show', :vcr do

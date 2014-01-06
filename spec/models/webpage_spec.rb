@@ -21,6 +21,7 @@ require 'spec_helper'
 
 describe Webpage do
   include_context 'skip screenshot callbacks'
+  include_context 'phantomjs'
 
   describe 'associations' do
     it { should have_one(:screenshot).dependent(:destroy) }

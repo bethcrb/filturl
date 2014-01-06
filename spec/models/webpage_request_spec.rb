@@ -17,6 +17,7 @@ require 'spec_helper'
 
 describe WebpageRequest do
   include_context 'skip screenshot callbacks'
+  include_context 'phantomjs'
 
   describe 'associations' do
     it { should belong_to(:user) }
