@@ -40,7 +40,6 @@ class User < ActiveRecord::Base
          :omniauthable, :recoverable, :registerable, :rememberable,
          :trackable
 
-  has_many :url_histories, dependent: :destroy
   has_many :webpage_requests, dependent: :destroy, inverse_of: :user
   has_many :authentications, dependent: :destroy
 

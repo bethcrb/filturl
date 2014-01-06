@@ -31,8 +31,6 @@ class WebpageRequest < ActiveRecord::Base
 
   after_create :perform_http_request
 
-  after_commit   :add_to_url_history
-
   protected
 
   def perform_http_request
@@ -43,9 +41,5 @@ class WebpageRequest < ActiveRecord::Base
 
   def clean_url
     self.url = PostRank::URI.clean(url).to_s unless url.blank?
-  end
-
-  def add_to_url_history
-    webpage.url_histories << UrlHistory.new(url:  url, user: user)
   end
 end

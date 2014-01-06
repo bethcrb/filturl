@@ -21,7 +21,6 @@ class Webpage < ActiveRecord::Base
   extend FriendlyId
 
   has_one :screenshot, dependent: :destroy
-  has_many :url_histories, dependent: :destroy
   has_many :webpage_responses, dependent: :destroy
   has_many :webpage_requests,  through: :webpage_responses
 
