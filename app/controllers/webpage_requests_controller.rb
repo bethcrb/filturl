@@ -10,21 +10,17 @@ class WebpageRequestsController < ApplicationController
   end
 
   def create
-    request_url = PostRank::URI.clean(webpage_request_params[:url]).to_s
-
     @webpage_request = WebpageRequest.find_or_initialize_by(
-      url:     request_url,
+      url:     PostRank::URI.clean(webpage_request_params[:url]).to_s,
       user_id: current_or_guest_user.id
     )
 
     respond_to do |format|
       if @webpage_request.save
-        format.html { redirect_to webpage_path(@webpage_request.webpage) }
+        format.html { redirect_to @webpage_request.webpage }
       else
-        errors_full = @webpage_request.errors.full_messages
-        url_error = request_url.present? ? "#{request_url}:" : "Error:"
-        flash.now[:alert] = "#{url_error} #{errors_full.to_sentence}"
-        format.html { render 'index' }
+        flash.now[:alert] = @webpage_request.errors.full_messages.to_sentence
+        format.html { render action: 'index' }
       end
     end
   end
