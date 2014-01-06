@@ -27,7 +27,8 @@ class WebpagesController < ApplicationController
   def set_webpage_response
     @webpage_response = @webpage.webpage_responses.last
     if @webpage_response.updated_at < 15.minutes.ago
-      @webpage_request.send(:perform_http_request)
+      WebpageService.perform_http_request(@webpage_request)
+      @webpage_response = @webpage_request.webpage_response
     end
   end
 
