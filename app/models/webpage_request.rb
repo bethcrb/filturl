@@ -33,11 +33,13 @@ class WebpageRequest < ActiveRecord::Base
 
   after_save   :add_to_url_history
 
-  private
+  protected
 
   def perform_http_request
     WebpageService.perform_http_request(self)
   end
+
+  private
 
   def clean_url
     self.url = PostRank::URI.clean(url).to_s unless url.blank?
