@@ -29,10 +29,15 @@ class WebpageRequest < ActiveRecord::Base
   validates :url, length: { maximum: 2000 }
   validates_with UrlValidator
 
-  after_create :create_webpage_response!
+  after_create :get_url
+
   after_save   :add_to_url_history
 
   private
+
+  def get_url
+    WebpageService.get_url(self)
+  end
 
   def clean_url
     self.url = PostRank::URI.clean(url).to_s unless url.blank?

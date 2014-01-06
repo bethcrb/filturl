@@ -25,31 +25,4 @@ class WebpageResponse < ActiveRecord::Base
   has_many :webpage_redirects, dependent: :destroy
 
   validates :webpage_request, presence: true
-
-  after_create :get_url
-
-  def get_url
-    response = Typhoeus.get(webpage_request.url, followlocation: true,
-      ssl_verifypeer: false)
-
-    webpage_url = response.effective_url || webpage_request.url
-
-    webpage = Webpage.find_or_initialize_by(url: webpage_url)
-    webpage.primary_ip = response.primary_ip
-    webpage.body = response.response_body
-    webpage.content_type = response.headers['Content-Type']
-    webpage.save!
-
-    response_data = {
-      code:           response.response_code,
-      headers:        response.response_headers,
-      redirect_count: response.redirections.size,
-      webpage_id:     webpage.id,
-    }
-    self.update_attributes!(response_data)
-
-    response.redirections.each do |redirection|
-      webpage_redirects.find_or_create_by!(url: redirection.headers[:location])
-    end
-  end
 end

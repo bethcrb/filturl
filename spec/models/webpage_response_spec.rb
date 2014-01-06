@@ -33,16 +33,4 @@ describe WebpageResponse do
   describe 'validations' do
     it { should validate_presence_of(:webpage_request) }
   end
-
-  describe 'respond_to' do
-    it { should respond_to(:get_url) }
-  end
-
-  describe 'get_url' do
-    let (:original_response) { build_stubbed(:webpage_response, code: -999) }
-    it 'should update the response data', :vcr do
-      original_response.get_url
-      original_response.code.should_not == -999
-    end
-  end
 end
