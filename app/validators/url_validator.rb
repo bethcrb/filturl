@@ -6,7 +6,8 @@ class UrlValidator < ActiveModel::Validator
     begin
       response = Typhoeus.head(record.url,
                                ssl_verifyhost: 0,
-                               ssl_verifypeer: false)
+                               ssl_verifypeer: false,
+                               timeout: 15)
       if response.headers.empty? || response.code == 0
         message = response.return_message
         record.errors[:url] << "could not be verified (#{message})"
