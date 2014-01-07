@@ -12,14 +12,16 @@ class Users::Devise::RegistrationsController < Devise::RegistrationsController
   # Override Devise's update method so that users can edit their account
   # without providing their current password.
   def update
+    account_update_params = devise_parameter_sanitizer.sanitize(:account_update)
+
     # This is required for the form to submit when the password is left blank.
-    if params[:user][:password].blank?
-      params[:user].delete('password')
-      params[:user].delete('password_confirmation')
+    if account_update_params[:password].blank?
+      account_update_params.delete('password')
+      account_update_params.delete('password_confirmation')
     end
 
     @user = User.find(current_user.id)
-    if @user.update_attributes(devise_parameter_sanitizer.sanitize(:account_update))
+    if @user.update_attributes(account_update_params)
       set_flash_message :notice, :updated
 
       # Sign in the user and bypass validation in case the password changed.
