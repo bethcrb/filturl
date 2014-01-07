@@ -48,8 +48,15 @@ describe WebpagesController, vcr: { cassette_name: 'WebpagesController' } do
       end
       let(:other_webpage) { other_webpage_request.webpage }
 
-      it 'redirects to the root url' do
+      it 'renders the show template' do
         get :show, id: other_webpage.slug
+        expect(response).to render_template('show')
+      end
+    end
+
+    context 'the webpage does not exist' do
+      it 'redirects to the root url' do
+        get :show, id: 'http-www-notfound-com'
         expect(response).to redirect_to(root_url)
       end
     end

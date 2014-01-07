@@ -15,13 +15,18 @@ class WebpagesController < ApplicationController
 
   def set_webpage
     @webpage = Webpage.friendly.find(params[:id])
+    redirect_to root_path unless @webpage
   end
 
   def set_webpage_request
-    @webpage_request = @webpage.webpage_requests.find_by(
-      user_id: current_or_guest_user.id
-    )
-    redirect_to root_path unless @webpage_request
+    user_id = current_or_guest_user.id
+    @webpage_request = @webpage.webpage_requests.find_by(user_id: user_id)
+    if @webpage && !@webpage_request
+      @webpage_request = WebpageRequest.create(
+        url:     @webpage.url,
+        user_id: user_id,
+      )
+    end
   end
 
   def set_webpage_response

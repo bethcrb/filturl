@@ -2,7 +2,7 @@
 Before do
   Screenshot.stub(:needs_update?).and_return(false)
   Phantomjs.stub(:run) do |options, screenshot_js, screenshot_url, temp_file|
-     FileUtils.touch(temp_file)
+    FileUtils.touch(temp_file)
   end
 end
 
@@ -13,6 +13,14 @@ end
 
 Given(/^the slug "(.*?)" does not exist$/) do |slug|
   assert_nil Webpage.find_by_slug(slug)
+end
+
+Given(/^another user submitted the URL "(.*?)"$/) do |url|
+  @another_user = FactoryGirl.create(:user)
+  @another_webpage_request = WebpageRequest.create(
+    url:  url,
+    user_id: @another_user.id,
+  )
 end
 
 ### WHEN ###
