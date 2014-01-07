@@ -6,7 +6,7 @@ describe 'WebpageService', vcr: { cassette_name: 'WebpageService' } do
 
   before(:each) do
     VCR.use_cassette('WebpageRequest/create') do
-      @webpage_request = create(:webpage_request)
+      @webpage_request = create(:webpage_request, perform_http_request: true)
     end
   end
 

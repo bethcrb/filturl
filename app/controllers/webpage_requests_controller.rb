@@ -12,7 +12,8 @@ class WebpageRequestsController < ApplicationController
 
   def create
     respond_to do |format|
-      if @webpage_request.save
+      if @webpage_request.save &&
+         WebpageService.perform_http_request(@webpage_request)
         format.html { redirect_to @webpage_request.webpage }
       else
         flash.now[:alert] = @webpage_request.errors.full_messages.to_sentence

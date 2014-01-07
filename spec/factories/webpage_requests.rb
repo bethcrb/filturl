@@ -17,8 +17,18 @@
 
 FactoryGirl.define do
   factory :webpage_request do
+    ignore do
+      perform_http_request false
+    end
+
     url 'http://www.google.com/'
     user
+
+    after(:create) do |webpage_request, evaluator|
+      if evaluator.perform_http_request
+        WebpageService.perform_http_request(webpage_request)
+      end
+    end
 
     trait :big5 do
       url 'http://www.books.com.tw/'

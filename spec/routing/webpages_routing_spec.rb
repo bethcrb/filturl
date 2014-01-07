@@ -6,7 +6,7 @@ describe WebpageRequestsController do
 
   describe 'routing' do
     it 'routes /urls/:id with slug to webpages#show', :vcr do
-      webpage_request = FactoryGirl.create(:webpage_request)
+      webpage_request = FactoryGirl.create(:webpage_request, perform_http_request: true)
       get("/urls/#{webpage_request.webpage.slug}").should route_to(
         'webpages#show',
         id: webpage_request.webpage.slug
@@ -14,7 +14,7 @@ describe WebpageRequestsController do
     end
 
     it 'does not route /urls/:id with numeric id to webpage_requests#show', :vcr do
-      webpage_request = FactoryGirl.create(:webpage_request)
+      webpage_request = FactoryGirl.create(:webpage_request, perform_http_request: true)
       get("/urls/#{webpage_request.webpage.id}").should_not route_to(
         'webpages#show',
         id: webpage_request.webpage.id

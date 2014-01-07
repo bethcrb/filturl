@@ -37,7 +37,7 @@ describe WebpageRequest do
   end
 
   describe 'validations' do
-    subject { build(:webpage_request) }
+    subject { build(:webpage_request, perform_http_request: true) }
 
     it { should validate_presence_of(:user) }
     it { should validate_presence_of(:url) }
