@@ -48,8 +48,8 @@ class WebpageService
       redirect_count: redirections.size,
       webpage_id:     @webpage.id,
     )
-    save_webpage_redirects
     @webpage_response.save
+    save_webpage_redirects
   end
 
   # Creates new webpage redirects based on Location headers
