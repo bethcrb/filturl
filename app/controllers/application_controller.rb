@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   # Save previous URL in order to redirect back to it after the user signs in.
   def save_previous_url
     # Do not save AJAX calls or URLs for the Users controllers
-    unless controller_path =~ %r{^users/} || request.xhr?
+    unless request.fullpath =~ %r{^/users/} || request.xhr?
       session[:previous_url] = request.fullpath
     end
   end
