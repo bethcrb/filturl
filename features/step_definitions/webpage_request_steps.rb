@@ -9,6 +9,7 @@ end
 ### GIVEN ###
 Given(/^I submitted the URL "(.*?)"$/) do |url|
   @webpage_request = WebpageRequest.create(url:  url, user_id: @user.id)
+  WebpageService.perform_http_request(@webpage_request)
 end
 
 Given(/^the slug "(.*?)" does not exist$/) do |slug|
@@ -21,6 +22,7 @@ Given(/^another user submitted the URL "(.*?)"$/) do |url|
     url:  url,
     user_id: @another_user.id,
   )
+  WebpageService.perform_http_request(@another_webpage_request)
 end
 
 ### WHEN ###

@@ -8,16 +8,16 @@ describe WebpagesController, vcr: { cassette_name: 'WebpagesController' } do
   before { sign_in user }
 
   describe "GET 'show'", :vcr do
-    let(:existing_webpage_request) do
-      create(:webpage_request, user: user)
-    end
-    let(:existing_webpage) { existing_webpage_request.webpage }
-    let(:existing_webpage_response) do
-      existing_webpage.webpage_responses.last
-    end
-    let(:existing_screenshot) { existing_webpage.screenshot }
-
     context 'the current user made the webpage request' do
+      let(:existing_webpage_request) do
+        create(:webpage_request, user: user, perform_http_request: true)
+      end
+      let(:existing_webpage) { existing_webpage_request.webpage }
+      let(:existing_webpage_response) do
+        existing_webpage.webpage_responses.last
+      end
+      let(:existing_screenshot) { existing_webpage.screenshot }
+
       before(:each) { get :show, id: existing_webpage.slug }
 
       it 'renders the show template' do
@@ -44,7 +44,7 @@ describe WebpagesController, vcr: { cassette_name: 'WebpagesController' } do
     context 'the current user did not make the webpage request' do
       let(:other_user) { create(:user) }
       let(:other_webpage_request) do
-        create(:webpage_request, user: other_user)
+        create(:webpage_request, user: other_user, perform_http_request: true)
       end
       let(:other_webpage) { other_webpage_request.webpage }
 

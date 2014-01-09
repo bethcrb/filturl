@@ -29,14 +29,6 @@ class WebpageRequest < ActiveRecord::Base
   validates :url, length: { maximum: 2000 }
   validates_with UrlValidator
 
-  after_create :perform_http_request
-
-  protected
-
-  def perform_http_request
-    WebpageService.perform_http_request(self)
-  end
-
   private
 
   def clean_url
