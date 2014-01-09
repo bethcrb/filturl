@@ -1,40 +1,55 @@
 require 'spec_helper'
 
 describe WebpageLocation do
-  let(:webpage) { build :webpage }
-  let(:location) { webpage.location }
+  let(:webpage) { build :webpage, primary_ip: '54.215.159.82' }
+  let(:location) { WebpageLocation.new(webpage) }
 
   describe '#city' do
-    it "returns a string" do
-      location.city.should be_a(String)
+    it { expect(location).to respond_to(:city) }
+
+    it "returns 'San Jose' for 54.215.159.82" do
+      expect(location.city).to eq('San Jose')
     end
   end
 
   describe '#state' do
-    it "returns a string" do
-      location.state.should be_a(String)
+    it { expect(location).to respond_to(:state) }
+
+    it 'should be equal to #subdivision_code' do
+      expect(location.state).to eq(location.subdivision_code)
+    end
+
+    it "returns 'CA' for 54.215.159.82" do
+      expect(location.state).to eq('CA')
     end
   end
 
   describe '#country' do
-    it "returns a string" do
-      location.country.should be_a(String)
+    it { expect(location).to respond_to(:country) }
+
+    it "returns 'United States' for 54.215.159.82" do
+      expect(location.country).to eq('United States')
     end
   end
 
   describe '#to_s' do
-    describe 'when city, state, and country are all present' do
-      it "returns a comma separated string with the city, state, and country" do
-        location.to_s.should be == "#{location.city}, #{location.state}, #{location.country}"
+    it { expect(location).to respond_to(:to_s) }
+
+    describe 'when city=San Jose, state=CA, and country=United States' do
+      it "returns 'San Jose, CA, United States'" do
+        location.stub(:city).and_return('San Jose')
+        location.stub(:state).and_return('CA')
+        location.stub(:country).and_return('United States')
+        expect(location.to_s).to eq('San Jose, CA, United States')
       end
     end
 
-    describe 'when country is present and city and state are blank' do
-      it 'returns a string with the country name and no commas' do
+    describe 'when city and state are blank and country=United States' do
+      it "returns 'United States' without commas" do
         location.stub(:city).and_return('')
         location.stub(:state).and_return('')
-
-        location.to_s.should be == location.country
+        location.stub(:country).and_return('United States')
+        expect(location.to_s).to eq(location.country)
       end
     end
 
@@ -43,8 +58,7 @@ describe WebpageLocation do
         location.stub(:city).and_return('')
         location.stub(:state).and_return('')
         location.stub(:country).and_return('')
-
-        location.to_s.should be == ''
+        expect(location.to_s).to eq('')
       end
     end
 
@@ -52,8 +66,20 @@ describe WebpageLocation do
       it 'returns an empty string' do
         webpage.stub(:primary_ip).and_return('0.0.0.0')
 
-        location.to_s.should be == ''
+        expect(location.to_s).to eq('')
       end
+    end
+  end
+
+  describe '#respond_to?' do
+    it 'should not respond to missing methods' do
+      expect(location).to_not respond_to(:not_a_method)
+    end
+  end
+
+  describe '#method_missing' do
+    it 'raises an error when the method does not exist' do
+      expect { location.not_a_method }.to raise_error(NameError)
     end
   end
 end

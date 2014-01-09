@@ -1,24 +1,40 @@
-# The WebpageLocation class is for determining information about a webpage's
-# location based on its IP address.
+# The WebpageLocation class is responsible for determining a webpage's location
+# based on its IP address.
 class WebpageLocation
+  alias_attribute :state, :subdivision_code
+
   def initialize(webpage)
-    return '' unless webpage && webpage.primary_ip
-    @geoip2 = GeoIP2::locate(webpage.primary_ip)
+    @webpage = webpage
   end
 
-  def city
-    @geoip2 && @geoip2['city']
+  def primary_ip
+    @webpage && @webpage.primary_ip
   end
 
-  def state
-    @geoip2 && @geoip2['subdivision_code']
-  end
-
-  def country
-    @geoip2 && @geoip2['country']
+  def geolocation
+    return nil unless primary_ip
+    location = GeoIP2.locate(primary_ip)
+    location && location.symbolize_keys
   end
 
   def to_s
+    return '' unless geolocation
     [city, state, country].reject(&:blank?).join(', ')
+  end
+
+  def method_missing(name, *args, &block)
+    if args.empty? && !block && geolocation && geolocation.key?(name)
+      geolocation[name]
+    else
+      super
+    end
+  end
+
+  def respond_to?(method)
+    if geolocation && geolocation.key?(method)
+      true
+    else
+      super
+    end
   end
 end
