@@ -1,6 +1,4 @@
-## Filturl
-
-[![Code Climate](https://codeclimate.com/repos/52bffea86956801a65007223/badges/ae38d9eea57bc948bce3/gpa.png)](https://codeclimate.com/repos/52bffea86956801a65007223/feed)
+## Filturl [![Code Climate](https://codeclimate.com/repos/52bffea86956801a65007223/badges/ae38d9eea57bc948bce3/gpa.png)](https://codeclimate.com/repos/52bffea86956801a65007223/feed)
 
 [![Filturl](https://raw.github.com/bethcrb/filturl/master/public/logo-bk.png)](https://www.filturl.net/)
 
