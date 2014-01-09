@@ -30,9 +30,9 @@ describe WebpageRequest do
   describe 'before validation' do
     subject { build_stubbed(:webpage_request, url: 'www.example.com') }
 
-    it 'should clean the url' do
+    it 'cleans the url' do
       subject.valid?
-      subject.url.should == 'http://www.example.com/'
+      expect(subject.url).to eq('http://www.example.com/')
     end
   end
 
@@ -43,7 +43,7 @@ describe WebpageRequest do
     it { should validate_presence_of(:url) }
     it { should ensure_length_of(:url).is_at_most(2000) }
 
-    it 'should require unique value for url scoped to user_id', :vcr do
+    it 'requires unique value for url scoped to user_id', :vcr do
       subject.save!
       should validate_uniqueness_of(:url).scoped_to(:user_id)
     end
@@ -58,7 +58,7 @@ describe WebpageRequest do
       http://www.unknown_response.com/
     )
     invalid_urls.each do |url|
-      it "should not allow url to be set to \"#{url}\"", :vcr do
+      it "does not allow url to be set to \"#{url}\"", :vcr do
         should_not allow_value(url).for(:url)
       end
     end
@@ -69,7 +69,7 @@ describe WebpageRequest do
       https://www.domain.com/?query=value
     )
     valid_urls.each do |url|
-      it "should allow url to be set to \"#{url}\"", :vcr do
+      it "allows url to be set to \"#{url}\"", :vcr do
         should allow_value(url).for(:url)
       end
     end

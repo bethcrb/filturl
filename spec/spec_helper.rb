@@ -48,6 +48,11 @@ Spork.prefork do
     # the seed, which is printed after each run.
     #     --seed 1234
     config.order = 'random'
+
+    # Only accept the new expect syntax for RSpec
+    config.expect_with :rspec do |c|
+      c.syntax = :expect
+    end
   end
 end
 

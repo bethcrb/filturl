@@ -31,7 +31,7 @@ describe Screenshot do
 
   describe 'validations' do
     it { should validate_presence_of(:webpage) }
-    it { screenshot.should ensure_length_of(:url).is_at_most(2000) }
+    it { should ensure_length_of(:url).is_at_most(2000) }
     it { should ensure_inclusion_of(:status).in_array(%w(active inactive new)) }
   end
 
@@ -41,40 +41,40 @@ describe Screenshot do
 
   describe 'creating screenshots' do
     describe 'generate_screenshot' do
-      it { screenshot.generate_screenshot.should be_true }
+      it { expect(screenshot.generate_screenshot).to be_true }
     end
 
     describe 'upload_screenshot' do
-      it { screenshot.upload_screenshot.should be_true }
-      it 'should set the status to active when it is successful' do
+      it { expect(screenshot.upload_screenshot).to be_true }
+      it 'sets the status to active when it is successful' do
         screenshot.upload_screenshot
-        screenshot.status.should == 'active'
+        expect(screenshot.status).to eq('active')
       end
     end
 
     describe 'delete_screenshot' do
-      it { screenshot.delete_screenshot.should be_nil }
+      it { expect(screenshot.delete_screenshot).to be_nil }
     end
 
     describe 'set_filename' do
-      it 'should set the filename if one does not exist' do
+      it 'sets the filename if one does not exist' do
         screenshot.update_attributes!(filename: nil)
         screenshot.send(:set_filename)
-        screenshot.filename.should_not be_nil
+        expect(screenshot.filename).to_not be_nil
       end
 
-      it 'should not change the filename if one already exists' do
+      it 'does not change the filename if one already exists' do
         random_filename = "#{SecureRandom.urlsafe_base64}.png"
         screenshot.update_attributes!(filename: random_filename)
         screenshot.send(:set_filename)
-        screenshot.filename.should == random_filename
+        expect(screenshot.filename).to eq(random_filename)
       end
     end
 
     describe 'needs_update?', :vcr do
-      it 'should be true if the url is blank' do
+      it 'returns true if the url is blank' do
         screenshot.update_attributes!(url: nil)
-        screenshot.needs_update?.should be_true
+        expect(screenshot.needs_update?).to be_true
       end
     end
   end

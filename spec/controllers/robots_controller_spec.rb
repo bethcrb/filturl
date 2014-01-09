@@ -4,7 +4,7 @@ describe RobotsController do
   describe "GET '/robots.txt'" do
     it 'outputs the contents of the robots.txt file' do
       get :show
-      response.content_type.should == 'text/plain'
+      expect(response.content_type).to eq('text/plain')
     end
   end
 end

@@ -30,6 +30,6 @@ describe HttpStatusCode do
   end
 
   describe '.code' do
-    it { subject.code.should == subject.value }
+    it { expect(subject.code).to eq(subject.value) }
   end
 end

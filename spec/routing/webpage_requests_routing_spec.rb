@@ -7,11 +7,11 @@ describe WebpageRequestsController do
   describe 'routing' do
 
     it 'routes / to webpage_requests#index via get' do
-      get('/').should route_to('webpage_requests#index')
+      expect(get('/')).to route_to('webpage_requests#index')
     end
 
     it 'routes /urls/request to webpage_requests#create via post' do
-      post('/').should route_to('webpage_requests#create')
+      expect(post('/')).to route_to('webpage_requests#create')
     end
 
   end

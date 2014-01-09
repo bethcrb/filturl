@@ -39,9 +39,15 @@ describe Webpage do
   end
 
   describe ':after_create' do
-    it 'should create a screenshot object' do
+    it 'creates a screenshot object' do
       webpage = create(:webpage)
-      webpage.screenshot.should_not be_nil
+      expect(webpage.screenshot).to_not be_nil
     end
+  end
+
+  describe '#location' do
+    subject(:webpage) { build_stubbed(:webpage) }
+    it { expect(webpage).to respond_to(:location) }
+    it { expect(webpage.location).to be_a(WebpageLocation) }
   end
 end

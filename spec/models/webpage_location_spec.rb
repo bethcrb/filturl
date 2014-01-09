@@ -15,7 +15,7 @@ describe WebpageLocation do
   describe '#state' do
     it { expect(location).to respond_to(:state) }
 
-    it 'should be equal to #subdivision_code' do
+    it 'is equal to #subdivision_code' do
       expect(location.state).to eq(location.subdivision_code)
     end
 
@@ -35,7 +35,7 @@ describe WebpageLocation do
   describe '#to_s' do
     it { expect(location).to respond_to(:to_s) }
 
-    describe 'when city=San Jose, state=CA, and country=United States' do
+    context 'when city=San Jose, state=CA, and country=United States' do
       it "returns 'San Jose, CA, United States'" do
         location.stub(:city).and_return('San Jose')
         location.stub(:state).and_return('CA')
@@ -44,7 +44,7 @@ describe WebpageLocation do
       end
     end
 
-    describe 'when city and state are blank and country=United States' do
+    context 'when city and state are blank and country=United States' do
       it "returns 'United States' without commas" do
         location.stub(:city).and_return('')
         location.stub(:state).and_return('')
@@ -53,7 +53,7 @@ describe WebpageLocation do
       end
     end
 
-    describe 'when city, state, and country are all blank' do
+    context 'when city, state, and country are all blank' do
       it 'returns an empty string' do
         location.stub(:city).and_return('')
         location.stub(:state).and_return('')
@@ -62,7 +62,7 @@ describe WebpageLocation do
       end
     end
 
-    describe 'when primary ip can not be located' do
+    context 'when primary ip can not be located' do
       it 'returns an empty string' do
         webpage.stub(:primary_ip).and_return('0.0.0.0')
 
@@ -72,7 +72,7 @@ describe WebpageLocation do
   end
 
   describe '#respond_to?' do
-    it 'should not respond to missing methods' do
+    it 'does not respond to missing methods' do
       expect(location).to_not respond_to(:not_a_method)
     end
   end

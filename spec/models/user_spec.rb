@@ -88,56 +88,56 @@ describe User do
           .is_at_most(Devise.password_length.end)
       end
 
-      it 'should confirm the passwords match' do
+      it 'confirms the passwords match' do
         mismatched_password = subject.password.reverse
         pw_user = build(:user, password_confirmation: mismatched_password)
-        pw_user.should_not be_valid
+        expect(pw_user).to_not be_valid
       end
 
       context 'on update' do
         let(:existing_user) { create(:user) }
         it do
-          existing_user.should_not validate_presence_of(:password)
+          expect(existing_user).to_not validate_presence_of(:password)
         end
       end
     end
   end
 
   describe 'respond_to' do
-    it { User.should respond_to(:find_first_by_auth_conditions) }
+    it { expect(User).to respond_to(:find_first_by_auth_conditions) }
   end
 
   describe '.find_first_by_auth_conditions' do
     let(:user) { create(:user) }
 
-    it 'should return an ArgumentError without conditions' do
+    it 'returns an ArgumentError without conditions' do
       expect do
         User.find_first_by_auth_conditions
       end.to raise_error(ArgumentError)
     end
 
-    it 'should find the first user with empty conditions' do
-      User.find_first_by_auth_conditions({}).should == User.first
+    it 'finds the first user with empty conditions' do
+      expect(User.find_first_by_auth_conditions({})).to eq(User.first)
     end
 
-    it 'should find the user by email when the email key is set' do
+    it 'finds the user by email when the email key is set' do
       conditions = { email: user.email }
-      User.find_first_by_auth_conditions(conditions).should == user
+      expect(User.find_first_by_auth_conditions(conditions)).to eq(user)
     end
 
-    it 'should find the user by username when the username key is set' do
+    it 'finds the user by username when the username key is set' do
       conditions = { username: user.username }
-      User.find_first_by_auth_conditions(conditions).should == user
+      expect(User.find_first_by_auth_conditions(conditions)).to eq(user)
     end
 
-    it 'should find the user by username when the login key is set' do
+    it 'finds the user by username when the login key is set' do
       conditions = { login: user.username }
-      User.find_first_by_auth_conditions(conditions).should == user
+      expect(User.find_first_by_auth_conditions(conditions)).to eq(user)
     end
 
-    it 'should find the user by email when the login key is set' do
+    it 'finds the user by email when the login key is set' do
       conditions = { login: user.email }
-      User.find_first_by_auth_conditions(conditions).should == user
+      expect(User.find_first_by_auth_conditions(conditions)).to eq(user)
     end
   end
 end
