@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140110112314) do
+ActiveRecord::Schema.define(version: 20140110114823) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -96,8 +96,9 @@ ActiveRecord::Schema.define(version: 20140110112314) do
   add_index "webpage_redirects", ["webpage_response_id"], name: "index_webpage_redirects_on_webpage_response_id", using: :btree
 
   create_table "webpage_requests", force: true do |t|
-    t.string   "url",        limit: 2000, null: false
-    t.integer  "user_id",                 null: false
+    t.string   "url",        limit: 2000,                 null: false
+    t.string   "status",                  default: "new"
+    t.integer  "user_id",                                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
