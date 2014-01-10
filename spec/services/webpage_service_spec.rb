@@ -26,22 +26,33 @@ describe 'WebpageService', vcr: { cassette_name: 'WebpageService' } do
 
   describe '#perform_http_request' do
     let(:webpage_service) { WebpageService.new(@webpage_request) }
-    before(:each) { webpage_service.perform_http_request }
 
-    it 'returns a Typhoeus::Response' do
-      expect(webpage_service.response).to be_a(Typhoeus::Response)
+    context 'when it is successful' do
+      before(:each) { webpage_service.perform_http_request }
+      
+      it 'returns a Typhoeus::Response' do
+        expect(webpage_service.response).to be_a(Typhoeus::Response)
+      end
+
+      it 'saves the webpage response' do
+        expect(webpage_service.webpage_response).to be_a(WebpageResponse)
+      end
+
+      it 'saves the webpage' do
+        expect(webpage_service.webpage).to be_a(Webpage)
+      end
+
+      it 'sets the webpage_request status to "complete"' do
+        expect(@webpage_request.status).to eq('complete')
+      end
     end
 
-    it 'saves the webpage response' do
-      expect(webpage_service.webpage_response).to be_a(WebpageResponse)
-    end
-
-    it 'saves the webpage' do
-      expect(webpage_service.webpage).to be_a(Webpage)
-    end
-
-    it 'sets the webpage_request status' do
-      expect(@webpage_request.status).to_not eq('new')
+    context 'when save_webpage fails' do
+      it 'sets the webpage_request status to "error"' do
+        webpage_service.stub(:save_webpage).and_return(false)
+        webpage_service.perform_http_request
+        expect(@webpage_request.status).to eq('error')
+      end
     end
   end
 end
