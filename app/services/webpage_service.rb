@@ -24,9 +24,13 @@ class WebpageService
   # Saves response data corresponding to WebpageRequest, WebpageResponse,
   # Webpage and WebpageRedirect
   def process_response_data
-    return unless @response
-    save_webpage
-    save_webpage_response
+    return false unless @response
+    if save_webpage && save_webpage_response
+      @webpage_request.update(status: 'complete')
+    else
+      @webpage_request.update(status: 'error')
+      return false
+    end
   end
 
   # Updates or creates the Webpage record for webpage_url with data from

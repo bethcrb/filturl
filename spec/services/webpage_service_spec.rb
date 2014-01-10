@@ -39,5 +39,9 @@ describe 'WebpageService', vcr: { cassette_name: 'WebpageService' } do
     it 'saves the webpage' do
       expect(webpage_service.webpage).to be_a(Webpage)
     end
+
+    it 'sets the webpage_request status' do
+      expect(@webpage_request.status).to_not eq('new')
+    end
   end
 end
