@@ -20,6 +20,7 @@ class WebpageRequest < ActiveRecord::Base
   has_one :webpage_response, dependent: :destroy
   has_one :webpage, through: :webpage_response
   has_one :screenshot, through: :webpage
+  has_many :webpage_redirects, through: :webpage_response
 
   before_validation :clean_url
 

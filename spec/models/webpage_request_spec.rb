@@ -26,6 +26,7 @@ describe WebpageRequest do
     it { should have_one(:webpage_response).dependent(:destroy) }
     it { should have_one(:webpage).through(:webpage_response) }
     it { should have_one(:screenshot).through(:webpage) }
+    it { should have_many(:webpage_redirects).through(:webpage_response) }
   end
 
   describe 'before validation' do
