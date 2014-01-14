@@ -41,7 +41,7 @@ Then(/^I should see information about the URL$/) do
 end
 
 Then(/^I should see an invalid URL message$/) do
-  page.should have_content 'Url could not be verified'
+  page.should have_content 'Url returned an error'
 end
 
 Then(/^I should see a screenshot of the URL "(.*?)"$/) do |url|
