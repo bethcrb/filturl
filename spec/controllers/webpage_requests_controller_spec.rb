@@ -1,6 +1,7 @@
 require 'spec_helper'
 
-describe WebpageRequestsController do
+cassette_name = 'WebpageRequestsController'
+describe WebpageRequestsController, vcr: { cassette_name: cassette_name }  do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
@@ -24,7 +25,7 @@ describe WebpageRequestsController do
     let(:user) { FactoryGirl.create(:user) }
     before { sign_in user }
 
-    context 'when the webpage request is successful', :vcr do
+    context 'when the webpage request is successful' do
       let(:webpage_request_params) do
         { url: 'http://www.yahoo.com/', user_id: user.id }
       end
@@ -36,7 +37,7 @@ describe WebpageRequestsController do
       end
     end
 
-    context 'when the webpage request is not successful', :vcr do
+    context 'when the webpage request is not successful' do
       let(:bad_webpage_request_params) do
         { url: 'http://not.a.valid.url/', user_id: user.id }
       end

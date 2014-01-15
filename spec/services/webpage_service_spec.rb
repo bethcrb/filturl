@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'WebpageService' do
+describe WebpageService, vcr: { cassette_name: 'WebpageRequest/create' } do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
@@ -12,7 +12,7 @@ describe 'WebpageService' do
     end
   end
 
-  describe '.perform_http_request', :vcr do
+  describe '.perform_http_request' do
     let(:webpage_request) { build(:webpage_request) }
     it 'returns a Typhoeus::Response' do
       response = WebpageService.perform_http_request(webpage_request)
@@ -24,7 +24,7 @@ describe 'WebpageService' do
     let(:webpage_request) { create(:webpage_request) }
     let(:webpage_service) { WebpageService.new(webpage_request) }
 
-    context 'when it is successful', :vcr do
+    context 'when it is successful' do
       before(:each) { webpage_service.perform_http_request }
 
       it 'returns a Typhoeus::Response' do
@@ -44,7 +44,7 @@ describe 'WebpageService' do
       end
     end
 
-    context 'when save_webpage fails', :vcr do
+    context 'when save_webpage fails' do
       it 'sets the webpage_request status to "error"' do
         webpage_service.stub(:save_webpage).and_return(false)
         webpage_service.perform_http_request
@@ -52,7 +52,7 @@ describe 'WebpageService' do
       end
     end
 
-    context 'when there are redirects', :vcr do
+    context 'when there are redirects' do
       let(:redirect_response) do
         Typhoeus::Response.new(response_headers: 'Location: http://localhost/')
       end

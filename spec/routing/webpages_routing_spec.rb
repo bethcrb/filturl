@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe WebpagesController do
+describe WebpagesController, vcr: { cassette_name: 'WebpageRequest/create' } do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
   describe 'routing' do
-    it 'routes /urls/:id with slug to webpages#show', :vcr do
+    it 'routes /urls/:id with slug to webpages#show' do
       webpage_request = FactoryGirl.create(
         :webpage_request,
         perform_http_request: true
@@ -16,7 +16,7 @@ describe WebpagesController do
       )
     end
 
-    it 'does not route /urls/:id with numeric id to webpages#show', :vcr do
+    it 'does not route /urls/:id with numeric id to webpages#show' do
       webpage_request = FactoryGirl.create(
         :webpage_request,
         perform_http_request: true

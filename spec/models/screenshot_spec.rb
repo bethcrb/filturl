@@ -71,7 +71,7 @@ describe Screenshot do
       end
     end
 
-    describe 'needs_update?', :vcr do
+    describe 'needs_update?' do
       it 'returns true if the url is blank' do
         screenshot.update_attributes!(url: nil)
         expect(screenshot.needs_update?).to be_true

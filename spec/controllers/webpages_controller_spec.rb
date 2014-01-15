@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe WebpagesController, vcr: { cassette_name: 'WebpagesController' } do
+describe WebpagesController, vcr: { cassette_name: 'WebpageRequest/create' } do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
   let(:user) { create(:user) }
   before { sign_in user }
 
-  describe "GET 'show'", :vcr do
+  describe "GET 'show'" do
     context 'the current user made the webpage request' do
       let(:existing_webpage_request) do
         create(:webpage_request, user: user, perform_http_request: true)
