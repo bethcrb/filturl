@@ -9,8 +9,9 @@
     %ul#navTabs.nav.nav-tabs.nav-justified
       %li.active
         %a{data: { target: '#overview_tab', toggle: 'tab' }, href: '#overview_tab'} Overview
-      %li
-        %a{data: { target: '#http_headers_tab', toggle: 'tab' }, href: '#http_headers_tab'} HTTP Headers
+      - if @webpage.body.present?
+        %li
+          %a{data: { target: '#http_headers_tab', toggle: 'tab' }, href: '#http_headers_tab'} HTTP Headers
       - if @webpage.body.present?
         %li
           %a{data: { target: '#view_source_tab', toggle: 'tab' }, href: '#view_source_tab'} View Source
@@ -19,6 +20,6 @@
           %a{data: { target: '#screenshot_tab', toggle: 'tab' }, href: '#screenshot_tab'} Screenshot
     .tab-content
       = render 'overview'
-      = render 'http_headers'
+      = render 'http_headers' if @webpage_response.headers.present?
       = render 'view_source' if @webpage.body.present?
       = render 'screenshot' if @webpage.screenshot.url.present?
