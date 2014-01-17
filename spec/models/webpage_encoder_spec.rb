@@ -22,17 +22,17 @@ describe WebpageEncoder do
   end
 
   describe '#mime_type' do
-    it 'returns nil unless a content type is present', :vcr do
+    it 'returns nil unless a content type is present' do
       @webpage.update_attributes!(content_type: nil)
       expect(WebpageEncoder.new(@webpage).mime_type).to be_nil
     end
 
-    it 'returns nil unless the content type is in MIME::Types', :vcr do
+    it 'returns nil unless the content type is in MIME::Types' do
       @webpage.update_attributes!(content_type: 'invalid/type')
       expect(WebpageEncoder.new(@webpage).mime_type).to be_nil
     end
 
-    it 'returns the first mime type based on content_type', :vcr do
+    it 'returns the first mime type based on content_type' do
       @webpage.update_attributes!(content_type: 'text/html')
       expect(WebpageEncoder.new(@webpage).mime_type)
         .to eq(MIME::Types[@webpage.content_type].first)
@@ -65,171 +65,107 @@ describe WebpageEncoder do
       Webpage.set_callback(:save, :before, :encode_body)
     end
 
-    it 'returns nil if the content type is not present', :vcr do
+    it 'returns nil if the content type is not present' do
       @webpage.update_attributes!(content_type: nil)
       expect(WebpageEncoder.new(@webpage).encoded_body).to be_nil
     end
 
-    it 'returns nil if the content type is not allowed', :vcr do
+    it 'returns nil if the content type is not allowed' do
       @webpage.update_attributes!(content_type: 'invalid/type')
       expect(WebpageEncoder.new(@webpage).encoded_body).to be_nil
     end
 
-    it 'sets the meta encoding', :vcr do
+    it 'sets the meta encoding' do
       @webpage.update_attributes!(meta_encoding: nil)
       WebpageEncoder.new(@webpage).encoded_body
       expect(@webpage.meta_encoding).to_not be_nil
     end
 
-    it 'returns it as is if it is already UTF-8', :vcr do
+    it 'returns it as is if it is already UTF-8' do
       @webpage.body.stub(:is_utf8?).and_return(true)
       expect(WebpageEncoder.new(@webpage).encoded_body).to eq(@webpage.body)
     end
   end
 
   describe 'encoding' do
-    it 'is UTF-8 for Big5', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :big5,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for Big5' do
+      webpage = build_stubbed(:webpage, :big5)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for EUC-JP', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :eucjp,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for EUC-JP' do
+      webpage = build_stubbed(:webpage, :eucjp)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for EUC-KR', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :euckr,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for EUC-KR' do
+      webpage = build_stubbed(:webpage, :euckr)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for GB2312', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :gb2312,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for GB2312' do
+      webpage = build_stubbed(:webpage, :gb2312)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for GBK', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :gbk,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for GBK' do
+      webpage = build_stubbed(:webpage, :gbk)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for ISO-8859-1', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :iso885901,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for ISO-8859-1' do
+      webpage = build_stubbed(:webpage, :iso885901)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for ISO-8859-2', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :iso885902,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for ISO-8859-2' do
+      webpage = build_stubbed(:webpage, :iso885902)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for ISO-8859-9', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :iso885909,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for ISO-8859-9' do
+      webpage = build_stubbed(:webpage, :iso885909)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for ISO-8859-15', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :iso885915,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for ISO-8859-15' do
+      webpage = build_stubbed(:webpage, :iso885915)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for Shift JIS', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :shiftjis,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for Shift JIS' do
+      webpage = build_stubbed(:webpage, :shiftjis)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for Windows-874', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :windows874,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for Windows-874' do
+      webpage = build_stubbed(:webpage, :windows874)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for Windows-1250', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :windows1250,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for Windows-1250' do
+      webpage = build_stubbed(:webpage, :windows1250)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for Windows-1251', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :windows1251,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for Windows-1251' do
+      webpage = build_stubbed(:webpage, :windows1251)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for Windows-1252', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :windows1252,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for Windows-1252' do
+      webpage = build_stubbed(:webpage, :windows1252)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for Windows-1254', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :windows1254,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for Windows-1254' do
+      webpage = build_stubbed(:webpage, :windows1254)
+      expect(webpage.body.is_utf8?).to be_true
     end
 
-    it 'is UTF-8 for Windows-1256', :vcr do
-      webpage_request = create(
-        :webpage_request,
-        :windows1256,
-        perform_http_request: true
-      )
-      expect(webpage_request.webpage.body.is_utf8?).to be_true
+    it 'is UTF-8 for Windows-1256' do
+      webpage = build_stubbed(:webpage, :windows1256)
+      expect(webpage.body.is_utf8?).to be_true
     end
   end
 end

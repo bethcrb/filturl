@@ -1,0 +1,493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+				<meta name="author" content="fumigaciones de mosquitos dengue" />
+        		<title>Mosquitos dengue fumigaciones control de mosquito aedes</title>
+        		<meta name="keywords" content="mosquitos, dengue, control de mosquitos, prevención, termofumigadoras, termofogging, ULV, ultra bajo volumen, trampas para mosquitos, información, fumigadores, equipos" />
+        		<meta name="description" content="Fumigaciones de mosquitos contra dengue" />
+				<meta name="googlebot" content="index,follow,all" />
+				<meta name="robots" content="index,follow,all" />
+				<meta name="distribution" content="Global" />
+				<meta name="copyright" content="Todo sobre Mosquitos - fumigaciones control dengue" />
+
+<link href="css/estilos.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+function creaAjax(){
+	var objetoAjax;
+	if(window.XMLHttpRequest){
+		objetoAjax = new XMLHttpRequest(); // Creacion del objeto en buenos navegadores
+	}else{
+		try{
+			objetoAjax = new ActiveXObject("Microsoft.XMLHTTP"); // Creacion del objeto en Internet Explorer
+		}catch(e){
+			alert('Browser does not support ajax'); // No se puede crear el objeto ajax
+		}
+	}return objetoAjax;
+}
+
+function validar_recaptcha(code){
+	variables="code="+code;
+	var ajax = creaAjax();
+	ajax.open("POST", "securimage/validar.php",true);
+	ajax.onreadystatechange = function() {
+		if (ajax.readyState == 4){
+			dev=ajax.responseText;
+			if(dev=="MAL"){
+				alert("El texto que usted ingreso no coincide con la imagen");
+				document.form_1.fc_10.focus();
+				return;
+			}else{
+				document.form_1.action="?id=2";
+				document.form_1.submit();
+			}		
+		}
+	}
+	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	ajax.send(variables);
+}
+
+function validar_form(){
+	nombre_formulario="form_1";
+
+	objetos=Array("fc_1", "fc_2", "fc_5", "fc_6", "fc_4", "fc_10");
+
+	alertas=Array("Por favor complete el campo Nombre", "Por favor complete el campo Mail", "Por favor complete el campo Localidad", "Por favor complete el campo Provincia",  "Por favor complete el campo Comentario", "Por favor complete el campo con el texto que figura en la imagen");
+	
+	cant=objetos.length;
+	
+	for(i=0;i<cant;i++){
+		if(! eval('document.'+nombre_formulario+'.'+objetos[i]+'.value') ){
+			alert(alertas[i]);
+			eval('document.'+nombre_formulario+'.'+objetos[i]+'.focus()');
+			return;
+		}
+	}
+	
+	email = eval('document.'+nombre_formulario+'.'+objetos[1]+'.value');
+	if(email.indexOf('@',0)==-1 || email.indexOf(';',0)!=-1
+	|| email.indexOf(' ',0)!=-1 || email.indexOf('/',0)!=-1
+	|| email.indexOf(';',0)!=-1 || email.indexOf('<',0)!=-1
+	|| email.indexOf('>',0)!=-1 || email.indexOf('*',0)!=-1
+	|| email.indexOf('|',0)!=-1 || email.indexOf('`',0)!=-1
+	|| email.indexOf('&',0)!=-1 || email.indexOf('$',0)!=-1
+	|| email.indexOf('!',0)!=-1 || email.indexOf('"',0)!=-1
+	|| email.indexOf(':',0)!=-1){
+		alert("Debe poner un mail correcto!");
+		eval('document.'+nombre_formulario+'.'+objetos[1]+'.focus()')
+		return;
+	}else{
+		validar_recaptcha(document.form_1.fc_10.value);
+	}
+}
+</script>
+<script type="text/javascript">
+window.google_analytics_uacct = "UA-1887875-4";
+</script>
+</head>
+
+<body>
+
+<div style="position:relative; width:0px; height:0px; z-index:999;">
+
+	<div style="position:absolute; width:1000px; left:0px; top:0px; z-index:999;">
+    	
+        <div style="float:left; width:140px; background-color:#fff; height:100%; margin:10px; margin-left:0px; padding-bottom:40px; display:inline;">
+        	<div style="margin:0px auto; width:110px; padding:20px 0px;"><img src="img/logo_1.jpg" width="110" height="152" /></div>
+            <div class="botonera" style="margin:0px auto; width:110px;">
+            	<ul>
+                	<li>
+                                        	<span class="boton_s">Inicio</span>
+                                        </li>
+                                        		<li><a href="?id=2&titulo=toda-la-informacion-sobre-mosquitos">Mosquitos</a> <b>(+)</b></li>
+                                        		<li><a href="?id=45&titulo=ciclo-de-vida-de-los-mosquitos">Ciclo de vida de los mosquitos</a> <b>(+)</b></li>
+                                        		<li><a href="?id=22&titulo=especies-mas-comunes-de-mosquitos-">Tipos de mosquitos</a> <b>(+)</b></li>
+                                        		<li><a href="?id=1&titulo=enfermedades-transmitidas-por-mosquitos">Enfermedades transmitidas por mosquitos</a> <b>(+)</b></li>
+                                        		<li><a href="?id=10&titulo=prevencion-de-mosquitos">Prevención de Mosquitos</a> <b>(+)</b></li>
+                                        		<li><a href="?id=13&titulo=control-de-mosquitos-adultos">Control de Mosquitos adultos</a> <b>(+)</b></li>
+                                        		<li><a href="?id=98&titulo=empresas-fumigadoras">Empresas fumigadoras</a> </li>
+                                        		<li><a href="?id=14&titulo=repelentes-para-mosquitos">Repelentes para mosquitos</a> <b>(+)</b></li>
+                                        		<li><a href="?id=65&titulo=glosario">Glosario de términos</a> </li>
+                                        		<li><a href="?id=80&titulo=links-sobre-mosquitos">Links sobre mosquitos</a> </li>
+                                        		<li><a href="?id=63&titulo=acerca-de-todo-sobre-mosquitos">Acerca de TSM</a> </li>
+                                        <!--
+                    <li><a href="#">Seccion 2 y rata</a></li>
+                    <li><a href="#">Seccion 3 y mosca</a></li>
+                    -->                    
+                    <li><a href="contacto.php">Contacto</a></li>
+                </ul>
+            </div>
+                
+                <div style="width:120px; margin:0px auto; margin-top:20px;">
+		<div style='width:120px; height:240px;'><script type="text/javascript"><!--
+google_ad_client = "pub-5096009773981901";
+/* 120x240, creado 27/09/09 */
+google_ad_slot = "6229668310";
+google_ad_width = 120;
+google_ad_height = 240;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>		</div>
+		
+        </div>
+        
+        <div style="float:left; width:840px; height:100%; background-color:#008d9f; margin:10px; margin-left:0px; display:inline; overflow:hidden;">
+            <div style="width:820px; padding:10px;">
+            		            		<h3>
+                                        		<a href="?id=1&titulo=enfermedades-transmitidas-por-mosquitos">Enfermedades transmitidas por mosquitos</a> -                                         		<a href="?id=2&titulo=toda-la-informacion-sobre-mosquitos">Mosquitos</a> -                                         		<a href="?id=6&titulo=dengue">Dengue</a> -                                         		<a href="?id=10&titulo=prevencion-de-mosquitos">Prevención de Mosquitos</a> -                                         		<a href="?id=13&titulo=control-de-mosquitos-adultos">Control de Mosquitos adultos</a> -                                         		<a href="?id=14&titulo=repelentes-para-mosquitos">Repelentes para mosquitos</a> -                                         		<a href="?id=19&titulo=aedes-aegypti">Aedes aegypti</a> -                                         		<a href="?id=22&titulo=especies-mas-comunes-de-mosquitos-">Tipos de mosquitos</a> -                                         		<a href="?id=45&titulo=ciclo-de-vida-de-los-mosquitos">Ciclo de vida de los mosquitos</a>                                        </h3>
+            		<!--<h3>Fumigaciones de mosquitos - control de mosquitos - prevenci&oacute;n contra el dengue</h3>-->
+
+            </div>
+            <div style="width:820px; padding:10px; padding-bottom:20px; background-color:#FFF;">
+                                <div style="width:100%; margin-bottom:10px;">
+                <div style='width:728px; height:15px;'><script type="text/javascript"><!--
+google_ad_client = "pub-5096009773981901";
+/* 728x15, creado 26/09/09 */
+google_ad_slot = "8241298601";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>                </div>
+                            	<h1>Toda la información sobre Mosquitos</h1>
+                <span class="tit"><h2>Este sitio contiene información útil y completa sobre mosquitos.
+
+Escriba  sus comentarios, impresiones, críticas en los formularios en el pie de cada página.</h2></span>
+                                <div style="width:100%; margin-bottom:10px;">
+                <div style='width:425px; height:344px;'><object width="560" height="340"><param name="movie" value="http://www.youtube.com/v/P08ELfFwkZI&hl=es&fs=1&rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/P08ELfFwkZI&hl=es&fs=1&rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="560" height="340"></embed></object></div>                </div>
+                                <div class="estilo3" style="overflow:hidden;">
+                	                	<div style="float:left; margin:10px; margin-left:0px;">
+                    
+                    <div><a href=''><img src='img/cosas/1228832659.jpg' alt='Campaña contra el mosquito del dengue' /></a></div>                    
+                    </div>
+                                                            <div style="float:right; margin:10px; margin-right:0px;">
+                    	<div class='caja_texto'>Los mosquitos no sólo son molestos, también pueden ser transmisores de enfermedades.</div>                    </div>
+                    					<p><strong><u>Mosquitos: &iquest;Qui&eacute;n es el culpable de la picadura?</u></strong><br /><br />Para sorpresa de muchos, qui&eacute;n se encarga de la picadura y extracci&oacute;n de sangre de los humanos no son los mosquitos macho, sino el mosquito hembra. Es que para el mosquito hembra esta actividad, de picar para extraer sangre, es necesaria para que puedan reproducirse. <br /><br />El mecanismo es el siguiente: con su boca extendida realiza la perforaci&oacute;n de la piel del ser humano y de ese modo consigue alimentarse de su sangre. Al introducir su boca, comienza a succionar la sangre y despide su saliva (&eacute;sta, cumple la funci&oacute;n de anticoagulante de la sangre). <br /><br />Pero atenci&oacute;n: la sangre es el medio por el cual transmite enfermedades, en caso de que se encuentre infectado. <br /><br />Sin embargo, poco les importa a los mosquitos ya que para ellos es imprescindible la prote&iacute;na de la sangre para su reproducci&oacute;n, la colocaci&oacute;n y el desarrollo de sus huevos. <br /><br />Lo llamativo es que los mosquitos macho no son capaces de picar ya que s&oacute;lo se alimentan de n&eacute;ctar. <br /><br />Cuando son larvas, viven en el agua y respiran por tubos, aliment&aacute;ndose de los desechos microorg&aacute;nicos. Permanecen all&iacute; para luego transformarse despu&eacute;s de dos d&iacute;as en adulto - depende la especie, viven entre 4 y 30 d&iacute;as-. <font size="3"><strong><br /></strong></font></p>
+                    									<div style="float:left; margin:10px; margin-left:0px;">
+							
+							<div style='width:320px; height:250px;'><script type="text/javascript"><!--
+google_ad_client = "pub-5096009773981901";
+/* 300x250, creado 27/09/09 */
+google_ad_slot = "5928127331";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>							
+							</div>
+														                    <strong>C&oacute;mo protegernos de los mosquitos<br /></strong><br />Aqu&iacute; van algunos tips para no contribuir a la proliferaci&oacute;n de estas especies y lograr un control dentro del &aacute;mbito casero:&nbsp;<br /><br />En primer lugar, todo objeto como ruedas, envases, tambores o cualquier objeto que pueda contener agua deben estar limpios.&nbsp;<br /><br />Todo drenaje tiene que estar libre de pasto o basura.&nbsp;<br /><br />Conserve los contenedores de basura tapados para evitar la acumulaci&oacute;n de agua de lluvia.&nbsp;<br /><br />Si en su patio tiene piscina, por favor no la mantenga vac&iacute;a o con muy poco agua, ya que es un lugar donde es com&uacute;n encontrar gran cantidad de cr&iacute;as de mosquitos y, si no las usa, c&uacute;bralas.<br />Mantenga el pasto de su jard&iacute;n y alrededores corto para evitar darle un lugar de refugio al mosquito.&nbsp;<br /><br />Para las puertas y ventanas de su casa utilice los bien llamados &ldquo;mosquiteros&rdquo; (tela met&aacute;lica o pl&aacute;stica que cubre las puertas y ventanas para evitar que se introduzcan insectos por ella).&nbsp;<br /><br />Si sus actividades van a realizarse fuera del hogar o en lugares donde los mosquitos abundan (jard&iacute;n, parques, campo) utilice repelente para evitar picaduras, aplic&aacute;ndolo a su piel si &eacute;sta va a estar expuesta o, en su defecto, sobre su ropa.&nbsp;<br /><br /><br /><font size="3"><strong><a href="http://www.fumigaciones.com.ar">fumigaciones de mosquitos</a><br /></strong></font><font size="3"><strong><br /></strong></font><a href="http://www.fumigaciones.com.ar"><font size="3"><strong>fumigaciones contra dengue</strong></font></a><font size="3"><strong>&nbsp;<br /><br /></strong></font><font size="3"><strong><a href="http://www.fumigaciones.com.ar">Fumigadores</a><br /><br /></strong></font><font size="3"><strong><a href="http://www.fumigaciones.com.ar">Fumigadoras</a><br /><font size="3"><strong><br /><br /></strong></font></strong></font>                    
+                </div>
+                                <div style="width:100%; margin-top:10px;">
+                <div style='width:728px; height:90px;'><script type="text/javascript"><!--
+google_ad_client = "pub-5096009773981901";
+/* 728x90, creado 27/09/09 */
+google_ad_slot = "3197081973";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>                </div>
+                                <a name="comentario"></a>
+                <div style="width:100%; height:25px; background-image:url(img/det_1.gif); background-repeat:repeat-x;"></div>
+                					                    <div class="estilo1" style="padding-bottom:10px;">
+                        <h2>- Dejanos tu comentario:</h2>
+                        <form name="form_1" method="post">
+                            <table width="460" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td width="60" style="padding:12px 0px;">Nombre</td>
+                                    
+                                    <td align="right"><input name="fc_1" type="text" class="input1" style="width:130px;" /></td>
+                                    <td width="30"></td>
+                                    <td width="70">Mail</td>
+                                    
+                                    <td align="right"><input name="fc_2" type="text" class="input1" style="width:130px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"></td>
+                                </tr>
+                                <tr>
+                                    <td width="60" style="padding:12px 0px;">Localidad</td>
+                                    
+                                    <td align="right"><input name="fc_5" type="text" class="input1" style="width:130px;" /></td>
+                                    <td width="30"></td>
+                                    <td width="70">Provincia</td>
+                                    
+                                    <td align="right"><input name="fc_6" type="text" class="input1" style="width:130px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td width="70" style="padding:12px 24px 12px 0px;">Tel&eacute;fono</td>
+                                    
+                                    <td colspan="4" align="left"><input name="fc_3" type="text" class="input1" style="width:130px;" /></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td colspan="5" height="10"></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td colspan="5">Comentario<br /><textarea name="fc_4" class="input1" style="width:460px; height:50px; margin-top:8px;"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"><div><img src="securimage/securimage_show.php?sid=e0a11b84e09fd076eaa3fc5b64a110c0" id="imageCaptcha"></div><div style="margin-top:10px; font-size:10px;">Por favor escriba  el texto que aparece en la imagen. (<a href="#" style="color:#63b4be; text-decoration:none;" onclick="document.getElementById('imageCaptcha').src = 'securimage/securimage_show.php?sid=' + Math.random(); return false">Cargar otra imagen de ser  necesario</a>)</div><div style="margin-top:10px;"><input name="fc_10" type="text" class="input1" style="width:460px;" /></div></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"><input type="button" class="input1" value="Enviar" onClick="javascript:validar_form();" style="width:60px; text-align:center;" /></td>
+                                </tr>
+                            </table>
+                      </form>
+                    </div>
+                                        <div style="width:100%; height:25px; background-image:url(img/det_1.gif); background-repeat:repeat-x;"></div>
+                    <div class="estilo1">
+                                                <h2>- Comentarios (20)</h2>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>HUGO</b> el d&iacute;a 04 de Octubre a las 21:51 dijo:
+                            
+                            <div>
+                                HOLA  QUERIA SABER EL PRECIO POR METRO CUBICO  PARA FUMIGAR EN UNA ESCUELA  Y EN CUANTO TIEMPO PODEMOS VOLVER A ENTRAR. SI FUMIGAMOS EL SABADO POR EJEMPLO  CUANDO PUEDEN ENTRAR LOS ALUMNOS?...TEMA DENGUE  GRACIAS.                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Hugo: para poder cotizar es muy importante conocer la localidad en donde esta situada la escuela. Por lo gral mas que los metros cubicos se nos hace mas facil cotizar en funcion de los metros cuadrados para darnos una idea del tiempo que nos puede llevar el trabajo y la cantidad de personas que necesitamos asi como del equipamiento. Envianos esta informacion a ver si podemos ayudarte. Saludos                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>VERONICA </b> el d&iacute;a 19 de Octubre a las 16:13 dijo:
+                            
+                            <div>
+                                hola   queria comentarles que el otro dia lleve a mi hija de 3 años a la plaza y le picaron 2 mosquitos  a ella jamas le hizo una reaacion alergica  solo era una ronchita y nada mas  lo comun digamos  y esta vez no fue asi  se le empezo a hinchar toda la parte de la frente  y mitad de la nariz  y los ojos se le hundian  de tanta hinchazon  me encantaria sabr que clase de mosquito  pudo haber sido el causal de esto  necesito informacion  ojola ustedes puedan brindarla.. muchas gracias..                                                                 <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Veronica: Gracias por escribirnos. Con la informacion que nos das se nos hace dificil poder determinar cual fue el mosquito causante de la hinchazon en la frente y nariz. Te recomandamos acudir a un centro de salud y prestarle suma atencion a las medidas de prevencion que podes usar para palear el problema de mosquitos. Saludos.                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>lucas</b> el d&iacute;a 26 de Octubre a las 21:17 dijo:
+                            
+                            <div>
+                                Me parece muy pero muy bueno el desarrollo de la pagina  sos un fenomeno  realmente me parece que es de mucha utlidad para quien la consulte  es un gran aporte a la comunidad. un gran abrazo                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Gracias Lucas por tus comentarios. Estamos trabajando todo el año. Cualquier aporte que desde tu amplia experiencia puedas hacer a este sitio será bien valorada. Un abrazo grande.                                 </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>juan romero</b> el d&iacute;a 09 de Noviembre a las 12:23 dijo:
+                            
+                            <div>
+                                Buenas tardes me llamo Juan Romero y trabajo para una empresa que cuentan con una trayectoria de 49 años abasteciendo al mercado de la actividad agro forestal y mantenimiento de espacios verdes  <br />
+<br />
+Les agradezco por la información brindada.                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>Guillermo</b> el d&iacute;a 04 de Enero a las 14:18 dijo:
+                            
+                            <div>
+                                Quería saber si el aceite de citronela en hornitos en la casa es perjudicial para las embarazadas. Lo mismo si es perjudicial el aceite aplicado el cuerpo en gotas  para las embarazadas Saludos y Gracias                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Guillermo: 
+Gracias por escribirnos. 
+
+El aceite de citronella es un producto que normalmente no ofrece peligro a las dosis recomendadas. 
+
+Hay sitios que sugieren este producto para embarazadas y otros que lo rechazan por completo.
+
+Existen productos de todo tipo (velas, antorchas, etc) hechos a base de este compuesto que no cuentan con las habilitaciones pertinentes (ANMAT)
+
+Nuestra recomendación es que la persona embarazada que conoce, consulte bien con un profesional o con su obstetra. Todo producto aplicado sobre la piel de una persona embarazada debe ser antes chequeado por un profesional de la salud.
+
+Saludos! Buen Año.                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>Alejandro</b> el d&iacute;a 06 de Enero a las 14:30 dijo:
+                            
+                            <div>
+                                Buen día. Anoche atrape un mosquito enorme  el cuerpo solo mide 1.5 cm y sus patas son extremadamente largas. Es color dorado y su lomo parece tener rayas negras. No tengo idea que es  ni que hacer con el. Lo tendre que mandar a analizar? a donde? Desde ya muchas gracias                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>adriana</b> el d&iacute;a 07 de Enero a las 01:03 dijo:
+                            
+                            <div>
+                                hoy a la noche atrapamos un mosquito similar al que menciona Alejandro  patas muy largas y viendolo con una lupa parece tener rayas en el cuerpo  tambien quisiera saber donde puedo llevarlo a analizar. Muchas gracias por sus comentarios                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Estimada Adriana:
+Te recomendamos que te pongas en contacto con la Sociedad Entomológica Argentina. Dependiendo de la Ciudad en donde vives te van a recomendar algun centro para el análisis morfológico del mosquito. 
+Gracias por escribir. Saludos. TSM                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>selena</b> el d&iacute;a 03 de Abril a las 22:38 dijo:
+                            
+                            <div>
+                                Deberian poner mas informacion como cual es la diferencia entre los mosquitos  las arañas  las moscas  las cucarachas y  las hormigas                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Gracias por escribirnos. Vamos a tener en cuenta tu comentario. Saludos.                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>LUIS ALBERTO HUANIN AHUANARI</b> el d&iacute;a 15 de Mayo a las 10:21 dijo:
+                            
+                            <div>
+                                HOLA ME GUSTARIA SABER QUE INSECTICIDA PUEDO UTILIZAR PARA FUMIGAR CONTRA ESTOS MOSQUITOS CONTRA EL DENGUE? ESPERO SU PRONTA RESPUESTA  LUIS HUANIN                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Estimado Luis:
+
+Te recomendamos que uses algun insecticida piretroide de ultima generacion enriquecido en ismeros activos. Si lo mezclas con algun glicol lograrás mas residualidad en exteriores. 
+
+Saludos.
+Equipo de TSM                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>Nieves</b> el d&iacute;a 05 de Julio a las 05:58 dijo:
+                            
+                            <div>
+                                Me gustan vuestros informes fáciles y serios.  asi como las orientaciones que dais. Me interesa la informacion que podais enviar                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Estimada Nieves: Gracias por tus conceptos. Nos alientan. Saludos. Equipo de TSM.                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>mari</b> el d&iacute;a 08 de Julio a las 14:58 dijo:
+                            
+                            <div>
+                                que tal.. hace poco encontre un mosquito que se poso en mi mano con la intension de picar. el mosquito tiene la punta larga que es con la qe pican. el punto es que el mosquito es de color azul rey  asi como metalico y tiene unas antenas largas en la parte de atras asi como sus patas trasera que son como 2 plumas.. mi pregunta es si este mosco es transmisor o es inofensivo?. el tamaño del mosquito es pequeña asi como la de un mosquito normal solo lo distingue sus colores metalicos y sus plumas que son sus patas traseras                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>johanna</b> el d&iacute;a 09 de Julio a las 04:51 dijo:
+                            
+                            <div>
+                                HOLA ESTOY DESESPERADA  MI HIJA Y YI ESTAMOS CON PICADURAS EN TODO EL CUERPO Y CADA DIA NOS NOS SAlEN MAS. LA PICASON ES LO HORRIBLE  Y MI ESPOSO Y YO HEMOS FUMIGADOO MAS DE TRES VECES LA CASA Y SIGUE IGUAL. LLEGAMOS A PENSAR QUE ERAN CHINCES PERO SOLO PICAN CUANDO UNO ESTA DESCUBIERTO. PERO TAMPOCO SE VE EL MOSQUITO VOLANDO. ESTOY DESESPERADA QUE CREEN QUE PUEDO HACER.                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Johanna: Si  no ves ni sientes el ruido característico de los mosquitos es necesario que puedas descartar que sean chinches de cama o bed bugs. Estos insectos atacan de noche cuando uno está en la cama durmiendo. Saludos, Equipo de TSM.                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>bryan</b> el d&iacute;a 19 de Agosto a las 17:19 dijo:
+                            
+                            <div>
+                                quisiera que me informaran sobre una especie de mosquito  lo desciribire: su tamaño es de 5 mm su forma es de un mosquico comun pero sus ojos son como los de una mosca e inclusve el aspecto general del mosquito. quisiera que si tienen alguan informacion podrian enviarmela a mi correo. de atemano gracias..                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Estimado Bryan: Con la descripcion que nos das no podemos identificar el insecto. Envianos por favor una foto. Saludos. Equipo de TSM                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>Diana</b> el d&iacute;a 22 de Febrero a las 22:52 dijo:
+                            
+                            <div>
+                                Hola acabo de matar un mosquito q se le re notan las rayas blancas de las patas encima es chiquito  estoy re asustada  xq sea el del dengue  encima a mi nena de 3 la picaron mucho  estoy en agronomia donde lo mando a analizar?gracias                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Estimada Diana: Si el mosquito aún está entero lo puedes llevar a la Facultad de Agronomía, cátedra de Entomología. Seguramente ellos podrán ayudarte. Saludos. Equipo de TSM.                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>juan camilo</b> el d&iacute;a 16 de Mayo a las 10:16 dijo:
+                            
+                            <div>
+                                Tengo dengue que receta casera me recomiendan<br />
+                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Concurrí a un Centro médico. No hay recetas caseras.                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>Rudiel</b> el d&iacute;a 25 de Junio a las 17:19 dijo:
+                            
+                            <div>
+                                bueno sòlo andaba buscando información sobre lo que se trata del mosquito que transmite la enfermedad del dengue que es el aedes Aegypty  ya que laboro en el programa de enfermedades transmitidas por vectores Area de Salud Péten Norte  me da mucho gusto saludarles espero me escriban en mi correo<br />
+                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Estimado Rudiel: Gracias por el comentario. Les escribiremos para intercambiar información. Saludos, Equipo de TSM.                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>Carlos</b> el d&iacute;a 06 de Septiembre a las 12:20 dijo:
+                            
+                            <div>
+                                Cual es el tipo/es[ecie de mosquito encontrado en la Rep. Dominicana? para ser mas exactos en la peninsula de Samana.<br />
+Gracias                                                             </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>uriel rolón</b> el d&iacute;a 14 de Enero a las 14:43 dijo:
+                            
+                            <div>
+                                saludos saben uds un remedio para kitar la comezón d la picadura d moskito gracias                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Estimado Uriel: Gracias por escribirnos, Consultá con un dermatólogo o profesional de la medicina. Saludos, Equipo de TSM.                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>gabriela</b> el d&iacute;a 22 de Enero a las 18:53 dijo:
+                            
+                            <div>
+                                despues de cuantas horas se puede entrar a un sitio que ha sido fumigado contra roedores                                                                <div style="padding:10px 10px 10px 26px; color:#000; background-image:url(img/icon_1.gif); background-repeat:no-repeat; background-position:10px 12px; background-color:#eee; margin-top:10px;">
+                                    <b>Respuesta</b>: Estimada Gabriela: Esa pregunta está fuera de contexto en este sitio.Te recomendamos otro sitio www.ratas.com.ar  Saludos, Equipo de TSM                                </div>
+                                                            </div>
+                        </div>
+                                                <div style="margin-top:16px;">
+                            
+                            <b>Rossemari vega paucara</b> el d&iacute;a 16 de Marzo a las 17:41 dijo:
+                            
+                            <div>
+                                es un tema muy importante  porque en casa aparecieron zancudos y estan abundando  y quiero saber como hacer para que no sigan reproduciendose                                                            </div>
+                        </div>
+                                            </div>
+            	            </div>
+        </div>
+        
+        <div style="float:left; width:100%; padding-bottom:10px;">
+        	<div class="estilo2" style="margin:0px 10px 0px 150px; padding:10px; background-color:#bad0d4; text-align:center;">
+        	  Si esta informaci&oacute;n le resulto &uacute;til, puede hacer un link a esta p&aacute;gina: <a href="http://www.bichos.com.ar" target="_blank">www.bichos.com.ar</a>
+              <br />
+        	  Esta informaci&oacute;n es propiedad intelectual de <b>Bichos Online</b>. Todos los derechos reservados.
+              <br />
+              			          	  <b>Otros temas de importancia</b>: 
+			                <a href="?id=1&titulo=enfermedades-transmitidas-por-mosquitos">Enfermedades transmitidas por mosquitos, </a>
+			                <a href="?id=2&titulo=toda-la-informacion-sobre-mosquitos">Mosquitos, </a>
+			                <a href="?id=10&titulo=prevencion-de-mosquitos">Prevención de Mosquitos, </a>
+			                <a href="?id=13&titulo=control-de-mosquitos-adultos">Control de Mosquitos adultos, </a>
+			                <a href="?id=14&titulo=repelentes-para-mosquitos">Repelentes para mosquitos, </a>
+			                <a href="?id=22&titulo=especies-mas-comunes-de-mosquitos-">Tipos de mosquitos, </a>
+			                <a href="?id=45&titulo=ciclo-de-vida-de-los-mosquitos">Ciclo de vida de los mosquitos, </a>
+			                <a href="?id=63&titulo=acerca-de-todo-sobre-mosquitos">Acerca de TSM, </a>
+			                <a href="?id=65&titulo=glosario">Glosario de términos, </a>
+			                <a href="?id=80&titulo=links-sobre-mosquitos">Links sobre mosquitos, </a>
+			                <a href="?id=98&titulo=empresas-fumigadoras">Empresas fumigadoras</a>
+			          	</div>
+        </div>
+        
+    </div>
+    
+</div>
+
+<div id="principal"></div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1887875-4");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>
