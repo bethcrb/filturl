@@ -29,6 +29,10 @@ FactoryGirl.define do
     meta_encoding nil
   end
 
+  trait :lengthy_url do
+    url "http://www.example.com/#{SecureRandom.hex(512)}.html"
+  end
+
   trait :big5 do
     url 'http://www.books.com.tw/'
     body File.read(Rails.root.join('spec/fixtures/encodings/big5.html'))

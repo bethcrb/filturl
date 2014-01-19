@@ -37,6 +37,12 @@ class Webpage < ActiveRecord::Base
     WebpageLocation.new(self)
   end
 
+  # Use the first 228 and the last 25 characters to construct the slug when it
+  # is longer than 255 characters
+  def normalize_friendly_id(string)
+    super.length > 255 ? "#{super[0..227]}--#{super[-25..-1]}" : super
+  end
+
   private
 
   # Before saving, prepare to encode the body as UTF-8.

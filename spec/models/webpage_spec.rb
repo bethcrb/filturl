@@ -50,4 +50,25 @@ describe Webpage do
     it { expect(webpage).to respond_to(:location) }
     it { expect(webpage.location).to be_a(WebpageLocation) }
   end
+
+  describe '#normalize_friendly_id' do
+    context 'when the url is longer than 255 characters' do
+      subject(:webpage) { create(:webpage, :lengthy_url) }
+      it 'shortens the slug to 255 characters' do
+        expect(webpage.slug.length).to eq(255)
+      end
+
+      it 'uses the first 228 and the last 25 characters of the URL' do
+        url = webpage.url.parameterize
+        expect(webpage.slug).to eq("#{url[0..227]}--#{url[-25..-1]}")
+      end
+    end
+
+    context 'when the url is less than 255 characters' do
+      subject(:webpage) { create(:webpage) }
+      it 'uses the parameterized url as the slug' do
+        expect(webpage.slug).to eq(webpage.url.parameterize)
+      end
+    end
+  end
 end
