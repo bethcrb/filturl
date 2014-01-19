@@ -92,7 +92,7 @@ class ApplicationController < ActionController::Base
   # Create a guest user account with a random username and the client IP
   # address.
   def create_guest_user
-    guest_username = "guest_#{Time.now.to_i}#{rand(99)}"
+    guest_username = "guest_#{SecureRandom.uuid}"
     guest_user = User.new(
       email:    "#{guest_username}@#{request.remote_ip}",
       username: guest_username,
