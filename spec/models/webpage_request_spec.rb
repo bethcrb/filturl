@@ -58,6 +58,7 @@ describe WebpageRequest do
       httptest
       http://not.a.valid.url/
       http://www.unknown_response.com/
+      http://0.0.0.0/
     )
     invalid_urls.each do |url|
       it "does not allow url to be set to \"#{url}\"" do
