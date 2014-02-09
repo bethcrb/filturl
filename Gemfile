@@ -57,6 +57,7 @@ group :development do
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'guard-spork'
+  gem 'guard-teaspoon'
   gem 'listen'
 
   # Use Puma as the default web server for development.
@@ -152,7 +153,7 @@ gem 'phantomjs'
 gem 'postrank-uri', '~> 1.0.16'
 
 # Use Rolify to manage user roles.
-gem 'rolify', '~> 3.3.0.rc4'
+gem 'rolify'
 
 # Use Simple Form to easily integrate Bootstrap styles in forms.
 gem 'simple_form', '~> 3.0.0.rc'
