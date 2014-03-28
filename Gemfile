@@ -126,7 +126,7 @@ gem 'coderay'
 
 # Use Devise and Omniauth for authentication.
 gem 'devise', '~> 3.1'
-gem 'omniauth-facebook', '~> 1.5.1'
+gem 'omniauth-facebook', '~> 1.6'
 gem 'omniauth-github', '~> 1.1.0'
 gem 'omniauth-google-oauth2', '~> 0.2.0'
 
