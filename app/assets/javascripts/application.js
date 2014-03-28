@@ -15,5 +15,4 @@
 //= require turbolinks
 //= require bootstrap
 //= require URI
-//= require spin
 //= require_tree .
