@@ -108,7 +108,7 @@ group :development, :test do
   gem 'spork-rails'
 
   # Use Teaspoon for testing JavaScript with Jasmine.
-  gem 'teaspoon'
+  gem 'teaspoon', '~> 0.8.0'
 end
 
 # Use AWS SDK for S3.
