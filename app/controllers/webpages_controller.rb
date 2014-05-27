@@ -15,7 +15,7 @@ class WebpagesController < ApplicationController
 
   def set_webpage
     @webpage = Webpage.friendly.find(params[:id])
-    redirect_to root_path unless @webpage
+    redirect_to root_path unless @webpage.present?
   end
 
   def set_webpage_request

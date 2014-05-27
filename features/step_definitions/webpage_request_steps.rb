@@ -13,7 +13,8 @@ Given(/^I submitted the URL "(.*?)"$/) do |url|
 end
 
 Given(/^the slug "(.*?)" does not exist$/) do |slug|
-  assert_nil Webpage.find_by_slug(slug)
+  existing_slug = Webpage.find_by(slug: slug)
+  existing_slug.destroy if existing_slug.present?
 end
 
 Given(/^another user submitted the URL "(.*?)"$/) do |url|
