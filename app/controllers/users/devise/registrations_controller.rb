@@ -3,7 +3,7 @@
 # their account without providing their current password. It also configures
 # the permitted parameters for :account_update and :sign_up.
 class Users::Devise::RegistrationsController < Devise::RegistrationsController
-  before_filter :configure_permitted_parameters
+  before_action :configure_permitted_parameters
 
   def after_inactive_sign_up_path_for(resource)
     '/users/sign_in'

@@ -2,7 +2,7 @@
 # It currently serves the purpose of overriding the default permitted
 # parameters for signing in.
 class Users::Devise::SessionsController < Devise::SessionsController
-  before_filter :configure_permitted_parameters
+  before_action :configure_permitted_parameters
 
   protected
 
