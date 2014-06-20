@@ -19,7 +19,7 @@ class WebpageEncoder
     'text/plain',
     'text/x-json',
     'text/xml',
-    'text/yaml',
+    'text/yaml'
   ]
 
   def initialize(webpage)
@@ -36,9 +36,10 @@ class WebpageEncoder
     MIME::Types[content_type] && MIME::Types[content_type].first
   end
 
-  # Returns true or falsed based on whether or not the MIME type is allowed.
+  # Returns true or false based on whether or not the MIME type is allowed.
   def mime_type_allowed?
-    mime_type && mime_type.ascii? && ALLOWED_MIME_TYPES.include?(mime_type)
+    return false unless mime_type
+    mime_type.ascii? && ALLOWED_MIME_TYPES.include?(mime_type)
   end
 
   # Set the meta encoding of this page as according to Nokogiri. In the event
