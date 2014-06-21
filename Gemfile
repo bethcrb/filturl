@@ -79,7 +79,7 @@ group :test do
   gem 'database_cleaner', '~> 1.2'
 
   # Use Email Spec for testing email with RSpec and Cucumber.
-  gem 'email_spec', '~> 1.5.0'
+  gem 'email_spec', '~> 1.6.0'
 
   # Use Shoulda to write powerful tests with less code.
   gem 'shoulda', '~> 3.5.0'

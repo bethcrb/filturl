@@ -99,7 +99,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    email_spec (1.5.0)
+    email_spec (1.6.0)
       launchy (~> 2.1)
       mail (~> 2.2)
     erubis (2.7.0)
@@ -355,7 +355,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner (~> 1.2)
   devise (~> 3.1)
-  email_spec (~> 1.5.0)
+  email_spec (~> 1.6.0)
   factory_girl_rails (~> 4.0)
   ffaker (~> 1.0)
   figaro (~> 0.7.0)
