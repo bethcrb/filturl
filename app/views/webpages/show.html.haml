@@ -9,7 +9,7 @@
     %ul#navTabs.nav.nav-tabs.nav-justified
       %li.active
         %a{data: { target: '#overview_tab', toggle: 'tab' }, href: '#overview_tab'} Overview
-      - if @webpage.body.present?
+      - if @webpage_response.headers.present?
         %li
           %a{data: { target: '#http_headers_tab', toggle: 'tab' }, href: '#http_headers_tab'} HTTP Headers
       - if @webpage.body.present?
