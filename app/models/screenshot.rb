@@ -89,7 +89,7 @@ class Screenshot < ActiveRecord::Base
 
   def temp_screenshot_file
     screenshot_dir = Rails.root.join('tmp/screenshots').to_s
-    FileUtils.mkdir_p screenshot_dir unless Dir.exists?(screenshot_dir)
+    FileUtils.mkdir_p screenshot_dir unless Dir.exist?(screenshot_dir)
     set_filename if filename.blank?
     "#{screenshot_dir}/#{filename}"
   end
