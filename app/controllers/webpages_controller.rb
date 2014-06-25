@@ -24,7 +24,7 @@ class WebpagesController < ApplicationController
     if @webpage && !@webpage_request
       @webpage_request = WebpageRequest.create(
         url:     @webpage.url,
-        user_id: user_id,
+        user_id: user_id
       )
     end
   end

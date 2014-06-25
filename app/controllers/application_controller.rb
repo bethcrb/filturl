@@ -95,7 +95,7 @@ class ApplicationController < ActionController::Base
     guest_username = "guest_#{SecureRandom.uuid}"
     guest_user = User.new(
       email:    "#{guest_username}@#{request.remote_ip}",
-      username: guest_username,
+      username: guest_username
     )
     guest_user.skip_confirmation!
     guest_user.save!(validate: false)

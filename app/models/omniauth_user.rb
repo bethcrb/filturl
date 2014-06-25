@@ -40,7 +40,7 @@ class OmniauthUser
     @user = User.new(
       email:    auth_email,
       username: username,
-      password: Devise.friendly_token[0, 20],
+      password: Devise.friendly_token[0, 20]
     )
     @user.skip_confirmation!
     @user.save!
@@ -64,14 +64,14 @@ class OmniauthUser
   def save_omniauth_details
     authentication = @user.authentications.find_or_create_by(
       provider: auth_info.provider,
-      uid:      auth_info.uid,
+      uid:      auth_info.uid
     )
 
     authentication.update_attributes!(
       email:    auth_email,
       nickname: auth_nickname,
       image:    auth_info.image,
-      raw_info: @auth.to_json,
+      raw_info: @auth.to_json
     )
   end
 end

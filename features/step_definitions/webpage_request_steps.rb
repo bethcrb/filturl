@@ -21,7 +21,7 @@ Given(/^another user submitted the URL "(.*?)"$/) do |url|
   @another_user = FactoryGirl.create(:user)
   @another_webpage_request = WebpageRequest.create(
     url:  url,
-    user_id: @another_user.id,
+    user_id: @another_user.id
   )
   WebpageService.perform_http_request(@another_webpage_request)
 end

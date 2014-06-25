@@ -8,7 +8,7 @@ describe WebpageEncoder do
     VCR.use_cassette('WebpageRequest/create') do
       @webpage_request = create(
         :webpage_request,
-        perform_http_request: true,
+        perform_http_request: true
       )
       @webpage = @webpage_request.webpage
     end

@@ -4,7 +4,7 @@ Filturl::Application.routes.draw do
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
     registrations:      'users/devise/registrations',
-    sessions:           'users/devise/sessions',
+    sessions:           'users/devise/sessions'
   }
   resources :users
 

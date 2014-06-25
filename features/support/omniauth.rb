@@ -16,7 +16,7 @@ OmniAuth.config.add_mock(:facebook, {
   extra:    {
     raw_info: {
       username: username
-    },
+    }
   },
   info: {
     name: "#{first_name} #{last_name}",
@@ -24,8 +24,8 @@ OmniAuth.config.add_mock(:facebook, {
     nickname:   username,
     first_name: first_name,
     last_name:  last_name,
-    image:      "http://graph.facebook.com/#{facebook_uid}/picture?type=square",
-  },
+    image:      "http://graph.facebook.com/#{facebook_uid}/picture?type=square"
+  }
 })
 
 OmniAuth.config.add_mock(:github, {
@@ -33,8 +33,8 @@ OmniAuth.config.add_mock(:github, {
   uid:      github_uid,
   extra:    {
     raw_info: {
-      login: username,
-    },
+      login: username
+    }
   },
   info: {
     name:        name,
@@ -42,8 +42,8 @@ OmniAuth.config.add_mock(:github, {
     nickname:    username,
     location:    "#{Faker::AddressUS.city}, #{Faker::AddressUS.state_abbr}",
     description: Faker::Lorem.paragraph,
-    image:       'https://secure.gravatar.com/avatar/12345?d=https://a12345.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-12345.png',
-  },
+    image:       'https://secure.gravatar.com/avatar/12345?d=https://a12345.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-12345.png'
+  }
 })
 
 OmniAuth.config.add_mock(:google_oauth2, {
@@ -56,14 +56,14 @@ OmniAuth.config.add_mock(:google_oauth2, {
       verified_email: true,
       name:           name,
       given_name:     first_name,
-      family_name:    last_name,
-    },
+      family_name:    last_name
+    }
   },
   info: {
     name:       name,
     email:      email,
     first_name: first_name,
     last_name:  last_name,
-    image:      nil,
-  },
+    image:      nil
+  }
 })

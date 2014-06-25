@@ -40,7 +40,7 @@ class WebpageService
     @webpage.update(
       body:         response_body,
       content_type: content_type,
-      primary_ip:   primary_ip,
+      primary_ip:   primary_ip
     )
   end
 
@@ -50,7 +50,7 @@ class WebpageService
       code:           response_code,
       headers:        response_headers,
       redirect_count: redirections.size,
-      webpage_id:     @webpage.id,
+      webpage_id:     @webpage.id
     )
     @webpage_response.save
     save_webpage_redirects
