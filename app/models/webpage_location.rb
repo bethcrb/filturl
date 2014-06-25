@@ -1,6 +1,8 @@
 # The WebpageLocation class is responsible for determining a webpage's location
 # based on its IP address.
 class WebpageLocation
+  attr_reader :webpage
+
   alias_attribute :state, :subdivision_code
 
   def initialize(webpage)
@@ -8,7 +10,7 @@ class WebpageLocation
   end
 
   def primary_ip
-    @webpage && @webpage.primary_ip
+    webpage && webpage.primary_ip
   end
 
   def geolocation
