@@ -73,12 +73,11 @@ Spork.each_run do
       DatabaseCleaner.start
     end
     config.after(:each) do
-      Screenshot.all.each do |screenshot|
-        screenshot_dir = Rails.root.join('tmp/screenshots').to_s
-        unless screenshot.filename.blank?
-          screenshot_file = "#{screenshot_dir}/#{screenshot.filename}"
-          FileUtils.rm(screenshot_file) if File.exist?(screenshot_file)
-        end
+      screenshot_dir = Rails.root.join('tmp/screenshots').to_s
+      Screenshot.all.find_each do |screenshot|
+        next if screenshot.filename.blank?
+        screenshot_file = "#{screenshot_dir}/#{screenshot.filename}"
+        File.exist?(screenshot_file) && File.delete(screenshot_file)
       end
       DatabaseCleaner.clean
     end
