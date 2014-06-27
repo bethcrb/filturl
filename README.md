@@ -1,6 +1,6 @@
 ## Filturl [![Code Climate](https://codeclimate.com/github/bethcrb/filturl.png)](https://codeclimate.com/github/bethcrb/filturl)
 
-[![Filturl](https://raw.github.com/bethcrb/filturl/master/public/logo-bk.png)](https://www.filturl.net/)
+[![Filturl](https://raw.github.com/bethcrb/filturl/master/app/assets/images/logo-bk.png)](https://www.filturl.net/)
 
 Filturl is a slightly more advanced URL previewer that not only displays a screenshot of a URL, but also displays extra information such as:
 * HTTP headers
