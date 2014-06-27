@@ -29,4 +29,4 @@ def find_or_create_secret_key_base
   File.read(SECRET_KEY_BASE_FILE).chomp
 end
 
-Filturl::Application.config.secret_key_base = find_or_create_secret_key_base
+Rails.application.config.secret_key_base = find_or_create_secret_key_base

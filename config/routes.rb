@@ -1,4 +1,4 @@
-Filturl::Application.routes.draw do
+Rails.application.routes.draw do
   root 'webpage_requests#index'
 
   devise_for :users, controllers: {
