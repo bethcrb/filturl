@@ -45,6 +45,10 @@ describe Webpage do
     end
   end
 
+  describe 'respond_to' do
+    it { should respond_to(:screenshot_url) }
+  end
+
   describe '#location' do
     subject(:webpage) { build_stubbed(:webpage) }
     it { expect(webpage).to respond_to(:location) }

@@ -46,5 +46,6 @@ Then(/^I should see an invalid URL message$/) do
 end
 
 Then(/^I should see a screenshot of the URL "(.*?)"$/) do |url|
-  page.should have_xpath("//img[@src=\"#{@webpage_request.screenshot.url}\"]")
+  @webpage = @webpage_request.webpage
+  page.should have_xpath("//img[@src=\"#{@webpage.screenshot_url}\"]")
 end

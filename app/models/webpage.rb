@@ -31,6 +31,8 @@ class Webpage < ActiveRecord::Base
   before_save :encode_body
   after_create :create_screenshot!
 
+  delegate :url, to: :screenshot, prefix: true
+
   friendly_id :url, use: :slugged
 
   def location
