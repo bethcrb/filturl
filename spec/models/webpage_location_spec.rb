@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe WebpageLocation do
+RSpec.describe WebpageLocation, type: :model do
   let(:webpage) { build :webpage, primary_ip: '54.215.159.82' }
   let(:location) { WebpageLocation.new(webpage) }
 
@@ -37,34 +37,34 @@ describe WebpageLocation do
 
     context 'when city=San Jose, state=CA, and country=United States' do
       it "returns 'San Jose, CA, United States'" do
-        location.stub(:city).and_return('San Jose')
-        location.stub(:state).and_return('CA')
-        location.stub(:country).and_return('United States')
+        allow(location).to receive(:city).and_return('San Jose')
+        allow(location).to receive(:state).and_return('CA')
+        allow(location).to receive(:country).and_return('United States')
         expect(location.to_s).to eq('San Jose, CA, United States')
       end
     end
 
     context 'when city and state are blank and country=United States' do
       it "returns 'United States' without commas" do
-        location.stub(:city).and_return('')
-        location.stub(:state).and_return('')
-        location.stub(:country).and_return('United States')
+        allow(location).to receive(:city) { '' }
+        allow(location).to receive(:state) { '' }
+        allow(location).to receive(:country) { 'United States' }
         expect(location.to_s).to eq(location.country)
       end
     end
 
     context 'when city, state, and country are all blank' do
       it 'returns an empty string' do
-        location.stub(:city).and_return('')
-        location.stub(:state).and_return('')
-        location.stub(:country).and_return('')
+        allow(location).to receive(:city) { '' }
+        allow(location).to receive(:state) { '' }
+        allow(location).to receive(:country) { '' }
         expect(location.to_s).to eq('')
       end
     end
 
     context 'when primary ip can not be located' do
       it 'returns an empty string' do
-        webpage.stub(:primary_ip).and_return('0.0.0.0')
+        allow(webpage).to receive(:primary_ip) { '0.0.0.0' }
 
         expect(location.to_s).to eq('')
       end
@@ -73,7 +73,7 @@ describe WebpageLocation do
 
   describe '#respond_to?' do
     it 'does not respond to missing methods' do
-      expect(location).to_not respond_to(:not_a_method)
+      expect(location).not_to respond_to(:not_a_method)
     end
   end
 

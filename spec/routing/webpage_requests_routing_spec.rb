@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe WebpageRequestsController do
+RSpec.describe WebpageRequestsController, type: :routing do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 

@@ -14,19 +14,19 @@
 #  index_webpage_requests_on_url_and_user_id  (url,user_id)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
-describe WebpageRequest do
+RSpec.describe WebpageRequest, type: :model do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
   describe 'associations' do
-    it { should belong_to(:user) }
+    it { is_expected.to belong_to(:user) }
 
-    it { should have_one(:webpage_response).dependent(:destroy) }
-    it { should have_one(:webpage).through(:webpage_response) }
-    it { should have_one(:screenshot).through(:webpage) }
-    it { should have_many(:webpage_redirects).through(:webpage_response) }
+    it { is_expected.to have_one(:webpage_response).dependent(:destroy) }
+    it { is_expected.to have_one(:webpage).through(:webpage_response) }
+    it { is_expected.to have_one(:screenshot).through(:webpage) }
+    it { is_expected.to have_many(:webpage_redirects).through(:webpage_response) }
   end
 
   describe 'before validation' do
@@ -41,13 +41,13 @@ describe WebpageRequest do
   describe 'validations' do
     subject { build(:webpage_request, perform_http_request: true) }
 
-    it { should validate_presence_of(:user) }
-    it { should validate_presence_of(:url) }
-    it { should ensure_length_of(:url).is_at_most(2000) }
+    it { is_expected.to validate_presence_of(:user) }
+    it { is_expected.to validate_presence_of(:url) }
+    it { is_expected.to ensure_length_of(:url).is_at_most(2000) }
 
     it 'requires unique value for url scoped to user_id' do
       subject.save!
-      should validate_uniqueness_of(:url).scoped_to(:user_id)
+      is_expected.to validate_uniqueness_of(:url).scoped_to(:user_id)
     end
 
     invalid_urls = %w(
@@ -62,7 +62,7 @@ describe WebpageRequest do
     )
     invalid_urls.each do |url|
       it "does not allow url to be set to \"#{url}\"" do
-        should_not allow_value(url).for(:url)
+        is_expected.not_to allow_value(url).for(:url)
       end
     end
 
@@ -73,7 +73,7 @@ describe WebpageRequest do
     )
     valid_urls.each do |url|
       it "allows url to be set to \"#{url}\"" do
-        should allow_value(url).for(:url)
+        is_expected.to allow_value(url).for(:url)
       end
     end
   end

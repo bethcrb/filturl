@@ -17,31 +17,31 @@
 #  index_webpages_on_slug  (slug) UNIQUE
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
-describe Webpage do
+RSpec.describe Webpage, type: :model do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
   describe 'associations' do
-    it { should have_one(:screenshot).dependent(:destroy) }
+    it { is_expected.to have_one(:screenshot).dependent(:destroy) }
 
-    it { should have_many(:webpage_responses).dependent(:destroy) }
-    it { should have_many(:webpage_requests).through(:webpage_responses) }
+    it { is_expected.to have_many(:webpage_responses).dependent(:destroy) }
+    it { is_expected.to have_many(:webpage_requests).through(:webpage_responses) }
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:url) }
-    it { should validate_uniqueness_of(:url) }
-    it { should ensure_length_of(:url).is_at_most(2000) }
-    it { should_not allow_value('www.example.com').for(:url) }
-    it { should allow_value('http://www.example.com/').for(:url) }
+    it { is_expected.to validate_presence_of(:url) }
+    it { is_expected.to validate_uniqueness_of(:url) }
+    it { is_expected.to ensure_length_of(:url).is_at_most(2000) }
+    it { is_expected.not_to allow_value('www.example.com').for(:url) }
+    it { is_expected.to allow_value('http://www.example.com/').for(:url) }
   end
 
   describe ':after_create' do
     it 'creates a screenshot object' do
       webpage = create(:webpage)
-      expect(webpage.screenshot).to_not be_nil
+      expect(webpage.screenshot).not_to be_nil
     end
   end
 

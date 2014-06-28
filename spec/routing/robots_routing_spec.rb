@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe RobotsController do
+RSpec.describe RobotsController, type: :routing do
   describe 'routing' do
     it 'routes /robots.txt to robots#show via get' do
       expect(get('/robots.txt')).to route_to('robots#show')

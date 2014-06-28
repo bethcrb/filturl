@@ -17,21 +17,21 @@
 #  index_webpage_responses_on_webpage_request_id  (webpage_request_id)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
-describe WebpageResponse do
+RSpec.describe WebpageResponse, type: :model do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
   describe 'associations' do
-    it { should belong_to(:webpage_request) }
-    it { should belong_to(:webpage) }
+    it { is_expected.to belong_to(:webpage_request) }
+    it { is_expected.to belong_to(:webpage) }
 
-    it { should have_one(:screenshot).through(:webpage) }
+    it { is_expected.to have_one(:screenshot).through(:webpage) }
 
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:webpage_request) }
+    it { is_expected.to validate_presence_of(:webpage_request) }
   end
 end

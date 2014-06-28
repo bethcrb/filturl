@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe WebpageEncoder do
+RSpec.describe WebpageEncoder, type: :model do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
@@ -42,17 +42,17 @@ describe WebpageEncoder do
   describe '#mime_type_allowed?' do
     it 'returns false if the webpage does not have a content type set' do
       @webpage.update_attributes!(content_type: nil)
-      expect(WebpageEncoder.new(@webpage).mime_type_allowed?).to be_false
+      expect(WebpageEncoder.new(@webpage).mime_type_allowed?).to be false
     end
 
     it 'returns false if the MIME type is not allowed' do
       @webpage.update_attributes!(content_type: 'application/pdf')
-      expect(WebpageEncoder.new(@webpage).mime_type_allowed?).to be_false
+      expect(WebpageEncoder.new(@webpage).mime_type_allowed?).to be false
     end
 
     it 'returns true if the MIME type is allowed' do
       @webpage.update_attributes!(content_type: 'text/html')
-      expect(WebpageEncoder.new(@webpage).mime_type_allowed?).to be_true
+      expect(WebpageEncoder.new(@webpage).mime_type_allowed?).to be true
     end
   end
 
@@ -78,11 +78,11 @@ describe WebpageEncoder do
     it 'sets the meta encoding' do
       @webpage.update_attributes!(meta_encoding: nil)
       WebpageEncoder.new(@webpage).encoded_body
-      expect(@webpage.meta_encoding).to_not be_nil
+      expect(@webpage.meta_encoding).not_to be_nil
     end
 
     it 'returns it as is if it is already UTF-8' do
-      @webpage.body.stub(:is_utf8?).and_return(true)
+      allow(@webpage.body).to receive(:is_utf8?) { true }
       expect(WebpageEncoder.new(@webpage).encoded_body).to eq(@webpage.body)
     end
   end
@@ -90,82 +90,82 @@ describe WebpageEncoder do
   describe 'encoding' do
     it 'is UTF-8 for Big5' do
       webpage = build_stubbed(:webpage, :big5)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for EUC-JP' do
       webpage = build_stubbed(:webpage, :eucjp)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for EUC-KR' do
       webpage = build_stubbed(:webpage, :euckr)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for GB2312' do
       webpage = build_stubbed(:webpage, :gb2312)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for GBK' do
       webpage = build_stubbed(:webpage, :gbk)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for ISO-8859-1' do
       webpage = build_stubbed(:webpage, :iso885901)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for ISO-8859-2' do
       webpage = build_stubbed(:webpage, :iso885902)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for ISO-8859-9' do
       webpage = build_stubbed(:webpage, :iso885909)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for ISO-8859-15' do
       webpage = build_stubbed(:webpage, :iso885915)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for Shift JIS' do
       webpage = build_stubbed(:webpage, :shiftjis)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for Windows-874' do
       webpage = build_stubbed(:webpage, :windows874)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for Windows-1250' do
       webpage = build_stubbed(:webpage, :windows1250)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for Windows-1251' do
       webpage = build_stubbed(:webpage, :windows1251)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for Windows-1252' do
       webpage = build_stubbed(:webpage, :windows1252)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for Windows-1254' do
       webpage = build_stubbed(:webpage, :windows1254)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
 
     it 'is UTF-8 for Windows-1256' do
       webpage = build_stubbed(:webpage, :windows1256)
-      expect(webpage.body.is_utf8?).to be_true
+      expect(webpage.body.is_utf8?).to be true
     end
   end
 end

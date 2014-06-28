@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe RobotsController do
+RSpec.describe RobotsController, type: :controller do
   describe "GET '/robots.txt'" do
     it 'outputs the contents of the robots.txt file' do
       get :show

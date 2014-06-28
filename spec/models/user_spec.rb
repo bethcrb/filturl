@@ -34,70 +34,70 @@
 #  login                                (email,username)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
-describe User do
+RSpec.describe User, type: :model do
   describe 'associations' do
-    it { should have_many(:authentications).dependent(:destroy) }
-    it { should have_many(:webpage_requests).dependent(:destroy) }
+    it { is_expected.to have_many(:authentications).dependent(:destroy) }
+    it { is_expected.to have_many(:webpage_requests).dependent(:destroy) }
   end
 
   describe 'validations' do
     subject { build(:user) }
 
     context 'email' do
-      it { should validate_presence_of(:email) }
+      it { is_expected.to validate_presence_of(:email) }
 
-      it { should validate_uniqueness_of(:email).case_insensitive }
+      it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
 
       valid_emails = %w[user@foo.com THE_USER@foo.bar.org first.last@foo.jp]
       valid_emails.each do |valid_email|
-        it { should allow_value(valid_email).for(:email) }
+        it { is_expected.to allow_value(valid_email).for(:email) }
       end
 
       invalid_emails = %w[user@foo,com user_at_foo.org example.user@foo.]
       invalid_emails.each do |invalid_email|
-        it { should_not allow_value(invalid_email).for(:email) }
+        it { is_expected.not_to allow_value(invalid_email).for(:email) }
       end
     end
 
     context 'username' do
-      it { should validate_presence_of(:username) }
-      it { should validate_uniqueness_of(:username).case_insensitive }
-      it { should ensure_length_of(:username).is_at_most(100) }
+      it { is_expected.to validate_presence_of(:username) }
+      it { is_expected.to validate_uniqueness_of(:username).case_insensitive }
+      it { is_expected.to ensure_length_of(:username).is_at_most(100) }
 
       valid_usernames = %w[test_user example_user username username@domain.com]
       valid_usernames.each do |valid_username|
-        it { should allow_value(valid_username).for(:username) }
+        it { is_expected.to allow_value(valid_username).for(:username) }
       end
 
       invalid_usernames = %W[test!user $username @domain.com .]
       invalid_usernames.each do |invalid_username|
-        it { should_not allow_value(invalid_username).for(:username) }
+        it { is_expected.not_to allow_value(invalid_username).for(:username) }
       end
     end
 
     context 'password' do
       it do
-        should ensure_length_of(:password)
+        is_expected.to ensure_length_of(:password)
           .is_at_least(Devise.password_length.begin)
       end
 
       it do
-        should ensure_length_of(:password)
+        is_expected.to ensure_length_of(:password)
           .is_at_most(Devise.password_length.end)
       end
 
       it 'confirms the passwords match' do
         mismatched_password = subject.password.reverse
         pw_user = build(:user, password_confirmation: mismatched_password)
-        expect(pw_user).to_not be_valid
+        expect(pw_user).not_to be_valid
       end
 
       context 'on update' do
         let(:existing_user) { create(:user) }
         it do
-          expect(existing_user).to_not validate_presence_of(:password)
+          expect(existing_user).not_to validate_presence_of(:password)
         end
       end
     end

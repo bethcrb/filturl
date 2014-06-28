@@ -1,8 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 require File.expand_path('../../../features/support/omniauth',  __FILE__)
+
 auth = OmniAuth.config.mock_auth[:facebook]
 
-describe OmniauthUser do
+RSpec.describe OmniauthUser, type: :model do
   describe '#find_or_create_user' do
     context 'when a user with the same e-mail address already exists' do
       it 'uses the existing user' do

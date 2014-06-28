@@ -1,6 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe WebpagesController, vcr: { cassette_name: 'WebpageRequest/create' } do
+vcr_opts = { cassette_name: 'WebpageRequest/create' }
+
+RSpec.describe WebpagesController, type: :routing, vcr: vcr_opts do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
@@ -21,7 +23,7 @@ describe WebpagesController, vcr: { cassette_name: 'WebpageRequest/create' } do
         :webpage_request,
         perform_http_request: true
       )
-      expect(get("/urls/#{webpage_request.webpage.id}")).to_not route_to(
+      expect(get("/urls/#{webpage_request.webpage.id}")).not_to route_to(
         'webpages#show',
         id: webpage_request.webpage.id
       )

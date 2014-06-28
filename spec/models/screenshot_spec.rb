@@ -15,37 +15,37 @@
 #  index_screenshots_on_webpage_id  (webpage_id)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
-describe Screenshot do
+RSpec.describe Screenshot, type: :model do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
   let!(:screenshot) { create(:screenshot) }
 
   describe 'associations' do
-    it { should belong_to(:webpage) }
-    it { should have_many(:webpage_responses).through(:webpage) }
-    it { should have_many(:webpage_requests).through(:webpage_responses) }
+    it { is_expected.to belong_to(:webpage) }
+    it { is_expected.to have_many(:webpage_responses).through(:webpage) }
+    it { is_expected.to have_many(:webpage_requests).through(:webpage_responses) }
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:webpage) }
-    it { should ensure_length_of(:url).is_at_most(2000) }
-    it { should ensure_inclusion_of(:status).in_array(%w(active inactive new)) }
+    it { is_expected.to validate_presence_of(:webpage) }
+    it { is_expected.to ensure_length_of(:url).is_at_most(2000) }
+    it { is_expected.to ensure_inclusion_of(:status).in_array(%w(active inactive new)) }
   end
 
   describe 'respond_to' do
-    it { should respond_to(:filename) }
+    it { is_expected.to respond_to(:filename) }
   end
 
   describe 'creating screenshots' do
     describe 'generate_screenshot' do
-      it { expect(screenshot.generate_screenshot).to be_true }
+      it { expect(screenshot.generate_screenshot).to be true }
     end
 
     describe 'upload_screenshot' do
-      it { expect(screenshot.upload_screenshot).to be_true }
+      it { expect(screenshot.upload_screenshot).to be true }
       it 'sets the status to active when it is successful' do
         screenshot.upload_screenshot
         expect(screenshot.status).to eq('active')
@@ -60,7 +60,7 @@ describe Screenshot do
       it 'sets the filename if one does not exist' do
         screenshot.update_attributes!(filename: nil)
         screenshot.send(:set_filename)
-        expect(screenshot.filename).to_not be_nil
+        expect(screenshot.filename).not_to be_nil
       end
 
       it 'does not change the filename if one already exists' do
@@ -74,7 +74,7 @@ describe Screenshot do
     describe 'needs_update?' do
       it 'returns true if the url is blank' do
         screenshot.update_attributes!(url: nil)
-        expect(screenshot.needs_update?).to be_true
+        expect(screenshot.needs_update?).to be true
       end
     end
   end

@@ -19,6 +19,14 @@ class WebpageLocation
     location && location.symbolize_keys
   end
 
+  def city
+    super
+  end
+
+  def country
+    super
+  end
+
   def to_s
     return '' unless geolocation
     [city, state, country].reject(&:blank?).join(', ')

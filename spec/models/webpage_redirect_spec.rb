@@ -13,20 +13,20 @@
 #  index_webpage_redirects_on_webpage_response_id  (webpage_response_id)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
-describe WebpageRedirect do
+RSpec.describe WebpageRedirect, type: :model do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
   describe 'associations' do
-    it { should belong_to(:webpage_response) }
+    it { is_expected.to belong_to(:webpage_response) }
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:url) }
-    it { should ensure_length_of(:url).is_at_most(2000) }
+    it { is_expected.to validate_presence_of(:url) }
+    it { is_expected.to ensure_length_of(:url).is_at_most(2000) }
 
-    it { should validate_presence_of(:webpage_response) }
+    it { is_expected.to validate_presence_of(:webpage_response) }
   end
 end

@@ -181,50 +181,50 @@ end
 
 ### THEN ###
 Then /^I should be signed in$/ do
-  page.should have_content 'Logout'
-  page.should_not have_content 'Sign up'
-  page.should_not have_content 'Login'
+  expect(page).to have_content 'Logout'
+  expect(page).not_to have_content 'Sign up'
+  expect(page).not_to have_content 'Login'
 end
 
 Then /^I should be signed out$/ do
-  page.should have_content 'Sign up'
-  page.should have_content 'Login'
-  page.should_not have_content 'Logout'
+  expect(page).to have_content 'Sign up'
+  expect(page).to have_content 'Login'
+  expect(page).not_to have_content 'Logout'
 end
 
 Then /^I see an unconfirmed account message$/ do
-  page.should have_content 'You have to confirm your account before continuing.'
+  expect(page).to have_content 'You have to confirm your account before continuing.'
 end
 
 Then /^I should see a successful sign up message$/ do
-  page.should have_content
+  expect(page).to have_content
     'A message with a confirmation link has been sent to your email address.'
 end
 
 Then /^I should see an invalid email message$/ do
-  page.should have_content 'Emailis invalid'
+  expect(page).to have_content 'Emailis invalid'
 end
 
 Then /^I should see an invalid username message$/ do
-  page.should have_content 'Usernameis invalid'
+  expect(page).to have_content 'Usernameis invalid'
 end
 
 Then /^I should see a missing password message$/ do
-  page.should have_content "Passwordcan't be blank"
+  expect(page).to have_content "Passwordcan't be blank"
 end
 
 Then /^I should see a missing password confirmation message$/ do
-  page.should have_content "Password confirmationdoesn't match"
+  expect(page).to have_content "Password confirmationdoesn't match"
 end
 
 Then /^I should see a mismatched password message$/ do
-  page.should have_content "Password confirmationdoesn't match"
+  expect(page).to have_content "Password confirmationdoesn't match"
 end
 
 Then /^I see an invalid login message$/ do
-  page.should have_content 'Invalid login or password.'
+  expect(page).to have_content 'Invalid login or password.'
 end
 
 Then /^I should see an account edited message$/ do
-  page.should have_content 'You updated your account successfully.'
+  expect(page).to have_content 'You updated your account successfully.'
 end

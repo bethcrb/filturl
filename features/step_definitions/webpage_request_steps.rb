@@ -1,7 +1,7 @@
 # Stub Phantomjs
 Before do
-  Screenshot.stub(:needs_update?).and_return(false)
-  Phantomjs.stub(:run) do |options, screenshot_js, screenshot_url, temp_file|
+  allow(Screenshot).to receive(:needs_update?).and_return(false)
+  allow(Phantomjs).to receive(:run) do |options, screenshot_js, screenshot_url, temp_file|
     FileUtils.touch(temp_file)
   end
 end

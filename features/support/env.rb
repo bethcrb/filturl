@@ -8,7 +8,19 @@ SimpleCov.start 'rails'
 # files.
 
 require 'cucumber/rails'
-require 'cucumber/rspec/doubles'
+require 'rspec/mocks'
+World(RSpec::Mocks::ExampleMethods)
+Before do
+  RSpec::Mocks.setup
+end
+
+After do
+  begin
+    RSpec::Mocks.verify
+  ensure
+    RSpec::Mocks.teardown
+  end
+end
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any

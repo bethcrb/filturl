@@ -18,8 +18,8 @@
 #  index_authentications_on_user_id  (user_id)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
-describe Authentication do
-  it { should belong_to(:user) }
+RSpec.describe Authentication, type: :model do
+  it { is_expected.to belong_to(:user) }
 end

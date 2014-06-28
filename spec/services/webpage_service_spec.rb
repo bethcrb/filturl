@@ -1,6 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe WebpageService, vcr: { cassette_name: 'WebpageRequest/create' } do
+vcr_opts = { cassette_name: 'WebpageRequest/create' }
+
+RSpec.describe WebpageService, vcr: vcr_opts do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
@@ -46,7 +48,7 @@ describe WebpageService, vcr: { cassette_name: 'WebpageRequest/create' } do
 
     context 'when save_webpage fails' do
       it 'sets the webpage_request status to "error"' do
-        webpage_service.stub(:save_webpage).and_return(false)
+        allow(webpage_service).to receive(:save_webpage) { false }
         webpage_service.perform_http_request
         expect(webpage_request.status).to eq('error')
       end
@@ -58,7 +60,7 @@ describe WebpageService, vcr: { cassette_name: 'WebpageRequest/create' } do
       end
 
       it 'saves the redirects' do
-        webpage_service.stub(:redirections).and_return([redirect_response])
+        allow(webpage_service).to receive(:redirections) { [redirect_response] }
         webpage_service.perform_http_request
 
         webpage_redirects = webpage_request.webpage_response.webpage_redirects

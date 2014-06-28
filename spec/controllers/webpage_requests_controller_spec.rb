@@ -1,7 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
-cassette_name = 'WebpageRequestsController'
-describe WebpageRequestsController, vcr: { cassette_name: cassette_name }  do
+vcr_opts = { cassette_name: 'WebpageRequestsController' }
+
+RSpec.describe WebpageRequestsController, type: :controller, vcr: vcr_opts do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 

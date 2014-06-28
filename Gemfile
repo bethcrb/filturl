@@ -102,7 +102,7 @@ group :development, :test do
   gem 'ffaker', '~> 1.0'
 
   # Use RSpec for unit testing.
-  gem 'rspec-rails', '~> 2.14.0'
+  gem 'rspec-rails', '~> 3.0.0'
 
   # Use Spork to speed up test suite.
   gem 'spork-rails'
