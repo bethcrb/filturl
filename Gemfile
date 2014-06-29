@@ -56,7 +56,6 @@ group :development do
   gem 'guard-cucumber'
   gem 'guard-rails'
   gem 'guard-rspec'
-  gem 'guard-spork'
   gem 'guard-teaspoon'
   gem 'listen'
 
@@ -103,9 +102,6 @@ group :development, :test do
 
   # Use RSpec for unit testing.
   gem 'rspec-rails', '~> 3.0.0'
-
-  # Use Spork to speed up test suite.
-  gem 'spork-rails'
 
   # Use Teaspoon for testing JavaScript with Jasmine.
   gem 'teaspoon', '~> 0.8.0'

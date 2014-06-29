@@ -67,8 +67,6 @@ GEM
       xpath (~> 2.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
-    childprocess (0.5.3)
-      ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -142,10 +140,6 @@ GEM
     guard-rspec (4.2.10)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
-    guard-spork (1.5.1)
-      childprocess (>= 0.2.3)
-      guard (>= 1.1)
-      spork (>= 0.8.4)
     guard-teaspoon (0.0.4)
       guard (>= 1.6.1)
       teaspoon (>= 0.5.3)
@@ -304,10 +298,6 @@ GEM
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
     slop (3.5.0)
-    spork (1.0.0rc4)
-    spork-rails (4.0.0)
-      rails (>= 3.0.0, < 5)
-      spork (>= 1.0rc0)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -373,7 +363,6 @@ DEPENDENCIES
   guard-cucumber
   guard-rails
   guard-rspec
-  guard-spork
   guard-teaspoon
   haml-rails
   jbuilder (~> 2.0)
@@ -396,7 +385,6 @@ DEPENDENCIES
   shoulda (~> 3.5.0)
   simple_form (~> 3.0.0.rc)
   simplecov (~> 0.8)
-  spork-rails
   teaspoon (~> 0.8.0)
   turbolinks
   typhoeus (~> 0.6.3)

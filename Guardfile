@@ -18,10 +18,11 @@ guard 'rails' do
   watch(%r{^(config|lib)/.*})
 end
 
-guard 'rspec', :all_on_start => false, :all_after_pass => false, :cmd => 'rspec --color --format nested --fail-fast' do
+guard 'rspec', :all_on_start => false, :all_after_pass => false, :cmd => 'rspec --fail-fast' do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
+  watch('spec/rails_helper.rb')  { "spec" }
 
   # Rails example
   watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
@@ -40,15 +41,6 @@ guard 'rspec', :all_on_start => false, :all_after_pass => false, :cmd => 'rspec 
 
   # FactoryGirl factories
   watch(%r{^spec/factories/.+\.rb$})
-end
-
-guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :cucumber => false, :wait => 70 do
-  watch('config/application.rb')
-  watch('config/environment.rb')
-  watch('config/environments/test.rb')
-  watch(%r{^config/initializers/.+\.rb$})
-  watch('Gemfile.lock')
-  watch('spec/spec_helper.rb') { :rspec }
 end
 
 guard 'cucumber', :all_on_start => false, :all_after_pass => false, :cli => '--no-profile --color --strict --format pretty' do
