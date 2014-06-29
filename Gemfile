@@ -115,7 +115,7 @@ end
 gem 'aws-sdk', '~> 1.0'
 
 # Use Bootstrap for front-end framework.
-gem 'bootstrap-sass', '~> 3.1'
+gem 'bootstrap-sass', '~> 3.2.0'
 
 # Use CanCan to restrict access to pages that should only be viewed by an
 # administrator.
