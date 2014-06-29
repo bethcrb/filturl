@@ -1,6 +1,10 @@
+@import "bootswatch/cyborg/variables";
+
 @import "bootstrap";
+
 body { padding-top: 60px; }
-@import "bootswatch";
+
+@import "bootswatch/cyborg/bootswatch";
 
 .navbar { position: absolute; }
 
