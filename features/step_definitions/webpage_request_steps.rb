@@ -38,14 +38,14 @@ end
 
 ### THEN ###
 Then(/^I should see information about the URL$/) do
-  page.should have_content 'Overview'
+  expect(page).to have_content 'Overview'
 end
 
 Then(/^I should see an invalid URL message$/) do
-  page.should have_content 'Url returned an error'
+  expect(page).to have_content 'Url returned an error'
 end
 
 Then(/^I should see a screenshot of the URL "(.*?)"$/) do |url|
   @webpage = @webpage_request.webpage
-  page.should have_xpath("//img[@src=\"#{@webpage.screenshot_url}\"]")
+  expect(page).to have_xpath("//img[@src=\"#{@webpage.screenshot_url}\"]")
 end
