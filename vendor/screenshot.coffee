@@ -2,7 +2,7 @@ page = require('webpage').create()
 system = require 'system'
 
 if system.args.length < 2
-  console.log 'Usage: screenshot.js URL filename'
+  console.log 'Usage: screenshot.coffee URL filename'
   phantom.exit 1
 else
   address = system.args[1]
