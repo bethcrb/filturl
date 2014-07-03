@@ -27,9 +27,8 @@ Given(/^another user submitted the URL "(.*?)"$/) do |url|
 end
 
 ### WHEN ###
-When(/^I submit the URL "(.*?)"$/) do |url|
+When(/^I fill in the URL "(.*?)"$/) do |url|
   fill_in 'webpage_request_url', with: url
-  click_button 'Go'
 end
 
 When(/^I click on the screenshot tab$/) do

@@ -9,13 +9,17 @@ Feature: Submit URLs
 
   @vcr
   Scenario: User submits a valid URL
-    When I submit the URL "http://www.example.com/"
-    Then I should see "http://www.example.com/"
+    When I fill in the URL "http://www.example.com/"
+    And I click on "Go"
+    Then I should be on the webpage page for the slug "http-www-example-com"
+    And I should see "http://www.example.com/"
     And I should see "Overview"
     And I should see "HTTP Headers"
     And I should see "View Source"
     And I should see "Screenshot"
 
   Scenario: User submits an invalid URL
-    When I submit the URL "http://not.a.valid.url"
-    Then I should see an invalid URL message
+    When I fill in the URL "http://not.a.valid.url"
+    And I click on "Go"
+    Then I should be on the home page
+    And I should see "Url returned an error"
