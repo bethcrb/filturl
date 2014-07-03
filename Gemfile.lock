@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/da4nik/geoip2.git
-  revision: 1862aab0038c4671bf33c963b0eecb11418d3672
+  revision: 0144704e113b2aab513dbe1812c2659d0f72be14
   specs:
     geoip2 (0.0.8)
 
@@ -38,7 +38,7 @@ GEM
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
-    aws-sdk (1.45.0)
+    aws-sdk (1.46.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bcrypt (3.1.7)
@@ -103,7 +103,7 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.2)
     erubis (2.7.0)
-    ethon (0.7.0)
+    ethon (0.7.1)
       ffi (>= 1.3.0)
     execjs (2.2.1)
     factory_girl (4.4.0)
@@ -318,8 +318,8 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (2.2.2)
       coffee-rails
-    typhoeus (0.6.8)
-      ethon (>= 0.7.0)
+    typhoeus (0.6.9)
+      ethon (>= 0.7.1)
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
     uglifier (2.5.1)
