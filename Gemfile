@@ -72,7 +72,7 @@ end
 
 group :test do
   # Use Capybara to simulate user interactions on the website.
-  gem 'capybara', '~> 2.2'
+  gem 'capybara', '~> 2.4'
 
   # Use Cucumber for behavior-driven development and integration testing.
   gem 'cucumber-rails', require: false
