@@ -9,17 +9,17 @@
     %ul#navTabs.nav.nav-tabs.nav-justified
       %li.active
         %a{data: { target: '#overview_tab', toggle: 'tab' }, href: '#overview_tab'} Overview
-      - if @webpage_response.headers.present?
+      - if @webpage_response.headers?
         %li
           %a{data: { target: '#http_headers_tab', toggle: 'tab' }, href: '#http_headers_tab'} HTTP Headers
-      - if @webpage.body.present?
+      - if @webpage.body?
         %li
           %a{data: { target: '#view_source_tab', toggle: 'tab' }, href: '#view_source_tab'} View Source
       - if @webpage.screenshot_url.present?
         %li
           %a{data: { target: '#screenshot_tab', toggle: 'tab' }, href: '#screenshot_tab'} Screenshot
     .tab-content
-      = render 'overview'
-      = render 'http_headers' if @webpage_response.headers.present?
-      = render 'view_source' if @webpage.body.present?
-      = render 'screenshot' if @webpage.screenshot_url.present?
+      = render 'overview', webpage: @webpage, webpage_response: @webpage_response
+      = render 'http_headers', webpage_response: @webpage_response if @webpage_response.headers?
+      = render 'view_source', webpage: @webpage if @webpage.body?
+      = render 'screenshot', webpage: @webpage if @webpage.screenshot_url.present?

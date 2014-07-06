@@ -1,7 +1,7 @@
 .row
   .col-xs-12
     #webpage_url_form
-      = simple_form_for(@webpage_request, url: webpage_requests_path, html: { class: 'text-center', role: 'form' }) do |f|
+      = simple_form_for(webpage_request, url: webpage_requests_path, html: { class: 'text-center', role: 'form' }) do |f|
         .input-group
           = f.url_field :url, placeholder: 'http://', class: 'form-control input-sm'
           %span.input-group-btn

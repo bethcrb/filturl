@@ -16,7 +16,7 @@ class WebpageRequestsController < ApplicationController
       redirect_to @webpage_request.webpage
     else
       flash.now[:alert] = @webpage_request.errors.full_messages.to_sentence
-      render action: 'index'
+      render 'index'
     end
   end
 
