@@ -4,6 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  url        :string(2000)     not null
+#  slug       :string(255)
 #  status     :string(255)      default("new")
 #  user_id    :integer          not null
 #  created_at :datetime
@@ -11,6 +12,7 @@
 #
 # Indexes
 #
+#  index_webpage_requests_on_slug             (slug) UNIQUE
 #  index_webpage_requests_on_url_and_user_id  (url,user_id)
 #
 
@@ -74,6 +76,37 @@ RSpec.describe WebpageRequest, type: :model do
     valid_urls.each do |url|
       it "allows url to be set to \"#{url}\"" do
         is_expected.to allow_value(url).for(:url)
+      end
+    end
+  end
+
+  describe 'respond_to' do
+    it { should respond_to(:headers) }
+    it { should respond_to(:redirect_count) }
+    it { should respond_to(:body) }
+    it { should respond_to(:location) }
+    it { should respond_to(:primary_ip) }
+    it { should respond_to(:webpage_url) }
+    it { should respond_to(:screenshot_url) }
+  end
+
+  describe '#normalize_friendly_id' do
+    context 'when the url is longer than 255 characters' do
+      subject(:webpage_request) { create(:webpage_request, :lengthy_url) }
+      it 'shortens the slug to 255 characters' do
+        expect(webpage_request.slug.length).to eq(255)
+      end
+
+      it 'uses the first 228 and the last 25 characters of the URL' do
+        url = webpage_request.url.parameterize
+        expect(webpage_request.slug).to eq("#{url[0..227]}--#{url[-25..-1]}")
+      end
+    end
+
+    context 'when the url is less than 255 characters' do
+      subject(:webpage_request) { create(:webpage_request) }
+      it 'uses the parameterized url as the slug' do
+        expect(webpage_request.slug).to eq(webpage_request.url.parameterize)
       end
     end
   end

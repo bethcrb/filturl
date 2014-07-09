@@ -1,19 +1,22 @@
 # The WebpageRequests controller is used to create new webpage requests through
-# the submission of a URL in webpage_requests#index. If the submission is
-# successful in webpage_requests#create, it redirects to the webpages#show
-# path for the URL's effective location after accounting for redirects.
+# the submission of a URL in webpage_requests#index and show the results in
+# webpage_requests#show.
 class WebpageRequestsController < ApplicationController
   before_action :current_or_guest_user
-  before_action :set_webpage_request, only: :create
+  before_action :set_webpage_request, only: :show
+  before_action :build_webpage_request, only: :create
 
   def index
     @webpage_request = WebpageRequest.new
   end
 
+  def show
+  end
+
   def create
     if @webpage_request.save &&
       WebpageService.perform_http_request(@webpage_request)
-      redirect_to @webpage_request.webpage
+      redirect_to @webpage_request
     else
       flash.now[:alert] = @webpage_request.errors.full_messages.to_sentence
       render 'index'
@@ -23,6 +26,11 @@ class WebpageRequestsController < ApplicationController
   private
 
   def set_webpage_request
+    @webpage_request = WebpageRequest.friendly.find(params[:id])
+    redirect_to root_path unless @webpage_request.present?
+  end
+
+  def build_webpage_request
     @webpage_request = WebpageRequest.find_or_initialize_by(
       url:     PostRank::URI.clean(webpage_request_params[:url]).to_s,
       user_id: current_or_guest_user.id

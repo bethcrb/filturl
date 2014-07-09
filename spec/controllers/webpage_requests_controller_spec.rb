@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-vcr_opts = { cassette_name: 'WebpageRequestsController' }
-
-RSpec.describe WebpageRequestsController, type: :controller, vcr: vcr_opts do
+RSpec.describe WebpageRequestsController, type: :controller do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
@@ -22,7 +20,47 @@ RSpec.describe WebpageRequestsController, type: :controller, vcr: vcr_opts do
     end
   end
 
-  describe "POST 'create'" do
+  describe "GET 'show'", :vcr do
+    let(:user) { FactoryGirl.create(:user) }
+    before { sign_in user }
+
+    context 'the current user made the webpage request' do
+      let(:existing_webpage_request) do
+        create(:webpage_request, user: user, perform_http_request: true)
+      end
+
+      before(:each) { get :show, id: existing_webpage_request.slug }
+
+      it 'renders the show template' do
+        expect(response).to render_template('show')
+      end
+
+      it 'assigns @webpage_request' do
+        expect(assigns(:webpage_request)).to eq(existing_webpage_request)
+      end
+    end
+
+    context 'the current user did not make the webpage request' do
+      let(:other_user) { create(:user) }
+      let(:other_webpage_request) do
+        create(:webpage_request, user: other_user, perform_http_request: true)
+      end
+
+      it 'renders the show template' do
+        get :show, id: other_webpage_request.slug
+        expect(response).to render_template('show')
+      end
+    end
+
+    context 'the webpage does not exist' do
+      it 'redirects to the root url' do
+        get :show, id: 'http-www-notfound-com'
+        expect(response).to redirect_to(root_url)
+      end
+    end
+  end
+
+  describe "POST 'create'", :vcr do
     let(:user) { FactoryGirl.create(:user) }
     before { sign_in user }
 
@@ -31,10 +69,10 @@ RSpec.describe WebpageRequestsController, type: :controller, vcr: vcr_opts do
         { url: 'http://www.yahoo.com/', user_id: user.id }
       end
 
-      it 'redirects to the webpage results' do
+      it 'redirects to the webpage request results' do
         post :create, webpage_request: webpage_request_params
         webpage_request = WebpageRequest.find_by(webpage_request_params)
-        expect(response).to redirect_to(webpage_request.webpage)
+        expect(response).to redirect_to(webpage_request)
       end
     end
 

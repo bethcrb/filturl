@@ -11,7 +11,7 @@ Feature: Submit URLs
   Scenario: User submits a valid URL
     When I fill in the URL "http://www.example.com/"
     And I click on "Go"
-    Then I should be on the webpage page for the slug "http-www-example-com"
+    Then I should be on the webpage request page for the slug "http-www-example-com"
     And I should see "http://www.example.com/"
     And I should see "Overview"
     And I should see "HTTP Headers"

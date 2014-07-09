@@ -3,18 +3,18 @@
     %table.table.table-bordered.table-hover
       %tr
         %th IP address
-        %td= webpage.primary_ip
-      - if webpage.location.to_s != ''
+        %td= webpage_request.primary_ip
+      - if webpage_request.location.to_s != ''
         %tr
           %th IP location
-          %td= webpage.location.to_s
+          %td= webpage_request.location.to_s
       %tr
         %th Redirect count
-        %td= webpage_response.redirect_count
-      - if webpage_response.redirect_count > 0
+        %td= webpage_request.redirect_count
+      - if webpage_request.redirect_count > 0
         %tr
           %th Redirects
           %td
             %ol
-              - webpage_response.webpage_redirects.each do |redirect|
+              - webpage_request.webpage_redirects.find_each do |redirect|
                 %li= redirect.url

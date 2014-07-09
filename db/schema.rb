@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140110114823) do
+ActiveRecord::Schema.define(version: 20140709210751) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -97,12 +97,14 @@ ActiveRecord::Schema.define(version: 20140110114823) do
 
   create_table "webpage_requests", force: true do |t|
     t.string   "url",        limit: 2000,                 null: false
+    t.string   "slug"
     t.string   "status",                  default: "new"
     t.integer  "user_id",                                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "webpage_requests", ["slug"], name: "index_webpage_requests_on_slug", unique: true, using: :btree
   add_index "webpage_requests", ["url", "user_id"], name: "index_webpage_requests_on_url_and_user_id", length: {"url"=>255, "user_id"=>nil}, using: :btree
 
   create_table "webpage_responses", force: true do |t|
@@ -120,7 +122,6 @@ ActiveRecord::Schema.define(version: 20140110114823) do
 
   create_table "webpages", force: true do |t|
     t.string   "url",           limit: 2000,       default: "", null: false
-    t.string   "slug"
     t.string   "primary_ip"
     t.text     "body",          limit: 2147483647
     t.string   "content_type"
@@ -128,7 +129,5 @@ ActiveRecord::Schema.define(version: 20140110114823) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "webpages", ["slug"], name: "index_webpages_on_slug", unique: true, using: :btree
 
 end

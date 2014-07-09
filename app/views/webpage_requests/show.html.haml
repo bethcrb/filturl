@@ -1,25 +1,25 @@
 .row
   .col-xs-12
     .page-header
-      %h3= @webpage.url
-      - if @webpage.url != @webpage_request.url
+      %h3= @webpage_request.webpage_url
+      - if @webpage_request.webpage_url != @webpage_request.url
         %small{style: 'padding-left: 1em;'}= @webpage_request.url
 .row
   .col-xs-12
     %ul#navTabs.nav.nav-tabs.nav-justified
       %li.active
         %a{data: { target: '#overview_tab', toggle: 'tab' }, href: '#overview_tab'} Overview
-      - if @webpage_response.headers?
+      - if @webpage_request.headers.present?
         %li
           %a{data: { target: '#http_headers_tab', toggle: 'tab' }, href: '#http_headers_tab'} HTTP Headers
-      - if @webpage.body?
+      - if @webpage_request.body.present?
         %li
           %a{data: { target: '#view_source_tab', toggle: 'tab' }, href: '#view_source_tab'} View Source
-      - if @webpage.screenshot_url.present?
+      - if @webpage_request.screenshot_url.present?
         %li
           %a{data: { target: '#screenshot_tab', toggle: 'tab' }, href: '#screenshot_tab'} Screenshot
     .tab-content
-      = render 'overview', webpage: @webpage, webpage_response: @webpage_response
-      = render 'http_headers', webpage_response: @webpage_response if @webpage_response.headers?
-      = render 'view_source', webpage: @webpage if @webpage.body?
-      = render 'screenshot', webpage: @webpage if @webpage.screenshot_url.present?
+      = render 'overview', webpage_request: @webpage_request
+      = render 'http_headers', webpage_request: @webpage_request if @webpage_request.headers.present?
+      = render 'view_source', webpage_request: @webpage_request if @webpage_request.body.present?
+      = render 'screenshot', webpage_request: @webpage_request if @webpage_request.screenshot_url.present?

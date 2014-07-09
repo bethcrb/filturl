@@ -4,6 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  url        :string(2000)     not null
+#  slug       :string(255)
 #  status     :string(255)      default("new")
 #  user_id    :integer          not null
 #  created_at :datetime
@@ -11,10 +12,13 @@
 #
 # Indexes
 #
+#  index_webpage_requests_on_slug             (slug) UNIQUE
 #  index_webpage_requests_on_url_and_user_id  (url,user_id)
 #
 
 class WebpageRequest < ActiveRecord::Base
+  extend FriendlyId
+
   belongs_to :user
 
   has_one :webpage_response, dependent: :destroy
@@ -30,6 +34,19 @@ class WebpageRequest < ActiveRecord::Base
   validates :url, uniqueness: { case_sensitive: false, scope: :user_id }
   validates :url, length: { maximum: 2000 }
   validates_with UrlValidator
+
+  delegate :headers, :redirect_count, to: :webpage_response
+  delegate :body, :location, :primary_ip, to: :webpage
+  delegate :url, to: :webpage, prefix: true
+  delegate :url, to: :screenshot, prefix: true
+
+  friendly_id :url, use: :slugged
+
+  # Use the first 228 and the last 25 characters to construct the slug when it
+  # is longer than 255 characters
+  def normalize_friendly_id(string)
+    super.length > 255 ? "#{super[0..227]}--#{super[-25..-1]}" : super
+  end
 
   private
 

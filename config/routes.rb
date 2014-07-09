@@ -16,5 +16,5 @@ Rails.application.routes.draw do
 
   post '/',          to: 'webpage_requests#create', as: 'webpage_requests'
 
-  get '/urls/:id', to: 'webpages#show', as: 'webpage'
+  get '/urls/:id', to: 'webpage_requests#show', as: 'webpage_request'
 end

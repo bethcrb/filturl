@@ -13,7 +13,7 @@ Given(/^I submitted the URL "(.*?)"$/) do |url|
 end
 
 Given(/^the slug "(.*?)" does not exist$/) do |slug|
-  existing_slug = Webpage.find_by(slug: slug)
+  existing_slug = WebpageRequest.find_by(slug: slug)
   existing_slug.destroy if existing_slug.present?
 end
 
@@ -45,6 +45,5 @@ Then(/^I should see an invalid URL message$/) do
 end
 
 Then(/^I should see a screenshot of the URL "(.*?)"$/) do |url|
-  @webpage = @webpage_request.webpage
-  expect(page).to have_xpath("//img[@src=\"#{@webpage.screenshot_url}\"]")
+  expect(page).to have_xpath("//img[@src=\"#{@webpage_request.screenshot_url}\"]")
 end
