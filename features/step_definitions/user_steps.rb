@@ -5,7 +5,7 @@ end
 
 Given(/^I am logged in$/) do
   create_user
-  sign_in_with_email
+  sign_in(@visitor[:email])
 end
 
 Given(/^I exist as a user$/) do
@@ -28,12 +28,12 @@ end
 ### WHEN ###
 When(/^I sign in with a valid email$/) do
   create_visitor
-  sign_in_with_email
+  sign_in(@visitor[:email])
 end
 
 When(/^I sign in with a valid username$/) do
   create_visitor
-  sign_in_with_username
+  sign_in(@visitor[:username])
 end
 
 When(/^I sign out$/) do
@@ -81,17 +81,17 @@ end
 
 When(/^I sign in with a wrong email$/) do
   @visitor = @visitor.merge(email: 'wrong@example.com')
-  sign_in_with_email
+  sign_in(@visitor[:email])
 end
 
 When(/^I sign in with a wrong username$/) do
   @visitor = @visitor.merge(username: 'wrong_user')
-  sign_in_with_username
+  sign_in(@visitor[:username])
 end
 
 When(/^I sign in with a wrong password$/) do
   @visitor = @visitor.merge(password: 'wrongpass')
-  sign_in_with_email
+  sign_in(@visitor[:email])
 end
 
 When(/^I change my username to "([^']*)"$/) do |newusername|

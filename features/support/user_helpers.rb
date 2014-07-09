@@ -43,16 +43,9 @@ module UserHelpers
     find_user
   end
 
-  def sign_in_with_email
+  def sign_in(user_login)
     visit '/users/sign_in'
-    fill_in 'user_login', with: @visitor[:email]
-    fill_in 'user_password', with: @visitor[:password]
-    click_button 'Sign in'
-  end
-
-  def sign_in_with_username
-    visit '/users/sign_in'
-    fill_in 'user_login', with: @visitor[:username]
+    fill_in 'user_login', with: user_login
     fill_in 'user_password', with: @visitor[:password]
     click_button 'Sign in'
   end
