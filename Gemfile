@@ -62,6 +62,9 @@ group :development do
   gem 'guard-teaspoon'
   gem 'listen'
 
+  # Use Pry instead of IRB for the console.
+  gem 'pry-rails'
+
   # Use Puma as the default web server for development.
   gem 'puma'
 
