@@ -40,12 +40,19 @@ class WebpageRequest < ActiveRecord::Base
   delegate :url, to: :webpage, prefix: true
   delegate :url, to: :screenshot, prefix: true
 
-  friendly_id :url, use: :slugged
+  friendly_id :slug_candidates, use: :slugged
 
   # Use the first 228 and the last 25 characters to construct the slug when it
   # is longer than 255 characters
   def normalize_friendly_id(string)
     super.length > 255 ? "#{super[0..227]}--#{super[-25..-1]}" : super
+  end
+
+  def slug_candidates
+    [
+      :url,
+      [:url, :user_id]
+    ]
   end
 
   private

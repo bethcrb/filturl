@@ -110,4 +110,18 @@ RSpec.describe WebpageRequest, type: :model do
       end
     end
   end
+
+  describe '#slug_candidates' do
+    context 'when the slug already exists' do
+      let(:first_user) { create(:user) }
+      let(:second_user) { create(:user) }
+      let(:first_request) { create(:webpage_request, user: first_user) }
+      subject(:webpage_request) { create(:webpage_request, user: second_user) }
+
+      it 'uses the parameterized url and the user_id as the slug' do
+        new_slug = "#{first_request.url.parameterize}-#{second_user.id}"
+        expect(webpage_request.slug).to eq(new_slug)
+      end
+    end
+  end
 end
