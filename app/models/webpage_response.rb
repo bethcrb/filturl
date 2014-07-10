@@ -19,7 +19,7 @@
 
 class WebpageResponse < ActiveRecord::Base
   belongs_to :webpage
-  belongs_to :webpage_request
+  belongs_to :webpage_request, -> { includes :user }
 
   has_one :screenshot, through: :webpage
   has_many :webpage_redirects, dependent: :destroy
