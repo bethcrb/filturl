@@ -19,7 +19,7 @@
 class WebpageRequest < ActiveRecord::Base
   extend FriendlyId
 
-  belongs_to :user
+  belongs_to :user, inverse_of: :webpage_requests
 
   has_one :webpage_response, dependent: :destroy
   has_one :webpage, through: :webpage_response
