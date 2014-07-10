@@ -45,6 +45,9 @@ group :development do
   # Better Errors for advanced features.
   gem 'binding_of_caller', '~> 0.7.2'
 
+  # Use Bullet to help avoid N+1 queries and unused eager loading.
+  gem 'bullet'
+
   # Use Capistrano for deployment.
   gem 'capistrano', '~> 2.15.5'
 

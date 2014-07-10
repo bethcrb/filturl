@@ -52,6 +52,9 @@ GEM
     bootswatch-rails (3.1.1.1)
       railties (>= 3.1)
     builder (3.2.2)
+    bullet (4.11.3)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
     cancan (1.6.10)
     capistrano (2.15.5)
       highline
@@ -326,6 +329,7 @@ GEM
     uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uniform_notifier (1.6.2)
     vcr (2.9.2)
     warden (1.2.3)
       rack (>= 1.0)
@@ -345,6 +349,7 @@ DEPENDENCIES
   binding_of_caller (~> 0.7.2)
   bootstrap-sass (~> 3.2.0)
   bootswatch-rails
+  bullet
   cancan (~> 1.6.10)
   capistrano (~> 2.15.5)
   capybara (~> 2.4)
