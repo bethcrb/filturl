@@ -36,3 +36,8 @@ CHARTBEAT_DOMAIN:
 
 # Google Analytics
 GOOGLE_ANALYTICS_ID:
+
+# Trusted IP for Better Errors. This is necessary for developing on a remote
+# host or in a virtual environment such as Vagrant/VirtualBox.
+# Read more: https://github.com/charliesome/better_errors#security
+TRUSTED_IP:
