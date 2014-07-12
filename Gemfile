@@ -126,10 +126,6 @@ gem 'bootstrap-sass', '~> 3.2.0'
 # Use bootswatch-rails for SCSS versions of Bootswatch themes.
 gem 'bootswatch-rails'
 
-# Use CanCan to restrict access to pages that should only be viewed by an
-# administrator.
-gem 'cancan', '~> 1.6.10'
-
 # Use CodeRay for syntax highlighting.
 gem 'coderay'
 
@@ -160,6 +156,9 @@ gem 'phantomjs'
 
 # Use PostRank::URI to clean URLs prior to validation.
 gem 'postrank-uri', '~> 1.0.16'
+
+# Use Pundit for authorization policies.
+gem 'pundit'
 
 # Use Rolify to manage user roles.
 gem 'rolify'

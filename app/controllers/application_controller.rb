@@ -2,6 +2,8 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
+  include Pundit
+
   before_action :save_previous_url
 
   # Prevent CSRF attacks by raising an exception.
@@ -9,9 +11,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # If authorization fails, set error message and redirect to home page
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_path, alert: exception.message
-  end
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   rescue_from ActiveRecord::RecordNotFound do
     redirect_to root_path
@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_or_guest_user
 
   private
+
+  def user_not_authorized
+    redirect_to root_path, alert: 'Access denied.'
+  end
 
   # If the user is currently logged in, move existing guest user data if
   # necessary and return the current user; otherwise, return the guest user.

@@ -5,6 +5,7 @@ class WebpageRequestsController < ApplicationController
   before_action :current_or_guest_user
   before_action :set_webpage_request, only: :show
   before_action :build_webpage_request, only: :create
+  after_action :verify_authorized, except: :index
 
   def index
     @webpage_request = WebpageRequest.new
@@ -28,6 +29,7 @@ class WebpageRequestsController < ApplicationController
   def set_webpage_request
     @webpage_request = WebpageRequest.friendly.find(params[:id])
     redirect_to root_path unless @webpage_request.present?
+    authorize @webpage_request
   end
 
   def build_webpage_request
@@ -35,6 +37,7 @@ class WebpageRequestsController < ApplicationController
       url:     PostRank::URI.clean(webpage_request_params[:url]).to_s,
       user_id: current_or_guest_user.id
     )
+    authorize @webpage_request
   end
 
   def webpage_request_params
