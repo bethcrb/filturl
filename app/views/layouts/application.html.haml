@@ -1,9 +1,6 @@
 !!!
 %html{lang: 'en'}
   %head
-    - if chartbeat_enabled?
-      :javascript
-        var _sf_startpt=(new Date()).getTime()
     %meta{charset: 'utf-8'}/
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0'}/
     %meta{name: 'format-detection', content: 'telephone=no'}/
@@ -20,8 +17,6 @@
     = favicon_link_tag '/favicon.png', rel: 'shortcut icon', type: 'image/png'
     = favicon_link_tag '/favicon.ico'
     = yield(:head)
-    - if google_analytics_enabled?
-      = render 'layouts/analytics/google_analytics'
   %body
     = render 'layouts/navigation'
     #main{role: "main"}
@@ -30,5 +25,3 @@
           = render 'layouts/messages'
           = yield
     %footer
-    - if chartbeat_enabled?
-      = render 'layouts/analytics/chartbeat'
