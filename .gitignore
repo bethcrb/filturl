@@ -19,6 +19,7 @@
 /config/application.yml
 /config/database.yml
 /config/deploy.rb
+/config/deploy/
 /coverage.data
 /coverage/
 /db/*.sqlite3
@@ -29,6 +30,7 @@
 /doc/specs.html
 /features/cassettes/
 /gems
+/lib/capistrano/
 /log/*.log
 /public/cache
 /public/stylesheets/compiled
