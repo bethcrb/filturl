@@ -12,9 +12,11 @@ class WebpageRequestsController < ApplicationController
   end
 
   def show
+    authorize @webpage_request
   end
 
   def create
+    authorize @webpage_request
     if @webpage_request.save &&
       WebpageService.perform_http_request(@webpage_request)
       redirect_to @webpage_request
@@ -27,9 +29,7 @@ class WebpageRequestsController < ApplicationController
   private
 
   def set_webpage_request
-    @webpage_request = WebpageRequest.friendly.find(params[:id])
-    redirect_to root_path unless @webpage_request.present?
-    authorize @webpage_request
+    @webpage_request ||= WebpageRequest.friendly.find(params[:id])
   end
 
   def build_webpage_request
@@ -37,7 +37,6 @@ class WebpageRequestsController < ApplicationController
       url:     PostRank::URI.clean(webpage_request_params[:url]).to_s,
       user_id: current_or_guest_user.id
     )
-    authorize @webpage_request
   end
 
   def webpage_request_params
