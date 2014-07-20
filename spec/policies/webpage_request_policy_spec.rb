@@ -10,8 +10,8 @@ describe WebpageRequestPolicy do
   context 'for user' do
     let(:user) { webpage_request.user }
 
-    it { is_expected.to authorize(:index) }
     it { is_expected.to authorize(:show) }
+    it { is_expected.to authorize(:new) }
     it { is_expected.to authorize(:create) }
 
     describe '.scope' do
@@ -25,8 +25,8 @@ describe WebpageRequestPolicy do
   context 'for admin' do
     let(:user) { create(:admin) }
 
-    it { is_expected.to authorize(:index) }
     it { is_expected.to authorize(:show)  }
+    it { is_expected.to authorize(:new) }
     it { is_expected.to authorize(:create) }
 
     describe '.scope' do

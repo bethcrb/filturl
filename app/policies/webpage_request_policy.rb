@@ -1,6 +1,6 @@
 # Authorization policy for WebpageRequest
 class WebpageRequestPolicy < ApplicationPolicy
-  def index?
+  def new?
     true
   end
 

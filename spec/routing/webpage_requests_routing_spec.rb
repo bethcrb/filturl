@@ -8,10 +8,10 @@ RSpec.describe WebpageRequestsController, type: :routing, vcr: vcr_opts do
 
   describe 'routing' do
 
-    it 'routes / to webpage_requests#index via get' do
+    it 'routes / to webpage_requests#new via get' do
       expect(get('/')).to route_to(
         controller: 'webpage_requests',
-        action: 'index'
+        action: 'new'
       )
     end
 

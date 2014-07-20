@@ -4,19 +4,17 @@ RSpec.describe WebpageRequestsController, type: :controller do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
-  describe "GET 'index'" do
+  describe "GET 'new'" do
     before(:each) do
-      get :index
+      get :new
     end
 
     it 'assigns @webpage_request to a new WebpageRequest' do
-      get :index
       expect(assigns(:webpage_request)).to be_a_new(WebpageRequest)
     end
 
-    it 'renders the index template' do
-      get :index
-      expect(response).to render_template('index')
+    it 'renders the new template' do
+      expect(response).to render_template('new')
     end
   end
 
@@ -81,9 +79,9 @@ RSpec.describe WebpageRequestsController, type: :controller do
         { url: 'http://not.a.valid.url/', user_id: user.id }
       end
 
-      it 'renders the index template when there is an error' do
+      it 'renders the new template when there is an error' do
         post :create, webpage_request: bad_webpage_request_params
-        expect(response).to render_template('index')
+        expect(response).to render_template('new')
       end
     end
   end

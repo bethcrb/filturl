@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'webpage_requests#index'
+  root 'webpage_requests#new'
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
