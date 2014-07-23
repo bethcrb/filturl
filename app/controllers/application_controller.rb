@@ -47,16 +47,12 @@ class ApplicationController < ActionController::Base
   # associated with the current session or create one if it does not already
   # exist.
   def guest_user
-    # Cache the value the first time it's gotten.
-    if cookies[:guest]
-      if cookies[:guest].is_a? Integer
-        guest_user_id = cookies[:guest]
-      else
-        guest_user_id = Base64.urlsafe_decode64(cookies[:guest])
-      end
-    end
+    # Find the guest user_id by decoding the guest cookie value or create a new
+    # guest user if the cookie is not set.
+    guest_user_id = Base64.urlsafe_decode64(cookies[:guest]) if cookies[:guest]
     guest_user_id ||= create_guest_user.id
 
+    # Cache the value the first time it's retrieved.
     @cached_guest_user ||= User.find(guest_user_id)
 
   rescue ActiveRecord::RecordNotFound
