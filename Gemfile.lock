@@ -261,7 +261,6 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.1.1)
       json (~> 1.4)
-    rolify (3.4.0)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
@@ -398,7 +397,6 @@ DEPENDENCIES
   pundit
   quiet_assets (~> 1.0.2)
   rails (= 4.1.4)
-  rolify
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.3)
   sdoc

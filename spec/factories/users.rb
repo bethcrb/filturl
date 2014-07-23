@@ -43,7 +43,7 @@ FactoryGirl.define do
     confirmed_at Time.now
 
     factory :admin do
-      after(:create) { |user| user.add_role(:admin) }
+      after(:create) { |user| user.admin! }
     end
   end
 end

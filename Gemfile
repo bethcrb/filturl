@@ -163,9 +163,6 @@ gem 'postrank-uri', '~> 1.0.16'
 # Use Pundit for authorization policies.
 gem 'pundit'
 
-# Use Rolify to manage user roles.
-gem 'rolify'
-
 # Use Simple Form to easily integrate Bootstrap styles in forms.
 gem 'simple_form', '~> 3.0.0.rc'
 

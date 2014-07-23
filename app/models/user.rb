@@ -35,7 +35,10 @@
 #
 
 class User < ActiveRecord::Base
-  rolify
+  enum role: { guest: 0, admin: 1, user: 2 }
+
+  after_initialize :set_default_role, if: :new_record?
+
   devise :confirmable, :database_authenticatable, :lockable,
          :omniauthable, :recoverable, :registerable, :rememberable,
          :trackable
@@ -69,5 +72,11 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
+  end
+
+  private
+
+  def set_default_role
+    self.role ||= :guest
   end
 end

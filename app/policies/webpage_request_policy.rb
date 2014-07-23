@@ -22,7 +22,7 @@ class WebpageRequestPolicy < ApplicationPolicy
     end
 
     def resolve
-      if user.has_role? :admin
+      if user.admin?
         scope.all
       else
         scope.where(user_id: user.id)

@@ -13,7 +13,6 @@ ADMIN_PASSWORD: changeme
 USER_NAME: Test User
 USER_EMAIL: user@example.com
 USER_PASSWORD: changeme
-ROLES: [admin, user]
 
 # Omniauth API keys
 FACEBOOK_APP_ID:
