@@ -28,6 +28,7 @@ class Screenshot < ActiveRecord::Base
 
   before_destroy :delete_screenshot
 
+  after_initialize :set_filename, if: :new_record?
   after_create :upload_screenshot
 
   def generate_screenshot
@@ -81,10 +82,7 @@ class Screenshot < ActiveRecord::Base
   protected
 
   def set_filename
-    if filename.blank?
-      temp_filename = "#{SecureRandom.urlsafe_base64(32)}.png"
-      self.update_attributes!(filename: temp_filename)
-    end
+    self.filename ||= "#{SecureRandom.urlsafe_base64(32)}.png"
   end
 
   def temp_screenshot_file
