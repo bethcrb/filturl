@@ -16,7 +16,8 @@ Rails.application.routes.draw do
 
   post '/',          to: 'webpage_requests#create', as: 'webpage_requests'
 
-  get '/urls/:id', to: 'webpage_requests#show',
-                   as: 'webpage_request',
-                   id: /https?-.{3,255}/
+  resources :urls, constraints: { id: /https?-.{3,255}/ },
+                   controller:  :webpage_requests,
+                   only:        [:show],
+                   as:          :webpage_request
 end
