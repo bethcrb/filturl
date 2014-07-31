@@ -81,13 +81,13 @@ RSpec.describe WebpageRequest, type: :model do
   end
 
   describe 'respond_to' do
-    it { should respond_to(:headers) }
-    it { should respond_to(:redirect_count) }
-    it { should respond_to(:body) }
-    it { should respond_to(:location) }
-    it { should respond_to(:primary_ip) }
-    it { should respond_to(:webpage_url) }
-    it { should respond_to(:screenshot_url) }
+    it { is_expected.to respond_to(:headers) }
+    it { is_expected.to respond_to(:redirect_count) }
+    it { is_expected.to respond_to(:body) }
+    it { is_expected.to respond_to(:location) }
+    it { is_expected.to respond_to(:primary_ip) }
+    it { is_expected.to respond_to(:webpage_url) }
+    it { is_expected.to respond_to(:screenshot_url) }
   end
 
   describe '#normalize_friendly_id' do
