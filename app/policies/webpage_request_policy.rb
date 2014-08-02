@@ -1,7 +1,7 @@
 # Authorization policy for WebpageRequest
 class WebpageRequestPolicy < ApplicationPolicy
   def new?
-    true
+    user
   end
 
   def show?
@@ -9,7 +9,7 @@ class WebpageRequestPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    user
   end
 
   # Determines which WebpageRequest records a user has access to

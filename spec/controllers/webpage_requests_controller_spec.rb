@@ -4,21 +4,32 @@ RSpec.describe WebpageRequestsController, type: :controller do
   include_context 'skip screenshot callbacks'
   include_context 'phantomjs'
 
-  describe "GET 'new'" do
-    before(:each) do
-      get :new
+  describe "GET #new" do
+    before(:each) { get :new }
+
+    context 'when the user is signed in' do
+      let(:user) { FactoryGirl.create(:user) }
+      before { sign_in user }
+
+      before(:each) { get :new }
+
+      it 'assigns @webpage_request to a new WebpageRequest' do
+        expect(assigns(:webpage_request)).to be_a_new(WebpageRequest)
+      end
+
+      it 'renders the new template' do
+        expect(response).to render_template('new')
+      end
     end
 
-    it 'assigns @webpage_request to a new WebpageRequest' do
-      expect(assigns(:webpage_request)).to be_a_new(WebpageRequest)
-    end
-
-    it 'renders the new template' do
-      expect(response).to render_template('new')
+    context 'when the user is not signed in' do
+      it 'redirects them to the sign in page' do
+        expect(response).to redirect_to('/users/sign_in')
+      end
     end
   end
 
-  describe "GET 'show'", :vcr do
+  describe "GET #show", :vcr do
     let(:user) { FactoryGirl.create(:user) }
     before { sign_in user }
 
@@ -58,7 +69,7 @@ RSpec.describe WebpageRequestsController, type: :controller do
     end
   end
 
-  describe "POST 'create'", :vcr do
+  describe "POST #create", :vcr do
     let(:user) { FactoryGirl.create(:user) }
     before { sign_in user }
 

@@ -2,7 +2,7 @@
 # the submission of a URL in webpage_requests#new and show the results in
 # webpage_requests#show.
 class WebpageRequestsController < ApplicationController
-  before_action :current_or_guest_user
+  before_action :authenticate_user!, except: :show
   before_action :set_webpage_request, only: :show
   before_action :build_webpage_request, only: :create
   after_action :verify_authorized
@@ -37,7 +37,7 @@ class WebpageRequestsController < ApplicationController
   def build_webpage_request
     @webpage_request = WebpageRequest.find_or_initialize_by(
       url:     PostRank::URI.clean(webpage_request_params[:url]).to_s,
-      user_id: current_or_guest_user.id
+      user_id: current_user.id
     )
   end
 

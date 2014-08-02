@@ -7,6 +7,14 @@ describe WebpageRequestPolicy do
 
   before(:example) { create_list(:webpage_request, 5) }
 
+  context 'for visitor' do
+    let(:user) { nil }
+
+    it { is_expected.to authorize(:show) }
+    it { is_expected.not_to authorize(:new) }
+    it { is_expected.not_to authorize(:create) }
+  end
+
   context 'for user' do
     let(:user) { webpage_request.user }
 
