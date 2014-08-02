@@ -35,10 +35,10 @@ class WebpageRequest < ActiveRecord::Base
   validates :url, length: { maximum: 2000 }
   validates_with UrlValidator
 
-  delegate :headers, :redirect_count, to: :webpage_response
-  delegate :body, :location, :primary_ip, to: :webpage
-  delegate :url, to: :webpage, prefix: true
-  delegate :url, to: :screenshot, prefix: true
+  delegate :headers, :redirect_count, to: :webpage_response, allow_nil: true
+  delegate :body, :location, :primary_ip, to: :webpage, allow_nil: true
+  delegate :url, to: :webpage, prefix: true, allow_nil: true
+  delegate :url, to: :screenshot, prefix: true, allow_nil: true
 
   friendly_id :slug_candidates, use: :slugged
 

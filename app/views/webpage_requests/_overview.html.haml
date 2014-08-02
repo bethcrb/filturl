@@ -11,7 +11,7 @@
       %tr
         %th Redirect count
         %td= webpage_request.redirect_count
-      - if webpage_request.redirect_count > 0
+      - if webpage_request.redirect_count.to_i > 0
         %tr
           %th Redirects
           %td

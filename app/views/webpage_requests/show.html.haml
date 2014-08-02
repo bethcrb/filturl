@@ -1,9 +1,12 @@
 .row
   .col-xs-12
     .page-header
-      %h3= @webpage_request.webpage_url
-      - if @webpage_request.webpage_url != @webpage_request.url
-        %small{style: 'padding-left: 1em;'}= @webpage_request.url
+      - if @webpage_request.webpage_url.present?
+        %h3= @webpage_request.webpage_url
+        - if @webpage_request.webpage_url != @webpage_request.url
+          %small{style: 'padding-left: 1em;'}= @webpage_request.url
+      - else
+        %h3= @webpage_request.url
 .row
   .col-xs-12
     %ul#navTabs.nav.nav-tabs.nav-justified
