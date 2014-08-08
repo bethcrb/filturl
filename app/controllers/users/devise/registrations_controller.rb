@@ -22,7 +22,7 @@ class Users::Devise::RegistrationsController < Devise::RegistrationsController
 
     @user = User.find(current_user.id)
     if @user.update_attributes(account_update_params)
-      set_flash_message :notice, :updated
+      set_flash_message ':notice', :updated
 
       # Sign in the user and bypass validation in case the password changed.
       sign_in @user, bypass: true

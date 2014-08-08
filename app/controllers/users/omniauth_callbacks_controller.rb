@@ -22,7 +22,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       sign_in_and_redirect @user, event: :authentication
       if is_navigational_format?
-        set_flash_message(:notice, :success, kind: provider_name.capitalize)
+        set_flash_message(':notice', :success, kind: provider_name.capitalize)
       end
     else
       session["devise.#{provider_name}_data"] = omniauth_data
