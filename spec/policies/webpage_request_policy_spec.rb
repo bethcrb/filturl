@@ -10,7 +10,7 @@ describe WebpageRequestPolicy do
   context 'for visitor' do
     let(:user) { nil }
 
-    it { is_expected.to authorize(:show) }
+    it { is_expected.not_to authorize(:show) }
     it { is_expected.not_to authorize(:new) }
     it { is_expected.not_to authorize(:create) }
   end

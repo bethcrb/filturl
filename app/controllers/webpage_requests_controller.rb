@@ -2,7 +2,7 @@
 # the submission of a URL in webpage_requests#new and show the results in
 # webpage_requests#show.
 class WebpageRequestsController < ApplicationController
-  before_action :authenticate_user!, except: :show
+  before_action :authenticate_user!
   before_action :set_webpage_request, only: :show
   before_action :build_webpage_request, only: :create
   after_action :verify_authorized

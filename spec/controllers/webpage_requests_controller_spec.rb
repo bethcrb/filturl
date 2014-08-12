@@ -5,8 +5,6 @@ RSpec.describe WebpageRequestsController, type: :controller do
   include_context 'phantomjs'
 
   describe "GET #new" do
-    before(:each) { get :new }
-
     context 'when the user is signed in' do
       let(:user) { FactoryGirl.create(:user) }
       before { sign_in user }
@@ -24,6 +22,7 @@ RSpec.describe WebpageRequestsController, type: :controller do
 
     context 'when the user is not signed in' do
       it 'redirects them to the sign in page' do
+        get :new
         expect(response).to redirect_to('/users/sign_in')
       end
     end
