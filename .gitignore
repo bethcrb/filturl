@@ -11,6 +11,7 @@
 /*.tmproj
 /.bundle
 /.devise
+/.envrc
 /.secret_key_base
 /.simplecov
 /cache
