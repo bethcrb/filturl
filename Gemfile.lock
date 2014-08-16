@@ -38,6 +38,8 @@ GEM
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (2.2.0.20140804)
+      execjs
     aws-sdk (1.51.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -353,6 +355,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (>= 2.5.0)
+  autoprefixer-rails
   aws-sdk (~> 1.0)
   better_errors (~> 1.1)
   binding_of_caller (~> 0.7.2)

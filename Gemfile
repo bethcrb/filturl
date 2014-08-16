@@ -125,6 +125,7 @@ gem 'aws-sdk', '~> 1.0'
 
 # Use Bootstrap for front-end framework.
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 
 # Use bootswatch-rails for SCSS versions of Bootswatch themes.
 gem 'bootswatch-rails'
