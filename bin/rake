@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
 begin
-  load File.expand_path('../spring', __FILE__)
+  load File.expand_path("../spring", __FILE__)
 rescue LoadError
-  warn "Could not load 'spring'."
-  raise
 end
 require_relative '../config/boot'
 require 'rake'
