@@ -13,7 +13,7 @@ class WebpageService
 
   # Performs a GET request on the request_url
   def perform_http_request
-    request_opts = { followlocation: true, ssl_verifypeer: false, timeout: 15 }
+    request_opts = { followlocation: true, ssl_verifypeer: false, timeout: 30 }
     @response = Typhoeus.get(@webpage_request.url, request_opts)
     @response && process_response_data
     @response
