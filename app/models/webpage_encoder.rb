@@ -36,7 +36,7 @@ class WebpageEncoder
   # Returns true or false based on whether or not the MIME type is allowed.
   def mime_type_allowed?
     return false unless mime_type
-    mime_type.ascii? && ALLOWED_MIME_TYPES.include?(mime_type)
+    ALLOWED_MIME_TYPES.include?(mime_type)
   end
 
   # Set the meta encoding of this page as according to Nokogiri. In the event
