@@ -7,12 +7,12 @@ AMAZON_SES_PASSWORD:
 
 # /db/seeds.rb
 # Default user data for initializing database
-ADMIN_NAME: First User
-ADMIN_EMAIL: admin@example.com
-ADMIN_PASSWORD: changeme
-USER_NAME: Test User
-USER_EMAIL: user@example.com
-USER_PASSWORD: changeme
+ADMIN_NAME: "First User"
+ADMIN_EMAIL: "admin@example.com"
+ADMIN_PASSWORD: "changeme"
+USER_NAME: "Test User"
+USER_EMAIL: "user@example.com"
+USER_PASSWORD: "changeme"
 
 # Omniauth API keys
 FACEBOOK_APP_ID:

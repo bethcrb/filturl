@@ -143,7 +143,7 @@ gem 'omniauth-github', '~> 1.1.0'
 gem 'omniauth-google-oauth2', '~> 0.2.0'
 
 # Use Figaro for application configuration.
-gem 'figaro', '~> 0.7.0'
+gem 'figaro', '~> 1.0.0'
 
 # Use FriendlyId for permalinks.
 gem 'friendly_id', '~> 5.0.0'
