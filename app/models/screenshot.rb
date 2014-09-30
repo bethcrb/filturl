@@ -29,7 +29,7 @@ class Screenshot < ActiveRecord::Base
   before_destroy :delete_screenshot
 
   after_initialize :set_filename, if: :new_record?
-  after_create :upload_screenshot
+  after_find :upload_screenshot, if: :needs_update?
 
   def generate_screenshot
     screenshot_js = Rails.root.join('vendor/screenshot.coffee').to_s
