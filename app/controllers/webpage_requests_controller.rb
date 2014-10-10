@@ -36,7 +36,7 @@ class WebpageRequestsController < ApplicationController
 
   def build_webpage_request
     @webpage_request = WebpageRequest.find_or_initialize_by(
-      url:     PostRank::URI.clean(webpage_request_params[:url]).to_s,
+      url:     webpage_request_params[:url],
       user_id: current_user.id
     )
   end

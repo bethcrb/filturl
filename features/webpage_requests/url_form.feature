@@ -23,3 +23,15 @@ Feature: Submit URLs
     And I click on "Go"
     Then I should be on the home page
     And I should see "Url returned an error"
+
+  @vcr
+  Scenario: User submits a valid URL with spaces in it
+    When I fill in the URL "http:// www.example.com"
+    And I click on "Go"
+    Then I should be on the webpage request page for the slug "http-www-example-com"
+
+  Scenario: User submits a URL with a colon and no slashes
+    When I fill in the URL "http:www.example.com"
+    And I click on "Go"
+    Then I should be on the home page
+    And I should see "Url returned an error"

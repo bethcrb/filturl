@@ -61,6 +61,7 @@ RSpec.describe WebpageRequest, type: :model do
       http://not.a.valid.url/
       http://www.unknown_response.com/
       http://0.0.0.0/
+      http:example.com
     )
     invalid_urls.each do |url|
       it "does not allow url to be set to \"#{url}\"" do

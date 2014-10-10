@@ -59,5 +59,8 @@ class WebpageRequest < ActiveRecord::Base
 
   def clean_url
     self.url = PostRank::URI.clean(url).to_s unless url.blank?
+  rescue => error
+    errors[:url] << "returned an error (#{error.message})"
+    return false
   end
 end
