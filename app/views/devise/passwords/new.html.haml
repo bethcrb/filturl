@@ -1,10 +1,10 @@
 %h2.page-header Forgot your password?
-= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { role: 'form', class: 'form-horizontal', method: :post }) do |f|
   = f.error_notification
   .form-group
     .col-xs-12.col-md-4
       = f.input :login, required: true, autofocus: true, input_html: { autocapitalize: 'none', autocorrect: 'off', class: 'form-control input-sm' }
-    .form-group
-      .col-xs-12.col-md-4
-        = f.button :submit, 'Send me reset password instructions', class: 'btn-primary btn-sm'
+  .form-group
+    .col-xs-12.col-md-4
+      = f.button :submit, 'Send me reset password instructions', class: 'btn-primary btn-sm'
 = render 'devise/shared/links'
