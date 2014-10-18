@@ -1,6 +1,8 @@
 # Shared VCR configuration
 # See spec/support/vcr.rb for configuration options specific to RSpec
 # See features/support/vcr.rb for configuration options specific to Cucumber
+require 'vcr'
+
 VCR.configure do |c|
   c.allow_http_connections_when_no_cassette = false
   c.cassette_library_dir = 'spec/cassettes'
