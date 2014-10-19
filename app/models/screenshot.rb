@@ -34,6 +34,7 @@ class Screenshot < ActiveRecord::Base
   def generate_screenshot
     screenshot_js = Rails.root.join('vendor/screenshot.coffee').to_s
     Phantomjs.run('--ignore-ssl-errors=yes',
+                  '--ssl-protocol=TLSv1',
                   screenshot_js,
                   webpage.url,
                   temp_screenshot_file
