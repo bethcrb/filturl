@@ -20,7 +20,7 @@
 
 FactoryGirl.define do
   factory :webpage_request do
-    ignore do
+    transient do
       perform_http_request false
     end
 
