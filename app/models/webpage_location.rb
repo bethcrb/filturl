@@ -15,7 +15,7 @@ class WebpageLocation
 
   def geolocation
     return nil unless primary_ip
-    location = GeoIP2.locate(primary_ip)
+    location = MaxmindGeoIP2.locate(primary_ip)
     location && location.symbolize_keys
   end
 

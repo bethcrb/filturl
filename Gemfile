@@ -150,7 +150,7 @@ gem 'friendly_id', '~> 5.0.0'
 
 # Use GeoIP2 for determining the location of an IP address.
 # Note: libmaxminddb must be installed.
-gem 'geoip2', github: 'da4nik/geoip2'
+gem 'maxmind_geoip2'
 
 # Use Haml for markup in templates instead of ERB.
 gem 'haml-rails'
