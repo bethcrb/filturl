@@ -232,7 +232,7 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
-    phantomjs (1.9.7.1)
+    phantomjs (1.9.8.0)
     postrank-uri (1.0.18)
       addressable (~> 2.3.0)
       nokogiri (~> 1.6.1)
