@@ -57,7 +57,7 @@ group :development do
   # Guard is a command line tool to easily handle events on file system
   # modifications. It is useful for automatically running tasks in the
   # background, such as running tests and restarting services.
-  gem 'guard', '~> 2.1'
+  gem 'guard', '~> 2.12'
   gem 'guard-annotate'
   gem 'guard-cucumber'
   gem 'guard-rails'
