@@ -124,7 +124,7 @@ group :development, :test do
 end
 
 # Use AWS SDK for S3.
-gem 'aws-sdk', '~> 1.0'
+gem 'aws-sdk-v1'
 
 # Use Bootstrap for front-end framework.
 gem 'bootstrap-sass', '~> 3.3.4'
