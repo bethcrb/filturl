@@ -106,7 +106,7 @@ group :test do
   gem 'vcr', '~> 2.8'
 
   # Use WebMock to stub out Net::HTTP requests.
-  gem 'webmock', '~> 1.16'
+  gem 'webmock', '~> 1.21'
 end
 
 group :development, :test do
