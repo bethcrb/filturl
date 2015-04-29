@@ -171,4 +171,4 @@ gem 'pundit'
 gem 'simple_form', '~> 3.1.0'
 
 # Use Typhoeus to perform HTTP requests.
-gem 'typhoeus', '~> 0.6.3'
+gem 'typhoeus', '~> 0.7.1'
