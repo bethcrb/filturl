@@ -117,7 +117,7 @@ group :development, :test do
   gem 'ffaker', '~> 2.0'
 
   # Use RSpec for unit testing.
-  gem 'rspec-rails', '~> 3.1.0'
+  gem 'rspec-rails', '~> 3.2.0'
 
   # Use Teaspoon for testing JavaScript with Jasmine.
   gem 'teaspoon', '~> 0.9.0'

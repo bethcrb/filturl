@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe WebpageRequestPolicy do
+RSpec.describe WebpageRequestPolicy do
   subject { WebpageRequestPolicy.new(user, webpage_request) }
 
   let(:webpage_request) { create(:webpage_request) }

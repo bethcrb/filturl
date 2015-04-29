@@ -1,4 +1,4 @@
-shared_context 'skip screenshot callbacks' do
+RSpec.shared_context 'skip screenshot callbacks' do
   before do
     Screenshot.skip_callback(:find, :after, :upload_screenshot)
   end
