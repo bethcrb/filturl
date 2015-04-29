@@ -41,7 +41,7 @@ Teaspoon.configure do |config|
     # directives.
     # Note: If no version is specified, the latest is assumed.
     #
-    # Available: jasmine[1.3.1, 2.0.0], mocha[1.10.0, 1.17.1] qunit[1.12.0, 1.14.0]
+    # Available: jasmine[1.3.1], mocha[1.10.0, 1.17.1] qunit[1.12.0, 1.14.0]
     suite.use_framework :jasmine, "1.3.1"
 
     # Specify a file matcher as a regular expression and all matching files will be loaded when the suite is run. These
@@ -79,6 +79,11 @@ Teaspoon.configure do |config|
     # Hooks allow you to use `Teaspoon.hook("fixtures")` before, after, or during your spec run. This will make a
     # synchronous Ajax request to the server that will call all of the blocks you've defined for that hook name.
     #suite.hook :fixtures, proc{ }
+
+    # Determine whether specs loaded into the test harness should be embedded as individual script tags or concatenated
+    # into a single file. Similar to Rails' asset `debug: true` and `config.assets.debug = true` options. By default, 
+    # Teaspoon expands all assets to provide more valuable stack traces that reference individual source files.
+    #suite.expand_assets = false
 
   end
 
@@ -134,7 +139,7 @@ Teaspoon.configure do |config|
   # Specify the formatters to use when outputting the results.
   # Note: Output files can be specified by using `"junit>/path/to/output.xml"`.
   #
-  # Available: dot, documentation, clean, json, junit, pride, snowday, swayze_or_oprah, tap, tap_y, teamcity
+  # Available: clean, documentation, dot, json, junit, pride, rspec_html, snowday, swayze_or_oprah, tap, tap_y, teamcity
   #config.formatters = ["dot"]
 
   # Specify if you want color output from the formatters.
@@ -161,14 +166,14 @@ Teaspoon.configure do |config|
 
   config.coverage do |coverage|
 
-    # Which coverage reports Instanbul should generate. Correlates directly to what Istanbul supports.
+    # Which coverage reports Istanbul should generate. Correlates directly to what Istanbul supports.
     #
     # Available: text-summary, text, html, lcov, lcovonly, cobertura, teamcity
     #coverage.reports = ["text-summary", "html"]
 
     # The path that the coverage should be written to - when there's an artifact to write to disk.
     # Note: Relative to `config.root`.
-    #coverage.output_dir = "coverage"
+    #coverage.output_path = "coverage"
 
     # Various thresholds requirements can be defined, and those thresholds will be checked at the end of a run. If any
     # aren't met the run will fail with a message. Thresholds can be defined as a percentage (0-100), or nil.

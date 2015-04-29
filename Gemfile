@@ -120,7 +120,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
 
   # Use Teaspoon for testing JavaScript with Jasmine.
-  gem 'teaspoon', '~> 0.8.0'
+  gem 'teaspoon', '~> 0.9.0'
 end
 
 # Use AWS SDK for S3.
