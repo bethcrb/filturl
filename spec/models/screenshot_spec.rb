@@ -31,7 +31,7 @@ RSpec.describe Screenshot, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:webpage) }
-    it { is_expected.to ensure_length_of(:url).is_at_most(2000) }
+    it { is_expected.to validate_length_of(:url).is_at_most(2000) }
     it { is_expected.to validate_inclusion_of(:status).in_array(%w(active inactive new)) }
   end
 

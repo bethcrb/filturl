@@ -28,7 +28,7 @@ RSpec.describe Webpage, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:url) }
     it { is_expected.to validate_uniqueness_of(:url) }
-    it { is_expected.to ensure_length_of(:url).is_at_most(2000) }
+    it { is_expected.to validate_length_of(:url).is_at_most(2000) }
     it { is_expected.not_to allow_value('www.example.com').for(:url) }
     it { is_expected.to allow_value('http://www.example.com/').for(:url) }
   end

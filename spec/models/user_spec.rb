@@ -66,7 +66,7 @@ RSpec.describe User, type: :model do
     context 'username' do
       it { is_expected.to validate_presence_of(:username) }
       it { is_expected.to validate_uniqueness_of(:username).case_insensitive }
-      it { is_expected.to ensure_length_of(:username).is_at_most(100) }
+      it { is_expected.to validate_length_of(:username).is_at_most(100) }
 
       valid_usernames = %w[test_user example_user username username@domain.com]
       valid_usernames.each do |valid_username|
@@ -81,12 +81,12 @@ RSpec.describe User, type: :model do
 
     context 'password' do
       it do
-        is_expected.to ensure_length_of(:password)
+        is_expected.to validate_length_of(:password)
           .is_at_least(Devise.password_length.begin)
       end
 
       it do
-        is_expected.to ensure_length_of(:password)
+        is_expected.to validate_length_of(:password)
           .is_at_most(Devise.password_length.end)
       end
 

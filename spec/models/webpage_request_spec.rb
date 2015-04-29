@@ -45,7 +45,7 @@ RSpec.describe WebpageRequest, type: :model do
 
     it { is_expected.to validate_presence_of(:user) }
     it { is_expected.to validate_presence_of(:url) }
-    it { is_expected.to ensure_length_of(:url).is_at_most(2000) }
+    it { is_expected.to validate_length_of(:url).is_at_most(2000) }
 
     it 'requires unique value for url scoped to user_id' do
       subject.save!
