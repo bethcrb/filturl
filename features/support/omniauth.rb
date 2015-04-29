@@ -4,11 +4,11 @@ OmniAuth.config.test_mode = true
 facebook_uid = rand(10**21).to_s
 github_uid = rand(10**6).to_s
 google_uid = rand(10**21).to_s
-first_name = Faker::Name.first_name
-last_name = Faker::Name.last_name
+first_name = FFaker::Name.first_name
+last_name = FFaker::Name.last_name
 name = "#{first_name} #{last_name}"
-username = Faker::Internet.user_name
-email = Faker::Internet.email
+username = FFaker::Internet.user_name
+email = FFaker::Internet.email
 
 OmniAuth.config.add_mock(:facebook, {
   provider: 'facebook',
@@ -40,8 +40,8 @@ OmniAuth.config.add_mock(:github, {
     name:        name,
     email:       email,
     nickname:    username,
-    location:    "#{Faker::AddressUS.city}, #{Faker::AddressUS.state_abbr}",
-    description: Faker::Lorem.paragraph,
+    location:    "#{FFaker::AddressUS.city}, #{FFaker::AddressUS.state_abbr}",
+    description: FFaker::Lorem.paragraph,
     image:       'https://secure.gravatar.com/avatar/12345?d=https://a12345.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-12345.png'
   }
 })

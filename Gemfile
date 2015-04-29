@@ -114,7 +114,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
 
   # Use FFaker to generate fake data.
-  gem 'ffaker', '~> 1.0'
+  gem 'ffaker', '~> 2.0'
 
   # Use RSpec for unit testing.
   gem 'rspec-rails', '~> 3.1.0'

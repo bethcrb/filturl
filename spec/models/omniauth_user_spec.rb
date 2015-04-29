@@ -37,7 +37,7 @@ RSpec.describe OmniauthUser, type: :model do
 
     context 'when the username is already in use' do
       it 'uses the e-mail address as the username' do
-        email = Faker::Internet.email
+        email = FFaker::Internet.email
         create(:user, email: email, username: auth.info.nickname)
         omniauth_user = OmniauthUser.new(auth).find_or_create_user
         expect(omniauth_user.username).to eq(auth.info.email)
