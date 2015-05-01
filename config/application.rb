@@ -36,8 +36,5 @@ module Filturl
       g.javascripts = false
       g.helper = false
     end
-
-    # Whitelisted IPs for Web Console
-    config.web_console.whitelisted_ips = '10.0.2.2'
   end
 end
