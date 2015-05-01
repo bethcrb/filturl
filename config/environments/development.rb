@@ -43,6 +43,9 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  # Whitelists IP addresses for Web Console
+  config.web_console.whitelisted_ips = ENV['TRUSTED_IP'] if ENV['TRUSTED_IP']
+
   # Raises alerts for N+1 queries and unused eager loading.
   config.after_initialize do
     Bullet.enable = true
