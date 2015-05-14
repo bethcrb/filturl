@@ -124,7 +124,7 @@ group :development, :test do
   gem 'spring-commands-teaspoon'
 
   # Use Teaspoon for testing JavaScript with Jasmine.
-  gem 'teaspoon', '~> 0.9.0'
+  gem 'teaspoon-jasmine', '~> 2.2.0'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
