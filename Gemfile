@@ -114,7 +114,7 @@ group :development, :test do
   gem 'ffaker', '~> 2.0'
 
   # Use RSpec for unit testing.
-  gem 'rspec-rails', '~> 3.2.0'
+  gem 'rspec-rails', '~> 3.3.0'
 
   # Spring speeds up development by keeping your application running in the
   # background. Read more: https://github.com/rails/spring

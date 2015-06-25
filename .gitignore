@@ -37,6 +37,7 @@
 /public/stylesheets/compiled
 /public/system/*
 /spec/cassettes/
+/spec/examples.txt
 /spec/tmp/*
 /specifications
 /tmp
