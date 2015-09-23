@@ -175,7 +175,7 @@ gem 'postrank-uri', '~> 1.0.16'
 gem 'pundit'
 
 # Use Simple Form to easily integrate Bootstrap styles in forms.
-gem 'simple_form', '~> 3.1.0'
+gem 'simple_form', '~> 3.2.0'
 
 # Use Typhoeus to perform HTTP requests.
 gem 'typhoeus', '~> 0.8.0'
